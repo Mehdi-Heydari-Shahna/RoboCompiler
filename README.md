@@ -69,7 +69,7 @@ Videos illustrate the associated studies; backend models and contact treatments 
 
 ## Scope
 
-These are simulation studies. The supplied compilers operate on physical mechanism records, with locally valid assembly branches and rank conditions. They do not establish hardware validation or general singularity traversal. MuJoCo and PhysX provide native contact simulation; Pinocchio workflows use their own stated contact or external-load assumptions. The excavator soil example uses an uncalibrated granular model.
+The supplied compilers operate on physical mechanism records, with locally valid assembly branches and rank conditions. MuJoCo and PhysX provide native contact simulation; Pinocchio workflows use their own stated contact or external-load assumptions. The excavator soil example uses an uncalibrated granular model.
 
 ## Paper and citation
 
