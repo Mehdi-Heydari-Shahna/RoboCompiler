@@ -1,0 +1,4 @@
+# Compatible portable runtime; native Pinocchio is installed separately via conda.
+numpy>=2.0,<3
+scipy>=1.14,<2
+threadpoolctl>=3.5,<4

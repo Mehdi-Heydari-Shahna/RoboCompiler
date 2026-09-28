@@ -1,0 +1,58 @@
+{
+  "input_archives": {
+    "Panda_CMG_PACDM_Final(1).zip": "1f8e6885e34192916da022906eab2fe623a85aeb66b6ee5f270a86c8125a98c6",
+    "Panda_Pinocchio_Validation_v1(1).zip": "c3c4647ff897c4708fc26c8b9bed54eceba18e8ee122bf4c131e20db451dcb3a"
+  },
+  "preserved_files": {
+    "panda/model.py": "ba72accf41724463f5b06f22beed0c31d045248d2baf8634cf275dcb7c6ef100",
+    "panda/task.py": "4482e135db6d7045aedf1ecb85ea3190feab54b43e5a5dac7653eb8ac33beabc",
+    "vendor/pacdm_original.py": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+    "data/panda_cmg.json": "ccc44cb9a9f9cfd8c2581adf1db181484df67f84d812e822bf17b261bf671570",
+    "data/reference.npz": "d9071abe9c74ab7d38a29093f6a2a63d51d887177a6497192a065c092f7307d7",
+    "data/reference.json": "07586c7b24eba7769b05aba6b5eae9389c227ffb2d796165b8a1f1284c248ac8"
+  },
+  "native_runtime_target": "Isaac Sim 6.1.x / Python 3.12 / CPU PhysX",
+  "date": "2026-09-27",
+  "source_evidence_note": "Preserved source-engine records for numerical regression.",
+  "native_execution_status": "Recorded NATIVE_SUITE_PASS, 309/309 checks, 13 cases; results/native_suite/suite.json",
+  "native_runtime_recorded": {
+    "isaacsim": "6.1.0.0",
+    "python": "3.12.14",
+    "platform": "Windows 11",
+    "physics": "CPU PhysX PGS 4/1",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "publication_source_archive": {
+    "name": "Panda_IsaacSim_CMG_PACDM_v2(1).zip",
+    "sha256": "32b13fe2d4b69fa0694d6461193c4b7edf96f870bb9be302b0cd93c4e448b73c"
+  },
+  "native_records": {
+    "native_suite": {
+      "original_archive": "v2_suite.zip",
+      "sha256": "2f226a84ca40a1197553acc5c6dad22097e793cfb70a8049e3773135bdaa081f",
+      "extraction": "Original file bytes retained; top-level archive directory renamed."
+    },
+    "native_smoke": {
+      "original_archive": "v2_smoke.zip",
+      "sha256": "9d8abbbdff242cf02ace022dd302cafe560121c3627833c2c1a44029aab904af",
+      "extraction": "Original file bytes retained; top-level archive directory renamed."
+    },
+    "native_contact_nominal": {
+      "original_archive": "v2_contact_nominal.zip",
+      "sha256": "fe791ec7e9d37f039645a1b78c2bf7c4f3e0df595366ba074959e29c23c4bc37",
+      "extraction": "Original file bytes retained; top-level archive directory renamed."
+    }
+  },
+  "publication_changes": [
+    "Updated researcher-facing documentation and current evidence status.",
+    "Expanded native result archives into named directories.",
+    "Removed duplicated panda.zip, bytecode caches, earlier twin rehearsal evidence, obsolete runtime-availability reports, and the redundant reference-rebuild console transcript; structured reference evidence is retained.",
+    "Preserved numerical behavior and pinned CMG/PACDM core files. Editorial changes to launcher messages, comments, development-tool docstrings and report attribution text are listed separately; the recorded-suite audit utility is additional."
+  ],
+  "editorial_python_changes": {
+    "run_isaac.py": "Comments, documentation or descriptive strings only; numerical behavior unchanged.",
+    "tools/rebuild_reference.py": "Comments, documentation or descriptive strings only; numerical behavior unchanged.",
+    "tools/mujoco_source_rerun.py": "Comments, documentation or descriptive strings only; numerical behavior unchanged.",
+    "cmg_isaac/report.py": "Comments, documentation or descriptive strings only; numerical behavior unchanged."
+  }
+}

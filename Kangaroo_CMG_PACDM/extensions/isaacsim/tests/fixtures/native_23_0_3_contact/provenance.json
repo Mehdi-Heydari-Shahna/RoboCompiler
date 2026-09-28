@@ -1,0 +1,71 @@
+{
+  "source_release": "23.0.3",
+  "source_run": "20260925T154059Z_8dfc6799/nominal",
+  "source_zip_sha256": "47dd1455a8cc70160aff30c8d55e0847c214b8978374ff3987cf1d6746950713",
+  "source_trace_sha256": "e3859e6b762ef4e20951f162d81ff2defc3baca4efa231d7941bcb886c1a8820",
+  "source_result_sha256": "772522dc9c3474ecbcda34642d1f1a216c445c7fe451643415eee34ebcd5d56c",
+  "native_completed": true,
+  "functional_status": "FUNCTIONAL_GATES_FAILED",
+  "passed_functional_gates": 16,
+  "total_functional_gates": 17,
+  "failed_gates": [
+    {
+      "name": "maximum_final_base_speed_m_s",
+      "status": "FAIL",
+      "value": 0.06428913076604238,
+      "threshold": 0.03,
+      "comparison": "<="
+    }
+  ],
+  "physics_steps": 400000,
+  "duration_s": 10.0,
+  "source_reported_maximum_final_speed_m_s": 0.06428913076604238,
+  "source_reported_maximum_foot_drift_m": 0.01198375775651399,
+  "source_simulation_loop_wall_s": 2550.1824995999923,
+  "recorded_sample_period_s": 0.004999999999999893,
+  "recorded_samples": 2001,
+  "final_interval_s": [
+    9.5,
+    10.0
+  ],
+  "final_saved_samples": 101,
+  "final_samples_with_normal_force_exactly_zero": 19,
+  "final_samples_with_legacy_gate_off": 19,
+  "final_sampled_legacy_gate_transitions": 32,
+  "final_lowest_sole_height_m_when_legacy_gate_off": [
+    -7.052843065125103e-07,
+    2.2152121233395827e-06
+  ],
+  "final_sampled_vertical_position_peak_to_peak_m": 0.002331972122192383,
+  "final_sampled_speed_max_m_s": 0.06164198749893143,
+  "final_fd_vertical_velocity_correlation": 0.9963157422485216,
+  "final_sampled_geometry_gate_off": 0,
+  "geometry_gate_replay_only": true,
+  "new_physics_simulated": false,
+  "controller_causality_limitation": "Old trace is post-step at 5 ms, while controller updates pre-step at 1 ms. These counts are NOT exact control-update counts and cannot establish command/contact causality.",
+  "interpretation": "Instantaneous force-threshold gating is not contact existence; zero-force/near-ground samples support a chatter hypothesis. Geometry-gate replay does not establish improved native settling.",
+  "gate_description": {
+    "mode": "contact_envelope",
+    "measurement": "sole geometry from native body poses; NOT a native contact-count sensor",
+    "contact_distance_m": 0.002,
+    "contact_distance_origin": "sum of the unchanged floor and sole contact offsets",
+    "ground_center_m": [
+      0.0,
+      0.0,
+      -0.05
+    ],
+    "ground_size_m": [
+      20.0,
+      20.0,
+      0.1
+    ],
+    "force_threshold_N_legacy_only": 1.0,
+    "scope": "fixed horizontal ground; full XY footprint of at least one box sole within the ground",
+    "stateful_latch": false,
+    "force_injection": false,
+    "native_manifold_equivalence_verified": false,
+    "preload_note": "geometry mode may enable feedforward within the envelope before positive load develops"
+  },
+  "derived_fixture_sha256": "faa72fe3bb04a63e0d21145fb51388dd34897f377ba0d11dd2cedcfd670a8d02",
+  "transformation": "Sole corners: model.foot_points(poses_from_xyzw(recorded body_pose_xyzw)). All other arrays copied or sliced without filtering."
+}

@@ -1,0 +1,86 @@
+{
+  "description": "Unchanged source files copied from the delivered Kangaroo_Pinocchio_Validation package (kangaroo_pin/) and from the supplied Kangaroo_RoboIR_full_body_v22 release (original_v22/, a subset: the files needed by the benchmark). MANIFEST_SHA256.json is the supplied v22 manifest.",
+  "kangaroo_pin_files": {
+    "kangaroo_pin/__init__.py": "c282af2340300b4c7f63b9d7155ea47b6d89d4f9c5189d0dea3924ea6ca4b727",
+    "kangaroo_pin/legacy.py": "680747128283786d09c99cadc4f6538f43e0acf622cc2bdce95d38d89804ef5d",
+    "kangaroo_pin/native_oracle.py": "043579b29c41291cc4c267d75a4899abfaaa4743e3e0156bb6b9990590331226",
+    "kangaroo_pin/pin_backend.py": "d3ddc8473647c2a1764798194e874b523d6e0471d6ccd829a163020fdad03688",
+    "kangaroo_pin/pin_simulation.py": "78122a3af90e7f57c0a38ca8df460a2271d7429af5a568556367c811ab0dde0b"
+  },
+  "kangaroo_pin_identical_to_delivered_package": {
+    "kangaroo_pin/__init__.py": true,
+    "kangaroo_pin/legacy.py": true,
+    "kangaroo_pin/native_oracle.py": true,
+    "kangaroo_pin/pin_backend.py": true,
+    "kangaroo_pin/pin_simulation.py": true
+  },
+  "original_v22_subset": {
+    "constraint_solvers.py": {
+      "sha256": "398d960da7495924a368741a994eab600f4faf3e884fc8fb39cb20a87e4be5b3",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "contact_reference.py": {
+      "sha256": "a640808bf7ffda2e8785db21219199cf0ad22998cc2c981970f4178010f5848e",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "contact_task.py": {
+      "sha256": "9bc05784dffc0b94c718c0c4ec5f71f7d34624b76d950a8794b2faadc7965828",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "data/contact_reference.npz": {
+      "sha256": "75a02f6f6f8c80474a86d81aea3ff27a8238f17681e95dc81aeacf347b70dea7",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "data/provenance.json": {
+      "sha256": "cb6b3e5f5e32ccd170487460b4afe6096ee3a1b5cbb1173062a5608f90580676",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "data/whole_body_cmg.json": {
+      "sha256": "e86b2f585135e1d0209424b9aeb477994c421d03b8e047043b11afa49f7bd1f1",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "import_full_model.py": {
+      "sha256": "caa3a699c5cacefe7ebcbad757e95360208538ab85b4242fc775674e52c3fadf",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "mechanism_backend.py": {
+      "sha256": "2b4ed3cf842c8e6b7b93a39f4c56a91c7de0209a11a27c7d43c5223a33db7193",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "pacdm.py": {
+      "sha256": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "reconstructed_model.py": {
+      "sha256": "2747e47467ec08e202d1e0c6adf5e0fe161218143e0247f3149554b5acb80f94",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "source_bias.py": {
+      "sha256": "bfa6db64a0304d41604bd02436153bf8e81a1dd4a3c91604b32a995805bbeeae",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "source_dynamics.py": {
+      "sha256": "6e6531065b7f15987a404995ee38f0aa0b1247368ad697e28603480d4b71e2a6",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    },
+    "whole_body_dynamics.py": {
+      "sha256": "aeff70913c4c8fb774f20edcbe6fc8e542a0d7b46db6a2e4bd352b5aacc54eae",
+      "matches_supplied_v22_manifest": true,
+      "matches_delivered_validation_package": true
+    }
+  },
+  "unchanged_pacdm_sha256": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+  "delivered_package_sha256sums_digest": "8a4efb151c16cdadb0dcb742dc0eedf03319187b2b42e82dfab4ec2f1f94bba6"
+}

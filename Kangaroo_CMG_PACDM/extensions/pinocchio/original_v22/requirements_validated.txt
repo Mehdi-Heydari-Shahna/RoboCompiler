@@ -1,0 +1,7 @@
+numpy==2.3.5
+scipy==1.15.3
+mujoco==3.3.7
+pin==3.8.0
+# Linux wheel ABI pins used in the validated runtime.
+cmeel-urdfdom==4.0.1; platform_system == "Linux"
+cmeel-tinyxml2==10.0.0; platform_system == "Linux"

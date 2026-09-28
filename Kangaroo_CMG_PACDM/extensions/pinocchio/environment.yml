@@ -1,0 +1,16 @@
+name: kangaroo_pinocchio
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pinocchio=3.8.0
+  - numpy=2.3.5
+  - matplotlib=3.10.8
+  - pillow=12.3.0
+  - pip
+  - pip:
+      - scipy==1.15.3
+      - vtk==9.4.2
+      - imageio==2.37.4
+      - imageio-ffmpeg==0.6.0

@@ -1,0 +1,6 @@
+# Recorded-evidence auditing, publication figures, and software regression tests.
+numpy==2.3.5
+scipy==1.17.0
+matplotlib==3.10.8
+Pillow==12.3.0
+pytest>=8,<10

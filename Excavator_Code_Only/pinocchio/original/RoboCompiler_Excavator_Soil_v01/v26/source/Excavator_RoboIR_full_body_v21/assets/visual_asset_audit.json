@@ -1,0 +1,298 @@
+{
+  "schema": "excavator.visual_asset_audit/0.15",
+  "passed": true,
+  "physical_bodies": 25,
+  "unique_cad_meshes": 19,
+  "triangles_unique": 98214,
+  "source_archive_sha256": "f3ddff096780af6fb013c11ee9626ef3ac058008b4635f56aae3db6a179b4298",
+  "source_slx_sha256": "cb642f8dc70125edc3b0a01c1a3fe73a91e66b9bc25dca7c284e2c079b461762",
+  "cmg_sha256": "5f677b65788d904ef4b25d4b384cb572ef3deec7fd904bb504bd49a6700480a2",
+  "accepted_xml_sha256": "d5970d4a8267da519284ea60c992ff5ea1f46640346e480b494e68e5804c825e",
+  "visual_xml_sha256": "0ff85d427588a33624172d69c9e741452ff01c62e334eb19526009cb3a8738e4",
+  "compiled_visual_geometry_max_error_m": 1.1957381649200094e-07,
+  "source_ascii_to_binary_max_error_m": 2.3437500021827873e-07,
+  "physical_fields_preserved": [
+    "body_parentid",
+    "body_pos",
+    "body_quat",
+    "body_mass",
+    "body_ipos",
+    "body_iquat",
+    "body_inertia",
+    "jnt_bodyid",
+    "jnt_type",
+    "jnt_axis",
+    "jnt_pos",
+    "qpos0",
+    "eq_type",
+    "eq_obj1id",
+    "eq_obj2id",
+    "eq_data"
+  ],
+  "three_input_body_frame_max_error": 0.0,
+  "world_mesh_bounds_m": [
+    [
+      -2.1134791313199917,
+      -1.1297132468100357,
+      -0.17777210831936374
+    ],
+    [
+      8.030345708886129,
+      1.4745722052228745,
+      3.3876390524378475
+    ]
+  ],
+  "body_checks": [
+    {
+      "body_id": "body_1",
+      "name": "BoomCyl_1_RIGID",
+      "mesh_filename": "BoomCyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.917493826421445e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_10",
+      "name": "EF_2_RIGID",
+      "mesh_filename": "EF_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.246654572285347e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_2",
+      "name": "BoomCyl_2_RIGID",
+      "mesh_filename": "BoomCyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.9174938533160506e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_3",
+      "name": "BoomPiston_1_RIGID",
+      "mesh_filename": "BoomPiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.0674003473877014e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_4",
+      "name": "BoomPiston_2_RIGID",
+      "mesh_filename": "BoomPiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.0674003833440674e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_44",
+      "name": "StickCyl_1_RIGID",
+      "mesh_filename": "StickCyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.965631422516658e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_45",
+      "name": "StickPiston_1_RIGID",
+      "mesh_filename": "StickPiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.769761543637921e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_46",
+      "name": "Tiltcyl_1_RIGID",
+      "mesh_filename": "Tiltcyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 7.589487393481816e-09,
+      "passed": true
+    },
+    {
+      "body_id": "body_47",
+      "name": "Tiltcyl_2_RIGID",
+      "mesh_filename": "Tiltcyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 7.589487412227754e-09,
+      "passed": true
+    },
+    {
+      "body_id": "body_48",
+      "name": "Tiltpiston_1_RIGID",
+      "mesh_filename": "Tiltpiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 7.471612567579905e-09,
+      "passed": true
+    },
+    {
+      "body_id": "body_49",
+      "name": "Tiltpiston_2_RIGID",
+      "mesh_filename": "Tiltpiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 7.471612989574116e-09,
+      "passed": true
+    },
+    {
+      "body_id": "body_5",
+      "name": "BucketCyl_1_RIGID",
+      "mesh_filename": "BucketCyl_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.9714157058200664e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_53",
+      "name": "base2_1_RIGID",
+      "mesh_filename": "base2_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 8.3400509504713e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_54",
+      "name": "boom_mod_1_RIGID",
+      "mesh_filename": "boom_mod_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.1957381649200094e-07,
+      "passed": true
+    },
+    {
+      "body_id": "body_55",
+      "name": "bottom_1_RIGID",
+      "mesh_filename": "bottom_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.502082617017418e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_56",
+      "name": "bucket_1_RIGID",
+      "mesh_filename": "bucket_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 3.2718716357093194e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_57",
+      "name": "cabin2_1_RIGID",
+      "mesh_filename": "cabin2_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 7.815464484178729e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_58",
+      "name": "middle_1_RIGID",
+      "mesh_filename": "middle_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.615538074858931e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_59",
+      "name": "pivot_1_RIGID",
+      "mesh_filename": "pivot_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 6.694279009226784e-09,
+      "passed": true
+    },
+    {
+      "body_id": "body_6",
+      "name": "BucketPiston_1_RIGID",
+      "mesh_filename": "BucketPiston_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.8093859800095627e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_60",
+      "name": "stick_mod_1_RIGID",
+      "mesh_filename": "stick_mod_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 5.9145001980678284e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_61",
+      "name": "top_1_RIGID",
+      "mesh_filename": "top_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 2.0791340986124376e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_7",
+      "name": "DF_1_RIGID",
+      "mesh_filename": "DF_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.1261119224139502e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_8",
+      "name": "DF_2_RIGID",
+      "mesh_filename": "DF_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.1261119035772707e-08,
+      "passed": true
+    },
+    {
+      "body_id": "body_9",
+      "name": "EF_1_RIGID",
+      "mesh_filename": "EF_Default_sldprt.STL",
+      "source_solid_frame": "identity mesh pose in original Solid body frame",
+      "source_units": "mm",
+      "mesh_scale_to_m": 0.001,
+      "compiled_mesh_world_vertex_error_m": 1.2466545918391511e-08,
+      "passed": true
+    }
+  ],
+  "semantics": "Replay-only presentation of supplied CAD geometry. No new dynamics or collision validation."
+}

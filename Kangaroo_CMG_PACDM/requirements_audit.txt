@@ -1,0 +1,5 @@
+# Environment used for the integrated recorded-data audit and figure reproduction.
+# These dependencies do not install a simulator.
+numpy==2.3.5
+scipy==1.17.0
+matplotlib==3.10.8

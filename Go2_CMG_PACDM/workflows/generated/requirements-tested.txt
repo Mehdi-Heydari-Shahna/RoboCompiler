@@ -1,0 +1,4 @@
+# Numerical versions actually executed in the recorded Linux run (Python 3.13.5).
+numpy==2.3.5
+scipy==1.17.0
+threadpoolctl==3.6.0

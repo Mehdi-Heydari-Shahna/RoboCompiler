@@ -1,0 +1,2873 @@
+{
+  "schema": "cmg.go2.floating-branched-tree/1.0",
+  "name": "Unitree Go2",
+  "root_body": "world",
+  "units": "SI",
+  "gravity_m_s2": [
+    0.0,
+    0.0,
+    -9.81
+  ],
+  "bodies": [
+    {
+      "id": "world",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "chart_0",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "chart_1",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "chart_2",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "chart_3",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "chart_4",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless coordinate chart stage"
+    },
+    {
+      "id": "base",
+      "mass_kg": 6.921,
+      "com_m": [
+        0.021112,
+        0.0,
+        -0.005366
+      ],
+      "inertia_kg_m2": [
+        [
+          0.02448001076845712,
+          0.00012165981636169433,
+          0.0014848088689877297
+        ],
+        [
+          0.0001216598163616943,
+          0.09807699118620111,
+          -3.1200472825479954e-05
+        ],
+        [
+          0.0014848088689877297,
+          -3.120047282547996e-05,
+          0.1070001980453418
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.021112 0 -0.005366",
+        "quat": "-0.000543471 0.713435 -0.00173769 0.700719",
+        "mass": "6.921",
+        "diaginertia": "0.107027 0.0980771 0.0244531"
+      }
+    },
+    {
+      "id": "FL_hip",
+      "mass_kg": 0.678,
+      "com_m": [
+        -0.0054,
+        0.00194,
+        -0.000105
+      ],
+      "inertia_kg_m2": [
+        [
+          0.000479999841864893,
+          -3.010076696263045e-06,
+          1.1099486388490804e-06
+        ],
+        [
+          -3.0100766962630443e-06,
+          0.0008840004917065922,
+          -1.4200337819249845e-06
+        ],
+        [
+          1.1099486388490802e-06,
+          -1.4200337819249845e-06,
+          0.0005959996664285155
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.0054 0.00194 -0.000105",
+        "quat": "0.497014 0.499245 0.505462 0.498237",
+        "mass": "0.678",
+        "diaginertia": "0.00088403 0.000596003 0.000479967"
+      }
+    },
+    {
+      "id": "FL_thigh",
+      "mass_kg": 1.152,
+      "com_m": [
+        -0.00374,
+        -0.0223,
+        -0.0327
+      ],
+      "inertia_kg_m2": [
+        [
+          0.005840003381089966,
+          8.719995117917659e-05,
+          -0.0002890007165841477
+        ],
+        [
+          8.71999511791769e-05,
+          0.005800003393104015,
+          0.0008080003950198986
+        ],
+        [
+          -0.00028900071658414763,
+          0.0008080003950198986,
+          0.001030000225806019
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.00374 -0.0223 -0.0327",
+        "quat": "0.829533 0.0847635 -0.0200632 0.551623",
+        "mass": "1.152",
+        "diaginertia": "0.00594973 0.00584149 0.000878787"
+      }
+    },
+    {
+      "id": "FL_calf",
+      "mass_kg": 0.241352,
+      "com_m": [
+        0.00629595,
+        -0.000622121,
+        -0.141417
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0014635374889026545,
+          2.1754499065181154e-07,
+          5.966814216748571e-06
+        ],
+        [
+          2.1754499065181205e-07,
+          0.0014899928816811496,
+          1.2247868798511445e-05
+        ],
+        [
+          5.966814216748571e-06,
+          1.2247868798511443e-05,
+          5.326932941619463e-05
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.00629595 -0.000622121 -0.141417",
+        "quat": "0.710672 0.00154099 -0.00450087 0.703508",
+        "mass": "0.241352",
+        "diaginertia": "0.0014901 0.00146356 5.31397e-05"
+      }
+    },
+    {
+      "id": "FR_hip",
+      "mass_kg": 0.678,
+      "com_m": [
+        -0.0054,
+        -0.00194,
+        -0.000105
+      ],
+      "inertia_kg_m2": [
+        [
+          0.000479999841864893,
+          3.0100766962630206e-06,
+          1.109948638849067e-06
+        ],
+        [
+          3.0100766962630198e-06,
+          0.0008840004917065922,
+          1.4200337819249845e-06
+        ],
+        [
+          1.1099486388490667e-06,
+          1.4200337819249845e-06,
+          0.0005959996664285155
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.0054 -0.00194 -0.000105",
+        "quat": "0.498237 0.505462 0.499245 0.497014",
+        "mass": "0.678",
+        "diaginertia": "0.00088403 0.000596003 0.000479967"
+      }
+    },
+    {
+      "id": "FR_thigh",
+      "mass_kg": 1.152,
+      "com_m": [
+        -0.00374,
+        0.0223,
+        -0.0327
+      ],
+      "inertia_kg_m2": [
+        [
+          0.005840003381089966,
+          -8.719995117917732e-05,
+          -0.0002890007165841476
+        ],
+        [
+          -8.71999511791773e-05,
+          0.005800003393104015,
+          -0.0008080003950198985
+        ],
+        [
+          -0.0002890007165841476,
+          -0.0008080003950198985,
+          0.0010300002258060192
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.00374 0.0223 -0.0327",
+        "quat": "0.551623 -0.0200632 0.0847635 0.829533",
+        "mass": "1.152",
+        "diaginertia": "0.00594973 0.00584149 0.000878787"
+      }
+    },
+    {
+      "id": "FR_calf",
+      "mass_kg": 0.241352,
+      "com_m": [
+        0.00629595,
+        0.000622121,
+        -0.141417
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0014635374889026545,
+          -2.1754499065181154e-07,
+          5.966814216748571e-06
+        ],
+        [
+          -2.1754499065181205e-07,
+          0.0014899928816811496,
+          -1.2247868798511445e-05
+        ],
+        [
+          5.966814216748571e-06,
+          -1.2247868798511443e-05,
+          5.3269329416194613e-05
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.00629595 0.000622121 -0.141417",
+        "quat": "0.703508 -0.00450087 0.00154099 0.710672",
+        "mass": "0.241352",
+        "diaginertia": "0.0014901 0.00146356 5.31397e-05"
+      }
+    },
+    {
+      "id": "RL_hip",
+      "mass_kg": 0.678,
+      "com_m": [
+        0.0054,
+        0.00194,
+        -0.000105
+      ],
+      "inertia_kg_m2": [
+        [
+          0.000479999841864893,
+          3.0100766962630198e-06,
+          -1.1099486388490804e-06
+        ],
+        [
+          3.010076696263019e-06,
+          0.0008840004917065922,
+          -1.420033781924968e-06
+        ],
+        [
+          -1.1099486388490802e-06,
+          -1.420033781924968e-06,
+          0.0005959996664285155
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.0054 0.00194 -0.000105",
+        "quat": "0.505462 0.498237 0.497014 0.499245",
+        "mass": "0.678",
+        "diaginertia": "0.00088403 0.000596003 0.000479967"
+      }
+    },
+    {
+      "id": "RL_thigh",
+      "mass_kg": 1.152,
+      "com_m": [
+        -0.00374,
+        -0.0223,
+        -0.0327
+      ],
+      "inertia_kg_m2": [
+        [
+          0.005840003381089966,
+          8.719995117917659e-05,
+          -0.0002890007165841477
+        ],
+        [
+          8.71999511791769e-05,
+          0.005800003393104015,
+          0.0008080003950198986
+        ],
+        [
+          -0.00028900071658414763,
+          0.0008080003950198986,
+          0.001030000225806019
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.00374 -0.0223 -0.0327",
+        "quat": "0.829533 0.0847635 -0.0200632 0.551623",
+        "mass": "1.152",
+        "diaginertia": "0.00594973 0.00584149 0.000878787"
+      }
+    },
+    {
+      "id": "RL_calf",
+      "mass_kg": 0.241352,
+      "com_m": [
+        0.00629595,
+        -0.000622121,
+        -0.141417
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0014635374889026545,
+          2.1754499065181154e-07,
+          5.966814216748571e-06
+        ],
+        [
+          2.1754499065181205e-07,
+          0.0014899928816811496,
+          1.2247868798511445e-05
+        ],
+        [
+          5.966814216748571e-06,
+          1.2247868798511443e-05,
+          5.326932941619463e-05
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.00629595 -0.000622121 -0.141417",
+        "quat": "0.710672 0.00154099 -0.00450087 0.703508",
+        "mass": "0.241352",
+        "diaginertia": "0.0014901 0.00146356 5.31397e-05"
+      }
+    },
+    {
+      "id": "RR_hip",
+      "mass_kg": 0.678,
+      "com_m": [
+        0.0054,
+        -0.00194,
+        -0.000105
+      ],
+      "inertia_kg_m2": [
+        [
+          0.000479999841864893,
+          -3.010076696262995e-06,
+          -1.1099486388490804e-06
+        ],
+        [
+          -3.010076696262995e-06,
+          0.0008840004917065922,
+          1.420033781924968e-06
+        ],
+        [
+          -1.1099486388490802e-06,
+          1.420033781924968e-06,
+          0.0005959996664285155
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.0054 -0.00194 -0.000105",
+        "quat": "0.499245 0.497014 0.498237 0.505462",
+        "mass": "0.678",
+        "diaginertia": "0.00088403 0.000596003 0.000479967"
+      }
+    },
+    {
+      "id": "RR_thigh",
+      "mass_kg": 1.152,
+      "com_m": [
+        -0.00374,
+        0.0223,
+        -0.0327
+      ],
+      "inertia_kg_m2": [
+        [
+          0.005840003381089966,
+          -8.719995117917732e-05,
+          -0.0002890007165841476
+        ],
+        [
+          -8.71999511791773e-05,
+          0.005800003393104015,
+          -0.0008080003950198985
+        ],
+        [
+          -0.0002890007165841476,
+          -0.0008080003950198985,
+          0.0010300002258060192
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "-0.00374 0.0223 -0.0327",
+        "quat": "0.551623 -0.0200632 0.0847635 0.829533",
+        "mass": "1.152",
+        "diaginertia": "0.00594973 0.00584149 0.000878787"
+      }
+    },
+    {
+      "id": "RR_calf",
+      "mass_kg": 0.241352,
+      "com_m": [
+        0.00629595,
+        0.000622121,
+        -0.141417
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0014635374889026545,
+          -2.1754499065181154e-07,
+          5.966814216748571e-06
+        ],
+        [
+          -2.1754499065181205e-07,
+          0.0014899928816811496,
+          -1.2247868798511445e-05
+        ],
+        [
+          5.966814216748571e-06,
+          -1.2247868798511443e-05,
+          5.3269329416194613e-05
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "pos": "0.00629595 0.000622121 -0.141417",
+        "quat": "0.703508 -0.00450087 0.00154099 0.710672",
+        "mass": "0.241352",
+        "diaginertia": "0.0014901 0.00146356 5.31397e-05"
+      }
+    }
+  ],
+  "joints": [
+    {
+      "id": "base_x",
+      "type": "prismatic",
+      "base_body": "world",
+      "follower_body": "chart_0",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1000000.0,
+        "upper": 1000000.0
+      },
+      "coordinate_unit": "m",
+      "effort_unit": "N",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "base_y",
+      "type": "prismatic",
+      "base_body": "chart_0",
+      "follower_body": "chart_1",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1000000.0,
+        "upper": 1000000.0
+      },
+      "coordinate_unit": "m",
+      "effort_unit": "N",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "base_z",
+      "type": "prismatic",
+      "base_body": "chart_1",
+      "follower_body": "chart_2",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1000000.0,
+        "upper": 1000000.0
+      },
+      "coordinate_unit": "m",
+      "effort_unit": "N",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "base_yaw",
+      "type": "revolute",
+      "base_body": "chart_2",
+      "follower_body": "chart_3",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "base_pitch",
+      "type": "revolute",
+      "base_body": "chart_3",
+      "follower_body": "chart_4",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.45,
+        "upper": 1.45
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "base_roll",
+      "type": "revolute",
+      "base_body": "chart_4",
+      "follower_body": "base",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -3.141592653589793,
+        "upper": 3.141592653589793
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.0,
+      "damping": 0.0,
+      "stiffness": 0.0,
+      "frictionloss": 0.0,
+      "spring_reference": 0.0,
+      "actuated": false,
+      "scope": "Unactuated chart coordinate of the native free joint"
+    },
+    {
+      "id": "FL_hip_joint",
+      "type": "revolute",
+      "base_body": "base",
+      "follower_body": "FL_hip",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.1934
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0465
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.0472,
+        "upper": 1.0472
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "1 0 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.0472 1.0472",
+        "name": "FL_hip_joint",
+        "class": "abduction"
+      }
+    },
+    {
+      "id": "FL_thigh_joint",
+      "type": "revolute",
+      "base_body": "FL_hip",
+      "follower_body": "FL_thigh",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0955
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.5708,
+        "upper": 3.4907
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.5708 3.4907",
+        "name": "FL_thigh_joint",
+        "class": "front_hip"
+      }
+    },
+    {
+      "id": "FL_calf_joint",
+      "type": "revolute",
+      "base_body": "FL_thigh",
+      "follower_body": "FL_calf",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.213
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.7227,
+        "upper": -0.83776
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-2.7227 -0.83776",
+        "name": "FL_calf_joint",
+        "class": "knee"
+      }
+    },
+    {
+      "id": "FR_hip_joint",
+      "type": "revolute",
+      "base_body": "base",
+      "follower_body": "FR_hip",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.1934
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.0465
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.0472,
+        "upper": 1.0472
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "1 0 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.0472 1.0472",
+        "name": "FR_hip_joint",
+        "class": "abduction"
+      }
+    },
+    {
+      "id": "FR_thigh_joint",
+      "type": "revolute",
+      "base_body": "FR_hip",
+      "follower_body": "FR_thigh",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.0955
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.5708,
+        "upper": 3.4907
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.5708 3.4907",
+        "name": "FR_thigh_joint",
+        "class": "front_hip"
+      }
+    },
+    {
+      "id": "FR_calf_joint",
+      "type": "revolute",
+      "base_body": "FR_thigh",
+      "follower_body": "FR_calf",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.213
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.7227,
+        "upper": -0.83776
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-2.7227 -0.83776",
+        "name": "FR_calf_joint",
+        "class": "knee"
+      }
+    },
+    {
+      "id": "RL_hip_joint",
+      "type": "revolute",
+      "base_body": "base",
+      "follower_body": "RL_hip",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.1934
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0465
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.0472,
+        "upper": 1.0472
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "1 0 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.0472 1.0472",
+        "name": "RL_hip_joint",
+        "class": "abduction"
+      }
+    },
+    {
+      "id": "RL_thigh_joint",
+      "type": "revolute",
+      "base_body": "RL_hip",
+      "follower_body": "RL_thigh",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0955
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -0.5236,
+        "upper": 4.5379
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-0.5236 4.5379",
+        "name": "RL_thigh_joint",
+        "class": "back_hip"
+      }
+    },
+    {
+      "id": "RL_calf_joint",
+      "type": "revolute",
+      "base_body": "RL_thigh",
+      "follower_body": "RL_calf",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.213
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.7227,
+        "upper": -0.83776
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-2.7227 -0.83776",
+        "name": "RL_calf_joint",
+        "class": "knee"
+      }
+    },
+    {
+      "id": "RR_hip_joint",
+      "type": "revolute",
+      "base_body": "base",
+      "follower_body": "RR_hip",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.1934
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.0465
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.0472,
+        "upper": 1.0472
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "1 0 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-1.0472 1.0472",
+        "name": "RR_hip_joint",
+        "class": "abduction"
+      }
+    },
+    {
+      "id": "RR_thigh_joint",
+      "type": "revolute",
+      "base_body": "RR_hip",
+      "follower_body": "RR_thigh",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.0955
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -0.5236,
+        "upper": 4.5379
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-0.5236 4.5379",
+        "name": "RR_thigh_joint",
+        "class": "back_hip"
+      }
+    },
+    {
+      "id": "RR_calf_joint",
+      "type": "revolute",
+      "base_body": "RR_thigh",
+      "follower_body": "RR_calf",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.213
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.7227,
+        "upper": -0.83776
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "actuated": true,
+      "armature": 0.01,
+      "damping": 2.0,
+      "frictionloss": 0.2,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "axis": "0 1 0",
+        "damping": "2",
+        "armature": "0.01",
+        "frictionloss": "0.2",
+        "range": "-2.7227 -0.83776",
+        "name": "RR_calf_joint",
+        "class": "knee"
+      }
+    }
+  ],
+  "coordinate_ids": [
+    "base_x",
+    "base_y",
+    "base_z",
+    "base_yaw",
+    "base_pitch",
+    "base_roll",
+    "FL_hip_joint",
+    "FL_thigh_joint",
+    "FL_calf_joint",
+    "FR_hip_joint",
+    "FR_thigh_joint",
+    "FR_calf_joint",
+    "RL_hip_joint",
+    "RL_thigh_joint",
+    "RL_calf_joint",
+    "RR_hip_joint",
+    "RR_thigh_joint",
+    "RR_calf_joint"
+  ],
+  "independent_ids": [
+    "base_x",
+    "base_y",
+    "base_z",
+    "base_yaw",
+    "base_pitch",
+    "base_roll",
+    "FL_hip_joint",
+    "FL_thigh_joint",
+    "FL_calf_joint",
+    "FR_hip_joint",
+    "FR_thigh_joint",
+    "FR_calf_joint",
+    "RL_hip_joint",
+    "RL_thigh_joint",
+    "RL_calf_joint",
+    "RR_hip_joint",
+    "RR_thigh_joint",
+    "RR_calf_joint"
+  ],
+  "actuated_independent_ids": [
+    "FL_hip_joint",
+    "FL_thigh_joint",
+    "FL_calf_joint",
+    "FR_hip_joint",
+    "FR_thigh_joint",
+    "FR_calf_joint",
+    "RL_hip_joint",
+    "RL_thigh_joint",
+    "RL_calf_joint",
+    "RR_hip_joint",
+    "RR_thigh_joint",
+    "RR_calf_joint"
+  ],
+  "passive_independent_ids": [
+    "base_x",
+    "base_y",
+    "base_z",
+    "base_yaw",
+    "base_pitch",
+    "base_roll"
+  ],
+  "closures": [],
+  "coordinate_couplings": [],
+  "q_reference": [
+    0.0,
+    0.0,
+    0.27,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8
+  ],
+  "native_q_reference": [
+    0.0,
+    0.0,
+    0.27,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8
+  ],
+  "feet": [
+    {
+      "id": "FL",
+      "body": "FL_calf",
+      "point_m": [
+        -0.002,
+        0.0,
+        -0.213
+      ],
+      "radius_m": 0.022,
+      "joint_ids": [
+        "FL_hip_joint",
+        "FL_thigh_joint",
+        "FL_calf_joint"
+      ],
+      "source_geom_attributes": {
+        "friction": "0.8 0.02 0.01",
+        "margin": "0.001",
+        "condim": "6",
+        "group": "3",
+        "size": "0.022",
+        "pos": "-0.002 0 -0.213",
+        "priority": "1",
+        "solimp": "0.015 1 0.022",
+        "name": "FL",
+        "class": "foot"
+      }
+    },
+    {
+      "id": "FR",
+      "body": "FR_calf",
+      "point_m": [
+        -0.002,
+        0.0,
+        -0.213
+      ],
+      "radius_m": 0.022,
+      "joint_ids": [
+        "FR_hip_joint",
+        "FR_thigh_joint",
+        "FR_calf_joint"
+      ],
+      "source_geom_attributes": {
+        "friction": "0.8 0.02 0.01",
+        "margin": "0.001",
+        "condim": "6",
+        "group": "3",
+        "size": "0.022",
+        "pos": "-0.002 0 -0.213",
+        "priority": "1",
+        "solimp": "0.015 1 0.022",
+        "name": "FR",
+        "class": "foot"
+      }
+    },
+    {
+      "id": "RL",
+      "body": "RL_calf",
+      "point_m": [
+        -0.002,
+        0.0,
+        -0.213
+      ],
+      "radius_m": 0.022,
+      "joint_ids": [
+        "RL_hip_joint",
+        "RL_thigh_joint",
+        "RL_calf_joint"
+      ],
+      "source_geom_attributes": {
+        "friction": "0.8 0.02 0.01",
+        "margin": "0.001",
+        "condim": "6",
+        "group": "3",
+        "size": "0.022",
+        "pos": "-0.002 0 -0.213",
+        "priority": "1",
+        "solimp": "0.015 1 0.022",
+        "name": "RL",
+        "class": "foot"
+      }
+    },
+    {
+      "id": "RR",
+      "body": "RR_calf",
+      "point_m": [
+        -0.002,
+        0.0,
+        -0.213
+      ],
+      "radius_m": 0.022,
+      "joint_ids": [
+        "RR_hip_joint",
+        "RR_thigh_joint",
+        "RR_calf_joint"
+      ],
+      "source_geom_attributes": {
+        "friction": "0.8 0.02 0.01",
+        "margin": "0.001",
+        "condim": "6",
+        "group": "3",
+        "size": "0.022",
+        "pos": "-0.002 0 -0.213",
+        "priority": "1",
+        "solimp": "0.015 1 0.022",
+        "name": "RR",
+        "class": "foot"
+      }
+    }
+  ],
+  "source_home_control": [
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8,
+    0.0,
+    0.9,
+    -1.8
+  ],
+  "mobility": {
+    "floating_base_coordinates": 6,
+    "leg_coordinates": 12,
+    "independent_physical_constraints": 0,
+    "independent_coordinates": 18,
+    "actuators": 12
+  },
+  "free_base_chart": {
+    "coordinates": [
+      "base_x",
+      "base_y",
+      "base_z",
+      "base_yaw",
+      "base_pitch",
+      "base_roll"
+    ],
+    "convention": "world XYZ then intrinsic ZYX yaw pitch roll",
+    "native_velocity": "world translation, body angular velocity, source leg velocities",
+    "nominal_chart_pitch_limit_rad": 1.45,
+    "native_source_pose": {
+      "name": "base",
+      "pos": "0 0 0.445",
+      "childclass": "go2"
+    }
+  },
+  "actuation": {
+    "type": "twelve_leg_joint_torque_motors_unactuated_free_base",
+    "actuators": [
+      {
+        "id": "FL_hip",
+        "joint": "FL_hip_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "abduction",
+          "name": "FL_hip",
+          "joint": "FL_hip_joint"
+        }
+      },
+      {
+        "id": "FL_thigh",
+        "joint": "FL_thigh_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "hip",
+          "name": "FL_thigh",
+          "joint": "FL_thigh_joint"
+        }
+      },
+      {
+        "id": "FL_calf",
+        "joint": "FL_calf_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -45.43,
+          45.43
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-45.43 45.43",
+          "class": "knee",
+          "name": "FL_calf",
+          "joint": "FL_calf_joint"
+        }
+      },
+      {
+        "id": "FR_hip",
+        "joint": "FR_hip_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "abduction",
+          "name": "FR_hip",
+          "joint": "FR_hip_joint"
+        }
+      },
+      {
+        "id": "FR_thigh",
+        "joint": "FR_thigh_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "hip",
+          "name": "FR_thigh",
+          "joint": "FR_thigh_joint"
+        }
+      },
+      {
+        "id": "FR_calf",
+        "joint": "FR_calf_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -45.43,
+          45.43
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-45.43 45.43",
+          "class": "knee",
+          "name": "FR_calf",
+          "joint": "FR_calf_joint"
+        }
+      },
+      {
+        "id": "RL_hip",
+        "joint": "RL_hip_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "abduction",
+          "name": "RL_hip",
+          "joint": "RL_hip_joint"
+        }
+      },
+      {
+        "id": "RL_thigh",
+        "joint": "RL_thigh_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "hip",
+          "name": "RL_thigh",
+          "joint": "RL_thigh_joint"
+        }
+      },
+      {
+        "id": "RL_calf",
+        "joint": "RL_calf_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -45.43,
+          45.43
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-45.43 45.43",
+          "class": "knee",
+          "name": "RL_calf",
+          "joint": "RL_calf_joint"
+        }
+      },
+      {
+        "id": "RR_hip",
+        "joint": "RR_hip_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "abduction",
+          "name": "RR_hip",
+          "joint": "RR_hip_joint"
+        }
+      },
+      {
+        "id": "RR_thigh",
+        "joint": "RR_thigh_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -23.7,
+          23.7
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-23.7 23.7",
+          "class": "hip",
+          "name": "RR_thigh",
+          "joint": "RR_thigh_joint"
+        }
+      },
+      {
+        "id": "RR_calf",
+        "joint": "RR_calf_joint",
+        "gear": 1.0,
+        "ctrl_range": [
+          -45.43,
+          45.43
+        ],
+        "source_resolved_attributes": {
+          "ctrlrange": "-45.43 45.43",
+          "class": "knee",
+          "name": "RR_calf",
+          "joint": "RR_calf_joint"
+        }
+      }
+    ],
+    "moment_matrix": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "367e3d9884401dcf6f9c27fa69f118992539039f",
+    "relative_path": "unitree_go2/go2.xml",
+    "sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
+    "license": "BSD-3-Clause",
+    "import_method": "Direct authored XML only; no simulator arrays"
+  },
+  "scope": "Floating branched tree, 18 velocities and 12 physical motors. Contact modes create temporary constraints; the free-base chart stages are not physical actuators. Source inertias are simulation data, not hardware identification.",
+  "total_mass_kg": 15.206408,
+  "armature": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01
+  ],
+  "damping": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0
+  ],
+  "stiffness": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "spring_reference": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "frictionloss": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2,
+    0.2
+  ]
+}

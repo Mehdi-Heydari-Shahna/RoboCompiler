@@ -1,0 +1,6 @@
+# Native optional route. Mirrors ABI pins in the supplied Stewart package.
+# This installation was network-blocked in the present runtime.
+-r requirements.txt
+pin==3.8.0
+cmeel-urdfdom==4.0.1
+cmeel-tinyxml2==10.0.0

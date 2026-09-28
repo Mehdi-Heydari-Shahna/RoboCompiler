@@ -1,0 +1,1790 @@
+{
+  "schema": "cmg.panda.serial-tree-and-scalar-coupling/1.0",
+  "name": "Franka Emika Panda, serial arm and coupled parallel gripper",
+  "root_body": "world",
+  "units": "SI",
+  "gravity_m_s2": [
+    0.0,
+    0.0,
+    -9.81
+  ],
+  "bodies": [
+    {
+      "id": "world",
+      "mass_kg": 0.0,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "inertia_source": "massless world"
+    },
+    {
+      "id": "link0",
+      "mass_kg": 0.629769,
+      "com_m": [
+        -0.041018,
+        -0.00014,
+        0.049974
+      ],
+      "inertia_kg_m2": [
+        [
+          0.00315,
+          8.2904e-07,
+          0.00015
+        ],
+        [
+          8.2904e-07,
+          0.00388,
+          8.2299e-06
+        ],
+        [
+          0.00015,
+          8.2299e-06,
+          0.004285
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "0.629769",
+        "pos": "-0.041018 -0.00014 0.049974",
+        "fullinertia": "0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6"
+      }
+    },
+    {
+      "id": "link1",
+      "mass_kg": 4.970684,
+      "com_m": [
+        0.003875,
+        0.002081,
+        -0.04762
+      ],
+      "inertia_kg_m2": [
+        [
+          0.70337,
+          -0.000139,
+          0.006772
+        ],
+        [
+          -0.000139,
+          0.70661,
+          0.019169
+        ],
+        [
+          0.006772,
+          0.019169,
+          0.009117
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "4.970684",
+        "pos": "0.003875 0.002081 -0.04762",
+        "fullinertia": "0.70337 0.70661 0.0091170 -0.00013900 0.0067720 0.019169"
+      }
+    },
+    {
+      "id": "link2",
+      "mass_kg": 0.646926,
+      "com_m": [
+        -0.003141,
+        -0.02872,
+        0.003495
+      ],
+      "inertia_kg_m2": [
+        [
+          0.007962,
+          -0.003925,
+          0.010254
+        ],
+        [
+          -0.003925,
+          0.02811,
+          0.000704
+        ],
+        [
+          0.010254,
+          0.000704,
+          0.025995
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "0.646926",
+        "pos": "-0.003141 -0.02872 0.003495",
+        "fullinertia": "0.0079620 2.8110e-2 2.5995e-2 -3.925e-3 1.0254e-2 7.04e-4"
+      }
+    },
+    {
+      "id": "link3",
+      "mass_kg": 3.228604,
+      "com_m": [
+        0.027518,
+        0.039252,
+        -0.066502
+      ],
+      "inertia_kg_m2": [
+        [
+          0.037242,
+          -0.004761,
+          -0.011396
+        ],
+        [
+          -0.004761,
+          0.036155,
+          -0.012805
+        ],
+        [
+          -0.011396,
+          -0.012805,
+          0.01083
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "3.228604",
+        "pos": "2.7518e-2 3.9252e-2 -6.6502e-2",
+        "fullinertia": "3.7242e-2 3.6155e-2 1.083e-2 -4.761e-3 -1.1396e-2 -1.2805e-2"
+      }
+    },
+    {
+      "id": "link4",
+      "mass_kg": 3.587895,
+      "com_m": [
+        -0.05317,
+        0.104419,
+        0.027454
+      ],
+      "inertia_kg_m2": [
+        [
+          0.025853,
+          0.007796,
+          -0.001332
+        ],
+        [
+          0.007796,
+          0.019552,
+          0.008641
+        ],
+        [
+          -0.001332,
+          0.008641,
+          0.028323
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "3.587895",
+        "pos": "-5.317e-2 1.04419e-1 2.7454e-2",
+        "fullinertia": "2.5853e-2 1.9552e-2 2.8323e-2 7.796e-3 -1.332e-3 8.641e-3"
+      }
+    },
+    {
+      "id": "link5",
+      "mass_kg": 1.225946,
+      "com_m": [
+        -0.011953,
+        0.041065,
+        -0.038437
+      ],
+      "inertia_kg_m2": [
+        [
+          0.035549,
+          -0.002117,
+          -0.004037
+        ],
+        [
+          -0.002117,
+          0.029474,
+          0.000229
+        ],
+        [
+          -0.004037,
+          0.000229,
+          0.008627
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "1.225946",
+        "pos": "-1.1953e-2 4.1065e-2 -3.8437e-2",
+        "fullinertia": "3.5549e-2 2.9474e-2 8.627e-3 -2.117e-3 -4.037e-3 2.29e-4"
+      }
+    },
+    {
+      "id": "link6",
+      "mass_kg": 1.666555,
+      "com_m": [
+        0.060149,
+        -0.014117,
+        -0.010517
+      ],
+      "inertia_kg_m2": [
+        [
+          0.001964,
+          0.000109,
+          -0.001158
+        ],
+        [
+          0.000109,
+          0.004354,
+          0.000341
+        ],
+        [
+          -0.001158,
+          0.000341,
+          0.005433
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "1.666555",
+        "pos": "6.0149e-2 -1.4117e-2 -1.0517e-2",
+        "fullinertia": "1.964e-3 4.354e-3 5.433e-3 1.09e-4 -1.158e-3 3.41e-4"
+      }
+    },
+    {
+      "id": "link7",
+      "mass_kg": 0.735522,
+      "com_m": [
+        0.010517,
+        -0.004252,
+        0.061597
+      ],
+      "inertia_kg_m2": [
+        [
+          0.012516,
+          -0.000428,
+          -0.001196
+        ],
+        [
+          -0.000428,
+          0.010027,
+          -0.000741
+        ],
+        [
+          -0.001196,
+          -0.000741,
+          0.004815
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "7.35522e-01",
+        "pos": "1.0517e-2 -4.252e-3 6.1597e-2",
+        "fullinertia": "1.2516e-2 1.0027e-2 4.815e-3 -4.28e-4 -1.196e-3 -7.41e-4"
+      }
+    },
+    {
+      "id": "hand",
+      "mass_kg": 0.73,
+      "com_m": [
+        -0.01,
+        0.0,
+        0.03
+      ],
+      "inertia_kg_m2": [
+        [
+          0.001,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0025,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0017
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "0.73",
+        "pos": "-0.01 0 0.03",
+        "diaginertia": "0.001 0.0025 0.0017"
+      }
+    },
+    {
+      "id": "left_finger",
+      "mass_kg": 0.015,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          2.375e-06,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.375e-06,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          7.5e-07
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "0.015",
+        "pos": "0 0 0",
+        "diaginertia": "2.375e-6 2.375e-6 7.5e-7"
+      }
+    },
+    {
+      "id": "right_finger",
+      "mass_kg": 0.015,
+      "com_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inertia_kg_m2": [
+        [
+          2.375e-06,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.375e-06,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          7.5e-07
+        ]
+      ],
+      "inertia_source": "explicit authored MJCF inertial",
+      "source_inertial_attributes": {
+        "mass": "0.015",
+        "pos": "0 0 0",
+        "diaginertia": "2.375e-6 2.375e-6 7.5e-7"
+      }
+    }
+  ],
+  "joints": [
+    {
+      "id": "fixed_link0",
+      "type": "fixed",
+      "base_body": "world",
+      "follower_body": "link0",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "joint1",
+      "type": "revolute",
+      "base_body": "link0",
+      "follower_body": "link1",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.333
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.8973,
+        "upper": 2.8973
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-2.8973 2.8973",
+        "name": "joint1"
+      }
+    },
+    {
+      "id": "joint2",
+      "type": "revolute",
+      "base_body": "link1",
+      "follower_body": "link2",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -1.7628,
+        "upper": 1.7628
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-1.7628 1.7628",
+        "name": "joint2"
+      }
+    },
+    {
+      "id": "joint3",
+      "type": "revolute",
+      "base_body": "link2",
+      "follower_body": "link3",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.9999999999999998,
+          -0.316
+        ],
+        [
+          0.0,
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.8973,
+        "upper": 2.8973
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-2.8973 2.8973",
+        "name": "joint3"
+      }
+    },
+    {
+      "id": "joint4",
+      "type": "revolute",
+      "base_body": "link3",
+      "follower_body": "link4",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          0.0825
+        ],
+        [
+          0.0,
+          0.0,
+          -0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -3.0718,
+        "upper": -0.0698
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-3.0718 -0.0698",
+        "name": "joint4"
+      }
+    },
+    {
+      "id": "joint5",
+      "type": "revolute",
+      "base_body": "link4",
+      "follower_body": "link5",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          -0.0825
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999999999999998,
+          0.384
+        ],
+        [
+          0.0,
+          -0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.8973,
+        "upper": 2.8973
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-2.8973 2.8973",
+        "name": "joint5"
+      }
+    },
+    {
+      "id": "joint6",
+      "type": "revolute",
+      "base_body": "link5",
+      "follower_body": "link6",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -0.0175,
+        "upper": 3.7525
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-0.0175 3.7525",
+        "name": "joint6"
+      }
+    },
+    {
+      "id": "joint7",
+      "type": "revolute",
+      "base_body": "link6",
+      "follower_body": "link7",
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "T_BJ": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0,
+          0.088
+        ],
+        [
+          0.0,
+          0.0,
+          -0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": -2.8973,
+        "upper": 2.8973
+      },
+      "coordinate_unit": "rad",
+      "effort_unit": "N m",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 0 1",
+        "range": "-2.8973 2.8973",
+        "name": "joint7"
+      }
+    },
+    {
+      "id": "fixed_hand",
+      "type": "fixed",
+      "base_body": "link7",
+      "follower_body": "hand",
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          0.7071068058785942,
+          0.7071067564945002,
+          0.0,
+          0.0
+        ],
+        [
+          -0.7071067564945002,
+          0.7071068058785942,
+          -0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          0.0,
+          1.0,
+          0.107
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "id": "finger_joint1",
+      "type": "prismatic",
+      "base_body": "hand",
+      "follower_body": "left_finger",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0584
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": 0.0,
+        "upper": 0.04
+      },
+      "coordinate_unit": "m",
+      "effort_unit": "N",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 1 0",
+        "range": "0 0.04",
+        "type": "slide",
+        "name": "finger_joint1",
+        "class": "finger"
+      }
+    },
+    {
+      "id": "finger_joint2",
+      "type": "prismatic",
+      "base_body": "hand",
+      "follower_body": "right_finger",
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "T_BJ": [
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0584
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_FJ": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "limits": {
+        "lower": 0.0,
+        "upper": 0.04
+      },
+      "coordinate_unit": "m",
+      "effort_unit": "N",
+      "armature": 0.1,
+      "damping": 1.0,
+      "stiffness": 0.0,
+      "spring_reference": 0.0,
+      "source_resolved_attributes": {
+        "armature": "0.1",
+        "damping": "1",
+        "axis": "0 1 0",
+        "range": "0 0.04",
+        "type": "slide",
+        "name": "finger_joint2",
+        "class": "finger"
+      }
+    }
+  ],
+  "coordinate_ids": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "joint7",
+    "finger_joint1",
+    "finger_joint2"
+  ],
+  "independent_ids": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "joint7",
+    "finger_joint1"
+  ],
+  "actuated_independent_ids": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "joint7",
+    "finger_joint1"
+  ],
+  "passive_independent_ids": [],
+  "closures": [],
+  "coordinate_couplings": [
+    {
+      "id": "coordinate_coupling_0",
+      "joint1": "finger_joint1",
+      "joint2": "finger_joint2",
+      "polycoef": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_equality_index": 0,
+      "source_attributes": {
+        "joint1": "finger_joint1",
+        "joint2": "finger_joint2",
+        "solimp": "0.95 0.99 0.001",
+        "solref": "0.005 1"
+      }
+    }
+  ],
+  "q_reference": [
+    0.0,
+    0.0,
+    0.0,
+    -1.57079,
+    0.0,
+    1.57079,
+    -0.7853,
+    0.04,
+    0.04
+  ],
+  "source_reference": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "source_home_control": [
+    0.0,
+    0.0,
+    0.0,
+    -1.57079,
+    0.0,
+    1.57079,
+    -0.7853,
+    255.0
+  ],
+  "mobility": {
+    "tree_coordinates": 9,
+    "independent_physical_constraints": 1,
+    "independent_coordinates": 8,
+    "actuators": 8,
+    "point_orientation_chart_coordinates": 0
+  },
+  "tool": {
+    "body": "hand",
+    "T_body_tool": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.1029
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "convention": "Main fingertip pad midpoint; +z from hand toward fingertips"
+  },
+  "actuation": {
+    "type": "seven_joint_actuators_and_one_finger_tendon",
+    "actuators": [
+      {
+        "id": "actuator1",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-2.8973 2.8973",
+          "forcerange": "-87 87",
+          "class": "panda",
+          "name": "actuator1",
+          "joint": "joint1",
+          "gainprm": "4500",
+          "biasprm": "0 -4500 -450"
+        },
+        "transmission": {
+          "joint1": 1.0
+        },
+        "ctrl_range": [
+          -2.8973,
+          2.8973
+        ],
+        "force_range": [
+          -87.0,
+          87.0
+        ],
+        "gain": [
+          4500.0
+        ],
+        "bias": [
+          0.0,
+          -4500.0,
+          -450.0
+        ]
+      },
+      {
+        "id": "actuator2",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-1.7628 1.7628",
+          "forcerange": "-87 87",
+          "class": "panda",
+          "name": "actuator2",
+          "joint": "joint2",
+          "gainprm": "4500",
+          "biasprm": "0 -4500 -450"
+        },
+        "transmission": {
+          "joint2": 1.0
+        },
+        "ctrl_range": [
+          -1.7628,
+          1.7628
+        ],
+        "force_range": [
+          -87.0,
+          87.0
+        ],
+        "gain": [
+          4500.0
+        ],
+        "bias": [
+          0.0,
+          -4500.0,
+          -450.0
+        ]
+      },
+      {
+        "id": "actuator3",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-2.8973 2.8973",
+          "forcerange": "-87 87",
+          "class": "panda",
+          "name": "actuator3",
+          "joint": "joint3",
+          "gainprm": "3500",
+          "biasprm": "0 -3500 -350"
+        },
+        "transmission": {
+          "joint3": 1.0
+        },
+        "ctrl_range": [
+          -2.8973,
+          2.8973
+        ],
+        "force_range": [
+          -87.0,
+          87.0
+        ],
+        "gain": [
+          3500.0
+        ],
+        "bias": [
+          0.0,
+          -3500.0,
+          -350.0
+        ]
+      },
+      {
+        "id": "actuator4",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-3.0718 -0.0698",
+          "forcerange": "-87 87",
+          "class": "panda",
+          "name": "actuator4",
+          "joint": "joint4",
+          "gainprm": "3500",
+          "biasprm": "0 -3500 -350"
+        },
+        "transmission": {
+          "joint4": 1.0
+        },
+        "ctrl_range": [
+          -3.0718,
+          -0.0698
+        ],
+        "force_range": [
+          -87.0,
+          87.0
+        ],
+        "gain": [
+          3500.0
+        ],
+        "bias": [
+          0.0,
+          -3500.0,
+          -350.0
+        ]
+      },
+      {
+        "id": "actuator5",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-2.8973 2.8973",
+          "forcerange": "-12 12",
+          "class": "panda",
+          "name": "actuator5",
+          "joint": "joint5",
+          "gainprm": "2000",
+          "biasprm": "0 -2000 -200"
+        },
+        "transmission": {
+          "joint5": 1.0
+        },
+        "ctrl_range": [
+          -2.8973,
+          2.8973
+        ],
+        "force_range": [
+          -12.0,
+          12.0
+        ],
+        "gain": [
+          2000.0
+        ],
+        "bias": [
+          0.0,
+          -2000.0,
+          -200.0
+        ]
+      },
+      {
+        "id": "actuator6",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-0.0175 3.7525",
+          "forcerange": "-12 12",
+          "class": "panda",
+          "name": "actuator6",
+          "joint": "joint6",
+          "gainprm": "2000",
+          "biasprm": "0 -2000 -200"
+        },
+        "transmission": {
+          "joint6": 1.0
+        },
+        "ctrl_range": [
+          -0.0175,
+          3.7525
+        ],
+        "force_range": [
+          -12.0,
+          12.0
+        ],
+        "gain": [
+          2000.0
+        ],
+        "bias": [
+          0.0,
+          -2000.0,
+          -200.0
+        ]
+      },
+      {
+        "id": "actuator7",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "-2.8973 2.8973",
+          "forcerange": "-12 12",
+          "class": "panda",
+          "name": "actuator7",
+          "joint": "joint7",
+          "gainprm": "2000",
+          "biasprm": "0 -2000 -200"
+        },
+        "transmission": {
+          "joint7": 1.0
+        },
+        "ctrl_range": [
+          -2.8973,
+          2.8973
+        ],
+        "force_range": [
+          -12.0,
+          12.0
+        ],
+        "gain": [
+          2000.0
+        ],
+        "bias": [
+          0.0,
+          -2000.0,
+          -200.0
+        ]
+      },
+      {
+        "id": "actuator8",
+        "source_resolved_attributes": {
+          "dyntype": "none",
+          "biastype": "affine",
+          "ctrlrange": "0 255",
+          "forcerange": "-100 100",
+          "class": "panda",
+          "name": "actuator8",
+          "tendon": "split",
+          "gainprm": "0.01568627451 0 0",
+          "biasprm": "0 -100 -10"
+        },
+        "transmission": {
+          "finger_joint1": 0.5,
+          "finger_joint2": 0.5
+        },
+        "ctrl_range": [
+          0.0,
+          255.0
+        ],
+        "force_range": [
+          -100.0,
+          100.0
+        ],
+        "gain": [
+          0.01568627451,
+          0.0,
+          0.0
+        ],
+        "bias": [
+          0.0,
+          -100.0,
+          -10.0
+        ]
+      }
+    ],
+    "fixed_tendons": {
+      "split": {
+        "finger_joint1": 0.5,
+        "finger_joint2": 0.5
+      }
+    },
+    "moment_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5
+      ]
+    ]
+  },
+  "source": {
+    "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+    "commit": "822c2d8f877dd166c5b7d3c9f7e3c3b6589473b7",
+    "relative_path": "franka_emika_panda/panda.xml",
+    "sha256": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+    "license": "Apache-2.0",
+    "import_method": "Direct authored XML only; no simulator arrays"
+  },
+  "scope": "Serial arm plus parallel-finger scalar coupling. Task pose constraints are virtual task constraints, not structural arm loops. Source simulation model is not hardware parameter identification.",
+  "armature": [
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1
+  ],
+  "damping": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "stiffness": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "spring_reference": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

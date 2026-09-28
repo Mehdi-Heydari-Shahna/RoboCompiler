@@ -1,0 +1,5 @@
+# Full Linux release checks, including USD scene and controller tests.
+-r requirements-linux.txt
+pytest==9.1.1
+usd-core==26.8
+threadpoolctl==3.6.0

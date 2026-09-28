@@ -1,0 +1,3 @@
+# Plotting-only dependencies. Compatible with the simulation NumPy pin.
+numpy==2.3.5
+matplotlib==3.10.8

@@ -1,0 +1,4 @@
+# Only for a separate offline-test environment. Do not use this to replace or
+# upgrade the numerical packages in an already working Isaac Sim environment.
+numpy>=1.26,<3
+scipy>=1.12,<2

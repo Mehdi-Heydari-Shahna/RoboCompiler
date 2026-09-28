@@ -1,0 +1,12 @@
+name: go2_isaac_controller
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26,<3
+  - scipy>=1.12,<2
+  - pinocchio>=3.8,<4
+  - osqp>=1.0,<2
+  - matplotlib>=3.8,<4
+  - imageio-ffmpeg>=0.5,<1
+  - pip

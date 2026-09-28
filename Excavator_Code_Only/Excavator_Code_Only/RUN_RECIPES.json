@@ -1,0 +1,39 @@
+{
+  "common": {
+    "dt": 0.001,
+    "radius": 0.1,
+    "cone": "pyramidal",
+    "seed": 22
+  },
+  "cases": {
+    "soil_demo": {
+      "entry_slot": 0.0,
+      "cut_depth": 0.11,
+      "cut_policy": "position-only"
+    },
+    "soil_final": {
+      "entry_slot": 0.9,
+      "cut_depth": 0.18,
+      "cut_policy": "load-aware"
+    },
+    "face_cut_demo": {
+      "entry_slot": 0.9,
+      "cut_depth": 0.18,
+      "cut_policy": "position-only"
+    },
+    "face_empty": {
+      "entry_slot": 0.9,
+      "cut_depth": 0.18,
+      "cut_policy": "load-aware",
+      "empty": true,
+      "duration": 18
+    },
+    "face_no_soil_contact": {
+      "entry_slot": 0.9,
+      "cut_depth": 0.18,
+      "cut_policy": "load-aware",
+      "no_bucket_contact": true,
+      "duration": 18
+    }
+  }
+}

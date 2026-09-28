@@ -1,0 +1,5 @@
+# For Isaac 6.1 also use requirements-isaac61.txt or SETUP_MINIFORGE.cmd.
+# Install only in an existing Isaac Sim Miniforge environment.
+# Do NOT install a second usd-core/pxr, MuJoCo, Pinocchio or a different Torch.
+scipy>=1.12,<2
+pytest>=8,<10

@@ -1,0 +1,10 @@
+{
+  "original/stewart/model.py": "b04eb8cdaab70dd80fcd064017458ee1572777a4f3e0416634aa90a01e9a86c6",
+  "original/stewart/pin_backend.py": "b14e23821b886276c895e1e500c245599a8003890e1bd04541f09b47f0c685eb",
+  "original/stewart/reference.py": "50914ebf95c1e1f8557cde42b51c17c3437e57514f6fcb13426e56e0c1289270",
+  "original/stewart/pin_checks.py": "ee4cbc9ba4d087aa49c5f47236472d4a042fba00320c559a8c0494bb1be72755",
+  "original/stewart/__init__.py": "9947b326d06cad894cc9317d2a7c6b5ffb40d4adb715a0488f5ab89ba898aac0",
+  "original/vendor/pacdm_original.py": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+  "original/vendor/__init__.py": "207232a950d4f5d5b36fa0710f7658d784b975aed2d5c866902ae5be100f0c77",
+  "original/data/stewart.cmg.json": "401d7c2af4f9801e39040d33ab627a9fa1598831f674b48e830507629a6fcda7"
+}

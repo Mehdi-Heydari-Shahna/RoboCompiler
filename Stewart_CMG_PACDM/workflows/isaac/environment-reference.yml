@@ -1,0 +1,12 @@
+name: stewart-reference
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26,<3
+  - scipy>=1.11,<2
+  - pinocchio=3.8
+  # Optional independent tree-force verification: --check-mujoco
+  - pip
+  - pip:
+      - mujoco==3.3.7

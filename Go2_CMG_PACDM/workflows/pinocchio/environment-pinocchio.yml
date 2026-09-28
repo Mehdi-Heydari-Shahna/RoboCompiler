@@ -1,0 +1,20 @@
+# Windows/Miniforge recipe; supplied for reproducibility but tested here on Linux only.
+name: go2_pinocchio
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pinocchio=3.8.0
+  - numpy=2.3
+  - scipy=1.17
+  - matplotlib
+  - pillow
+  - osqp=1.0.5
+  - pip
+  - pip:
+      - mujoco==3.3.7
+      - imageio==2.37.4
+      - imageio-ffmpeg==0.6.0
+      - pyrender==0.1.45
+      - trimesh==5.1.0
+      - pyglet==2.1.16

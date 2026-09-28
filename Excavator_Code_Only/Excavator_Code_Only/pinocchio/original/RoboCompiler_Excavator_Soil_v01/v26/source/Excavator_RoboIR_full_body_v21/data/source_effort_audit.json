@@ -1,0 +1,1345 @@
+{
+  "schema": "excavator.source_effort_audit/0.8",
+  "scope": "Static source wiring, units and measurement audit. No MATLAB execution, hydraulic dynamics or hardware calibration validation.",
+  "sources": [
+    {
+      "filename": "Excavator_URDF_step01.slx",
+      "sha256": "20bc4ece1a1bd0c62f68e4a89e2db0c83e9741da966a54110709921e97875037",
+      "role": "Original uploaded source model; read directly as ZIP/XML"
+    },
+    {
+      "filename": "Komatsu_parameters.m",
+      "sha256": "020af726707c1cdbaab845ed47600a2d95b2b4ffc4fdb067d2cafcc7fe4d10c6",
+      "role": "Original uploaded parameter script; inspected as text, not executed"
+    },
+    {
+      "filename": "Model_DataFile.m",
+      "sha256": "27e647d9c00d133a38b2d0032ae50ece24a1c6d5cd8d50815d71b4eaf0d69c9e",
+      "role": "Original CAD-export data linked by accepted CMG; hash recorded for provenance"
+    },
+    {
+      "filename": "accepted_cmg_v04.json",
+      "sha256": "5f677b65788d904ef4b25d4b384cb572ef3deec7fd904bb504bd49a6700480a2",
+      "role": "Accepted CMG carried unchanged into the v0.8 package"
+    }
+  ],
+  "source_unchanged": true,
+  "channel_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6"
+  ],
+  "intended_channel_units": [
+    "N*m",
+    "N",
+    "N",
+    "N",
+    "N",
+    "N*m"
+  ],
+  "intended_channel_unit_status": "Dimensional inference, not an explicit source signal-unit declaration",
+  "channels": [
+    {
+      "channel_id": "F1",
+      "index_1_based": 1,
+      "label": "base yaw",
+      "intended_unit": "N*m",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "q23",
+          "source_gain": 25,
+          "source_joint_sid": "34",
+          "source_joint_block": "Manipulator/Base/Revolute23",
+          "converter_sid": "280"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_247.xml",
+          "sid": "275",
+          "name": "Gain",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "25"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_247.xml",
+          "sid": "280",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "280": [
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "280#rconn:1"
+              },
+              {
+                "role": "Dst",
+                "port": "34#lconn:2"
+              }
+            ]
+          },
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "275#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "280#in:1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "channel_id": "F2",
+      "index_1_based": 2,
+      "label": "boom",
+      "intended_unit": "N",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "p3",
+          "source_gain": -0.5,
+          "source_joint_sid": "15",
+          "source_joint_block": "Manipulator/Boom cylinders/Prismatic3",
+          "converter_sid": "304"
+        },
+        {
+          "joint_id": "p4",
+          "source_gain": -0.5,
+          "source_joint_sid": "16",
+          "source_joint_block": "Manipulator/Boom cylinders/Prismatic4",
+          "converter_sid": "303"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_408.xml",
+          "sid": "2836",
+          "name": "Gain1",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "-1"
+          }
+        },
+        {
+          "slx_member": "simulink/systems/system_250.xml",
+          "sid": "302",
+          "name": "Gain",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "1/2"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_250.xml",
+          "sid": "304",
+          "name": "Simulink-PS\nConverter1",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        },
+        {
+          "slx_member": "simulink/systems/system_250.xml",
+          "sid": "303",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "304": [
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "302#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "304#in:1"
+              },
+              {
+                "role": "Dst",
+                "port": "303#in:1"
+              }
+            ]
+          },
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "304#rconn:1"
+              },
+              {
+                "role": "Dst",
+                "port": "15#lconn:2"
+              }
+            ]
+          }
+        ],
+        "303": [
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "302#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "304#in:1"
+              },
+              {
+                "role": "Dst",
+                "port": "303#in:1"
+              }
+            ]
+          },
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "303#rconn:1"
+              },
+              {
+                "role": "Dst",
+                "port": "16#lconn:2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "channel_id": "F3",
+      "index_1_based": 3,
+      "label": "stick",
+      "intended_unit": "N",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "p5",
+          "source_gain": -1,
+          "source_joint_sid": "17",
+          "source_joint_block": "Manipulator/Stick cylinder/Prismatic5",
+          "converter_sid": "313"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_408.xml",
+          "sid": "375",
+          "name": "Gain2",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "-1"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_255.xml",
+          "sid": "313",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "313": [
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "17#lconn:2"
+              },
+              {
+                "role": "Dst",
+                "port": "313#rconn:1"
+              }
+            ]
+          },
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "312#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "313#in:1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "channel_id": "F4",
+      "index_1_based": 4,
+      "label": "bucket",
+      "intended_unit": "N",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "p2",
+          "source_gain": -1,
+          "source_joint_sid": "14",
+          "source_joint_block": "Manipulator/Bucket cylinder/Prismatic2",
+          "converter_sid": "322"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_408.xml",
+          "sid": "376",
+          "name": "Gain3",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "-1"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_258.xml",
+          "sid": "322",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "322": [
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "14#lconn:2"
+              },
+              {
+                "role": "Dst",
+                "port": "322#rconn:1"
+              }
+            ]
+          },
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "321#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "322#in:1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "channel_id": "F5",
+      "index_1_based": 5,
+      "label": "tilt",
+      "intended_unit": "N",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "p1",
+          "source_gain": -1,
+          "source_joint_sid": "13",
+          "source_joint_block": "Manipulator/Tilt cylinders/Prismatic1",
+          "converter_sid": "332"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_408.xml",
+          "sid": "2844",
+          "name": "Gain6",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "-1"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_267.xml",
+          "sid": "332",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "332": [
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "332#rconn:1"
+              },
+              {
+                "role": "Dst",
+                "port": "13#lconn:2"
+              }
+            ]
+          },
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "331#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "332#in:1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "channel_id": "F6",
+      "index_1_based": 6,
+      "label": "tiltrotator rotation",
+      "intended_unit": "N*m",
+      "unit_status": "Dimensional inference from hydraulic equations and effort-port type, not explicit source signal-unit declaration",
+      "physical_ports": [
+        {
+          "joint_id": "q21",
+          "source_gain": 10,
+          "source_joint_sid": "32",
+          "source_joint_block": "Manipulator/Tiltrotator/Revolute21",
+          "converter_sid": "340"
+        }
+      ],
+      "gain_blocks": [
+        {
+          "slx_member": "simulink/systems/system_283.xml",
+          "sid": "334",
+          "name": "Gain",
+          "block_type": "Gain",
+          "parameters": {
+            "Gain": "10"
+          }
+        }
+      ],
+      "converter_blocks": [
+        {
+          "slx_member": "simulink/systems/system_283.xml",
+          "sid": "340",
+          "name": "Simulink-PS\nConverter",
+          "block_type": "Reference",
+          "parameters": {
+            "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+            "Unit": "1"
+          }
+        }
+      ],
+      "converter_port_wiring": {
+        "340": [
+          {
+            "type": "Simulink_signal",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "334#out:1"
+              },
+              {
+                "role": "Dst",
+                "port": "340#in:1"
+              },
+              {
+                "role": "Dst",
+                "port": "339#in:1"
+              }
+            ]
+          },
+          {
+            "type": "Connection",
+            "port_references": [
+              {
+                "role": "Src",
+                "port": "340#rconn:1"
+              },
+              {
+                "role": "Dst",
+                "port": "32#lconn:2"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "unknown_effort": {
+    "joint_id": "p0",
+    "converter_sid": "2882",
+    "input_status": "unconnected",
+    "converter_block": {
+      "slx_member": "simulink/systems/system_267.xml",
+      "sid": "2882",
+      "name": "Simulink-PS\nConverter1",
+      "block_type": "Reference",
+      "parameters": {
+        "SourceBlock": "nesl_utility/Simulink-PS\nConverter",
+        "Unit": "1"
+      }
+    },
+    "raw_connections": [
+      {
+        "type": "Connection",
+        "port_references": [
+          {
+            "role": "Src",
+            "port": "2882#rconn:1"
+          },
+          {
+            "role": "Dst",
+            "port": "12#lconn:2"
+          }
+        ]
+      }
+    ],
+    "interpretation": "No input wire exists for 2882#in:1. Physical output is wired to Prismatic SID12 force input. The runtime force is unresolved; no zero force is inferred."
+  },
+  "power_conjugate_channel_rates": [
+    "25*q23_dot",
+    "-(p3_dot+p4_dot)/2",
+    "-p5_dot",
+    "-p2_dot",
+    "-p1_dot",
+    "10*q21_dot"
+  ],
+  "feedback_channels": [
+    {
+      "channel_id": "F2",
+      "index_1_based": 2,
+      "kind": "attachment_origin_distance_rate",
+      "prismatic_joint_id": "p4",
+      "endpoint_joint_ids": [
+        "q25",
+        "q6"
+      ],
+      "endpoints": [
+        {
+          "body_id": "body_2",
+          "attachment_joint_id": "q25",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            -4.519051799434237e-15,
+            1.830358087318018e-14,
+            0.46499999999999975
+          ]
+        },
+        {
+          "body_id": "body_4",
+          "attachment_joint_id": "q6",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            1.808331262509455e-15,
+            7.013056801952189e-15,
+            0.04999999999997749
+          ]
+        }
+      ],
+      "source_sensor_block": {
+        "slx_member": "simulink/systems/system_250.xml",
+        "sid": "298",
+        "name": "Transform\nSensor",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "sm_lib/Frames and\nTransforms/Transform\nSensor",
+          "SenseDist": "on",
+          "SenseDistDot": "on"
+        }
+      },
+      "velocity_converter_block": {
+        "slx_member": "simulink/systems/system_250.xml",
+        "sid": "295",
+        "name": "PS-Simulink\nConverter1",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "nesl_utility/PS-Simulink\nConverter",
+          "Unit": "1"
+        }
+      },
+      "velocity_output_block": {
+        "slx_member": "simulink/systems/system_250.xml",
+        "sid": "300",
+        "name": "Boom xdot",
+        "block_type": "Outport",
+        "parameters": {
+          "Port": "2"
+        }
+      },
+      "measurement_equation": "L = norm(d0_in_prismatic_base_joint_frame_m + axis*p); feedback_velocity = dL/dt",
+      "d0_in_prismatic_base_joint_frame_m": [
+        -1.2789682507508005e-14,
+        -0.5149999999999751,
+        -1.850229879656727
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "position_output_equation": "L - BoomCylinder.Lmin",
+      "position_offset_m": 1.52,
+      "additional_numeric_velocity_gain": 1,
+      "velocity_signal_path": [
+        "298#rconn:3 -> 295#lconn:1",
+        "295#out:1 -> 300#in:1",
+        "250#out:2 -> 361#in:1",
+        "Goto/From tag BoomXdot; From SID393",
+        "393#out:1 -> 396#in:2",
+        "396#out:1 -> 411#in:1",
+        "Manipulator408#out:2 -> Hydraulics725#in:3",
+        "Hydraulics Demux1603 output 2 -> matching velocity Goto/From -> subsystem 1009 input3",
+        "1012#out:1 -> 1111#in:3, 1157#in:3"
+      ],
+      "raw_sensor_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "2#lconn:1"
+            },
+            {
+              "role": "Src",
+              "port": "298#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "36#rconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "4#lconn:2"
+            },
+            {
+              "role": "Src",
+              "port": "298#rconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "40#rconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "294#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "298#rconn:2"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "298#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "295#lconn:1"
+            }
+          ]
+        }
+      ],
+      "raw_velocity_converter_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "298#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "295#lconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Simulink_signal",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "295#out:1"
+            },
+            {
+              "role": "Dst",
+              "port": "300#in:1"
+            }
+          ]
+        }
+      ],
+      "unit_status": "PS-Simulink converter Unit=1; physical distance-rate interpretation gives m/s",
+      "power_warning": "Distance rate is generally not the source command power-conjugate rate because attachment origins have transverse offsets."
+    },
+    {
+      "channel_id": "F3",
+      "index_1_based": 3,
+      "kind": "attachment_origin_distance_rate",
+      "prismatic_joint_id": "p5",
+      "endpoint_joint_ids": [
+        "q8",
+        "q9"
+      ],
+      "endpoints": [
+        {
+          "body_id": "body_44",
+          "attachment_joint_id": "q8",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            2.163158541179655e-14,
+            1.9241497284383514e-14,
+            -0.07999999999999997
+          ]
+        },
+        {
+          "body_id": "body_45",
+          "attachment_joint_id": "q9",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            2.940603316403667e-13,
+            -4.739248993246292e-13,
+            0.051999999999999165
+          ]
+        }
+      ],
+      "source_sensor_block": {
+        "slx_member": "simulink/systems/system_255.xml",
+        "sid": "309",
+        "name": "Transform\nSensor",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "sm_lib/Frames and\nTransforms/Transform\nSensor",
+          "SenseDist": "on",
+          "SenseDistDot": "on"
+        }
+      },
+      "velocity_converter_block": {
+        "slx_member": "simulink/systems/system_255.xml",
+        "sid": "308",
+        "name": "PS-Simulink\nConverter1",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "nesl_utility/PS-Simulink\nConverter",
+          "Unit": "1"
+        }
+      },
+      "velocity_output_block": {
+        "slx_member": "simulink/systems/system_255.xml",
+        "sid": "311",
+        "name": "Arm xdot",
+        "block_type": "Outport",
+        "parameters": {
+          "Port": "2"
+        }
+      },
+      "measurement_equation": "L = norm(d0_in_prismatic_base_joint_frame_m + axis*p); feedback_velocity = dL/dt",
+      "d0_in_prismatic_base_joint_frame_m": [
+        -4.928767897288688e-13,
+        0.028000000000000837,
+        -2.25775688247399
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "position_output_equation": "L - ArmCylinder.Lmin",
+      "position_offset_m": 1.625,
+      "additional_numeric_velocity_gain": 1,
+      "velocity_signal_path": [
+        "309#rconn:3 -> 308#lconn:1",
+        "308#out:1 -> 311#in:1",
+        "255#out:2 -> 357#in:1",
+        "Goto/From tag ArmXdot; From SID389",
+        "389#out:1 -> 396#in:3",
+        "396#out:1 -> 411#in:1",
+        "Manipulator408#out:2 -> Hydraulics725#in:3",
+        "Hydraulics Demux1603 output 3 -> matching velocity Goto/From -> subsystem 730 input3",
+        "733#out:1 -> 833#in:3"
+      ],
+      "raw_sensor_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "43#rconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "45#lconn:2"
+            },
+            {
+              "role": "Src",
+              "port": "309#rconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "42#rconn:1"
+            },
+            {
+              "role": "Src",
+              "port": "309#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "44#lconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "307#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "309#rconn:2"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "309#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "308#lconn:1"
+            }
+          ]
+        }
+      ],
+      "raw_velocity_converter_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "309#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "308#lconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Simulink_signal",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "308#out:1"
+            },
+            {
+              "role": "Dst",
+              "port": "311#in:1"
+            }
+          ]
+        }
+      ],
+      "unit_status": "PS-Simulink converter Unit=1; physical distance-rate interpretation gives m/s",
+      "power_warning": "Distance rate is generally not the source command power-conjugate rate because attachment origins have transverse offsets."
+    },
+    {
+      "channel_id": "F4",
+      "index_1_based": 4,
+      "kind": "attachment_origin_distance_rate",
+      "prismatic_joint_id": "p2",
+      "endpoint_joint_ids": [
+        "q10",
+        "q22"
+      ],
+      "endpoints": [
+        {
+          "body_id": "body_5",
+          "attachment_joint_id": "q10",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            -2.860858216990891e-13,
+            6.664180318693979e-14,
+            -0.044340000000000046
+          ]
+        },
+        {
+          "body_id": "body_6",
+          "attachment_joint_id": "q22",
+          "attachment_transform_key": "T_FJ",
+          "point_in_body_m": [
+            -2.293276679665723e-13,
+            1.836752971939859e-14,
+            0.051999999999999984
+          ]
+        }
+      ],
+      "source_sensor_block": {
+        "slx_member": "simulink/systems/system_258.xml",
+        "sid": "318",
+        "name": "Transform\nSensor",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "sm_lib/Frames and\nTransforms/Transform\nSensor",
+          "SenseDist": "on",
+          "SenseDistDot": "on"
+        }
+      },
+      "velocity_converter_block": {
+        "slx_member": "simulink/systems/system_258.xml",
+        "sid": "317",
+        "name": "PS-Simulink\nConverter1",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "nesl_utility/PS-Simulink\nConverter",
+          "Unit": "1"
+        }
+      },
+      "velocity_output_block": {
+        "slx_member": "simulink/systems/system_258.xml",
+        "sid": "320",
+        "name": "Bucket xdot",
+        "block_type": "Outport",
+        "parameters": {
+          "Port": "2"
+        }
+      },
+      "measurement_equation": "L = norm(d0_in_prismatic_base_joint_frame_m + axis*p); feedback_velocity = dL/dt",
+      "d0_in_prismatic_base_joint_frame_m": [
+        -4.9486456599190376e-14,
+        -0.0076600000000001875,
+        -1.6297486779710977
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "position_output_equation": "L - BucketCylinder.Lmin",
+      "position_offset_m": 1.415,
+      "additional_numeric_velocity_gain": 1,
+      "velocity_signal_path": [
+        "318#rconn:3 -> 317#lconn:1",
+        "317#out:1 -> 320#in:1",
+        "258#out:2 -> 359#in:1",
+        "Goto/From tag BucketXdot; From SID391",
+        "391#out:1 -> 396#in:4",
+        "396#out:1 -> 411#in:1",
+        "Manipulator408#out:2 -> Hydraulics725#in:3",
+        "Hydraulics Demux1603 output 4 -> matching velocity Goto/From -> subsystem 1330 input3",
+        "1333#out:1 -> 1424#in:3"
+      ],
+      "raw_sensor_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "6#lconn:1"
+            },
+            {
+              "role": "Src",
+              "port": "318#rconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "33#rconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "5#lconn:1"
+            },
+            {
+              "role": "Src",
+              "port": "318#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "20#rconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "318#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "317#lconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "316#lconn:1"
+            },
+            {
+              "role": "Dst",
+              "port": "318#rconn:2"
+            }
+          ]
+        }
+      ],
+      "raw_velocity_converter_connections": [
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "318#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "317#lconn:1"
+            }
+          ]
+        },
+        {
+          "type": "Simulink_signal",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "317#out:1"
+            },
+            {
+              "role": "Dst",
+              "port": "320#in:1"
+            }
+          ]
+        }
+      ],
+      "unit_status": "PS-Simulink converter Unit=1; physical distance-rate interpretation gives m/s",
+      "power_warning": "Distance rate is generally not the source command power-conjugate rate because attachment origins have transverse offsets."
+    },
+    {
+      "channel_id": "F5",
+      "index_1_based": 5,
+      "kind": "joint_coordinate_rate",
+      "prismatic_joint_id": "p0",
+      "source_joint_sid": "12",
+      "effort_driven_joint_id": "p1",
+      "velocity_converter_block": {
+        "slx_member": "simulink/systems/system_267.xml",
+        "sid": "326",
+        "name": "PS-Simulink\nConverter1",
+        "block_type": "Reference",
+        "parameters": {
+          "SourceBlock": "nesl_utility/PS-Simulink\nConverter",
+          "Unit": "1"
+        }
+      },
+      "velocity_output_block": {
+        "slx_member": "simulink/systems/system_267.xml",
+        "sid": "330",
+        "name": "Tilt xdot",
+        "block_type": "Outport",
+        "parameters": {
+          "Port": "2"
+        }
+      },
+      "feedback_equation": "p0_dot",
+      "additional_numeric_velocity_gain": 1,
+      "velocity_signal_path": [
+        "12#rconn:3 (v_out) -> 326#lconn:1",
+        "326#out:1 -> 330#in:1",
+        "267#out:2 -> 356#in:1",
+        "Goto/From tag TiltXdot; From SID392",
+        "392#out:1 -> 396#in:5",
+        "396#out:1 -> 411#in:1",
+        "Manipulator408#out:2 -> Hydraulics725#in:3",
+        "Hydraulics1603#out:5 -> 1650#in:1 (TiltVel); From1612#out:1 -> 2481#in:3",
+        "2484#out:1 -> 2701#in:3"
+      ],
+      "raw_velocity_converter_connections": [
+        {
+          "type": "Simulink_signal",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "326#out:1"
+            },
+            {
+              "role": "Dst",
+              "port": "330#in:1"
+            },
+            {
+              "role": "Dst",
+              "port": "327#in:2"
+            }
+          ]
+        },
+        {
+          "type": "Connection",
+          "port_references": [
+            {
+              "role": "Src",
+              "port": "12#rconn:3"
+            },
+            {
+              "role": "Dst",
+              "port": "326#lconn:1"
+            }
+          ]
+        }
+      ],
+      "position_inputs": [
+        "TiltCylinder.stroke via Constant324",
+        "p0 via PS-Simulink Converter325"
+      ],
+      "position_sum_block": {
+        "slx_member": "simulink/systems/system_267.xml",
+        "sid": "323",
+        "name": "Add2",
+        "block_type": "Sum",
+        "parameters": {}
+      },
+      "position_sum_sign_status": "No Inputs parameter serialized for Sum323; exact sign relies on Simulink default and is not asserted by this static audit",
+      "unit_status": "PS-Simulink converter Unit=1; joint-coordinate-rate interpretation gives m/s",
+      "power_warning": "Source feedback senses p0, whereas known F5 effort drives p1. Do not replace the exact conjugate rate -p1_dot by p0_dot without verification."
+    }
+  ],
+  "rotary_velocity_feedback": {
+    "F1": {
+      "equation": "25*q23_dot",
+      "source_gain_block": {
+        "slx_member": "simulink/systems/system_247.xml",
+        "sid": "276",
+        "name": "Gain1",
+        "block_type": "Gain",
+        "parameters": {
+          "Gain": "25"
+        }
+      }
+    },
+    "F6": {
+      "equation": "10*q21_dot",
+      "source_gain_block": {
+        "slx_member": "simulink/systems/system_283.xml",
+        "sid": "335",
+        "name": "Gain1",
+        "block_type": "Gain",
+        "parameters": {
+          "Gain": "10"
+        }
+      }
+    },
+    "calibration_status": "Numerical force/velocity scaling pair only; no measured gear ratio or hardware efficiency inferred"
+  },
+  "hydraulic_dimension_inference": {
+    "status": "inference",
+    "explanation": "Parameter pressure values and areas/displacement are used in SI-looking hydraulic equations. Force equations multiply pressures by piston areas; torque equations multiply pressure differences by displacement/(2*pi). Together with Prismatic f_in and Revolute t_in ports, this supports intended channel units; unlabelled signals and Unit=1 converters do not provide an independent unit annotation.",
+    "cylinder_examples": [
+      {
+        "slx_member": "simulink/systems/system_833.xml",
+        "pressure_area_gain_sids": [
+          "866",
+          "868"
+        ],
+        "expressions": [
+          "ArmCylinder.A_A",
+          "ArmCylinder.B_A"
+        ],
+        "sum_sid": "837",
+        "sum_inputs": "+-+-",
+        "output_sid": "878",
+        "meaning": "Pressure-area difference plus endstop term minus friction"
+      },
+      {
+        "slx_member": "simulink/systems/system_1424.xml",
+        "pressure_area_gain_sids": [
+          "1457",
+          "1459"
+        ],
+        "expressions": [
+          "BucketCylinder.A_A",
+          "BucketCylinder.B_A"
+        ],
+        "sum_sid": "1428",
+        "sum_inputs": "+-+-",
+        "output_sid": "1469"
+      },
+      {
+        "slx_member": "simulink/systems/system_1009.xml",
+        "sum_sid": "1321",
+        "sum_inputs": "+|+",
+        "input_sources": [
+          "1111#out:3",
+          "1157#out:3"
+        ],
+        "output_sid": "1328",
+        "meaning": "F2 is the sum of two modeled hydraulic cylinder forces before the Manipulator splits it equally"
+      }
+    ],
+    "rotary_examples": [
+      {
+        "slx_member": "simulink/systems/system_1962.xml",
+        "displacement_constant_sid": "1964",
+        "expression": "Motor.Volume/(2*pi)",
+        "pressure_difference_sum_sid": "1970",
+        "torque_output_sid": "1972"
+      },
+      {
+        "slx_member": "simulink/systems/system_2238.xml",
+        "displacement_constant_sid": "2240",
+        "expression": "Roto.Volume/(2*pi)",
+        "pressure_difference_sum_sid": "2246",
+        "torque_output_sid": "2248"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "unlabelled_effort_converters",
+      "severity": "interpretation",
+      "finding": "All eight effort Simulink-PS converter blocks serialize Unit=1."
+    },
+    {
+      "id": "sensor_and_effort_coordinate_difference",
+      "severity": "scope",
+      "finding": "Euclidean pin-origin distance feedback is not generally the power-conjugate prismatic rate. The original sensor semantics and source B mapping are preserved separately."
+    },
+    {
+      "id": "tilt_feedback_is_other_cylinder",
+      "severity": "scope",
+      "finding": "Tilt velocity feedback is p0_dot; F5 effort drives p1; p0 effort input is unconnected."
+    },
+    {
+      "id": "tilt_dimensions_unknown",
+      "severity": "calibration",
+      "source": "Komatsu_parameters.m",
+      "source_excerpt": "TiltCylinder.Description = 'Tilt cylinder 75/40-800'; % Dimensions unknown!!"
+    },
+    {
+      "id": "tilt_length_stroke_mismatch",
+      "severity": "calibration",
+      "values": {
+        "Lmax_m": 0.736,
+        "Lmin_m": 0.5215,
+        "stroke_m": 0.16,
+        "Lmax_minus_Lmin_m": 0.2145
+      },
+      "finding": "Declared stroke differs from Lmax-Lmin; no hardware limit or calibrated travel is inferred."
+    },
+    {
+      "id": "tilt_areas_equal",
+      "severity": "calibration",
+      "source_expression": "TiltCylinder.B_A = pi*(TiltCylinder.D/2)^2;",
+      "finding": "Source active expression makes B_A equal A_A; rod-area subtraction exists only as a commented alternative."
+    },
+    {
+      "id": "joint_limits_disabled",
+      "severity": "scope",
+      "joint_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q21",
+        "q23"
+      ],
+      "finding": "Source LowerLimitSpecify and UpperLimitSpecify are off for these effort-driven joints."
+    },
+    {
+      "id": "valve_command_signs_not_feedback_gains",
+      "severity": "evidence",
+      "finding": "Arm Gain998=-1 and Bucket Gain3262=-1 are wired on command u; they do not negate velocity feedback."
+    }
+  ],
+  "assumptions_and_limits": [
+    "Source B is a six-channel numerical effort map; physical hydraulic calibration and runtime p0 are unresolved.",
+    "The CAD-derived attachment origins, not inferred ideal pin centers, define audited distances.",
+    "The batch must validate force/power maps using physical effort coordinates and explicitly preserve sensor-coordinate differences.",
+    "Exact behavior of inherited Simulink defaults and unit propagation was not executed in this static audit."
+  ]
+}

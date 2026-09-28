@@ -1,0 +1,1271 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:roboir="https://roboir.example/schema/mechanism/0.16" name="Kangaroo_published_cut_reconstruction">
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.055595146648293001 8.3634216454369097e-05 -0.028686254999856001" rpy="0 0 0" />
+      <mass value="1.44985482308619" />
+      <inertia ixx="0.00309299205798227" iyy="0.00153836707766368" izz="0.003983138735572" ixy="-3.80670042011874e-06" ixz="3.86368202963533e-05" iyz="-2.3617667234584e-07" />
+    </inertial>
+  </link>
+  <link name="left_yaw_motor">
+    <inertial>
+      <origin xyz="-4.1275900000000002e-05 -0.016478599999999999 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.0001914506040977777" iyy="0.0002998356922839167" izz="0.00020738170361830538" ixy="-1.3214796384601996e-06" ixz="6.880521756818324e-07" iyz="-1.2694315064055338e-07" />
+    </inertial>
+  </link>
+  <link name="left_yaw_rod">
+    <inertial>
+      <origin xyz="4.2229299999999999e-05 1.30303e-05 -0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.624557600455253e-05" iyy="6.339149990581797e-05" izz="5.545194089629514e-06" ixy="9.824096572737013e-12" ixz="-3.816453743093667e-08" iyz="2.3344106708095264e-09" />
+    </inertial>
+  </link>
+  <link name="left_hip_yaw">
+    <inertial>
+      <origin xyz="0.0025800300000000001 0.018407099999999999 -0.00083598199999999998" rpy="0 0 0" />
+      <mass value="0.867837" />
+      <inertia ixx="0.0009459994154140491" iyy="0.0010735723496199787" izz="0.0005722372349659737" ixy="-7.5190600851125695e-06" ixz="2.0465029203067378e-05" iyz="4.880090315518568e-05" />
+    </inertial>
+  </link>
+  <link name="left_hip_pitch">
+    <inertial>
+      <origin xyz="-0.00299643 6.76272e-10 0.00010129299999999999" rpy="0 0 0" />
+      <mass value="0.0907288" />
+      <inertia ixx="6.104018156113444e-06" iyy="3.64238e-05" izz="3.904706184388655e-05" ixy="0.0" ixz="-3.5453913296506685e-08" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_hip_roll">
+    <inertial>
+      <origin xyz="-0.034265999999999998 -0.039022000000000001 0.0098612000000000005" rpy="0 0 0" />
+      <mass value="2.07276" />
+      <inertia ixx="0.0031450696912415812" iyy="0.0029255573740153504" izz="0.0018499829347430703" ixy="-1.4277871807876239e-05" ixz="0.00019328250646699356" iyz="6.922327924321533e-05" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_3_univ">
+    <inertial>
+      <origin xyz="0.00057667299999999999 -0.00056915600000000002 0.00088379500000000004" rpy="0 0 0" />
+      <mass value="0.0543984" />
+      <inertia ixx="8.12417776928107e-06" iyy="8.664776878920136e-06" izz="1.7456353517988038e-06" ixy="2.0495866741182076e-09" ixz="1.2856226914554042e-10" iyz="1.0305552705250421e-08" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_2_univ">
+    <inertial>
+      <origin xyz="0.00057667299999999999 -0.00056915600000000002 0.00088379500000000004" rpy="0 0 0" />
+      <mass value="0.0543984" />
+      <inertia ixx="8.12417776928107e-06" iyy="8.664776878920136e-06" izz="1.7456353517988038e-06" ixy="-2.0495866741191415e-09" ixz="-1.2856226914554114e-10" iyz="1.0305552705250421e-08" />
+    </inertial>
+  </link>
+  <link name="left_femour_pitch">
+    <inertial>
+      <origin xyz="0.058175600000000001 -0.098513400000000001 -0.00023561099999999999" rpy="0 0 0" />
+      <mass value="2.17531" />
+      <inertia ixx="0.009104890091670651" iyy="0.0021025825379374025" izz="0.00982195737039195" ixy="0.0019327142484354932" ixz="-2.3268392583493645e-05" iyz="1.9405649482057814e-05" />
+    </inertial>
+  </link>
+  <link name="left_leg_length_slidinig_nut">
+    <inertial>
+      <origin xyz="0.00025698499999999999 0.0014713899999999999 -0.033478599999999997" rpy="0 0 0" />
+      <mass value="0.5431" />
+      <inertia ixx="0.00016615029976924846" iyy="0.00017336454398489027" izz="0.00011256715624586121" ixy="-6.510249830084559e-07" ixz="7.613162445830861e-07" iyz="-2.6601752117331633e-06" />
+    </inertial>
+  </link>
+  <link name="left_leg_length_short_bars">
+    <inertial>
+      <origin xyz="0.026741299999999999 -0.10416300000000001 -1.7844300000000001e-07" rpy="0 0 0" />
+      <mass value="0.240632" />
+      <inertia ixx="0.00022513760781158308" iyy="2.1711972188417026e-05" izz="0.0002428310000000001" ixy="5.590946070739576e-05" ixz="5.078712522164637e-23" iyz="-1.97826461142241e-22" />
+    </inertial>
+  </link>
+  <link name="left_knee">
+    <inertial>
+      <origin xyz="-0.021264600000000002 -0.11802799999999999 0.000114812" rpy="0 0 0" />
+      <mass value="0.621373" />
+      <inertia ixx="0.0010927633509821215" iyy="0.0002738500901814278" izz="0.001204887558836452" ixy="-0.00019468778949258367" ixz="1.773151854062435e-07" iyz="-8.240824351639399e-07" />
+    </inertial>
+  </link>
+  <link name="left_ankle_pitch">
+    <inertial>
+      <origin xyz="-0.0075999500000000003 5.8828100000000001e-08 6.9499699999999997e-09" rpy="0 0 0" />
+      <mass value="0.0905838" />
+      <inertia ixx="4.052640000103335e-06" iyy="2.9886299999835664e-05" izz="2.9276300000060993e-05" ixy="5.1667319996794215e-11" ixz="-2.6443914781175307e-16" iyz="-6.099999999827722e-12" />
+    </inertial>
+  </link>
+  <link name="left_ankle_roll">
+    <inertial>
+      <origin xyz="-3.9165200000000002e-05 -0.0099052500000000009 0.022055000000000002" rpy="0 0 0" />
+      <mass value="0.413448" />
+      <inertia ixx="0.001170779999595524" iyy="0.0012760396869945713" izz="0.00036356231340990523" ixy="2.3543720660677214e-09" ixz="2.1550658982725444e-08" iyz="-0.00032685696484394556" />
+    </inertial>
+  </link>
+  <link name="left_5_ankle_ball">
+    <inertial>
+      <origin xyz="1.3379499999999999e-07 -9.5634700000000006e-08 -8.4980099999999993e-09" rpy="0 0 0" />
+      <mass value="0.00381364" />
+      <inertia ixx="1.01443e-07" iyy="1.01443e-07" izz="1.35766e-07" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_4_ankle_ball">
+    <inertial>
+      <origin xyz="1.3379499999999999e-07 -9.5634700000000006e-08 -8.4980099999999993e-09" rpy="0 0 0" />
+      <mass value="0.00381364" />
+      <inertia ixx="1.01443e-07" iyy="1.01443e-07" izz="1.35766e-07" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_5_butterfly">
+    <inertial>
+      <origin xyz="-0.024871600000000001 -0.00598892 -0.0050616699999999999" rpy="0 0 0" />
+      <mass value="0.082315" />
+      <inertia ixx="2.5323646090967356e-05" iyy="2.1765712933215954e-05" izz="4.12164409758167e-05" ixy="-7.683482157214531e-07" ixz="-3.7454290508077153e-06" iyz="-2.6457631380014493e-06" />
+    </inertial>
+  </link>
+  <link name="left_5_knee_ball">
+    <inertial>
+      <origin xyz="3.4080899999999999e-12 -8.7998500000000003e-12 0" rpy="0 0 0" />
+      <mass value="0.00195231" />
+      <inertia ixx="3.17847e-08" iyy="3.17847e-08" izz="4.30053e-08" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_5_lower_ankle_bar">
+    <inertial>
+      <origin xyz="0.0043189400000000003 -0.218831 -6.75122e-08" rpy="0 0 0" />
+      <mass value="0.125467" />
+      <inertia ixx="0.0006084819226344253" iyy="2.7202973655746336e-06" izz="0.0006077119999999998" ixy="1.1960867074849361e-05" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_4_butterfly">
+    <inertial>
+      <origin xyz="-0.024871600000000001 -0.00598892 0.0050616699999999999" rpy="0 0 0" />
+      <mass value="0.082315" />
+      <inertia ixx="2.5323646090967356e-05" iyy="2.1765712933215958e-05" izz="4.12164409758167e-05" ixy="-7.683482157214548e-07" ixz="3.7454290508077157e-06" iyz="2.6457631380014514e-06" />
+    </inertial>
+  </link>
+  <link name="left_4_knee_ball">
+    <inertial>
+      <origin xyz="3.4080899999999999e-12 -8.7998500000000003e-12 0" rpy="0 0 0" />
+      <mass value="0.00195231" />
+      <inertia ixx="3.17847e-08" iyy="3.17847e-08" izz="4.30053e-08" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_4_lower_ankle_bar">
+    <inertial>
+      <origin xyz="0.0043189400000000003 -0.218831 -6.75122e-08" rpy="0 0 0" />
+      <mass value="0.125467" />
+      <inertia ixx="0.0006084819226344253" iyy="2.7202973655746336e-06" izz="0.0006077119999999998" ixy="1.1960867074849361e-05" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_ankle_5_motor">
+    <inertial>
+      <origin xyz="0.0097648600000000002 0.0132739 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.00022799098127705168" iyy="0.00026329531663391373" izz="0.00020738170208903478" ixy="5.1254063673498305e-05" ixz="-4.803138649476001e-07" iyz="5.087704380828055e-07" />
+    </inertial>
+  </link>
+  <link name="left_ankle_5_rod">
+    <inertial>
+      <origin xyz="-1.30338e-05 4.2228200000000003e-05 -0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.339169990520296e-05" iyy="6.624577599291839e-05" izz="5.545194101878645e-06" ixy="-1.765495957589047e-11" ixz="-2.3428479313170925e-09" iyz="-3.817379770001852e-08" />
+    </inertial>
+  </link>
+  <link name="left_ankle_5_pendulum">
+    <inertial>
+      <origin xyz="0.015271 -0.016307599999999998 0.0074903900000000004" rpy="0 0 0" />
+      <mass value="0.0647795" />
+      <inertia ixx="1.2270794202310304e-05" iyy="1.674627801160971e-05" izz="2.4432167786080012e-05" ixy="6.573632988581712e-06" ixz="1.92669466094486e-06" iyz="-1.6576378004096555e-06" />
+    </inertial>
+  </link>
+  <link name="left_5_higher_ankle_bar">
+    <inertial>
+      <origin xyz="0.063571100000000005 -0.17466000000000001 -0.0088043500000000007" rpy="0 0 0" />
+      <mass value="0.108309" />
+      <inertia ixx="0.0005601704602446636" iyy="7.684166975691522e-05" izz="0.0006329015299984213" ixy="0.00020278123902543066" ixz="1.0227475148356684e-05" iyz="-2.8099679712640027e-05" />
+    </inertial>
+  </link>
+  <link name="left_ankle_4_motor">
+    <inertial>
+      <origin xyz="0.0097648600000000002 0.0132739 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.00022799098127705168" iyy="0.00026329531663391373" izz="0.00020738170208903478" ixy="5.1254063673498305e-05" ixz="-4.803138649476001e-07" iyz="5.087704380828055e-07" />
+    </inertial>
+  </link>
+  <link name="left_ankle_4_rod">
+    <inertial>
+      <origin xyz="-1.30338e-05 4.2228200000000003e-05 -0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.339169990520296e-05" iyy="6.624577599291839e-05" izz="5.545194101878645e-06" ixy="-1.765495957589047e-11" ixz="-2.3428479313170925e-09" iyz="-3.817379770001852e-08" />
+    </inertial>
+  </link>
+  <link name="left_ankle_4_pendulum">
+    <inertial>
+      <origin xyz="0.015271 -0.016307599999999998 -0.0074903900000000004" rpy="0 0 0" />
+      <mass value="0.0647795" />
+      <inertia ixx="1.2270794202310304e-05" iyy="1.6746278011609707e-05" izz="2.4432167786080012e-05" ixy="6.57363298858171e-06" ixz="-1.926694660944861e-06" iyz="1.6576378004096562e-06" />
+    </inertial>
+  </link>
+  <link name="left_4_higher_ankle_bar">
+    <inertial>
+      <origin xyz="0.063571100000000005 -0.17466000000000001 0.0088043500000000007" rpy="0 0 0" />
+      <mass value="0.108309" />
+      <inertia ixx="0.0005601704602446636" iyy="7.684166975691519e-05" izz="0.0006329015299984213" ixy="0.00020278123902543063" ixz="-1.0227475148356684e-05" iyz="2.8099679712640027e-05" />
+    </inertial>
+  </link>
+  <link name="left_rear_short_bar">
+    <inertial>
+      <origin xyz="1.8785400000000001e-07 -0.045020900000000003 -2.8002300000000002e-07" rpy="0 0 0" />
+      <mass value="0.0877852" />
+      <inertia ixx="1.4874600000279263e-05" iyy="2.8649100000480384e-06" izz="1.6544499999672697e-05" ixy="-2.4019380000621347e-11" ixz="2.337859999759646e-11" iyz="1.4475736590996786e-16" />
+    </inertial>
+  </link>
+  <link name="left_rear_triangle">
+    <inertial>
+      <origin xyz="0.0142194 -0.019473799999999999 0.00024432799999999998" rpy="0 0 0" />
+      <mass value="0.107984" />
+      <inertia ixx="5.551816090410765e-05" iyy="1.4883548362277694e-05" izz="6.556449073361468e-05" ixy="-9.097480648430173e-06" ixz="-7.690308800943035e-08" iyz="-9.921987728611503e-08" />
+    </inertial>
+  </link>
+  <link name="left_rear_long_bar">
+    <inertial>
+      <origin xyz="8.9974299999999999e-08 -0.20219200000000001 -1.2441199999999999e-07" rpy="0 0 0" />
+      <mass value="0.16896" />
+      <inertia ixx="0.000990941" iyy="4.89361e-06" izz="0.000992611" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_3_cradle">
+    <inertial>
+      <origin xyz="-0.0013821599999999999 2.1695499999999998e-06 -0.0105801" rpy="0 0 0" />
+      <mass value="0.138052" />
+      <inertia ixx="0.00011946587329806323" iyy="0.00011860100007478794" izz="3.319552662714882e-05" ixy="7.518474346366084e-10" ixz="1.7092660994003715e-05" iyz="-7.9217569198522e-10" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_3_motor">
+    <inertial>
+      <origin xyz="-0.0022017999999999999 0.016612399999999999 -0.00015337400000000001" rpy="0 0 0" />
+      <mass value="0.698684" />
+      <inertia ixx="0.0001956360611224491" iyy="0.00029811216187673284" izz="0.00020927977700081825" ixy="-1.5467731687755082e-05" ixz="-7.183913495712032e-07" iyz="-4.695088297823946e-08" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_3_rod">
+    <inertial>
+      <origin xyz="0.00068910200000000003 5.2800100000000003e-05 -0.0626747" rpy="0 0 0" />
+      <mass value="0.142095" />
+      <inertia ixx="0.0001365889862113205" iyy="0.00013778896241086445" izz="4.899611377815045e-06" ixy="-8.512191860047036e-10" ixz="4.3486436961463535e-08" iyz="7.01371924112997e-08" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_2_cradle">
+    <inertial>
+      <origin xyz="-0.0013821599999999999 2.1695499999999998e-06 -0.0105801" rpy="0 0 0" />
+      <mass value="0.138052" />
+      <inertia ixx="0.00011946587329806323" iyy="0.00011860100007478794" izz="3.319552662714882e-05" ixy="7.518474346366084e-10" ixz="-1.7092660994003715e-05" iyz="7.9217569198522e-10" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_2_motor">
+    <inertial>
+      <origin xyz="-0.0022017999999999999 0.016612399999999999 -0.00015337400000000001" rpy="0 0 0" />
+      <mass value="0.698684" />
+      <inertia ixx="0.0001956360611224491" iyy="0.00029811216187673284" izz="0.00020927977700081825" ixy="-1.5467731687755082e-05" ixz="-7.183913495712032e-07" iyz="-4.695088297823946e-08" />
+    </inertial>
+  </link>
+  <link name="left_hip_differential_2_rod">
+    <inertial>
+      <origin xyz="0.00068910200000000003 5.2800100000000003e-05 -0.0626747" rpy="0 0 0" />
+      <mass value="0.142095" />
+      <inertia ixx="0.0001365889862113205" iyy="0.00013778896241086445" izz="4.899611377815045e-06" ixy="-8.512191860047036e-10" ixz="4.3486436961463535e-08" iyz="7.01371924112997e-08" />
+    </inertial>
+  </link>
+  <link name="torso">
+    <inertial>
+      <origin xyz="-0.00083221104340375598 0.042110321275963203 0.16782930566357801" rpy="0 0 0" />
+      <mass value="15.2023377849829" />
+      <inertia ixx="0.144123407263241" iyy="0.100896446398784" izz="0.0811134693225461" ixy="3.41258125217583e-05" ixz="-0.000180350338597435" iyz="0.00150970772548264" />
+    </inertial>
+  </link>
+  <link name="right_yaw_motor">
+    <inertial>
+      <origin xyz="-4.1275900000000002e-05 0.016478599999999999 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.0001914506040977777" iyy="0.0002998356922839167" izz="0.00020738170361830538" ixy="1.3214796384601996e-06" ixz="6.880521756818218e-07" iyz="1.2694315064055351e-07" />
+    </inertial>
+  </link>
+  <link name="right_yaw_rod">
+    <inertial>
+      <origin xyz="4.2229299999999999e-05 1.30303e-05 0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.624557600455253e-05" iyy="6.339149990581797e-05" izz="5.545194089629514e-06" ixy="-9.824096572737013e-12" ixz="-3.816453743093667e-08" iyz="-2.3344106708095264e-09" />
+    </inertial>
+  </link>
+  <link name="right_hip_yaw">
+    <inertial>
+      <origin xyz="0.0025800300000000001 -0.018407099999999999 -0.00083598199999999998" rpy="0 0 0" />
+      <mass value="0.867837" />
+      <inertia ixx="0.0009459994154140487" iyy="0.0010735723496199782" izz="0.0005722372349659737" ixy="7.519060085112475e-06" ixz="2.0465029203067358e-05" iyz="-4.880090315518568e-05" />
+    </inertial>
+  </link>
+  <link name="right_hip_pitch">
+    <inertial>
+      <origin xyz="-0.00299643 -6.76272e-10 0.00010129299999999999" rpy="0 0 0" />
+      <mass value="0.0907288" />
+      <inertia ixx="6.104018156113444e-06" iyy="3.64238e-05" izz="3.904706184388655e-05" ixy="0.0" ixz="-3.5453913296506685e-08" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_hip_roll">
+    <inertial>
+      <origin xyz="0.034265999999999998 -0.039022000000000001 0.0098612000000000005" rpy="0 0 0" />
+      <mass value="2.07276" />
+      <inertia ixx="0.0031450696912415812" iyy="0.0029255573740153504" izz="0.0018499829347430703" ixy="1.4277871807876239e-05" ixz="-0.00019328250646699356" iyz="6.922327924321533e-05" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_2_univ">
+    <inertial>
+      <origin xyz="-0.00057667299999999999 -0.00056915600000000002 0.00088379500000000004" rpy="0 0 0" />
+      <mass value="0.0543984" />
+      <inertia ixx="8.12417776928107e-06" iyy="8.664776878920136e-06" izz="1.7456353517988038e-06" ixy="-2.0495866741191415e-09" ixz="-1.2856226914554114e-10" iyz="1.0305552705250421e-08" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_3_univ">
+    <inertial>
+      <origin xyz="-0.00057667299999999999 -0.00056915600000000002 0.00088379500000000004" rpy="0 0 0" />
+      <mass value="0.0543984" />
+      <inertia ixx="8.12417776928107e-06" iyy="8.664776878920136e-06" izz="1.7456353517988038e-06" ixy="2.0495866741182076e-09" ixz="1.2856226914554042e-10" iyz="1.0305552705250421e-08" />
+    </inertial>
+  </link>
+  <link name="right_femour_pitch">
+    <inertial>
+      <origin xyz="0.058175600000000001 -0.098513400000000001 0.00023561099999999999" rpy="0 0 0" />
+      <mass value="2.17531" />
+      <inertia ixx="0.009104890091670651" iyy="0.0021025825379374025" izz="0.00982195737039195" ixy="0.0019327142484354932" ixz="2.3268392583493622e-05" iyz="-1.9405649482057726e-05" />
+    </inertial>
+  </link>
+  <link name="right_leg_length_slidinig_nut">
+    <inertial>
+      <origin xyz="-0.00025698499999999999 0.0014713899999999999 -0.033478599999999997" rpy="0 0 0" />
+      <mass value="0.5431" />
+      <inertia ixx="0.00016615029976924846" iyy="0.00017336454398489027" izz="0.00011256715624586121" ixy="6.510249830084399e-07" ixz="-7.613162445830857e-07" iyz="-2.6601752117331633e-06" />
+    </inertial>
+  </link>
+  <link name="right_leg_length_short_bars">
+    <inertial>
+      <origin xyz="0.026741299999999999 -0.10416300000000001 -1.7844300000000001e-07" rpy="0 0 0" />
+      <mass value="0.240632" />
+      <inertia ixx="0.00022513760781158308" iyy="2.1711972188417026e-05" izz="0.0002428310000000001" ixy="5.590946070739576e-05" ixz="5.078712522164637e-23" iyz="-1.97826461142241e-22" />
+    </inertial>
+  </link>
+  <link name="right_knee">
+    <inertial>
+      <origin xyz="-0.021264600000000002 -0.11802799999999999 -0.000114812" rpy="0 0 0" />
+      <mass value="0.621373" />
+      <inertia ixx="0.0010927633509821215" iyy="0.0002738500901814278" izz="0.001204887558836452" ixy="-0.00019468778949258367" ixz="-1.7731518540617742e-07" iyz="8.240824351639399e-07" />
+    </inertial>
+  </link>
+  <link name="right_ankle_pitch">
+    <inertial>
+      <origin xyz="-0.0075999500000000003 5.8828100000000001e-08 6.9499699999999997e-09" rpy="0 0 0" />
+      <mass value="0.0905838" />
+      <inertia ixx="4.052640000103335e-06" iyy="2.9886299999835664e-05" izz="2.9276300000060993e-05" ixy="5.1667319996794215e-11" ixz="-2.6443914781175307e-16" iyz="-6.099999999827722e-12" />
+    </inertial>
+  </link>
+  <link name="right_ankle_roll">
+    <inertial>
+      <origin xyz="-3.9165200000000002e-05 -0.0099052500000000009 0.022055000000000002" rpy="0 0 0" />
+      <mass value="0.413448" />
+      <inertia ixx="0.001170779999595524" iyy="0.0012760396869945713" izz="0.00036356231340990523" ixy="2.3543720660677214e-09" ixz="2.1550658982725444e-08" iyz="-0.00032685696484394556" />
+    </inertial>
+  </link>
+  <link name="right_4_ankle_ball">
+    <inertial>
+      <origin xyz="1.3379499999999999e-07 -9.5634700000000006e-08 -8.4980099999999993e-09" rpy="0 0 0" />
+      <mass value="0.00381364" />
+      <inertia ixx="1.01443e-07" iyy="1.01443e-07" izz="1.35766e-07" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_5_ankle_ball">
+    <inertial>
+      <origin xyz="1.3379499999999999e-07 -9.5634700000000006e-08 -8.4980099999999993e-09" rpy="0 0 0" />
+      <mass value="0.00381364" />
+      <inertia ixx="1.01443e-07" iyy="1.01443e-07" izz="1.35766e-07" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_4_butterfly">
+    <inertial>
+      <origin xyz="-0.024871600000000001 -0.00598892 0.0050616699999999999" rpy="0 0 0" />
+      <mass value="0.082315" />
+      <inertia ixx="2.5323646090967356e-05" iyy="2.1765712933215958e-05" izz="4.12164409758167e-05" ixy="-7.683482157214548e-07" ixz="3.7454290508077157e-06" iyz="2.6457631380014514e-06" />
+    </inertial>
+  </link>
+  <link name="right_4_knee_ball">
+    <inertial>
+      <origin xyz="3.4080899999999999e-12 -8.7998500000000003e-12 0" rpy="0 0 0" />
+      <mass value="0.00195231" />
+      <inertia ixx="3.17847e-08" iyy="3.17847e-08" izz="4.30053e-08" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_4_lower_ankle_bar">
+    <inertial>
+      <origin xyz="0.0043189400000000003 -0.218831 -6.75122e-08" rpy="0 0 0" />
+      <mass value="0.125467" />
+      <inertia ixx="0.0006084819226344253" iyy="2.7202973655746336e-06" izz="0.0006077119999999998" ixy="1.1960867074849361e-05" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_5_butterfly">
+    <inertial>
+      <origin xyz="-0.024871600000000001 -0.00598892 -0.0050616699999999999" rpy="0 0 0" />
+      <mass value="0.082315" />
+      <inertia ixx="2.5323646090967356e-05" iyy="2.1765712933215954e-05" izz="4.12164409758167e-05" ixy="-7.683482157214531e-07" ixz="-3.7454290508077153e-06" iyz="-2.6457631380014493e-06" />
+    </inertial>
+  </link>
+  <link name="right_5_knee_ball">
+    <inertial>
+      <origin xyz="3.4080899999999999e-12 -8.7998500000000003e-12 0" rpy="0 0 0" />
+      <mass value="0.00195231" />
+      <inertia ixx="3.17847e-08" iyy="3.17847e-08" izz="4.30053e-08" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_5_lower_ankle_bar">
+    <inertial>
+      <origin xyz="0.0043189400000000003 -0.218831 -6.75122e-08" rpy="0 0 0" />
+      <mass value="0.125467" />
+      <inertia ixx="0.0006084819226344253" iyy="2.7202973655746336e-06" izz="0.0006077119999999998" ixy="1.1960867074849361e-05" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_ankle_4_motor">
+    <inertial>
+      <origin xyz="0.0097648600000000002 0.0132739 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.00022799098127705168" iyy="0.00026329531663391373" izz="0.00020738170208903478" ixy="5.1254063673498305e-05" ixz="-4.803138649476001e-07" iyz="5.087704380828055e-07" />
+    </inertial>
+  </link>
+  <link name="right_ankle_4_rod">
+    <inertial>
+      <origin xyz="-1.30338e-05 4.2228200000000003e-05 -0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.339169990520296e-05" iyy="6.624577599291839e-05" izz="5.545194101878645e-06" ixy="-1.765495957589047e-11" ixz="-2.3428479313170925e-09" iyz="-3.817379770001852e-08" />
+    </inertial>
+  </link>
+  <link name="right_ankle_4_pendulum">
+    <inertial>
+      <origin xyz="0.015271 -0.016307599999999998 -0.0074903900000000004" rpy="0 0 0" />
+      <mass value="0.0647795" />
+      <inertia ixx="1.2270794202310304e-05" iyy="1.6746278011609707e-05" izz="2.4432167786080012e-05" ixy="6.57363298858171e-06" ixz="-1.926694660944861e-06" iyz="1.6576378004096562e-06" />
+    </inertial>
+  </link>
+  <link name="right_4_higher_ankle_bar">
+    <inertial>
+      <origin xyz="0.063571100000000005 -0.17466000000000001 0.0088043500000000007" rpy="0 0 0" />
+      <mass value="0.108309" />
+      <inertia ixx="0.0005601704602446636" iyy="7.684166975691519e-05" izz="0.0006329015299984213" ixy="0.00020278123902543063" ixz="-1.0227475148356684e-05" iyz="2.8099679712640027e-05" />
+    </inertial>
+  </link>
+  <link name="right_rear_short_bar">
+    <inertial>
+      <origin xyz="1.8785400000000001e-07 -0.045020900000000003 -2.8002300000000002e-07" rpy="0 0 0" />
+      <mass value="0.0877852" />
+      <inertia ixx="1.4874600000279263e-05" iyy="2.8649100000480384e-06" izz="1.6544499999672697e-05" ixy="-2.4019380000621347e-11" ixz="2.337859999759646e-11" iyz="1.4475736590996786e-16" />
+    </inertial>
+  </link>
+  <link name="right_rear_triangle">
+    <inertial>
+      <origin xyz="0.0142194 -0.019473799999999999 0.00024432799999999998" rpy="0 0 0" />
+      <mass value="0.107984" />
+      <inertia ixx="5.551816090410765e-05" iyy="1.4883548362277694e-05" izz="6.556449073361468e-05" ixy="-9.097480648430173e-06" ixz="-7.690308800943035e-08" iyz="-9.921987728611503e-08" />
+    </inertial>
+  </link>
+  <link name="right_rear_long_bar">
+    <inertial>
+      <origin xyz="8.9974299999999999e-08 -0.20219200000000001 -1.2441199999999999e-07" rpy="0 0 0" />
+      <mass value="0.16896" />
+      <inertia ixx="0.000990941" iyy="4.89361e-06" izz="0.000992611" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+  </link>
+  <link name="right_ankle_5_motor">
+    <inertial>
+      <origin xyz="0.0097648600000000002 0.0132739 -0.00015095000000000001" rpy="0 0 0" />
+      <mass value="0.69585" />
+      <inertia ixx="0.00022799098127705168" iyy="0.00026329531663391373" izz="0.00020738170208903478" ixy="5.1254063673498305e-05" ixz="-4.803138649476001e-07" iyz="5.087704380828055e-07" />
+    </inertial>
+  </link>
+  <link name="right_ankle_5_rod">
+    <inertial>
+      <origin xyz="-1.30338e-05 4.2228200000000003e-05 -0.047761900000000003" rpy="0 0 0" />
+      <mass value="0.124518" />
+      <inertia ixx="6.339169990520296e-05" iyy="6.624577599291839e-05" izz="5.545194101878645e-06" ixy="-1.765495957589047e-11" ixz="-2.3428479313170925e-09" iyz="-3.817379770001852e-08" />
+    </inertial>
+  </link>
+  <link name="right_ankle_5_pendulum">
+    <inertial>
+      <origin xyz="0.015271 -0.016307599999999998 0.0074903900000000004" rpy="0 0 0" />
+      <mass value="0.0647795" />
+      <inertia ixx="1.2270794202310304e-05" iyy="1.674627801160971e-05" izz="2.4432167786080012e-05" ixy="6.573632988581712e-06" ixz="1.92669466094486e-06" iyz="-1.6576378004096555e-06" />
+    </inertial>
+  </link>
+  <link name="right_5_higher_ankle_bar">
+    <inertial>
+      <origin xyz="0.063571100000000005 -0.17466000000000001 -0.0088043500000000007" rpy="0 0 0" />
+      <mass value="0.108309" />
+      <inertia ixx="0.0005601704602446636" iyy="7.684166975691522e-05" izz="0.0006329015299984213" ixy="0.00020278123902543066" ixz="1.0227475148356684e-05" iyz="-2.8099679712640027e-05" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_2_cradle">
+    <inertial>
+      <origin xyz="-0.0013821599999999999 2.1695499999999998e-06 0.0105801" rpy="0 0 0" />
+      <mass value="0.138052" />
+      <inertia ixx="0.00011946587329806323" iyy="0.00011860100007478794" izz="3.319552662714882e-05" ixy="7.518474346366084e-10" ixz="-1.7092660994003715e-05" iyz="7.9217569198522e-10" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_2_motor">
+    <inertial>
+      <origin xyz="-0.0022017999999999999 0.016612399999999999 -0.00015337400000000001" rpy="0 0 0" />
+      <mass value="0.698684" />
+      <inertia ixx="0.0001956360611224491" iyy="0.00029811216187673284" izz="0.00020927977700081825" ixy="-1.5467731687755082e-05" ixz="-7.183913495712032e-07" iyz="-4.695088297823946e-08" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_2_rod">
+    <inertial>
+      <origin xyz="0.00068910200000000003 5.2800100000000003e-05 -0.0626747" rpy="0 0 0" />
+      <mass value="0.142095" />
+      <inertia ixx="0.0001365889862113205" iyy="0.00013778896241086445" izz="4.899611377815045e-06" ixy="-8.512191860047036e-10" ixz="4.3486436961463535e-08" iyz="7.01371924112997e-08" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_3_cradle">
+    <inertial>
+      <origin xyz="-0.0013821599999999999 2.1695499999999998e-06 0.0105801" rpy="0 0 0" />
+      <mass value="0.138052" />
+      <inertia ixx="0.00011946587329806323" iyy="0.00011860100007478794" izz="3.319552662714882e-05" ixy="7.518474346366084e-10" ixz="1.7092660994003715e-05" iyz="-7.9217569198522e-10" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_3_motor">
+    <inertial>
+      <origin xyz="-0.0022017999999999999 0.016612399999999999 -0.00015337400000000001" rpy="0 0 0" />
+      <mass value="0.698684" />
+      <inertia ixx="0.0001956360611224491" iyy="0.00029811216187673284" izz="0.00020927977700081825" ixy="-1.5467731687755082e-05" ixz="-7.183913495712032e-07" iyz="-4.695088297823946e-08" />
+    </inertial>
+  </link>
+  <link name="right_hip_differential_3_rod">
+    <inertial>
+      <origin xyz="0.00068910200000000003 5.2800100000000003e-05 -0.0626747" rpy="0 0 0" />
+      <mass value="0.142095" />
+      <inertia ixx="0.0001365889862113205" iyy="0.00013778896241086445" izz="4.899611377815045e-06" ixy="-8.512191860047036e-10" ixz="4.3486436961463535e-08" iyz="7.01371924112997e-08" />
+    </inertial>
+  </link>
+  <joint name="left_yaw_motor_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="left_yaw_motor" />
+    <origin xyz="-0.11139 0.080870999999999998 -0.029499999999999998" rpy="0 0 -1.1519006784544026" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_1_motor" type="prismatic">
+    <parent link="left_yaw_motor" />
+    <child link="left_yaw_rod" />
+    <origin xyz="0 0.0877 0" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="9.4797658307788301e-18 -4.2426423741001299e-06 -0.99999999999100009" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_1_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="left_hip_yaw" />
+    <origin xyz="-0.014999999999999999 0.080000000000000002 -0.058500000000000003" rpy="0 0 -1.5708005694372709" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.785398" upper="0.261799" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_2_joint" type="revolute">
+    <parent link="left_hip_yaw" />
+    <child link="left_hip_pitch" />
+    <origin xyz="0 0.014999999999999999 -0.092499999999999999" rpy="-1.5707963267948966 9.1999999935143961e-05 -1.5707963267948966" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.741743" upper="0.741743" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_3_joint" type="revolute">
+    <parent link="left_hip_pitch" />
+    <child link="left_hip_roll" />
+    <origin xyz="0 0 0" rpy="3.1415926535897931 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.471225" upper="0.471225" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_3_univ_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_hip_differential_3_univ" />
+    <origin xyz="0.035000000000000003 0 -0.059999999999999998" rpy="-3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_2_univ_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_hip_differential_2_univ" />
+    <origin xyz="-0.035000000000000003 0 -0.059999999999999998" rpy="-3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_femour_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_femour_pitch" />
+    <origin xyz="-0.066900000000000001 -0.089999999999999997 0" rpy="-0 1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_length_motor" type="prismatic">
+    <parent link="left_femour_pitch" />
+    <child link="left_leg_length_slidinig_nut" />
+    <origin xyz="0.068661399999999997 -0.23849400000000001 0" rpy="1.413716832612151 1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0.0" upper="0.15" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_leg_length_short_bars_joint" type="revolute">
+    <parent link="left_leg_length_slidinig_nut" />
+    <child link="left_leg_length_short_bars" />
+    <origin xyz="0 0 0" rpy="-1.5707995931391388 -0.15708041263560779 1.5707995931391388" />
+    <axis xyz="-3.2261297258640075e-06 2.7553729117224552e-06 -0.99999999999100075" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_knee_joint" type="revolute">
+    <parent link="left_femour_pitch" />
+    <child link="left_knee" />
+    <origin xyz="0.129968 -0.35708299999999998 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0.0" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_4_joint" type="revolute">
+    <parent link="left_knee" />
+    <child link="left_ankle_pitch" />
+    <origin xyz="-0.12998899999999999 -0.35707499999999998 0" rpy="0 0 -0.3490654146854576" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.741743" upper="0.741743" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_5_joint" type="revolute">
+    <parent link="left_ankle_pitch" />
+    <child link="left_ankle_roll" />
+    <origin xyz="0 0 0" rpy="3.1415926535897931 1.5707920841525227 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.471225" upper="0.471225" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_5_ankle_ball_joint" type="revolute">
+    <parent link="left_ankle_roll" />
+    <child link="left_5_ankle_ball" />
+    <origin xyz="0.035000000000000003 0 -0.059999999999999998" rpy="1.5707963267948966 1.5706999999307198 1.5707963267948966" />
+    <axis xyz="0 0.019732905669586159 -0.99980528726039208" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_4_ankle_ball_joint" type="revolute">
+    <parent link="left_ankle_roll" />
+    <child link="left_4_ankle_ball" />
+    <origin xyz="-0.035000000000000003 0 -0.059999999999999998" rpy="1.5707963267948966 1.5706999999307198 1.5707963267948966" />
+    <axis xyz="0 0.019732905669586159 -0.99980528726039208" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_5_butterfly_joint" type="revolute">
+    <parent link="left_knee" />
+    <child link="left_5_butterfly" />
+    <origin xyz="0 0 -0.042999999999999997" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_5_knee_ball_joint" type="revolute">
+    <parent link="left_5_butterfly" />
+    <child link="left_5_knee_ball" />
+    <origin xyz="-0.056381000000000001 0.020521000000000001 0.00050000000000000001" rpy="3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_5_lower_ankle_bar_joint" type="revolute">
+    <parent link="left_5_knee_ball" />
+    <child link="left_5_lower_ankle_bar" />
+    <origin xyz="0 0 0" rpy="2.9670278968221289 1.5707920841552365 -2.9670278968221289" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_4_butterfly_joint" type="revolute">
+    <parent link="left_knee" />
+    <child link="left_4_butterfly" />
+    <origin xyz="0 0 0.042999999999999997" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_4_knee_ball_joint" type="revolute">
+    <parent link="left_4_butterfly" />
+    <child link="left_4_knee_ball" />
+    <origin xyz="-0.056381000000000001 0.020521000000000001 -0.00050000000000000001" rpy="3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_4_lower_ankle_bar_joint" type="revolute">
+    <parent link="left_4_knee_ball" />
+    <child link="left_4_lower_ankle_bar" />
+    <origin xyz="0 0 0" rpy="-2.9670278968221289 -1.5707920841552363 -2.9670278968221289" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_ankle_5_motor_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_ankle_5_motor" />
+    <origin xyz="-0.115 -0.046649999999999997 0.075084399999999996" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_5_motor" type="prismatic">
+    <parent link="left_ankle_5_motor" />
+    <child link="left_ankle_5_rod" />
+    <origin xyz="-0.0464141 -0.063425200000000001 0" rpy="0.93904884317704962 -1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_ankle_5_pendulum_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_ankle_5_pendulum" />
+    <origin xyz="-0.115 -0.089999999999999997 0" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_5_higher_ankle_bar_joint" type="revolute">
+    <parent link="left_ankle_5_pendulum" />
+    <child link="left_5_higher_ankle_bar" />
+    <origin xyz="0.045962700000000002 -0.038567299999999999 0" rpy="3.1415926535897931 0 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_ankle_4_motor_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_ankle_4_motor" />
+    <origin xyz="-0.019 -0.046649999999999997 0.075084399999999996" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_4_motor" type="prismatic">
+    <parent link="left_ankle_4_motor" />
+    <child link="left_ankle_4_rod" />
+    <origin xyz="-0.0464141 -0.063425200000000001 0" rpy="0.93904884317704962 -1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_ankle_4_pendulum_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_ankle_4_pendulum" />
+    <origin xyz="-0.019 -0.089999999999999997 0" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_4_higher_ankle_bar_joint" type="revolute">
+    <parent link="left_ankle_4_pendulum" />
+    <child link="left_4_higher_ankle_bar" />
+    <origin xyz="0.045962700000000002 -0.038567299999999999 0" rpy="3.1415926535897931 0 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_rear_short_bar_joint" type="revolute">
+    <parent link="left_hip_roll" />
+    <child link="left_rear_short_bar" />
+    <origin xyz="-0.066900000000000001 -0.017628000000000001 0.089371999999999993" rpy="1.5707963267948959 1.3456998846183708 1.5707963267948959" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_rear_triangle_joint" type="revolute">
+    <parent link="left_rear_short_bar" />
+    <child link="left_rear_triangle" />
+    <origin xyz="0 -0.089999999999999997 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_rear_long_bar_joint" type="revolute">
+    <parent link="left_rear_triangle" />
+    <child link="left_rear_long_bar" />
+    <origin xyz="0.0079431999999999992 -0.067421999999999996 0" rpy="0 0 0.20506912468791405" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_3_cradle_joint" type="revolute">
+    <parent link="left_hip_yaw" />
+    <child link="left_hip_differential_3_cradle" />
+    <origin xyz="0.035000000000000003 0.0625 0.00014999999999999999" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_3_motor_joint" type="revolute">
+    <parent link="left_hip_differential_3_cradle" />
+    <child link="left_hip_differential_3_motor" />
+    <origin xyz="0 0 0" rpy="7.0065353190429391e-06 -1.5707920841525225 -3.1415923137211403" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_3_motor" type="prismatic">
+    <parent link="left_hip_differential_3_motor" />
+    <child link="left_hip_differential_3_rod" />
+    <origin xyz="0.012500000000000001 0.092649999999999996 0" rpy="1.1819940152384767 -1.5707931645160542 -2.8868938563973376" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.04" upper="0.04" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_2_cradle_joint" type="revolute">
+    <parent link="left_hip_yaw" />
+    <child link="left_hip_differential_2_cradle" />
+    <origin xyz="-0.035000000000000003 0.0625 0.00014999999999999999" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="left_hip_differential_2_motor_joint" type="revolute">
+    <parent link="left_hip_differential_2_cradle" />
+    <child link="left_hip_differential_2_motor" />
+    <origin xyz="0 0 0" rpy="7.0065353190429391e-06 -1.5707920841525225 -3.1415923137211403" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_left_2_motor" type="prismatic">
+    <parent link="left_hip_differential_2_motor" />
+    <child link="left_hip_differential_2_rod" />
+    <origin xyz="0.012500000000000001 0.092649999999999996 0" rpy="1.1819940152384767 -1.5707931645160542 -2.8868938563973376" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.04" upper="0.04" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="torso_fixed" type="fixed">
+    <parent link="base_link" />
+    <child link="torso" />
+    <origin xyz="-0.098646999999999999 0 0.031" rpy="0 0 -1.5708005694372709" />
+  </joint>
+  <joint name="right_yaw_motor_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="right_yaw_motor" />
+    <origin xyz="-0.11139 -0.080870999999999998 -0.029499999999999998" rpy="0 0 1.1519006784544026" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_1_motor" type="prismatic">
+    <parent link="right_yaw_motor" />
+    <child link="right_yaw_rod" />
+    <origin xyz="0 -0.0877 0" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="-4.8176773040298787e-17 4.2426423741001282e-06 0.99999999999100009" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_1_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="right_hip_yaw" />
+    <origin xyz="-0.014999999999999999 -0.080000000000000002 -0.058500000000000003" rpy="0 0 1.5708005694372709" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.261799" upper="0.785398" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_2_joint" type="revolute">
+    <parent link="right_hip_yaw" />
+    <child link="right_hip_pitch" />
+    <origin xyz="0 -0.014999999999999999 -0.092499999999999999" rpy="-1.5707963267948966 9.1999999935143961e-05 1.5707963267948966" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.741743" upper="0.741743" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_3_joint" type="revolute">
+    <parent link="right_hip_pitch" />
+    <child link="right_hip_roll" />
+    <origin xyz="0 0 0" rpy="3.1415926535897931 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.471225" upper="0.471225" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_2_univ_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_hip_differential_2_univ" />
+    <origin xyz="-0.035000000000000003 0 -0.059999999999999998" rpy="-3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_3_univ_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_hip_differential_3_univ" />
+    <origin xyz="0.035000000000000003 0 -0.059999999999999998" rpy="-3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_femour_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_femour_pitch" />
+    <origin xyz="0.066900000000000001 -0.089999999999999997 0" rpy="-0 1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_length_motor" type="prismatic">
+    <parent link="right_femour_pitch" />
+    <child link="right_leg_length_slidinig_nut" />
+    <origin xyz="0.068661399999999997 -0.23849400000000001 0" rpy="1.413716832612151 1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0.0" upper="0.15" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_leg_length_short_bars_joint" type="revolute">
+    <parent link="right_leg_length_slidinig_nut" />
+    <child link="right_leg_length_short_bars" />
+    <origin xyz="0 0 0" rpy="-1.5707995931391388 -0.15708041263560779 1.5707995931391388" />
+    <axis xyz="-3.2261297258640109e-06 2.7553729117224552e-06 -0.99999999999100075" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_knee_joint" type="revolute">
+    <parent link="right_femour_pitch" />
+    <child link="right_knee" />
+    <origin xyz="0.129968 -0.35708299999999998 0" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="0.0" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_4_joint" type="revolute">
+    <parent link="right_knee" />
+    <child link="right_ankle_pitch" />
+    <origin xyz="-0.12998899999999999 -0.35707499999999998 0" rpy="0 0 -0.3490654146854576" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.741743" upper="0.741743" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_5_joint" type="revolute">
+    <parent link="right_ankle_pitch" />
+    <child link="right_ankle_roll" />
+    <origin xyz="0 0 0" rpy="3.1415926535897931 1.5707920841525227 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.471225" upper="0.471225" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_4_ankle_ball_joint" type="revolute">
+    <parent link="right_ankle_roll" />
+    <child link="right_4_ankle_ball" />
+    <origin xyz="-0.035000000000000003 0 -0.059999999999999998" rpy="1.5707963267948966 1.5706999999307198 1.5707963267948966" />
+    <axis xyz="0 0.019732905669586159 -0.99980528726039208" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_5_ankle_ball_joint" type="revolute">
+    <parent link="right_ankle_roll" />
+    <child link="right_5_ankle_ball" />
+    <origin xyz="0.035000000000000003 0 -0.059999999999999998" rpy="1.5707963267948966 1.5706999999307198 1.5707963267948966" />
+    <axis xyz="0 0.019732905669586159 -0.99980528726039208" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_4_butterfly_joint" type="revolute">
+    <parent link="right_knee" />
+    <child link="right_4_butterfly" />
+    <origin xyz="0 0 0.042999999999999997" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_4_knee_ball_joint" type="revolute">
+    <parent link="right_4_butterfly" />
+    <child link="right_4_knee_ball" />
+    <origin xyz="-0.056381000000000001 0.020521000000000001 -0.00050000000000000001" rpy="3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_4_lower_ankle_bar_joint" type="revolute">
+    <parent link="right_4_knee_ball" />
+    <child link="right_4_lower_ankle_bar" />
+    <origin xyz="0 0 0" rpy="-2.9670278968221289 -1.5707920841552363 -2.9670278968221289" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_5_butterfly_joint" type="revolute">
+    <parent link="right_knee" />
+    <child link="right_5_butterfly" />
+    <origin xyz="0 0 -0.042999999999999997" rpy="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_5_knee_ball_joint" type="revolute">
+    <parent link="right_5_butterfly" />
+    <child link="right_5_knee_ball" />
+    <origin xyz="-0.056381000000000001 0.020521000000000001 0.00050000000000000001" rpy="3.1415853071697932 0 -3.1415853071697932" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_5_lower_ankle_bar_joint" type="revolute">
+    <parent link="right_5_knee_ball" />
+    <child link="right_5_lower_ankle_bar" />
+    <origin xyz="0 0 0" rpy="2.9670278968221289 1.5707920841552365 -2.9670278968221289" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_ankle_4_motor_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_ankle_4_motor" />
+    <origin xyz="0.115 -0.046649999999999997 0.075084399999999996" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_4_motor" type="prismatic">
+    <parent link="right_ankle_4_motor" />
+    <child link="right_ankle_4_rod" />
+    <origin xyz="-0.0464141 -0.063425200000000001 0" rpy="0.93904884317704962 -1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_ankle_4_pendulum_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_ankle_4_pendulum" />
+    <origin xyz="0.115 -0.089999999999999997 0" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_4_higher_ankle_bar_joint" type="revolute">
+    <parent link="right_ankle_4_pendulum" />
+    <child link="right_4_higher_ankle_bar" />
+    <origin xyz="0.045962700000000002 -0.038567299999999999 0" rpy="3.1415926535897931 0 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_rear_short_bar_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_rear_short_bar" />
+    <origin xyz="0.066900000000000001 -0.017628000000000001 0.089371999999999993" rpy="1.5707963267948959 1.3456998846183708 1.5707963267948959" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_rear_triangle_joint" type="revolute">
+    <parent link="right_rear_short_bar" />
+    <child link="right_rear_triangle" />
+    <origin xyz="0 -0.089999999999999997 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_rear_long_bar_joint" type="revolute">
+    <parent link="right_rear_triangle" />
+    <child link="right_rear_long_bar" />
+    <origin xyz="0.0079431999999999992 -0.067421999999999996 0" rpy="0 0 0.20506912468791405" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_ankle_5_motor_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_ankle_5_motor" />
+    <origin xyz="0.019 -0.046649999999999997 0.075084399999999996" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_5_motor" type="prismatic">
+    <parent link="right_ankle_5_motor" />
+    <child link="right_ankle_5_rod" />
+    <origin xyz="-0.0464141 -0.063425200000000001 0" rpy="0.93904884317704962 -1.5707963267948966 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.02" upper="0.02" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_ankle_5_pendulum_joint" type="revolute">
+    <parent link="right_hip_roll" />
+    <child link="right_ankle_5_pendulum" />
+    <origin xyz="0.019 -0.089999999999999997 0" rpy="0 -1.5707963267948963 0" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_5_higher_ankle_bar_joint" type="revolute">
+    <parent link="right_ankle_5_pendulum" />
+    <child link="right_5_higher_ankle_bar" />
+    <origin xyz="0.045962700000000002 -0.038567299999999999 0" rpy="3.1415926535897931 0 3.1415926535897931" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_2_cradle_joint" type="revolute">
+    <parent link="right_hip_yaw" />
+    <child link="right_hip_differential_2_cradle" />
+    <origin xyz="0.035000000000000003 -0.0625 0.00014999999999999999" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_2_motor_joint" type="revolute">
+    <parent link="right_hip_differential_2_cradle" />
+    <child link="right_hip_differential_2_motor" />
+    <origin xyz="0 0 0" rpy="7.0065353188208945e-06 1.5707920841525227 3.1415923137211408" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_2_motor" type="prismatic">
+    <parent link="right_hip_differential_2_motor" />
+    <child link="right_hip_differential_2_rod" />
+    <origin xyz="0.012500000000000001 0.092649999999999996 0" rpy="1.1819940152384767 -1.5707931645160542 -2.8868938563973376" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.04" upper="0.04" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_3_cradle_joint" type="revolute">
+    <parent link="right_hip_yaw" />
+    <child link="right_hip_differential_3_cradle" />
+    <origin xyz="-0.035000000000000003 -0.0625 0.00014999999999999999" rpy="1.5708005694372706 -1.4419576643831533e-12 -3.1415853071858217" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="right_hip_differential_3_motor_joint" type="revolute">
+    <parent link="right_hip_differential_3_cradle" />
+    <child link="right_hip_differential_3_motor" />
+    <origin xyz="0 0 0" rpy="7.0065353188208945e-06 1.5707920841525227 3.1415923137211408" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14159" upper="3.14159" effort="0" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <joint name="leg_right_3_motor" type="prismatic">
+    <parent link="right_hip_differential_3_motor" />
+    <child link="right_hip_differential_3_rod" />
+    <origin xyz="0.012500000000000001 0.092649999999999996 0" rpy="1.1819940152384767 -1.5707931645160542 -2.8868938563973376" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.04" upper="0.04" effort="5000" velocity="1000" />
+    <dynamics damping="3.0" friction="0.1" />
+  </joint>
+  <transmission name="leg_left_1_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_1_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_1_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_left_2_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_2_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_2_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_left_3_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_3_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_3_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_left_length_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_length_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_length_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_left_4_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_4_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_4_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_left_5_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_left_5_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_left_5_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_1_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_1_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_1_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_2_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_2_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_2_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_3_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_3_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_3_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_length_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_length_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_length_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_4_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_4_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_4_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leg_right_5_actuator_torque">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leg_right_5_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leg_right_5_actuator_torque">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <roboir:mechanism encoding="json">{"schema":"roboir.cmg.mechanism/0.16","root_body":"base_link","coordinate_ids":["left_yaw_motor_joint","leg_left_1_motor","leg_left_1_joint","leg_left_2_joint","leg_left_3_joint","left_hip_differential_3_univ_joint","left_hip_differential_2_univ_joint","leg_left_femour_joint","leg_left_length_motor","left_leg_length_short_bars_joint","leg_left_knee_joint","leg_left_4_joint","leg_left_5_joint","left_5_ankle_ball_joint","left_4_ankle_ball_joint","left_5_butterfly_joint","left_5_knee_ball_joint","left_5_lower_ankle_bar_joint","left_4_butterfly_joint","left_4_knee_ball_joint","left_4_lower_ankle_bar_joint","left_ankle_5_motor_joint","leg_left_5_motor","left_ankle_5_pendulum_joint","left_5_higher_ankle_bar_joint","left_ankle_4_motor_joint","leg_left_4_motor","left_ankle_4_pendulum_joint","left_4_higher_ankle_bar_joint","left_rear_short_bar_joint","left_rear_triangle_joint","left_rear_long_bar_joint","left_hip_differential_3_cradle_joint","left_hip_differential_3_motor_joint","leg_left_3_motor","left_hip_differential_2_cradle_joint","left_hip_differential_2_motor_joint","leg_left_2_motor","right_yaw_motor_joint","leg_right_1_motor","leg_right_1_joint","leg_right_2_joint","leg_right_3_joint","right_hip_differential_2_univ_joint","right_hip_differential_3_univ_joint","leg_right_femour_joint","leg_right_length_motor","right_leg_length_short_bars_joint","leg_right_knee_joint","leg_right_4_joint","leg_right_5_joint","right_4_ankle_ball_joint","right_5_ankle_ball_joint","right_4_butterfly_joint","right_4_knee_ball_joint","right_4_lower_ankle_bar_joint","right_5_butterfly_joint","right_5_knee_ball_joint","right_5_lower_ankle_bar_joint","right_ankle_4_motor_joint","leg_right_4_motor","right_ankle_4_pendulum_joint","right_4_higher_ankle_bar_joint","right_rear_short_bar_joint","right_rear_triangle_joint","right_rear_long_bar_joint","right_ankle_5_motor_joint","leg_right_5_motor","right_ankle_5_pendulum_joint","right_5_higher_ankle_bar_joint","right_hip_differential_2_cradle_joint","right_hip_differential_2_motor_joint","leg_right_2_motor","right_hip_differential_3_cradle_joint","right_hip_differential_3_motor_joint","leg_right_3_motor"],"independent_ids":["leg_left_1_motor","leg_left_2_motor","leg_left_3_motor","leg_left_length_motor","leg_left_4_motor","leg_left_5_motor","leg_right_1_motor","leg_right_2_motor","leg_right_3_motor","leg_right_length_motor","leg_right_4_motor","leg_right_5_motor"],"actuators":[{"id":"leg_left_1_actuator_torque","joint":"leg_left_1_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_left_2_actuator_torque","joint":"leg_left_2_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_left_3_actuator_torque","joint":"leg_left_3_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_left_length_actuator_torque","joint":"leg_left_length_motor","unit":"N","gear":1.0,"force_bounds_N":[-5000.0,5000.0]},{"id":"leg_left_4_actuator_torque","joint":"leg_left_4_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_left_5_actuator_torque","joint":"leg_left_5_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_right_1_actuator_torque","joint":"leg_right_1_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_right_2_actuator_torque","joint":"leg_right_2_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_right_3_actuator_torque","joint":"leg_right_3_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_right_length_actuator_torque","joint":"leg_right_length_motor","unit":"N","gear":1.0,"force_bounds_N":[-5000.0,5000.0]},{"id":"leg_right_4_actuator_torque","joint":"leg_right_4_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]},{"id":"leg_right_5_actuator_torque","joint":"leg_right_5_motor","unit":"N","gear":1.0,"force_bounds_N":[-2000.0,2000.0]}],"closures":[{"id":"left_hip_yaw_closed","type":"point_coincidence","body1":"left_yaw_rod","body2":"left_hip_yaw","point1_m":[0.0,0.0,0.0],"point2_m":[-0.03654306674340793,-0.016272811544323987,0.029000000000000005]},{"id":"left_hip_differential_2a","type":"universal","body1":"left_hip_differential_2_univ","body2":"left_hip_differential_2_rod","point1_m":[0.0,0.0,0.0],"point2_m":[-7.193956331542343e-07,1.1344003292336118e-06,-5.4704819382910734e-06],"frame1_R":[[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,1.0]],"frame2_R":[[0.9999999998610358,1.5490090766337496e-05,-6.163352938147093e-06],[4.038398718516799e-06,0.13361382967901303,0.9910334729474081],[1.6174707638269076e-05,-0.9910334728345792,0.13361382959789028]]},{"id":"left_hip_differential_3a","type":"universal","body1":"left_hip_differential_3_univ","body2":"left_hip_differential_3_rod","point1_m":[0.0,0.0,0.0],"point2_m":[-7.193956331542343e-07,1.1344003292404882e-06,-5.470481938290146e-06],"frame1_R":[[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,1.0]],"frame2_R":[[0.9999999998610358,1.5490090766337496e-05,-6.163352938147093e-06],[4.038398718516799e-06,0.13361382967901303,0.9910334729474081],[1.6174707638269076e-05,-0.9910334728345792,0.13361382959789028]]},{"id":"left_knee_closed","type":"point_coincidence","body1":"left_knee","body2":"left_leg_length_short_bars","point1_m":[-0.007844,-0.089658,0.0],"point2_m":[0.05346279126492414,-0.2082469508957246,-7.462759075953291e-07]},{"id":"left_rear_triangle_closed_1","type":"point_coincidence","body1":"left_femour_pitch","body2":"left_rear_triangle","point1_m":[-0.038637,0.010353,0.0],"point2_m":[0.0356124232407372,0.01822150811752452,-3.577845156864249e-19]},{"id":"left_rear_triangle_closed_2","type":"point_coincidence","body1":"left_rear_long_bar","body2":"left_knee","point1_m":[0.0,-0.40427,0.0],"point2_m":[-0.007871339936427019,-0.08966240065660316,-2.1273173674008163e-17]},{"id":"left_ankle_hip_5_closed","type":"point_coincidence","body1":"left_ankle_5_rod","body2":"left_ankle_5_pendulum","point1_m":[0.0,0.0,0.0],"point2_m":[0.028670300000000017,-0.020075200000000015,2.4048622252429627e-17]},{"id":"left_ankle_hip_4_closed","type":"point_coincidence","body1":"left_ankle_4_rod","body2":"left_ankle_4_pendulum","point1_m":[0.0,0.0,0.0],"point2_m":[0.028670300000000027,-0.020075200000000015,1.017080797496046e-17]},{"id":"left_butterfly_5_closed","type":"point_coincidence","body1":"left_5_butterfly","body2":"left_5_higher_ankle_bar","point1_m":[-0.045963,-0.038567,-0.03],"point2_m":[0.12996770000000019,-0.35708270000000036,-0.024900000000000054]},{"id":"left_butterfly_4_closed","type":"point_coincidence","body1":"left_4_butterfly","body2":"left_4_higher_ankle_bar","point1_m":[-0.045963,-0.038567,0.03],"point2_m":[0.12996770000000016,-0.35708270000000036,0.025100000000000018]},{"id":"left_ankle_4_closed","type":"universal","body1":"left_4_lower_ankle_bar","body2":"left_4_ankle_ball","point1_m":[0.0075,-0.38,0.0],"point2_m":[-1.9200786866831965e-06,-3.22211392989008e-07,3.1577788579234564e-06],"frame1_R":[[0.019740545615768636,1.3059607760675839e-19,-0.9998051364434939],[0.9998050790720587,0.0003387701741611248,0.019740544483002186],[0.00033870416020026516,-0.9999999426173839,6.687508076323348e-06]],"frame2_R":[[-0.0002992540321438615,0.9999999552235124,1.7263061966303414e-17],[0.9998052424926229,0.0002991957635712961,0.01973290566958623],[0.019732904786018305,5.905151587536709e-06,-0.9998052872603932]]},{"id":"left_ankle_5_closed","type":"universal","body1":"left_5_lower_ankle_bar","body2":"left_5_ankle_ball","point1_m":[0.0075,-0.38,0.0],"point2_m":[-2.254762727502799e-06,-4.2573340991951257e-07,2.597765278801678e-06],"frame1_R":[[0.01973907112128264,-1.3104145128393308e-18,0.999805165555405],[-0.9998051619892526,8.446120122030922e-05,0.01973907105086824],[-8.444474526898163e-05,-0.9999999964331536,1.6671856579437218e-06]],"frame2_R":[[-0.000124059827313696,-0.9999999923045809,1.7263061966303414e-17],[-0.999805279566471,0.0001240356712849701,0.01973290566958623],[-0.019732905517741352,2.448060869768946e-06,-0.9998052872603932]]},{"id":"right_hip_yaw_closed","type":"point_coincidence","body1":"right_yaw_rod","body2":"right_hip_yaw","point1_m":[0.0,0.0,0.0],"point2_m":[-0.03654306674340793,0.016272811544323987,0.029000000000000005]},{"id":"right_hip_differential_2a","type":"universal","body1":"right_hip_differential_2_univ","body2":"right_hip_differential_2_rod","point1_m":[0.0,0.0,0.0],"point2_m":[-8.254598811358507e-07,3.411611116457793e-07,-5.470474252687392e-06],"frame1_R":[[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,1.0]],"frame2_R":[[0.9999999997727264,1.54907802301884e-05,-1.4648706754671322e-05],[1.2447429385105206e-05,0.1336222389400571,0.991032339081682],[1.7309257159955765e-05,-0.9910323390387843,0.13362223871686774]]},{"id":"right_hip_differential_3a","type":"universal","body1":"right_hip_differential_3_univ","body2":"right_hip_differential_3_rod","point1_m":[0.0,0.0,0.0],"point2_m":[-8.254598811427895e-07,3.411611116389025e-07,-5.47047425268832e-06],"frame1_R":[[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,1.0]],"frame2_R":[[0.9999999997727264,1.54907802301884e-05,-1.4648706754671322e-05],[1.2447429385105206e-05,0.1336222389400571,0.991032339081682],[1.7309257159955765e-05,-0.9910323390387843,0.13362223871686774]]},{"id":"right_knee_closed","type":"point_coincidence","body1":"right_knee","body2":"right_leg_length_short_bars","point1_m":[-0.007844,-0.089658,0.0],"point2_m":[0.05346279126492415,-0.2082469508957246,-7.462759076159513e-07]},{"id":"right_rear_triangle_closed_1","type":"point_coincidence","body1":"right_femour_pitch","body2":"right_rear_triangle","point1_m":[-0.038637,0.010353,0.0],"point2_m":[0.0356124232407372,0.01822150811752452,3.2125400723700087e-18]},{"id":"right_rear_triangle_closed_2","type":"point_coincidence","body1":"right_rear_long_bar","body2":"right_knee","point1_m":[0.0,-0.40427,0.0],"point2_m":[-0.007871339936427019,-0.08966240065660316,1.1318567152649175e-17]},{"id":"right_ankle_hip_5_closed","type":"point_coincidence","body1":"right_ankle_5_rod","body2":"right_ankle_5_pendulum","point1_m":[0.0,0.0,0.0],"point2_m":[0.028670300000000027,-0.020075200000000015,-7.941720218067762e-18]},{"id":"right_ankle_hip_4_closed","type":"point_coincidence","body1":"right_ankle_4_rod","body2":"right_ankle_4_pendulum","point1_m":[0.0,0.0,0.0],"point2_m":[0.028670300000000017,-0.020075200000000043,-2.1819534495536926e-17]},{"id":"right_butterfly_5_closed","type":"point_coincidence","body1":"right_5_butterfly","body2":"right_5_higher_ankle_bar","point1_m":[-0.045963,-0.038567,-0.03],"point2_m":[0.12996770000000016,-0.35708270000000036,-0.02510000000000006]},{"id":"right_butterfly_4_closed","type":"point_coincidence","body1":"right_4_butterfly","body2":"right_4_higher_ankle_bar","point1_m":[-0.045963,-0.038567,0.03],"point2_m":[0.12996770000000019,-0.3570827000000004,0.024900000000000012]},{"id":"right_ankle_4_closed","type":"universal","body1":"right_4_lower_ankle_bar","body2":"right_4_ankle_ball","point1_m":[0.0075,-0.38,0.0],"point2_m":[-1.920078686672676e-06,-3.222113929928371e-07,3.1577788579150196e-06],"frame1_R":[[0.019740545615748336,2.9051553725066243e-19,-0.9998051364434941],[0.9998050790720591,0.00033877017416128133,0.01974054448300219],[0.0003387041602003178,-0.9999999426173841,6.6875080763247634e-06]],"frame2_R":[[-0.00029925403214391415,0.9999999552235126,1.671497192005818e-17],[0.9998052424926233,0.0002991957635714526,0.019732905669586236],[0.019732904785998005,5.905151587536868e-06,-0.9998052872603934]]},{"id":"right_ankle_5_closed","type":"universal","body1":"right_5_lower_ankle_bar","body2":"right_5_ankle_ball","point1_m":[0.0075,-0.38,0.0],"point2_m":[-2.254762727501556e-06,-4.257334099199649e-07,2.597765278810131e-06],"frame1_R":[[0.019739071121265547,-3.976609942498048e-19,0.9998051655554051],[-0.9998051619892531,8.446120122026375e-05,0.019739071050868244],[-8.444474526887349e-05,-0.999999996433154,1.6671856579423062e-06]],"frame2_R":[[-0.00012405982731364339,-0.9999999923045813,1.671497192005818e-17],[-0.9998052795664715,0.0001240356712849246,0.019732905669586236],[-0.01973290551772426,2.448060869768036e-06,-0.9998052872603934]]}],"source":{"repository":"https://github.com/hucebot/mujoco_kangaroo_sim2sim","commit":"c020b68f3690930f5228d9f301b59ad9ab405e9a","model":"Full published-cut reconstruction: pelvis, torso and two complete legs","geometry_modifications":[{"joint":"leg_left_1_motor","old":[0.0,0.0,-1.0],"new":[9.47976583077883e-18,-4.24264237410013e-06,-0.9999999999910001],"angle_rad":4.2426423741885e-06},{"joint":"left_leg_length_short_bars_joint","old":[0.0,0.0,-1.0],"new":[-3.2261297258640075e-06,2.755372911722455e-06,-0.9999999999910008],"angle_rad":4.242639849335685e-06},{"joint":"leg_right_1_motor","old":[0.0,0.0,1.0],"new":[-4.817677304029879e-17,4.242642374100128e-06,0.9999999999910001],"angle_rad":4.2426423741885e-06},{"joint":"right_leg_length_short_bars_joint","old":[0.0,0.0,-1.0],"new":[-3.226129725864011e-06,2.755372911722455e-06,-0.9999999999910008],"angle_rad":4.242639849335685e-06}],"files":{"assets/kangaroo.collision_assets.xml":"d4adc519c4b8469e0e4fc5071b5ad90ade362e4cfbd87a017801d3b41abec703","assets/kangaroo.left_leg.excluded_contacts.xml":"ff5a69bec9efbb52e07a71d2e829b8dfe8a874babd42045405a0a629db04a202","assets/kangaroo.right_leg.excluded_contacts.xml":"d3f40ce5ab92ba629a1f4937bc5c334480dd3ee6047c60afa886d79628bb7913","assets/kangaroo.visual_assets.xml":"4feeb4ff203d64e121f04d7b3ce72edd93cef3afcc4c80d5be22c91cc2b4e341","common.xml":"8eaabde6c01dcc8e8546403d022d35c71890758e4325a23e86f3c264f4c4c204","constraints/kangaroo.left_leg.equality_constraints.xml":"397803022351318c67182a2361bffcd37e2a1e4d34d1315a471777d9b0b3718b","constraints/kangaroo.right_leg.equality_constraints.xml":"03127d8bd493be8ef680e7e374963ec5fc0d7a45a752a50b4cdb9f1616d2802a","controllers/kangaroo.left_leg.motor_controllers.xml":"0d4aed7d61a92a8b0e66fa697ad8630f737ad924616c4f195c8639a8fc2b0753","controllers/kangaroo.left_leg.position_controllers.xml":"134b2f0ed673bda00d228cdd305ee5857b4a2e6fd9cd95e51e6a5ae6151424ef","controllers/kangaroo.left_leg.velocity_controllers.xml":"406967a5fa6460a11bedf42e12d8aa1f4cba1efb78697bd845ccd6defe3f8f26","controllers/kangaroo.right_leg.motor_controllers.xml":"825fd995423247d7b44d7edc9f055bcbc84e0546f865f7252148d0c1ec909486","controllers/kangaroo.right_leg.position_controllers.xml":"beb835f1d3b29356a1e6b409d5f5d49940c055f37b1262bd998be9f873c56266","controllers/kangaroo.right_leg.velocity_controllers.xml":"993e6a6883686e894ce6e9fc304b0d57879c92e1735f7e9db2774e2c70464df7","kangaroo.xml":"ead8712022e2b876c8ed3b7637930fd1aaaba611258629b490dd2bc4171a5d62","kangaroo_fixed_base.xml":"bc0355908e34fc298cca5ed9a27107fe1d0a5722e3b0cda13c0a5d2c2a22fe0e","parts/kangaroo.left_leg.xml":"8c426d17f2fbfb20f17fdf28d63c173d48d3a16445789436a9ac60200a52d54e","parts/kangaroo.right_leg.xml":"a2d0b7b9075e67bd2f985438ba4d78fcdfcfdb10cd558efca87c9f424480c4a1","scene.xml":"d950e06296aa3210999f5d63ab7f45cd62f81718109d1f1df14740c702a50f74","scene_fixed.xml":"9640efe96f49945f4d7d13426a6d3b7cd7a3a313ff59df62203b0db60a74dd02"},"author_verified":false,"topology_modifications":["Each original hip pair of point connects (hinge cut) becomes one universal cut at their midpoint.","Restore both commented ankle-ball bodies per leg, with source inertia, joint axis and bounds.","Each terminal ankle point cut moves from ankle_roll to restored ankle_ball and becomes universal.","Universal frame axes are explicit reconstruction assumptions; not supplied author CAD frames."]},"joint_dissipation":{"left_yaw_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_1_motor":{"damping":3.0,"frictionloss":0.1},"leg_left_1_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_2_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_3_joint":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_3_univ_joint":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_2_univ_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_femour_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_length_motor":{"damping":3.0,"frictionloss":0.1},"left_leg_length_short_bars_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_knee_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_4_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_5_joint":{"damping":3.0,"frictionloss":0.1},"left_5_ankle_ball_joint":{"damping":3.0,"frictionloss":0.1},"left_4_ankle_ball_joint":{"damping":3.0,"frictionloss":0.1},"left_5_butterfly_joint":{"damping":3.0,"frictionloss":0.1},"left_5_knee_ball_joint":{"damping":3.0,"frictionloss":0.1},"left_5_lower_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_4_butterfly_joint":{"damping":3.0,"frictionloss":0.1},"left_4_knee_ball_joint":{"damping":3.0,"frictionloss":0.1},"left_4_lower_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_ankle_5_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_5_motor":{"damping":3.0,"frictionloss":0.1},"left_ankle_5_pendulum_joint":{"damping":3.0,"frictionloss":0.1},"left_5_higher_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_ankle_4_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_4_motor":{"damping":3.0,"frictionloss":0.1},"left_ankle_4_pendulum_joint":{"damping":3.0,"frictionloss":0.1},"left_4_higher_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_rear_short_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_rear_triangle_joint":{"damping":3.0,"frictionloss":0.1},"left_rear_long_bar_joint":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_3_cradle_joint":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_3_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_3_motor":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_2_cradle_joint":{"damping":3.0,"frictionloss":0.1},"left_hip_differential_2_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_left_2_motor":{"damping":3.0,"frictionloss":0.1},"right_yaw_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_1_motor":{"damping":3.0,"frictionloss":0.1},"leg_right_1_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_2_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_3_joint":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_2_univ_joint":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_3_univ_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_femour_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_length_motor":{"damping":3.0,"frictionloss":0.1},"right_leg_length_short_bars_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_knee_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_4_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_5_joint":{"damping":3.0,"frictionloss":0.1},"right_4_ankle_ball_joint":{"damping":3.0,"frictionloss":0.1},"right_5_ankle_ball_joint":{"damping":3.0,"frictionloss":0.1},"right_4_butterfly_joint":{"damping":3.0,"frictionloss":0.1},"right_4_knee_ball_joint":{"damping":3.0,"frictionloss":0.1},"right_4_lower_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_5_butterfly_joint":{"damping":3.0,"frictionloss":0.1},"right_5_knee_ball_joint":{"damping":3.0,"frictionloss":0.1},"right_5_lower_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_ankle_4_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_4_motor":{"damping":3.0,"frictionloss":0.1},"right_ankle_4_pendulum_joint":{"damping":3.0,"frictionloss":0.1},"right_4_higher_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_rear_short_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_rear_triangle_joint":{"damping":3.0,"frictionloss":0.1},"right_rear_long_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_ankle_5_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_5_motor":{"damping":3.0,"frictionloss":0.1},"right_ankle_5_pendulum_joint":{"damping":3.0,"frictionloss":0.1},"right_5_higher_ankle_bar_joint":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_2_cradle_joint":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_2_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_2_motor":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_3_cradle_joint":{"damping":3.0,"frictionloss":0.1},"right_hip_differential_3_motor_joint":{"damping":3.0,"frictionloss":0.1},"leg_right_3_motor":{"damping":3.0,"frictionloss":0.1}},"armature":{"left_yaw_motor_joint":0.0,"leg_left_1_motor":0.01,"leg_left_1_joint":0.0,"leg_left_2_joint":0.0,"leg_left_3_joint":0.0,"left_hip_differential_3_univ_joint":0.0,"left_hip_differential_2_univ_joint":0.0,"leg_left_femour_joint":0.0,"leg_left_length_motor":0.01,"left_leg_length_short_bars_joint":0.0,"leg_left_knee_joint":0.0,"leg_left_4_joint":0.0,"leg_left_5_joint":0.0,"left_5_ankle_ball_joint":0.0,"left_4_ankle_ball_joint":0.0,"left_5_butterfly_joint":0.0,"left_5_knee_ball_joint":0.0,"left_5_lower_ankle_bar_joint":0.0,"left_4_butterfly_joint":0.0,"left_4_knee_ball_joint":0.0,"left_4_lower_ankle_bar_joint":0.0,"left_ankle_5_motor_joint":0.0,"leg_left_5_motor":0.01,"left_ankle_5_pendulum_joint":0.0,"left_5_higher_ankle_bar_joint":0.0,"left_ankle_4_motor_joint":0.0,"leg_left_4_motor":0.01,"left_ankle_4_pendulum_joint":0.0,"left_4_higher_ankle_bar_joint":0.0,"left_rear_short_bar_joint":0.0,"left_rear_triangle_joint":0.0,"left_rear_long_bar_joint":0.0,"left_hip_differential_3_cradle_joint":0.0,"left_hip_differential_3_motor_joint":0.0,"leg_left_3_motor":0.01,"left_hip_differential_2_cradle_joint":0.0,"left_hip_differential_2_motor_joint":0.0,"leg_left_2_motor":0.01,"right_yaw_motor_joint":0.0,"leg_right_1_motor":0.01,"leg_right_1_joint":0.0,"leg_right_2_joint":0.0,"leg_right_3_joint":0.0,"right_hip_differential_2_univ_joint":0.0,"right_hip_differential_3_univ_joint":0.0,"leg_right_femour_joint":0.0,"leg_right_length_motor":0.01,"right_leg_length_short_bars_joint":0.0,"leg_right_knee_joint":0.0,"leg_right_4_joint":0.0,"leg_right_5_joint":0.0,"right_4_ankle_ball_joint":0.0,"right_5_ankle_ball_joint":0.0,"right_4_butterfly_joint":0.0,"right_4_knee_ball_joint":0.0,"right_4_lower_ankle_bar_joint":0.0,"right_5_butterfly_joint":0.0,"right_5_knee_ball_joint":0.0,"right_5_lower_ankle_bar_joint":0.0,"right_ankle_4_motor_joint":0.0,"leg_right_4_motor":0.01,"right_ankle_4_pendulum_joint":0.0,"right_4_higher_ankle_bar_joint":0.0,"right_rear_short_bar_joint":0.0,"right_rear_triangle_joint":0.0,"right_rear_long_bar_joint":0.0,"right_ankle_5_motor_joint":0.0,"leg_right_5_motor":0.01,"right_ankle_5_pendulum_joint":0.0,"right_5_higher_ankle_bar_joint":0.0,"right_hip_differential_2_cradle_joint":0.0,"right_hip_differential_2_motor_joint":0.0,"leg_right_2_motor":0.01,"right_hip_differential_3_cradle_joint":0.0,"right_hip_differential_3_motor_joint":0.0,"leg_right_3_motor":0.01},"initial_seed":[2.90649243e-10,1.38966641e-07,-1.3248513e-05,0.00224423917,-0.011341913,-0.0098838858,-0.011926404,-0.37472164,0.038056397,0.253885438,0.766090202,0.392622008,2.50583959e-05,0.0,0.0,-0.39278422,-0.39276441,2.14985788e-06,-0.39274756,-0.39272731,-1.8097891e-06,-6.3992473e-05,-5.3863672e-06,0.00113972388,-0.37356597,-6.044597e-05,-5.4254108e-06,0.0010972161,-0.37360841,0.098040474,-0.29284987,-0.76628226,-1.7206868e-05,0.000388561751,6.20935664e-05,3.79712077e-05,-0.0007623783,-0.00014455591,-4.7848693e-09,1.65276528e-07,0.000107444812,0.00224329842,0.0113518959,0.00989801244,0.0119448544,-0.37472164,0.038056397,0.253885442,0.766090218,0.392622134,-3.3564464e-05,0.0,0.0,-0.39278786,-0.39276796,-8.1943959e-07,-0.39274416,-0.392724,1.15905694e-06,-6.397939e-05,-5.3953078e-06,0.00114217181,-0.37356352,0.0980404694,-0.29284986,-0.76628223,-6.0469901e-05,-5.4165045e-06,0.00109498557,-0.37361065,-1.7038556e-05,0.000389156279,6.21972475e-05,3.80568807e-05,-0.00076280792,-0.00014466097],"floating_base":{"coordinates":"world translation and quaternion xyzw","velocity":"world linear then world angular, followed by scalar joints","actuated":false},"fixed_axes":{"torso_fixed":[0,0,1]},"urdf_limits_note":"The velocity=1000 and passive effort=0 attributes are serialization placeholders, not validated hardware ratings. Source position and motor force limits are authoritative for this benchmark."}</roboir:mechanism>
+</robot>
