@@ -156,7 +156,7 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push_scale=1.,du
     lower=np.array([joints[j]['limits']['lower'] for j in cmg['coordinate_ids'][6:]])
     upper=np.array([joints[j]['limits']['upper'] for j in cmg['coordinate_ids'][6:]])
     logs={key:[] for key in ['time','q','v','q_ref','feet','foot_ref','stance','normal_force','support_force','contact_force','predicted_force','torque','push','body_error','angle_error','contact_residual']}
-    peak_qp=0.;peak_residual=0.;peak_dyn=0.;peak_iter=0;min_gap=0.;min_margin=1.;peak_torque=0.;min_height=1.;peak_tilt=0.
+    peak_qp=0.;peak_residual=0.;peak_dyn=0.;peak_iter=0;min_gap=0.;min_margin=1.;peak_torque=0.;peak_demand=0.;peak_excess=0.;min_height=1.;peak_tilt=0.
     dense_q=[];dense_time=[];peak_law=0.;peak_cone=0.;min_normal=0.
     impulses=np.zeros((2,3));complete=True;failure=None;start=time.monotonic()
     for k in range(steps+1):
@@ -168,6 +168,9 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push_scale=1.,du
             if actuation:
                 tau,pred,viol,iters=ctrl.command(q,v,qr,vr,ar,active,av,aa,stance)
                 peak_qp=max(peak_qp,viol)
+                # Requested torque before the controller's safety clip.
+                peak_demand=max(peak_demand,float(np.max(abs(ctrl.requested_torque)/limits)))
+                peak_excess=max(peak_excess,float(np.max(abs(ctrl.requested_torque)-limits)))
             else:tau=np.zeros(12);pred=np.zeros((4,3))
         pulse=np.zeros(3)
         if 1.2<=t<1.35:pulse=push_scale*np.array([0.,32.,0.])
@@ -196,7 +199,7 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push_scale=1.,du
         final_position_error_m=float(np.linalg.norm(q[:3]-interp(duration)[:3])),final_yaw_error_rad=float(abs(q[3]-interp(duration)[3])),
         rms_body_error_m=float(np.sqrt(np.mean(logs['body_error']**2))),peak_body_error_m=float(np.max(logs['body_error'])),
         peak_joint_tracking_error_rad=float(np.max(abs(logs['q'][:,6:]-logs['q_ref'][:,6:]))),
-        min_base_height_m=min_height,max_tilt_rad=peak_tilt,min_joint_margin_rad=min_margin,peak_torque_limit_fraction=peak_torque,
+        min_base_height_m=min_height,max_tilt_rad=peak_tilt,min_joint_margin_rad=min_margin,peak_torque_limit_fraction=peak_torque,peak_torque_demand_limit_fraction=peak_demand,peak_torque_demand_excess_Nm=peak_excess,
         max_qp_violation=peak_qp,max_contact_fixed_point_residual_Ns=peak_residual,max_contact_iterations=peak_iter,
         max_discrete_dynamics_residual_N_or_Nm=peak_dyn,max_contact_law_residual_N=peak_law,max_friction_cone_excess_N=peak_cone,min_contact_normal_N=min_normal,max_foot_penetration_m=-min_gap,
         final_speed_m_s=float(np.linalg.norm(v[:3])),measured_contact_modes=sorted(set(np.sum(logs['support_force']>2,axis=1).tolist())),

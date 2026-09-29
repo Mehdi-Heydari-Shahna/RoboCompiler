@@ -19,7 +19,20 @@ import numpy as np
 
 from .model import _defaults, _rotation, load_model
 from .pin_backend import PinBackend
-from .task import HURDLES
+from .task import HURDLES, RAIL_HALF_WIDTH
+
+# A foot sphere may rest on the floor or on the top face of a rail. Contact with
+# a rail side face or edge is not support and is audited like any other
+# environment contact. Top-face support: the sphere centre lies above the rail
+# top, at least RAIL_EDGE_MARGIN inside its x extent (the closest rail point is
+# then on the top face, with a vertical normal).
+RAIL_EDGE_MARGIN = .001
+
+
+def _rail_top_support(centre, rail_index):
+    x, height = HURDLES[rail_index]
+    return bool(centre[2] > height and abs(centre[0] - x) <= RAIL_HALF_WIDTH - RAIL_EDGE_MARGIN
+                and abs(centre[1]) < .6)
 
 
 @dataclass
@@ -178,8 +191,9 @@ def audit_clearance(root, case='nominal', stride=1):
     otherwise use ``time,q``. Every saved sample is checked by default. A
     stride greater than one is reported and never represented as a
     continuous-time collision proof.
-    Foot/floor and foot/rail contact is expected; all other environment
-    contacts and all eligible self contacts are unexpected.
+    Foot/floor and foot/rail-top contact is expected; foot contact with a rail
+    side face or edge, all other environment contacts and all eligible self
+    contacts are unexpected.
     """
     root = Path(root)
     if not isinstance(stride, int) or stride < 1:
@@ -208,6 +222,7 @@ def audit_clearance(root, case='nominal', stride=1):
     pairs, excluded = [], {'same_body': 0, 'parent_child': 0,
                            'source_exclude': 0, 'bitmask': 0,
                            'expected_foot_support': 0}
+    foot_rail = {}  # pair index -> rail index, audited with the top-face exemption
     for i, a in enumerate(robot):
         for j in range(i + 1, len(robot)):
             b = robot[j]
@@ -224,8 +239,11 @@ def audit_clearance(root, case='nominal', stride=1):
     all_primitives = robot + environment
     for i, a in enumerate(robot):
         for j, b in enumerate(environment, start=len(robot)):
-            if a.foot and (b.name == 'floor' or b.name.startswith('rail_')):
+            if a.foot and b.name == 'floor':
                 excluded['expected_foot_support'] += 1
+            elif a.foot and b.name.startswith('rail_'):
+                foot_rail[len(pairs)] = int(b.name.split('_')[1])
+                pairs.append((i, j, b.name, f'{a.name} / {b.name}'))
             elif _compatible(a, b):
                 pairs.append((i, j, b.name, f'{a.name} / {b.name}'))
             else:
@@ -238,6 +256,7 @@ def audit_clearance(root, case='nominal', stride=1):
     pair_intersections = np.zeros(len(pairs), dtype=int)
     sample_intersections = 0
     total_intersections = 0
+    top_support_exemptions = 0
     records = []
     tolerance = 1e-7
     for sample_index in indices:
@@ -247,6 +266,12 @@ def audit_clearance(root, case='nominal', stride=1):
         transforms.extend(_coal_transform(p.placement) for p in environment)
         intersections_here = 0
         for k, (i, j, category, label) in enumerate(pairs):
+            if k in foot_rail:
+                foot = robot[i]
+                centre = (poses[foot.body] @ foot.placement)[:3, 3]
+                if _rail_top_support(centre, foot_rail[k]):
+                    top_support_exemptions += 1
+                    continue
             result = coal.DistanceResult()
             value = float(coal.distance(all_primitives[i].shape, transforms[i],
                                         all_primitives[j].shape, transforms[j],
@@ -312,6 +337,7 @@ def audit_clearance(root, case='nominal', stride=1):
         intersection_pair_samples=total_intersections,
         samples_with_intersections=sample_intersections,
         excluded_pair_counts=excluded, category_results=categories,
+        foot_rail_top_support_exemptions=top_support_exemptions,
         implementation_self_checks=self_checks,
         intersection_examples=records, pair_minima=pair_reports,
         interpretation='A sampled geometric audit, not continuous collision detection. '
@@ -319,8 +345,10 @@ def audit_clearance(root, case='nominal', stride=1):
                        'primitive surface separation. Contact eligibility uses '
                        'contype/conaffinity, same-body and immediate-parent filtering, '
                        'and explicit source body excludes. Expected sphere foot/floor '
-                       'and sphere foot/rail support contacts are excluded. Other '
-                       'intersections invalidate this audit and are not resolved by it.')
+                       'support and sphere foot/rail-top support (foot centre above '
+                       'the rail top face) are excluded; foot contact with a rail side '
+                       'face or edge is audited. Other intersections invalidate this '
+                       'audit and are not resolved by it.')
     (results / f'{case}_clearance.json').write_text(json.dumps(report, indent=2) + '\n')
     return report
 

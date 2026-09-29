@@ -11,13 +11,41 @@ DURATION=26.
 PERIOD=.8
 SWING=.28
 HURDLES=[(.48,.025),(.86,.035)]
+# Foot contact geometry used by the planner. The source foot is a sphere of
+# radius FOOT_RADIUS (go2.xml); a planned foot centre sits one radius above its
+# support. Rails are boxes of half-width RAIL_HALF_WIDTH in x (simulation.py).
+FOOT_RADIUS=.022
+RAIL_HALF_WIDTH=.025
+# Minimum planned gap between a floor foothold's sphere and a rail side face.
+RAIL_CLEARANCE=.01
 PHASES=[(0,2,'Balance and push'),(2,8,'Precision trot'),(8,14,'Clear the rails'),(14,21,'Turn and crouch'),(21,24,'Exit'),(24,26,'Recover and dock')]
 
 def smooth(s):
     return 10*s**3-15*s**4+6*s**5
 
 def ground_height(x,y):
-    return max([h for center,h in HURDLES if abs(x-center)<=.025 and abs(y)<.6]+[0.])
+    """Support height below a foot centre: a rail top if the centre is above it, else the floor."""
+    return max([h for center,h in HURDLES if abs(x-center)<=RAIL_HALF_WIDTH and abs(y)<.6]+[0.])
+
+def foothold(target):
+    """Planned foot-centre position that the foot sphere can occupy.
+
+    A centre above a rail top rests on that rail. A floor foothold whose sphere
+    would reach into a rail side face, or come closer to it than RAIL_CLEARANCE,
+    is moved along x, away from the rail, to that clearance. The previous
+    centre-only test ignored the foot radius and planned stance feet up to 7 mm
+    inside rail_0.
+    """
+    target=np.array(target,dtype=float)
+    for center,height in HURDLES:
+        offset=target[0]-center
+        if abs(target[1])>=.6 or abs(offset)<=RAIL_HALF_WIDTH:
+            continue
+        keep=RAIL_HALF_WIDTH+FOOT_RADIUS+RAIL_CLEARANCE
+        if abs(offset)<keep:
+            target[0]=center+np.sign(offset)*keep
+    target[2]=FOOT_RADIUS+ground_height(*target[:2])
+    return target
 
 def body_spline():
     ts=[0,2,8,14,16,18,21,24,26]
@@ -31,16 +59,15 @@ def target_trajectory(time):
     """Prescribed base6 and four foot centers, with C2 swing trajectories."""
     time=np.asarray(time);body=body_spline()
     offsets=np.array([[.1934,.142,0],[.1934,-.142,0],[-.1934,.142,0],[-.1934,-.142,0]])
-    feet=np.tile(offsets[None],(len(time),1,1));feet[:,:,2]=.022
+    feet=np.tile(offsets[None],(len(time),1,1));feet[:,:,2]=FOOT_RADIUS
     fv=np.zeros_like(feet);fa=np.zeros_like(feet);stance=np.ones((len(time),4),bool)
-    starts=offsets.copy();starts[:,2]=.022
+    starts=offsets.copy();starts[:,2]=FOOT_RADIUS
     for k,start in enumerate(np.arange(2.,23.61,.4)):
         pair=[0,3] if k%2==0 else [1,2]
         end=start+SWING;landing_body=body(min(end+(PERIOD-SWING)/2,24.))
         R=Rotation.from_euler('ZYX',landing_body[3:6]).as_matrix()
         for leg in pair:
-            target=landing_body[:3]+R@offsets[leg]
-            target[2]=.022+ground_height(*target[:2])
+            target=foothold(landing_body[:3]+R@offsets[leg])
             origin=starts[leg].copy();delta=target-origin
             mask=(time>=start)&(time<end);s=(time[mask]-start)/SWING
             h=smooth(s);hd=(30*s*s-60*s**3+30*s**4)/SWING

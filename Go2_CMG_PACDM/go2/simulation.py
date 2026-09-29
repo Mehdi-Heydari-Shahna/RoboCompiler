@@ -15,7 +15,25 @@ import mujoco
 from .model import load_model,chart_from_native,chart_velocity_from_native,native_qpos_from_chart
 from .pin_backend import PinBackend
 from .contact import FootKinematics
-from .task import HURDLES,target_trajectory
+from .task import HURDLES,RAIL_HALF_WIDTH,target_trajectory
+
+# A foot supports on the floor or on the top face of a rail. A foot contact on a
+# rail side face or edge, or with any other world geometry, is an unexpected
+# contact. Rail-top support: contact normal within ~8 degrees of vertical and
+# contact point at least RAIL_EDGE_MARGIN inside the top face.
+RAIL_TOP_NORMAL_Z=.99
+RAIL_EDGE_MARGIN=.001
+
+def foot_support_surface(model,contact,obstacle):
+    """True if a foot contact with world geom `obstacle` is on a support surface."""
+    name=model.geom(obstacle).name
+    if name=='floor':
+        return True
+    if name.startswith('rail_'):
+        center,_=HURDLES[int(name.split('_')[1])]
+        return (abs(contact.frame[2])>=RAIL_TOP_NORMAL_Z
+                and abs(contact.pos[0]-center)<=RAIL_HALF_WIDTH-RAIL_EDGE_MARGIN)
+    return False
 
 def build_scene(root,name='nominal',dt=.001,friction=.8,payload=0.,terrain=True):
     root=Path(root);tree=ET.parse(root/'upstream/unitree_go2/go2.xml');e=tree.getroot()
@@ -97,6 +115,7 @@ class WholeBodyController:
         self.previous=answer.x.copy();acc=answer.x[:18];forces=answer.x[18:].reshape(4,3)
         tau=torquemap@answer.x+offset
         if not self.feedforward:tau=60*(qref[6:]-q[6:])+3*(vref[6:]-v[6:])
+        self.requested_torque=tau.copy()  # motor torque requested before the safety clip
         violation=max(float(np.max(lo-A@answer.x)),float(np.max(A@answer.x-hi)),0.)
         return np.clip(tau,-self.limits,self.limits),forces,violation,answer.info.iter
 
@@ -115,7 +134,7 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push=1.,feedforw
     control_every=round(.004/dt);log_every=round(.01/dt);steps=round(duration/dt)
     control_targets=target_trajectory(np.arange(steps//control_every+1)*control_every*dt)
     names=['time','qpos','qvel','q','v','q_ref','feet','foot_ref','stance','normal_force','support_force','predicted_force','torque','push','qp_violation','bad_contacts','body_error','angle_error']
-    log={k:[] for k in names};bad=0;peakbad=0;maxqp=0.;minheight=1.;minmargin=1.;maxratio=0.;qpiter=0;early=False
+    log={k:[] for k in names};bad=0;peakbad=0;maxqp=0.;minheight=1.;minmargin=1.;maxratio=0.;maxdemand=0.;maxexcess=0.;qpiter=0;early=False
     forces=np.zeros((4,3));violation=0.;contact_events=[];impulses=np.zeros((2,3))
     for k in range(steps+1):
         t=k*dt;q=chart_from_native(d.qpos);v=chart_velocity_from_native(q,d.qvel)
@@ -124,6 +143,9 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push=1.,feedforw
             qref=interp(t);vref=interp(t,nu=1);aref=interp(t,nu=2)
             d.ctrl[:],forces,violation,nit=ctrl.command(q,v,qref,vref,aref,active,av,aa,stance)
             if not actuation:d.ctrl[:]=0.
+            else:
+                maxdemand=max(maxdemand,float(np.max(abs(ctrl.requested_torque)/limits)))
+                maxexcess=max(maxexcess,float(np.max(abs(ctrl.requested_torque)-limits)))
             maxqp=max(maxqp,violation);qpiter=max(qpiter,nit)
         pulse=np.zeros(6)
         if 1.2<=t<1.35:pulse[:3]=push*np.array([0.,32.,0.])
@@ -135,16 +157,16 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push=1.,feedforw
             contact=d.contact[ci];g1,g2=contact.geom1,contact.geom2
             world1=m.geom_bodyid[g1]==0;world2=m.geom_bodyid[g2]==0
             if world1 or world2:
-                moving=g2 if world1 else g1
+                moving=g2 if world1 else g1;obstacle=g1 if world1 else g2
                 f=np.zeros(6);mujoco.mj_contactForce(m,d,ci,f)
-                if moving in footids:
+                if moving in footids and foot_support_surface(m,contact,obstacle):
                     leg=footids.index(moving);normal[leg]+=f[0]
                     world_force=contact.frame.reshape(3,3).T@f[:3]
                     support_force[leg]+=(1 if moving==g2 else -1)*world_force[2]
                 elif f[0]>1.:
                     unexpected+=1
                     if len(contact_events)<100:
-                        contact_events.append(dict(time_s=t,body=m.body(m.geom_bodyid[moving]).name,obstacle=m.geom(g1 if world1 else g2).name,normal_force_N=float(f[0])))
+                        contact_events.append(dict(time_s=t,body=m.body(m.geom_bodyid[moving]).name,obstacle=m.geom(obstacle).name,normal_force_N=float(f[0])))
             else:
                 f=np.zeros(6);mujoco.mj_contactForce(m,d,ci,f)
                 if f[0]>1.:
@@ -169,7 +191,9 @@ def run_case(root,name='nominal',dt=.001,friction=.8,payload=0.,push=1.,feedforw
                  final_yaw_error_rad=float(abs(final[3]-target[3])),min_base_height_m=minheight,max_tilt_rad=float(np.max(np.linalg.norm(log['q'][:,4:6],axis=1))),
                  rms_body_error_m=float(np.sqrt(np.mean(log['body_error'][moving]**2))) if np.any(moving) else 0.,
                  peak_body_error_m=float(np.max(log['body_error'])),unexpected_contact_instances=bad,peak_unexpected_contacts=peakbad,
-                 min_joint_margin_rad=minmargin,peak_torque_limit_fraction=maxratio,max_qp_violation=maxqp,max_qp_iterations=qpiter,
+                 min_joint_margin_rad=minmargin,peak_torque_limit_fraction=maxratio,peak_torque_demand_limit_fraction=maxdemand,
+                 peak_torque_demand_excess_Nm=maxexcess,
+                 max_qp_violation=maxqp,max_qp_iterations=qpiter,
                  final_speed_m_s=float(np.linalg.norm(v[:3])),measured_contact_modes=sorted(set(np.sum(log['support_force']>2,axis=1).tolist())),
                  external_push_impulse_Ns=impulses[0].tolist(),recovery_push_impulse_Ns=impulses[1].tolist(),native_nq=m.nq,native_nv=m.nv,motor_count=m.nu,
                  unexpected_contact_events=contact_events,numerical_warnings=sum(int(w.number) for w in d.warning))

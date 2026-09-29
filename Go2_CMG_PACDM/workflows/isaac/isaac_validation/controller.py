@@ -54,5 +54,6 @@ class WholeBodyController:
         self.previous=answer.x.copy();acc=answer.x[:18];forces=answer.x[18:].reshape(4,3)
         tau=torquemap@answer.x+offset
         if not self.feedforward:tau=60*(qref[6:]-q[6:])+3*(vref[6:]-v[6:])
+        self.requested_torque=tau.copy()  # motor torque requested before the safety clip
         violation=max(float(np.max(lo-A@answer.x)),float(np.max(A@answer.x-hi)),0.)
         return np.clip(tau,-self.limits,self.limits),forces,violation,answer.info.iter

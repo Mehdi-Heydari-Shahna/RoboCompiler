@@ -72,7 +72,12 @@ def aggregate(root=ROOT):
     observed_modes = {}
     for name, case in cases.items():
         gate(name+'.numerical_warnings', case['numerical_warnings'], 0, 'count', '==')
-        gate(name+'.source_motor_caps', case['peak_torque_limit_fraction'], 1.000001, 'ratio')
+        # Motor torque requested by the controller before its safety clip (the
+        # applied, clipped torque is within the caps by construction). The QP
+        # imposes the caps as constraints, solved to the same 0.005 tolerance
+        # that max_qp_violation accepts, so a request may exceed a cap by at
+        # most that amount.
+        gate(name+'.source_motor_caps', case['peak_torque_demand_excess_Nm'], .005, 'N m')
         if name in POSITIVE:
             gate(name+'.completed', case['completed'], 1, 'boolean', '==')
             gate(name+'.duration_error', abs(case['simulated_s']-DURATION), .001, 's')
