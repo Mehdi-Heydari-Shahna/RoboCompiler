@@ -26,6 +26,29 @@ ROOT = Path(__file__).resolve().parents[1]
 CORE_SHA256 = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
+def _nan_max(*values):
+    """max() that propagates NaN; the built-in max() silently skips a NaN argument."""
+    values = [float(value) for value in values]
+    return float('nan') if any(np.isnan(values)) else max(values)
+
+
+def _nan_min(*values):
+    """min() that propagates NaN; the built-in min() silently skips a NaN argument."""
+    values = [float(value) for value in values]
+    return float('nan') if any(np.isnan(values)) else min(values)
+
+
+def _json_safe(value):
+    """Replace NaN/inf by None so that a failing record can still be written as strict JSON."""
+    if isinstance(value, dict):
+        return {key: _json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, float) and not np.isfinite(value):
+        return None
+    return value
+
+
 def _error(value, reference):
     return float(np.linalg.norm(np.asarray(value)-reference, ord=np.inf)
                  / max(1., np.linalg.norm(reference, ord=np.inf)))
@@ -89,10 +112,10 @@ def validate_mechanics(cmg=None, output=None):
                         'limit': limit, 'unit': unit, 'relation': relation}
 
     def maximum(name, value):
-        maxima[name] = max(maxima.get(name, -np.inf), float(value))
+        maxima[name] = _nan_max(maxima.get(name, -np.inf), value)
 
     def minimum(name, value):
-        minima[name] = min(minima.get(name, np.inf), float(value))
+        minima[name] = _nan_min(minima.get(name, np.inf), value)
 
     def finish():
         report['details']['maxima'] = maxima
@@ -102,7 +125,7 @@ def validate_mechanics(cmg=None, output=None):
         report['total_checks'] = len(checks)
         if output is not None:
             path = Path(output); path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps(report, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+            path.write_text(json.dumps(_json_safe(report), indent=2, allow_nan=False)+'\n', encoding='utf-8')
         return report
 
     try:
@@ -357,7 +380,7 @@ def _validate_task_chart(cmg, backend, check, report):
     from .task import HOME, TaskGraph
     maxima, conditions, failures = {}, [], []
     def maximum(name, value):
-        maxima[name] = max(maxima.get(name, -np.inf), float(value))
+        maxima[name] = _nan_max(maxima.get(name, -np.inf), value)
     rng = np.random.default_rng(523)
     try:
         home = HOME.copy(); home[7:] = .025
@@ -438,7 +461,7 @@ def _validate_task_chart(cmg, backend, check, report):
             ('mapping_FD_step_agreement', 5e-5, 'mixed coordinate units'),
         ]:
             check('task_'+name, maxima.get(name, np.inf), limit, unit)
-        check('task_minimum_PACDM_rcond', min(conditions) if conditions else 0., 1e-10, 'dimensionless', '>=')
+        check('task_minimum_PACDM_rcond', _nan_min(*conditions) if conditions else 0., 1e-10, 'dimensionless', '>=')
         # A wrong tool offset must be visible in this same independent FK
         # comparison, even though the underlying hand pose is unchanged.
         wrong = graph.tool_transform.copy(); wrong[2, 3] += .01

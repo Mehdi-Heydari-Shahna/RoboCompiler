@@ -132,7 +132,7 @@ class Plant:
         power = float(v @ (tau+external-self.damping*v))
         derivative = np.r_[state[8:16], reduced_acc, power]
         return derivative, dict(q=q, v=v, a=acc, q_ref=qr, torque=tau,
-            actuator_effort=effort, ctrl=clipped_command, wrench=wrench,
+            actuator_effort=effort, actuator_effort_demand=unclipped, ctrl=clipped_command, wrench=wrench,
             reaction=reaction, residual=residual_norm, pose=pose)
 
 
@@ -162,6 +162,7 @@ def run_case(root, name='nominal', dt=.0005, load_kg=.15,
     lower = np.array([joints[j]['limits']['lower'] for j in cmg['coordinate_ids']])
     upper = np.array([joints[j]['limits']['upper'] for j in cmg['coordinate_ids']])
     peak_effort = np.zeros(8)
+    peak_demand = np.zeros(8)  # actuator effort before the source force-range clip
     sq_error = 0.
     for k in range(steps+1):
         t = k*dt
@@ -184,6 +185,7 @@ def run_case(root, name='nominal', dt=.0005, load_kg=.15,
         extrema['arm_margin'] = min(extrema['arm_margin'], float(margin[:7].min()))
         extrema['finger_margin'] = min(extrema['finger_margin'], float(margin[7:].min()))
         peak_effort = np.maximum(peak_effort, abs(obs['actuator_effort']))
+        peak_demand = np.maximum(peak_demand, abs(obs['actuator_effort_demand']))
         sq_error += pe*pe
         if k % stride == 0:
             values = [t,q,v,obs['a'],obs['q_ref'],obs['torque'],obs['actuator_effort'],obs['ctrl'],
@@ -211,7 +213,7 @@ def run_case(root, name='nominal', dt=.0005, load_kg=.15,
         rms_tool_position_error_m=float(np.sqrt(sq_error/(steps+1))),
         max_coupling_error_m=extrema['coupling'], max_dynamics_residual=max(extrema['residual'],plant.max_residual),
         max_energy_work_balance_error_J=extrema['energy_balance'], minimum_arm_limit_margin_rad=extrema['arm_margin'],
-        minimum_finger_limit_margin_m=extrema['finger_margin'], peak_actuator_effort=peak_effort.tolist(),
+        minimum_finger_limit_margin_m=extrema['finger_margin'], peak_actuator_effort=peak_effort.tolist(), peak_actuator_effort_demand=peak_demand.tolist(),
         saturation_rhs_evaluations=plant.saturation_evaluations, setpoint_clip_rhs_evaluations=plant.control_clip_evaluations,
         final_tool_error_m=pe, final_tool_orientation_error_deg=float(np.rad2deg(ae)),
         stored_samples=len(records['time']), stored_spacing_s=.01,

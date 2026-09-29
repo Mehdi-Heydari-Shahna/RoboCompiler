@@ -65,6 +65,9 @@ def run_case(root,name='nominal',dt=.001,mass=.15,width=.044,friction=.8,offset=
  robotbodies=set(range(1,obj));scene_obstacles={m.geom('barrier').id,m.geom('pick_plinth').id,m.geom('dock_plinth').id}|{m.geom(f'socket_{a}_{s}').id for a in [0,1] for s in [-1,1]}
  kp=m.actuator_gainprm[:7,0].copy();kd=-m.actuator_biasprm[:7,2].copy();damping=np.asarray(cmg['damping']);armature=np.asarray(cmg['armature'])
  limits=m.actuator_forcerange[:7].copy();ctrl_limits=m.actuator_ctrlrange[:7].copy()
+ # Arm servo force before MuJoCo's forcerange clamp: fixed gain, affine bias, no activation dynamics.
+ if not (np.all(m.actuator_gaintype[:7]==mujoco.mjtGain.mjGAIN_FIXED) and np.all(m.actuator_biastype[:7]==mujoco.mjtBias.mjBIAS_AFFINE) and np.all(m.actuator_dyntype[:7]==mujoco.mjtDyn.mjDYN_NONE)):raise ValueError('Arm actuators must be source position servos')
+ servo_gain=m.actuator_gainprm[:7,0].copy();servo_bias=m.actuator_biasprm[:7,:3].copy();peakdemand=np.zeros(7)
  log={k:[] for k in ['time','qpos','qvel','q','v','q_ref','tool_pos','tool_R','target_pos','target_R','pose_error','angle_error','object_pos','object_R','normal_force','pad_contacts','torque','ctrl','wrench','gear_error','barrier_clearance','unexpected_contacts','bilateral_contact','left_normal_force','right_normal_force']}
  startrel=None;maxslip=0.;minair=1.;minclear=1.;peaknormal=0.;maxp=0.;maxr=0.;saturations=0;ctrlclips=0;unexpected=0;unexpected_instances=0;minmargin=1.;gear=0.;minleft=np.inf;minright=np.inf;minnormal=np.inf;mincontacts=99999;bilateral=True
  duration=float(ref['time'][-1]);steps=round(duration/dt)
@@ -106,6 +109,7 @@ def run_case(root,name='nominal',dt=.001,mass=.15,width=.044,friction=.8,offset=
    maxslip=max(maxslip,float(np.linalg.norm(Q.T@(objp-p)-startrel)));minair=min(minair,objp[2]);peaknormal=max(peaknormal,normal)
   if 8<=t<=12:minclear=min(minclear,clear)
   maxp=max(maxp,pe);maxr=max(maxr,ae);unexpected+=int(bad>0);unexpected_instances+=bad
+  demand=servo_gain*d.ctrl[:7]+servo_bias[:,0]+servo_bias[:,1]*d.actuator_length[:7]+servo_bias[:,2]*d.actuator_velocity[:7];peakdemand=np.maximum(peakdemand,np.abs(demand))
   saturations+=int(np.any(np.abs(d.actuator_force[:7])>=limits[:,1]-.001));minmargin=min(minmargin,float(np.min(np.r_[q[:7]-m.jnt_range[:7,0],m.jnt_range[:7,1]-q[:7]])))
   ge=abs(q[7]-q[8]);gear=max(gear,ge)
   if k%max(1,round(.01/dt))==0:
@@ -118,5 +122,5 @@ def run_case(root,name='nominal',dt=.001,mass=.15,width=.044,friction=.8,offset=
  summary=dict(case=name,dt_s=dt,payload_mass_kg=mass,payload_width_m=width,pad_friction=friction,initial_offset_m=offset,grasp_enabled=grasp,feedforward_enabled=feedforward,
   max_lift_m=float(np.max(arr['object_pos'][:,2])-.0702),min_transfer_height_m=float(minair),max_grasp_slip_m=float(maxslip),minimum_payload_barrier_clearance_m=float(minclear),peak_transfer_normal_N=float(peaknormal),min_transfer_normal_N=float(minnormal),min_transfer_pad_contacts=int(mincontacts),min_transfer_left_normal_N=float(minleft),min_transfer_right_normal_N=float(minright),bilateral_contact_all_transfer=bool(bilateral),
   final_object_position_m=final.tolist(),placement_xy_error_m=float(np.linalg.norm(final[:2]-DOCK)),placement_z_error_m=float(abs(final[2]-.070)),placement_angle_error_deg=float(np.rad2deg(angle)),final_speed_m_s=float(np.linalg.norm(d.qvel[oa:oa+3])),final_angular_speed_rad_s=float(np.linalg.norm(d.qvel[oa+3:oa+6])),
-  max_tool_position_error_m=float(maxp),max_tool_orientation_error_deg=float(np.rad2deg(maxr)),rms_tool_position_error_m=float(np.sqrt(np.mean(arr['pose_error']**2))),arm_saturation_steps=int(saturations),arm_control_clip_steps=int(ctrlclips),min_arm_joint_margin_rad=float(minmargin),unexpected_contact_steps=int(unexpected),unexpected_contact_instances=int(unexpected_instances),max_finger_coupling_error_m=float(gear),maximum_arm_torque_Nm=np.max(np.abs(arr['torque']),axis=0).tolist(),warnings={str(i):int(x.number) for i,x in enumerate(d.warning) if x.number})
+  max_tool_position_error_m=float(maxp),max_tool_orientation_error_deg=float(np.rad2deg(maxr)),rms_tool_position_error_m=float(np.sqrt(np.mean(arr['pose_error']**2))),arm_saturation_steps=int(saturations),peak_arm_torque_demand_Nm=peakdemand.tolist(),arm_control_clip_steps=int(ctrlclips),min_arm_joint_margin_rad=float(minmargin),unexpected_contact_steps=int(unexpected),unexpected_contact_instances=int(unexpected_instances),max_finger_coupling_error_m=float(gear),maximum_arm_torque_Nm=np.max(np.abs(arr['torque']),axis=0).tolist(),warnings={str(i):int(x.number) for i,x in enumerate(d.warning) if x.number})
  (root/'results'/f'{name}.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n');return summary
