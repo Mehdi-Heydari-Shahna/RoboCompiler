@@ -32,14 +32,26 @@ def execute_case(name):
 
 
 def verify_manifest():
-    """Standard-library-only integrity check of every file."""
+    """Standard-library-only integrity check.
+
+    Checks the shipped release manifest (SHA256SUMS.json) and, when a run has
+    been made, the run evidence manifest (results/SHA256SUMS.json). Returns
+    True when run evidence exists.
+    """
     import hashlib
-    manifest = json.loads((ROOT / 'SHA256SUMS.json').read_text())
-    bad = [k for k, v in manifest.items()
-           if not (ROOT / k).is_file() or hashlib.sha256((ROOT / k).read_bytes()).hexdigest() != v]
-    if bad:
-        raise RuntimeError('Missing/modified files: ' + ', '.join(bad))
-    print(f'Integrity PASS: {len(manifest)} files.')
+    run_evidence = False
+    for manifest_path, label in (('SHA256SUMS.json', 'release'), ('results/SHA256SUMS.json', 'run evidence')):
+        if label == 'run evidence' and not (ROOT / manifest_path).is_file():
+            print(f'No run evidence manifest ({manifest_path}); run python run_pinocchio.py to create it.')
+            continue
+        manifest = json.loads((ROOT / manifest_path).read_text())
+        bad = [k for k, v in manifest.items()
+               if not (ROOT / k).is_file() or hashlib.sha256((ROOT / k).read_bytes()).hexdigest() != v]
+        if bad:
+            raise RuntimeError(f'Missing/modified {label} files: ' + ', '.join(bad))
+        print(f'Integrity PASS ({label}): {len(manifest)} files.')
+        run_evidence = run_evidence or label == 'run evidence'
+    return run_evidence
 
 
 def main():
@@ -57,7 +69,8 @@ def main():
     parser.add_argument('--no-video', action='store_true', help='Skip video rendering.')
     args = parser.parse_args()
     if args.verify_existing:
-        verify_manifest()
+        if not verify_manifest():
+            raise SystemExit('No recorded run to verify: results/SHA256SUMS.json is missing.')
         verdict = json.loads((ROOT / 'results/validation.json').read_text())
         print(f"Recorded verdict: {'PASS' if verdict.get('passed') else 'FAIL'} "
               f"{verdict.get('passed_count')}/{verdict.get('check_count')} gates.")

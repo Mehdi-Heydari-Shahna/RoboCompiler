@@ -41,7 +41,9 @@ sentinel.install()
 from excavator_pin import paths  # noqa: E402
 
 V26_RESULTS_EXISTED = (paths.V26 / 'results').exists()
-MANIFEST = ROOT / 'MANIFEST_SHA256.json'
+# The shipped MANIFEST_SHA256.json (package root) is a release record and is never
+# rewritten; each run records its own evidence manifest inside results/.
+MANIFEST = paths.RESULTS / 'MANIFEST_SHA256.json'
 RENDERED_CASES = ('nominal', 'stress_load')
 EXCLUDED_PARTS = {'.venv', 'venv', '__pycache__', '.git', '.pytest_cache'}
 
@@ -165,8 +167,8 @@ def run_cases(names, results_dir, workers):
 def write_manifest():
     files = {}
     for path in sorted(ROOT.rglob('*')):
-        if (not path.is_file() or path == MANIFEST or path.suffix == '.pyc'
-                or EXCLUDED_PARTS.intersection(path.relative_to(ROOT).parts)):
+        if (not path.is_file() or path == MANIFEST or path == ROOT / 'MANIFEST_SHA256.json'
+                or path.suffix == '.pyc' or EXCLUDED_PARTS.intersection(path.relative_to(ROOT).parts)):
             continue
         files[str(path.relative_to(ROOT)).replace('\\', '/')] = sha256(path)
     MANIFEST.write_text(json.dumps(dict(algorithm='sha256', excluded=sorted(EXCLUDED_PARTS | {'*.pyc'}),
@@ -318,7 +320,7 @@ def main(argv=None):
     console.close()
     if results.resolve() == paths.RESULTS.resolve():
         count = write_manifest()
-        print(f'manifest: {count} files -> {MANIFEST.name}')
+        print(f'manifest: {count} files -> {MANIFEST.relative_to(ROOT).as_posix()}')
     else:  # a reproduction into another directory must not rewrite the recorded integrity record
         print('manifest: not rewritten (results written outside the package results directory)')
     return 0 if validation['passed'] else 1

@@ -9,7 +9,7 @@
   "kangaroo_pin/pin_evidence.py": "2ef808c5dc377dfe64cca454222239a7ee9921e847b668bf813c78dc441eb5f2",
   "kangaroo_pin/pin_render.py": "07934222e96f152484f5cfdffa92728141017bfbd0cc4782e057ff914c9a8477",
   "kangaroo_pin/pin_report.py": "7dc47dd32dfcd9352c62771edb24083149e6e7591b8b867914bacfff6b4bac0f",
-  "kangaroo_pin/pin_results.py": "726088ccab5740ba3f38db0605d5c0e48883b69151c95b6ef7cd300a46f30c22",
+  "kangaroo_pin/pin_results.py": "68d5183aa31a9fb84639e34316fbe3b6e67163916938575591f43d4fa022c142",
   "kangaroo_pin/pin_simulation.py": "2a15d501195667f4fc0a68fbc77f1687f4991a30315b5d29b8c6ce6f6a04af9b",
   "kangaroo_pin/reference.py": "29bf5759c79cb7438dbd7706a1f630c7f637f4bf8b10fd9f94b08e297776f472",
   "legacy_evidence/extract_legacy_evidence.py": "526787d992ba21a765a5b08fb39668e56a54bf5c6b25bc7a787587a7f4d09677",
@@ -154,6 +154,6 @@
   "requirements-linux.txt": "e3dd1ec9839718aef1b034b76e32ebc75418eea64a78a51bf57feeac2c90d509",
   "requirements-lock-linux.txt": "6cf056fcbd5a41ef16c84cbf966972c7646de750433d69c7cccd491bc9aee52a",
   "run_pinocchio.bat": "545bb1d185b9337f9bd0f18e097c076e840a52af3217611079cfe82ce5e854c3",
-  "run_pinocchio.py": "4332f066a8d5ffd76d29dc324d27d1481c5d17e9df8775a2136aa7cd63b67a74",
+  "run_pinocchio.py": "b3c93761476f94b693d044259c17a27a43a46ed7023b6c36a28f191b6b1b1e9f",
   "tools/compare_runs.py": "1d781bdc390458a26624c1c2d73bf348e4d0bff6e40bf3e8fd0e07bf33aa0963"
 }

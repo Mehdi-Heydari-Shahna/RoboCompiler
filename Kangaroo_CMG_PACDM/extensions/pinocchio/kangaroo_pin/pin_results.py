@@ -348,9 +348,19 @@ def aggregate(root):
     return result
 
 
+RUN_MANIFEST = Path('results') / 'SHA256SUMS.json'
+_EXCLUDED_PARTS = {'__pycache__', '.git', '.venv', 'venv', 'env', '.pytest_cache', '.mypy_cache'}
+
+
 def hash_manifest(root):
+    """Record this run's evidence in results/SHA256SUMS.json.
+
+    The shipped release manifest (SHA256SUMS.json in this folder) is never
+    rewritten by a run. Git metadata and local Python environments are skipped.
+    """
     root = Path(root)
     hashes = {p.relative_to(root).as_posix(): _sha(p) for p in sorted(root.rglob('*'))
-              if p.is_file() and '__pycache__' not in p.parts and p.name != 'SHA256SUMS.json' and p.suffix != '.pyc'}
-    write_json(root / 'SHA256SUMS.json', hashes)
+              if p.is_file() and not (_EXCLUDED_PARTS & set(p.relative_to(root).parts))
+              and p.name != 'SHA256SUMS.json' and p.suffix != '.pyc'}
+    write_json(root / RUN_MANIFEST, hashes)
     return len(hashes)

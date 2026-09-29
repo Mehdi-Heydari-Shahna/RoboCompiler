@@ -31,6 +31,7 @@ from panda.task_validation import validate_task
 from pin_validation.simulation import CASES, run_case
 
 ROOT = Path(__file__).resolve().parent
+RUN_MANIFEST = Path('results')/'SHA256SUMS.json'
 CORE_SHA = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
@@ -43,20 +44,69 @@ def sha(path):
 
 
 def manifest():
-    write_json(ROOT/'SHA256SUMS.json', {str(p.relative_to(ROOT)):sha(p)
+    """Record the run evidence in results/SHA256SUMS.json (never a tracked file)."""
+    write_json(ROOT/RUN_MANIFEST, {p.relative_to(ROOT).as_posix():sha(p)
         for p in sorted(ROOT.rglob('*')) if p.is_file() and '__pycache__' not in p.parts
-        and p != ROOT/'SHA256SUMS.json' and p.suffix != '.pyc'
+        and p.name != 'SHA256SUMS.json' and p.suffix != '.pyc'
         and not any(part.startswith('.') or part in ('venv', 'env')
                     for part in p.relative_to(ROOT).parts)})
 
 
 def verify():
-    expected = json.loads((ROOT/'SHA256SUMS.json').read_text())
+    if not (ROOT/RUN_MANIFEST).is_file():
+        raise SystemExit(f'No run evidence manifest ({RUN_MANIFEST.as_posix()}); run python run_validation.py first.')
+    expected = json.loads((ROOT/RUN_MANIFEST).read_text())
     bad = [name for name, value in expected.items()
            if not (ROOT/name).is_file() or sha(ROOT/name) != value]
     if bad:
         raise RuntimeError('Integrity mismatches: '+', '.join(bad))
     print(f'Integrity PASS: {len(expected)} files')
+
+
+def _same_values(a, b, atol=1e-12):
+    """Structural equality that ignores floating-point round-off."""
+    if isinstance(a, dict):
+        return isinstance(b, dict) and a.keys() == b.keys() and all(_same_values(a[k], b[k], atol) for k in a)
+    if isinstance(a, list):
+        return isinstance(b, list) and len(a) == len(b) and all(_same_values(x, y, atol) for x, y in zip(a, b))
+    if isinstance(a, (int, float)) and not isinstance(a, bool):
+        return isinstance(b, (int, float)) and not isinstance(b, bool) and bool(np.isclose(a, b, rtol=0, atol=atol))
+    return a == b
+
+
+def _same_arrays(generated, shipped, rtol=1e-6, atol=1e-7):
+    with np.load(generated, allow_pickle=False) as a, np.load(shipped, allow_pickle=False) as b:
+        if sorted(a.files) != sorted(b.files):
+            return 'array names differ'
+        for k in a.files:
+            x, y = a[k], b[k]
+            if x.shape != y.shape:
+                return f'{k}: shape {x.shape} != {y.shape}'
+            if x.dtype.kind in 'fc' or y.dtype.kind in 'fc':
+                if not np.allclose(x, y, rtol=rtol, atol=atol):
+                    return f'{k}: max |difference| {float(np.max(np.abs(x-y))):.3g}'
+            elif not np.array_equal(x, y):
+                return f'{k}: values differ'
+    return ''
+
+
+def check_shipped_data(rebuilt_reference):
+    """The cases read data/panda_cmg.json and data/reference.npz, which a run never rewrites.
+    They must match the model (and, unless --use-existing-reference, the PACDM reference)
+    that this run has just rebuilt into results/."""
+    results = ROOT/'results'
+    problems = []
+    if not _same_values(json.loads((results/'panda_cmg.json').read_text()),
+                        json.loads((ROOT/'data/panda_cmg.json').read_text())):
+        problems.append('panda_cmg.json')
+    if rebuilt_reference:
+        why = _same_arrays(results/'reference.npz', ROOT/'data/reference.npz')
+        if why:
+            problems.append('reference.npz ('+why+')')
+    if problems:
+        raise RuntimeError('The rebuilt '+', '.join(problems)+' in results/ differ from the shipped copies in data/. '
+                           'If the model or task change is intended, copy results/panda_cmg.json, results/reference.npz '
+                           'and results/reference.json into data/ and rerun.')
 
 
 def aggregate(task, mechanics):
@@ -161,15 +211,17 @@ def main():
     results.mkdir(exist_ok=True)
     write_json(results/'validation.json', dict(passed=False,status='Run in progress'))
     started = time.perf_counter()
-    cmg = build_model(); save_model(cmg)
+    # Run outputs go to results/ only; tracked files in data/ are checked, never rewritten.
+    cmg = build_model(); save_model(cmg, results/'panda_cmg.json')
     if args.use_existing_reference:
         with np.load(ROOT/'data/reference.npz') as f:
             reference={key:f[key] for key in f.files}
     else:
         print('Regenerating the original PACDM route...', flush=True)
         reference = build_reference(cmg)
-        np.savez_compressed(ROOT/'data/reference.npz', **{k:v for k,v in reference.items() if k!='info'})
-        write_json(ROOT/'data/reference.json', reference['info'])
+        np.savez_compressed(results/'reference.npz', **{k:v for k,v in reference.items() if k!='info'})
+        write_json(results/'reference.json', reference['info'])
+    check_shipped_data(rebuilt_reference=not args.use_existing_reference)
     print('Checking route and independent mechanics...', flush=True)
     task = validate_task(cmg, reference, output=results/'task_validation.json')
     from pin_validation.mechanics import run
