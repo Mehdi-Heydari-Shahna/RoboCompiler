@@ -58,11 +58,14 @@ def native_run(c,ref,dt,name,feedforward=True,no_loop=False,duration=DURATION):
     data.qpos[qo]=ref['q'][0];data.qvel[vo]=ref['qd'][0]
     if no_loop:data.eq_active[:]=0
     interpol=CubicSpline(ref['t'],ref['force'],axis=0);mujoco.mj_forward(model,data);metrics=NativeMetrics(c,model,data)
+    # Per-port source force bounds (ctrlrange): +-2000 N, or +-5000 N for the leg-length ports.
+    if not np.all(model.actuator_ctrllimited):raise ValueError('Every force port needs its source ctrlrange')
+    ctrl_lo=model.actuator_ctrlrange[:,0].copy();ctrl_hi=model.actuator_ctrlrange[:,1].copy();force_limit=np.maximum(-ctrl_lo,ctrl_hi)
     steps=round(duration/dt);ts=np.arange(steps+1)*dt;U,V,_=requested(ts);FF=interpol(ts)
     # Every step: U,T, P_motor,P_damping,P_constraint,gap,angular, min slide margin,min hinge margin, F12,v_motor12,error12,saturation count,applied force norm.
     history=np.empty((steps+1,48));snap_t=[];snap_q=[];snap_v=[];snap_F=[];stride=max(1,round(.005/dt));warning0=np.array([w.number for w in data.warning]);start=time.time()
     for k in range(steps+1):
-        q=data.qpos[qo];v=data.qvel[vo];error=U[k]-q[active];command=(FF[k] if feedforward else 0)+40000*error+600*(V[k]-v[active]);bounded=np.clip(command,-5000,5000);data.ctrl[:]=bounded
+        q=data.qpos[qo];v=data.qvel[vo];error=U[k]-q[active];command=(FF[k] if feedforward else 0)+40000*error+600*(V[k]-v[active]);bounded=np.clip(command,ctrl_lo,ctrl_hi);data.ctrl[:]=bounded
         # Synchronize forces, energies and site poses to this actual state before logging.
         mujoco.mj_forward(model,data);gap,angular=metrics.closure();margin=np.minimum(q-lower,upper-q)
         row=np.r_[data.energy,data.qfrc_actuator@data.qvel,data.qfrc_passive@data.qvel,data.qfrc_constraint@data.qvel,gap,angular,np.min(margin[slide]),np.min(margin[~slide]),data.actuator_force,v[active],error,np.sum(command!=bounded),np.max(abs(data.qfrc_applied)),np.max(abs(data.qfrc_constraint))]
@@ -71,7 +74,7 @@ def native_run(c,ref,dt,name,feedforward=True,no_loop=False,duration=DURATION):
         if k<steps:mujoco.mj_step(model,data)
     power=history[:,2]+history[:,3]+history[:,4];work=np.r_[0,np.cumsum((power[1:]+power[:-1])*.5*dt)];E=history[:,:2].sum(axis=1);balance=E-E[0]-work
     def workof(col):return float(np.trapezoid(history[:,col],ts))
-    summary=dict(name=name,timestep_s=dt,duration_s=duration,steps=steps,maximum_point_gap_m=float(max(history[:,5])),maximum_universal_dot=float(max(history[:,6])),minimum_prismatic_margin_m=float(min(history[:,7])),minimum_revolute_margin_rad=float(min(history[:,8])),maximum_motor_force_N=float(np.max(abs(history[:,9:21]))),tracking_rms_m=float(np.sqrt(np.mean(history[:,33:45]**2))),tracking_max_m=float(np.max(abs(history[:,33:45]))),maximum_mechanical_power_W=float(np.max(abs(history[:,2]))),motor_work_J=workof(2),damping_work_J=workof(3),constraint_work_J=workof(4),energy_change_J=float(E[-1]-E[0]),energy_ledger_max_error_J=float(max(abs(balance))),energy_ledger_final_error_J=float(balance[-1]),saturation_samples=int(sum(history[:,45])),maximum_generalized_applied_force=float(max(history[:,46])),warning_count=int(sum(np.array([w.number for w in data.warning])-warning0)),elapsed_seconds=time.time()-start,control='source force motors with PACDM inverse feedforward + PD' if feedforward else 'same-gain PD only',constraint_model='disabled negative control' if no_loop else 'connect + universal orthogonality tendon')
+    summary=dict(name=name,timestep_s=dt,duration_s=duration,steps=steps,maximum_point_gap_m=float(max(history[:,5])),maximum_universal_dot=float(max(history[:,6])),minimum_prismatic_margin_m=float(min(history[:,7])),minimum_revolute_margin_rad=float(min(history[:,8])),maximum_motor_force_N=float(np.max(abs(history[:,9:21]))),maximum_motor_force_fraction=float(np.max(abs(history[:,9:21])/force_limit)),tracking_rms_m=float(np.sqrt(np.mean(history[:,33:45]**2))),tracking_max_m=float(np.max(abs(history[:,33:45]))),maximum_mechanical_power_W=float(np.max(abs(history[:,2]))),motor_work_J=workof(2),damping_work_J=workof(3),constraint_work_J=workof(4),energy_change_J=float(E[-1]-E[0]),energy_ledger_max_error_J=float(max(abs(balance))),energy_ledger_final_error_J=float(balance[-1]),saturation_samples=int(sum(history[:,45])),maximum_generalized_applied_force=float(max(history[:,46])),warning_count=int(sum(np.array([w.number for w in data.warning])-warning0)),elapsed_seconds=time.time()-start,control='source force motors with PACDM inverse feedforward + PD' if feedforward else 'same-gain PD only',constraint_model='disabled negative control' if no_loop else 'connect + universal orthogonality tendon')
     np.savez_compressed(ROOT/'results'/f'{name}.npz',time=ts,history=history,balance=balance,sample_t=snap_t,q=snap_q,qd=snap_v,force=snap_F)
     (ROOT/'results'/f'{name}.json').write_text(json.dumps(summary,indent=2)+'\n');print(name,summary,flush=True);return summary
 
@@ -82,7 +85,7 @@ def run(ref=None):
     pd=native_run(c,ref,.0001,'motion_pd_only',feedforward=False)
     neg=native_run(c,ref,.0001,'negative_control_no_loops',no_loop=True,duration=.3)
     for r in runs:
-        n=r['name']+'_';checks.check(n+'point_closure',r['maximum_point_gap_m'],2e-4);checks.check(n+'universal_angular',r['maximum_universal_dot'],.002);checks.check(n+'tracking_rms',r['tracking_rms_m'],.001);checks.check(n+'force',r['maximum_motor_force_N'],5000);checks.check(n+'energy_ledger',r['energy_ledger_max_error_J'],.02);checks.flag(n+'limits',r['minimum_prismatic_margin_m']>=0 and r['minimum_revolute_margin_rad']>=0);checks.flag(n+'no_saturation_warnings_external_tree_force',r['saturation_samples']==0 and r['warning_count']==0 and r['maximum_generalized_applied_force']==0)
+        n=r['name']+'_';checks.check(n+'point_closure',r['maximum_point_gap_m'],2e-4);checks.check(n+'universal_angular',r['maximum_universal_dot'],.002);checks.check(n+'tracking_rms',r['tracking_rms_m'],.001);checks.check(n+'force_fraction',r['maximum_motor_force_fraction'],1.);checks.check(n+'energy_ledger',r['energy_ledger_max_error_J'],.02);checks.flag(n+'limits',r['minimum_prismatic_margin_m']>=0 and r['minimum_revolute_margin_rad']>=0);checks.flag(n+'no_saturation_warnings_external_tree_force',r['saturation_samples']==0 and r['warning_count']==0 and r['maximum_generalized_applied_force']==0)
     checks.flag('time_step_refinement_energy',runs[-1]['energy_ledger_max_error_J']<runs[0]['energy_ledger_max_error_J'])
     checks.flag('negative_control_detects_missing_loops',neg['maximum_point_gap_m']>.01)
     checks.flag('every_actuator_moves',bool(np.all(np.ptp(ref['u'],axis=0)>.004)))

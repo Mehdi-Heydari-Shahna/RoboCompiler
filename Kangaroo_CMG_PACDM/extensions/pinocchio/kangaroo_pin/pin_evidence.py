@@ -116,7 +116,7 @@ def audit_case(root, plant, case):
               bool(np.array_equal(a['stored_z'][:, plant.active], a['motor'][stored])))
         # --- control law replay (1 kHz command, clip, slew, feedforward gating)
         control_stride = round(cfg['control_period_s'] / dt)
-        controller = Controller(reference, cfg, plant.na)
+        controller = Controller(reference, cfg, plant.na, plant.force_bounds)
         command = np.zeros(plant.na)
         contact_seen = False
         seen_log, command_log, saturated_log = [], [], []

@@ -349,7 +349,7 @@ rigid-contact NCP solvers at the foot corners. Independent native audits, full e
 comparison with the rerun MuJoCo v22 pipeline.</p></header>
 <main><section><h2><span class="status">{status}</span> {_n(result.get('passed_count'))} / {_n(result.get('check_count'))} aggregate gates</h2>
 <p>{html.escape(result.get('summary', result.get('status', 'Aggregate validation has not completed.')))}</p>
-<div class="tiles"><div class="tile"><strong>{_n(nominal.get('maximum_motor_force_N'))} N</strong><span>Nominal peak drive force (limit 5000 N)</span></div>
+<div class="tiles"><div class="tile"><strong>{_n(nominal.get('maximum_motor_force_N'))} N</strong><span>Nominal peak drive force (port bounds ±2000 N; leg-length ports ±5000 N)</span></div>
 <div class="tile"><strong>{_n(nominal.get('maximum_tilt_deg'), 3)}°</strong><span>Nominal peak pelvis tilt (limit 8°)</span></div>
 <div class="tile"><strong>{_n(nominal.get('maximum_pacdm_closure'), 2)}</strong><span>Nominal max all-row loop closure after polish (limit 5e-13)</span></div>
 <div class="tile"><strong>{_n(worst * 1e3 if worst is not None else None, 3)} mm</strong><span>Largest pelvis difference vs MuJoCo v22 over 5 cases (band 10 mm)</span></div></div>
@@ -358,7 +358,8 @@ comparison with the rerun MuJoCo v22 pipeline.</p></header>
 <section><h2>Five executed task cases</h2>{case_table}
 <p class="small">All cases run the complete 10 s v22 task: release 5 cm above the floor, landing, 12 cm crouch, lateral
 weight shift with pelvis yaw, rise and a sideways push at the torso centre of mass (50 N peak, 6.7–6.95 s). Drive
-commands follow the unchanged v22 law (1 kHz, feedforward after contact, PD on motor length, ±5000 N clip,
+commands follow the v22 law (1 kHz, feedforward after contact, PD on motor length, clip at each port's source bound
+(±2000 N; ±5000 N for the two leg-length ports),
 1.5 MN/s slew, first-order force response). Acceptance thresholds are the unchanged v22 values. ADMM steps are
 steps where PGS did not reach its tolerance; the NCP iteration count is the largest used by the accepted solver in a
 step (the ADMM cap is 50 000). Every accepted contact solution satisfies the native cone residual limit 1e-8, and all

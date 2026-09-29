@@ -67,13 +67,18 @@ def run(name='landing_nominal',dt=.000025,config=None,duration=DURATION,no_conta
     ai=np.array([c['coordinate_ids'].index(x) for x in c['independent_ids']]);mq=qo[ai];mv=vo[ai]
     jmap={j['id']:j for j in c['joints']};lo=np.array([jmap[x]['limits']['lower'] for x in c['coordinate_ids']]);hi=np.array([jmap[x]['limits']['upper'] for x in c['coordinate_ids']]);slide=np.array([jmap[x]['type']=='prismatic' for x in c['coordinate_ids']])
     torso=m.body('torso').id;rootid=m.body('base_link').id;footids=[m.body(b).id for b in FOOT_NAMES]
+    # Per-port source force bounds (the model's ctrlrange): 10 ports are rated
+    # +-2000 N and the two leg-length ports +-5000 N. Clipping, saturation
+    # counting and the force gate use each port's own bound.
+    if not np.all(m.actuator_ctrllimited):raise ValueError('Every force port needs its source ctrlrange')
+    ctrl_lo=m.actuator_ctrlrange[:,0].copy();ctrl_hi=m.actuator_ctrlrange[:,1].copy();force_limit=np.maximum(-ctrl_lo,ctrl_hi)
     d.qpos[:3]=ref['base'][0]+[0,0,cfg['drop_height_m']];d.qpos[3:7]=[1,0,0,0];d.qpos[qo]=ref['q'][0]
     d.act[:]=0;d.ctrl[:]=0;mujoco.mj_forward(m,d);E0=float(d.energy.sum())
     steps=round(duration/dt);stride=max(1,round(.005/dt));control_stride=max(1,round(cfg['control_period_s']/dt))
     if abs(control_stride*dt-cfg['control_period_s'])>1e-12:raise ValueError('Controller period must be integral steps')
     H=np.empty((steps+1,len(HISTORY_COLUMNS)));samples={k:[] for k in ['time','q','v','a','act','command','motor_velocity','motor_power','motor_work','motor_positive_work','motor_negative_work','work','ledger','foot_force','foot_moment','foot_position','com','push','cop','contact_count']}
     work=np.zeros(6);mw=np.zeros(12);positive=mw.copy();negative=mw.copy();previous=None;previous_motor=None
-    force_command=np.zeros(12);saturated=0;warnings0=sum(w.number for w in d.warning);touchdown=None
+    force_command=np.zeros(12);saturated=0;maxfraction=0.;warnings0=sum(w.number for w in d.warning);touchdown=None
     maxpowererror=0.;maxfriction=0.;maxbasectrl=0.;maxforce_rate=0.;lastforce=None;contactneg=0.;start=time.time()
     maxslip=np.zeros(2);initialfeet=None;max_generalized_applied=0.;max_constraint_decomposition=0.
     for k in range(steps+1):
@@ -81,12 +86,12 @@ def run(name='landing_nominal',dt=.000025,config=None,duration=DURATION,no_conta
         if k%control_stride==0:
             raw=(ff(t) if d.ncon else np.zeros(12))+cfg['kp_N_m']*(target-d.qpos[mq])+cfg['kd_N_s_m']*(veltarget-d.qvel[mv])
             if passive:raw[:]=0
-            saturated+=int(np.any(abs(raw)>5000));bounded=np.clip(raw,-5000,5000)
+            saturated+=int(np.any((raw<ctrl_lo)|(raw>ctrl_hi)));bounded=np.clip(raw,ctrl_lo,ctrl_hi)
             change=cfg['command_slew_N_s']*cfg['control_period_s']
             force_command+=np.clip(bounded-force_command,-change,change);d.ctrl[:]=force_command
         push=external_push(t,cfg);d.xfrc_applied[:]=0;d.xfrc_applied[torso,:3]=push
         mujoco.mj_checkPos(m,d);mujoco.mj_checkVel(m,d);mujoco.mj_forward(m,d)
-        force=d.actuator_force.copy();motorP=force*d.qvel[mv]
+        force=d.actuator_force.copy();motorP=force*d.qvel[mv];maxfraction=max(maxfraction,float(np.max(abs(force)/force_limit)))
         types=d.efc_type;ep=d.efc_force*d.efc_vel
         loopP=float(np.sum(ep[types==0]));contactP=float(np.sum(ep[types>=5]));limitP=float(np.sum(ep[(types==3)|(types==4)]))
         Jp=np.zeros((3,m.nv));Jr=np.zeros_like(Jp);mujoco.mj_jacBodyCom(m,d,Jp,Jr,torso)
@@ -137,7 +142,7 @@ def run(name='landing_nominal',dt=.000025,config=None,duration=DURATION,no_conta
            mass_kg=float(m.body_mass.sum()),body_count=m.nbody-1,motor_count=m.nu,
            touchdown_s=touchdown,maximum_loop_gap_m=float(max(H[:,15])),maximum_universal_dot=float(max(H[:,16])),
            minimum_slide_margin_m=float(min(H[:,17])),minimum_hinge_margin_rad=float(min(H[:,18])),
-           maximum_motor_force_N=float(max(H[:,19])),maximum_motor_error_m=float(max(H[:,20])),
+           maximum_motor_force_N=float(max(H[:,19])),maximum_motor_force_fraction=maxfraction,maximum_motor_error_m=float(max(H[:,20])),
            maximum_penetration_m=float(max(H[:,21])),maximum_tilt_deg=float(np.degrees(max(H[:,22]))),
            final_tilt_deg=float(np.degrees(H[-1,22])),maximum_foot_drift_after_landing_m=maxslip.tolist(),
            maximum_ground_normal_N=float(max(H[:,11])),mean_final_ground_normal_N=float(H[tail,11].mean()),

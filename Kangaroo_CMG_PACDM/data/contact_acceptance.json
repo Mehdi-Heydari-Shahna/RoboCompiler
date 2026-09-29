@@ -4,7 +4,7 @@
   "positive_trials": {
     "maximum_loop_gap_m": 0.0002,
     "maximum_universal_dot": 0.003,
-    "maximum_motor_force_N": 5000.000001,
+    "maximum_motor_force_fraction": 1.000001,
     "maximum_penetration_m": 0.015,
     "maximum_tilt_deg": 8,
     "final_tilt_deg": 2,
