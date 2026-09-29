@@ -14,6 +14,20 @@ from go2.contact import ContactGraph, FootKinematics, support_audit
 from vendor.pacdm_original import rank
 
 
+def _json_safe(value):
+    """Replace NaN/inf by None: a non-finite audit value is a failed check, and the
+    evidence must still be writable as strict JSON (allow_nan=False)."""
+    if isinstance(value, dict):
+        return {key: _json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, np.generic):
+        value = value.item()
+    if isinstance(value, float) and not np.isfinite(value):
+        return None
+    return value
+
+
 def validate_reference(root):
     """Validate data/reference.npz and return JSON-safe acceptance evidence.
 
@@ -44,7 +58,7 @@ def validate_reference(root):
     finite = all(np.all(np.isfinite(array)) for array in data.values())
     check("finite reference values", finite, True, finite)
     if not good_shape or not finite:
-        return dict(passed=False, checks=checks, samples=count)
+        return _json_safe(dict(passed=False, checks=checks, samples=count))
 
     q, v, a, mappings = (data[name] for name in ("q", "v", "a", "N"))
     qa, va, aa = (data[name] for name in ("active", "active_v", "active_a"))
@@ -143,9 +157,9 @@ def validate_reference(root):
           actuation.shape == (18, 12))
     check("six floating-base coordinates unactuated", float(np.max(abs(actuation[:6]))), 0.)
     check("no permanent structural loops", len(cmg["closures"]), 0)
-    return dict(passed=all(item["passed"] for item in checks), checks=checks, samples=count,
+    return _json_safe(dict(passed=all(item["passed"] for item in checks), checks=checks, samples=count,
                 acceleration_samples=len(curvature_samples), duration_s=float(time[-1] - time[0]),
                 max_acceleration_curvature_m_s2=curvature_norm_max,
                 scheduled_support_counts=sorted(set(count_stance.astype(int).tolist())),
                 scheduled_support_switches=switches, mode_audits=mode_audits,
-                scope="Prescribed gait geometry and derivatives; simulation contact execution is validated separately.")
+                scope="Prescribed gait geometry and derivatives; simulation contact execution is validated separately."))

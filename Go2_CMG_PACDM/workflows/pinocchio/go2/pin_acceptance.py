@@ -22,7 +22,10 @@ LIMITS={
  'max_tilt_rad':(.25,'<='),
  'min_base_height_m':(.18,'>='),
  'min_joint_margin_rad':(0.,'>='),
- 'peak_torque_limit_fraction':(1.000001,'<='),
+ # Motor torque requested before the controller's safety clip, above the cap
+ # (the applied torque is within the caps by construction). The QP imposes the
+ # caps as constraints to the same 0.005 tolerance that max_qp_violation accepts.
+ 'peak_torque_demand_excess_Nm':(.005,'<='),
  'final_speed_m_s':(.03,'<='),
  'max_qp_violation':(.005,'<='),
  'max_contact_fixed_point_residual_Ns':(1.01e-10,'<='),
