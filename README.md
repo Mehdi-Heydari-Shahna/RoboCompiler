@@ -19,7 +19,7 @@ This repository provides research implementations and simulation examples for fi
 
 | Robot | Example | Mechanism graph | Workflow |
 |---|---|---|---|
-| Komatsu excavator | Closed linkages, cylinder actuation, excavation and material transfer | [CMG](figures/excavator_cmg.png) | [Diagram](figures/excavator_workflow.png) |
+| Excavator | Closed linkages, cylinder actuation, excavation and material transfer | [CMG](figures/excavator_cmg.png) | [Diagram](figures/excavator_workflow.png) |
 | Unitree Go2 | Floating-base tree with foot tasks and prescribed support modes | [CMG](figures/go2_cmg.png) | [Diagram](figures/go2_workflow.png) |
 | Franka Panda | Serial arm with coupled fingers; grasping and socket placement | [CMG](figures/panda_cmg.png) | [Diagram](figures/panda_workflow.png) |
 | Kangaroo | Closed-chain legs; landing, crouching, and push response | [CMG](figures/kangaroo_cmg.png) | [Diagram](figures/kangaroo_workflow.png) |
