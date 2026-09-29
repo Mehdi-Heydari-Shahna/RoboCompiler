@@ -192,7 +192,6 @@ def run_process(args,mode,name,folder):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--preflight',action='store_true',help='Inspect active interpreter and packages without launching Isaac')
-    p.add_argument('--offline-test',action='store_true',help='Run source regression and numerical checks; not an Isaac validation')
     p.add_argument('--rebuild-reference',action='store_true',help='Rerun the original CMG/PACDM compiler in this process; no Isaac launch')
     p.add_argument('--mode',choices=['contact','wrench'],default='contact')
     p.add_argument('--case',default='nominal')
@@ -211,8 +210,6 @@ def main():
     if args.preflight:
         env=environment();write_json(ROOT/'results/preflight.json',env);print(json.dumps(env,indent=2))
         return 0 if env['passed'] else 2
-    if args.offline_test:
-        return subprocess.call([sys.executable,str(ROOT/'tests/run_tests.py')],cwd=str(ROOT))
     if args.rebuild_reference:
         command=[sys.executable,str(ROOT/'tools/rebuild_reference.py')]
         if args.output:command+=['--output',args.output]
