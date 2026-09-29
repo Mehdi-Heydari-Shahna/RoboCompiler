@@ -4,3 +4,11 @@ numpy>=2.0,<3
 scipy>=1.14,<2
 threadpoolctl>=3.5,<4
 pin==3.8.0            # Pinocchio 3.8.0 wheels (PyPI name "pin"); conda-forge package "pinocchio"
+# pin/libpinocchio 3.8.0 require cmeel-urdfdom>=4 without an upper bound, but
+# libpinocchio_parsers is linked against liburdfdom_*.so.4.0, and urdfdom 4.0
+# against libtinyxml2.so.10. A fresh install otherwise resolves cmeel-urdfdom
+# 6.0.0 / cmeel-tinyxml2 11.0.0 and `import pinocchio` fails with
+# "liburdfdom_sensor.so.4.0: cannot open shared object file".
+# The two pins match requirements-lock-linux.txt.
+cmeel-urdfdom==4.0.1
+cmeel-tinyxml2==10.0.0
