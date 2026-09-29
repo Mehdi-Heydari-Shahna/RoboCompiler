@@ -1,4 +1,5 @@
-# Only for a separate offline-test environment. Do not use this to replace or
+# Only for a separate non-Isaac environment, e.g. for run_isaac.py --rebuild-reference
+# (tools/rebuild_reference.py needs NumPy and SciPy only). Do not use this to replace or
 # upgrade the numerical packages in an already working Isaac Sim environment.
 numpy>=1.26,<3
 scipy>=1.12,<2

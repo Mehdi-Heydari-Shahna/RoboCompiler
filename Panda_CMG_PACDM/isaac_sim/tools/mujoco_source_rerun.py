@@ -14,8 +14,9 @@ What it runs
 source_evidence/mujoco/original_panda_simulation.py, unchanged, imported from a temporary
 package with two stand-ins: `load_model` from panda/model.py (bundled source) and a
 `PinBackend` whose inverse dynamics is cmg_isaac.rigid.RigidTree.rnea (the source's Pinocchio
-backend is not bundled; the offline tests show the two agree to ~3e-12 N m on the archived
-samples). Results use the installed MuJoCo version; archived results use MuJoCo 3.3.7.
+backend is not bundled; the author's offline tests, which are not included in this
+repository, showed the two agree to ~3e-12 N m on the archived samples). Results use the
+installed MuJoCo version; archived results use MuJoCo 3.3.7.
 
 Usage (separate environment; needs  pip install mujoco numpy scipy)
     python tools/mujoco_source_rerun.py                      # nominal, offset_pick, tight_socket, heavy_low_friction
