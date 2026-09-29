@@ -41,8 +41,10 @@ def run():
     if not acq['success']:raise RuntimeError(acq)
     Q,track=p.track(U,q);Q=np.array([polish(g,x) for x in Q]);q=polish(g,q);np.savez_compressed(ROOT/'data/configurations.npz',home=q,Q=Q,U=U)
     checks.flag('pacdm_37_states_no_fallback',track['fallback_count']==0)
-    maxima={k:0. for k in ['closure','se3_residual','map_difference','graph_fd','fixed_defect_fd','closure_fd','jdot_fd','floating_jdot_fd','mass_pin','mass_mj','bias_pin','bias_mj','potential_pin','potential_mj','kinetic_pin','kinetic_mj','poses_pin','poses_mj','jacobians_pin','jacobians_mj','native_residual','native_tangent','energy_rate','reaction_power','kkt_acceleration','kkt_reaction','forward_pin','forward_mj','fixed_inverse','fixed_support_balance','motor_force']}
+    maxima={k:0. for k in ['closure','se3_residual','map_difference','graph_fd','fixed_defect_fd','closure_fd','jdot_fd','floating_jdot_fd','mass_pin','mass_mj','bias_pin','bias_mj','potential_pin','potential_mj','kinetic_pin','kinetic_mj','poses_pin','poses_mj','jacobians_pin','jacobians_mj','native_residual','native_tangent','energy_rate','reaction_power','kkt_acceleration','kkt_reaction','forward_pin','forward_mj','fixed_inverse','fixed_support_balance','motor_force_fraction']}
     def update(k,value):maxima[k]=max(maxima[k],float(value))
+    # Per-port source force bounds in actuator (B column) order: +-2000 N, or +-5000 N for the leg-length ports.
+    port_limit=np.array([max(abs(float(x)) for x in a['force_bounds_N']) for a in c['actuators']])
     pi=PinFloating(c);mj=MJFloating(c,export(c,ROOT/'models/floating_tree.xml'))
     # Off-manifold derivatives, including the fixed-defect SE(3) transport.
     off=Q[5]+rng.normal(0,.001,g.n);direction=rng.normal(0,1,g.n);eps=1e-7
@@ -90,11 +92,11 @@ def run():
                 for name in sf['poses']:update('floating_jdot_fd',err((ep['jacobians'][name]-em['jacobians'][name])/(2*eps),sf['body_jacobian_dots'][name]))
             # Fixed-pelvis inverse dynamics and the separate unactuated support wrench.
             sfixed=f.state(q,position,R,np.r_[np.zeros(6),ud],gravity);ef=add_drive_terms(sfixed,c);Nf=ef['tangent_map'][:,6:];udd=rng.uniform(-.05,.05,12);acc=Nf@udd+ef['curvature'];load=ef['mass_matrix']@acc+ef['bias_forces'];force=np.linalg.solve(Nf.T@f.B,Nf.T@load)
-            update('motor_force',max(abs(force)));fixed={**ef,'mass_matrix':ef['mass_matrix'][6:,6:],'bias_forces':ef['bias_forces'][6:],'tangent_map':Nf[6:],'curvature':ef['curvature'][6:]}
+            update('motor_force_fraction',max(abs(force)/port_limit));fixed={**ef,'mass_matrix':ef['mass_matrix'][6:,6:],'bias_forces':ef['bias_forces'][6:],'tangent_map':Nf[6:],'curvature':ef['curvature'][6:]}
             recovered=solve_reduced(fixed,m.B@force);update('fixed_inverse',err(recovered['acceleration'],acc[6:]));reaction=ef['jacobian'][:,6:].T@np.linalg.lstsq(ef['jacobian'][:,6:].T,load[6:]-m.B@force,rcond=1e-10)[0];update('fixed_support_balance',err(reaction,load[6:]-m.B@force))
             fixed_forces.append(force);fixed_support.append(load[:6])
         if i%8==0:print('  validated configuration',i+1,'/',len(Q),flush=True)
-    limits={'closure':1e-8,'se3_residual':1e-8,'map_difference':2e-6,'graph_fd':1e-7,'fixed_defect_fd':1e-7,'closure_fd':1e-7,'jdot_fd':1e-7,'floating_jdot_fd':1e-7,'mass_pin':1e-10,'mass_mj':1e-7,'bias_pin':1e-9,'bias_mj':1e-6,'potential_pin':1e-9,'potential_mj':1e-6,'kinetic_pin':1e-10,'kinetic_mj':1e-7,'poses_pin':1e-10,'poses_mj':1e-10,'jacobians_pin':1e-10,'jacobians_mj':1e-10,'native_residual':1e-8,'native_tangent':1e-7,'energy_rate':1e-6,'reaction_power':1e-7,'kkt_acceleration':1e-5,'kkt_reaction':1e-6,'forward_pin':1e-5,'forward_mj':1e-3,'fixed_inverse':1e-7,'fixed_support_balance':1e-7,'motor_force':5000}
+    limits={'closure':1e-8,'se3_residual':1e-8,'map_difference':2e-6,'graph_fd':1e-7,'fixed_defect_fd':1e-7,'closure_fd':1e-7,'jdot_fd':1e-7,'floating_jdot_fd':1e-7,'mass_pin':1e-10,'mass_mj':1e-7,'bias_pin':1e-9,'bias_mj':1e-6,'potential_pin':1e-9,'potential_mj':1e-6,'kinetic_pin':1e-10,'kinetic_mj':1e-7,'poses_pin':1e-10,'poses_mj':1e-10,'jacobians_pin':1e-10,'jacobians_mj':1e-10,'native_residual':1e-8,'native_tangent':1e-7,'energy_rate':1e-6,'reaction_power':1e-7,'kkt_acceleration':1e-5,'kkt_reaction':1e-6,'forward_pin':1e-5,'forward_mj':1e-3,'fixed_inverse':1e-7,'fixed_support_balance':1e-7,'motor_force_fraction':1.}
     for key,limit in limits.items():checks.check(key,maxima[key],limit)
     checks.flag('all_source_joint_limits',margin>=0);checks.flag('source_force_ports_prismatic',all(next(j for j in c['joints'] if j['id']==a['joint'])['type']=='prismatic' for a in c['actuators']))
     checks.check('total_mass_against_body_sum',abs(body_total_mass-sf['total_mass']),1e-10)

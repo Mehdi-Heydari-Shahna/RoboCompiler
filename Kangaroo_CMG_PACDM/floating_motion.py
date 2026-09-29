@@ -44,8 +44,11 @@ def standing(c,dt=.0001,duration=2.):
     if np.min(normal)<=0:raise RuntimeError('COM outside chosen vertical support distribution')
     load=sum(J.T@np.array([0,0,F]) for J,F in zip(jac,normal));red=s['tangent_map'];effort=np.linalg.solve(red[:,6:].T@f.B,red[:,6:].T@(s['bias_forces']-load))
     baseheight=-min(corners[:,2])+.00005;d.qpos[:3]=[0,0,baseheight];d.qpos[3:7]=[1,0,0,0];d.qpos[qo]=q;mujoco.mj_forward(m,d);steps=round(duration/dt);H=[];states=[];times=[];forces=[];maxgap=0.;maxangle=0.;saturation=0;minmargin=float('inf');records={j['id']:j for j in c['joints']};lo=np.array([records[x]['limits']['lower'] for x in c['coordinate_ids']]);hi=np.array([records[x]['limits']['upper'] for x in c['coordinate_ids']]);warning0=sum(w.number for w in d.warning);work=0;lastpower=None;E0=d.energy.sum();start=time.time()
+    # Per-port source force bounds (ctrlrange): +-2000 N, or +-5000 N for the leg-length ports.
+    if not np.all(m.actuator_ctrllimited):raise ValueError('Every force port needs its source ctrlrange')
+    ctrl_lo=m.actuator_ctrlrange[:,0].copy();ctrl_hi=m.actuator_ctrlrange[:,1].copy();force_limit=np.maximum(-ctrl_lo,ctrl_hi);maxfraction=0.
     for i in range(steps+1):
-        command=effort+300000*(q[active]-d.qpos[qo[active]])+4000*(0-d.qvel[vo[active]]);d.ctrl[:]=np.clip(command,-5000,5000);saturation+=int(np.any(abs(command)>5000));mujoco.mj_forward(m,d);gap,angle=metrics.closure();maxgap=max(maxgap,gap);maxangle=max(maxangle,angle);minmargin=min(minmargin,float(np.min(np.minimum(d.qpos[qo]-lo,hi-d.qpos[qo]))))
+        command=effort+300000*(q[active]-d.qpos[qo[active]])+4000*(0-d.qvel[vo[active]]);d.ctrl[:]=np.clip(command,ctrl_lo,ctrl_hi);saturation+=int(np.any((command<ctrl_lo)|(command>ctrl_hi)));mujoco.mj_forward(m,d);gap,angle=metrics.closure();maxgap=max(maxgap,gap);maxangle=max(maxangle,angle);minmargin=min(minmargin,float(np.min(np.minimum(d.qpos[qo]-lo,hi-d.qpos[qo]))))
         contact=np.zeros(3)
         for k in range(d.ncon):
             con=d.contact[k];force=np.zeros(6);mujoco.mj_contactForce(m,d,k,force);world=con.frame.reshape(3,3).T@force[:3]
@@ -56,9 +59,10 @@ def standing(c,dt=.0001,duration=2.):
         if lastpower is not None:work+=.5*dt*(power+lastpower)
         lastpower=power
         H.append([d.time,*d.energy,Pm,Pd,Pc,*contact,gap,angle,np.max(abs(d.qpos[qo[active]]-q[active])),np.max(abs(d.actuator_force)),d.energy.sum()-E0-work,*d.qpos[:3],*d.qvel[:6]])
+        maxfraction=max(maxfraction,float(np.max(abs(d.actuator_force)/force_limit)))
         if i%max(1,round(.005/dt))==0:states.append(d.qpos.copy());times.append(d.time);forces.append(d.actuator_force.copy())
         if i<steps:mujoco.mj_step(m,d)
-    H=np.array(H);tail=H[:,0]>duration-.2;r=dict(duration_s=duration,timestep_s=dt,total_mass_kg=mass,weight_N=mass*9.81,static_motor_force_N=effort.tolist(),static_corner_normal_force_N=normal.tolist(),static_base_equilibrium_error=float(max(abs((s['bias_forces']-load)[:6]))),maximum_point_gap_m=maxgap,maximum_universal_dot=maxangle,minimum_joint_margin_mixed_SI=minmargin,maximum_motor_force_N=float(max(H[:,12])),maximum_motor_position_error_m=float(max(H[:,11])),mean_final_ground_force_N=H[tail,6:9].mean(axis=0).tolist(),maximum_final_root_speed_m_s=float(np.max(np.linalg.norm(H[tail,17:20],axis=1))),maximum_root_translation_m=float(np.max(np.linalg.norm(H[:,14:17]-H[0,14:17],axis=1))),maximum_energy_ledger_error_J=float(max(abs(H[:,13]))),saturation_samples=saturation,warning_count=sum(w.number for w in d.warning)-warning0,maximum_generalized_applied_force=float(max(abs(d.qfrc_applied))),elapsed_seconds=time.time()-start)
+    H=np.array(H);tail=H[:,0]>duration-.2;r=dict(duration_s=duration,timestep_s=dt,total_mass_kg=mass,weight_N=mass*9.81,static_motor_force_N=effort.tolist(),static_corner_normal_force_N=normal.tolist(),static_base_equilibrium_error=float(max(abs((s['bias_forces']-load)[:6]))),maximum_point_gap_m=maxgap,maximum_universal_dot=maxangle,minimum_joint_margin_mixed_SI=minmargin,maximum_motor_force_N=float(max(H[:,12])),maximum_motor_force_fraction=maxfraction,maximum_motor_position_error_m=float(max(H[:,11])),mean_final_ground_force_N=H[tail,6:9].mean(axis=0).tolist(),maximum_final_root_speed_m_s=float(np.max(np.linalg.norm(H[tail,17:20],axis=1))),maximum_root_translation_m=float(np.max(np.linalg.norm(H[:,14:17]-H[0,14:17],axis=1))),maximum_energy_ledger_error_J=float(max(abs(H[:,13]))),saturation_samples=saturation,warning_count=sum(w.number for w in d.warning)-warning0,maximum_generalized_applied_force=float(max(abs(d.qfrc_applied))),elapsed_seconds=time.time()-start)
     np.savez_compressed(ROOT/'results'/f'{name}.npz',history=H,sample_t=times,q=states,force=forces);(ROOT/'results'/f'{name}.json').write_text(json.dumps(r,indent=2)+'\n');print(name,r,flush=True);return r
 
 def run():
@@ -67,7 +71,7 @@ def run():
         for key,lim in [('maximum_point_gap_m',1e-5),('maximum_universal_dot',1e-4),('maximum_energy_drift_J',.001),('maximum_energy_ledger_error_J',.001),('maximum_momentum_error_mixed_SI',.001)]:checks.check(f'coast_{i}_'+key,r[key],lim)
         checks.flag(f'coast_{i}_unactuated_no_warnings',r['maximum_force_N']==0 and r['warning_count']==0)
     for i,r in enumerate(stands):
-        for key,lim in [('static_base_equilibrium_error',1e-8),('maximum_point_gap_m',.0002),('maximum_universal_dot',.002),('maximum_motor_force_N',5000),('maximum_motor_position_error_m',.001),('maximum_final_root_speed_m_s',.01),('maximum_root_translation_m',.02),('maximum_energy_ledger_error_J',.03)]:checks.check(f'standing_{i}_'+key,r[key],lim)
+        for key,lim in [('static_base_equilibrium_error',1e-8),('maximum_point_gap_m',.0002),('maximum_universal_dot',.002),('maximum_motor_force_fraction',1.),('maximum_motor_position_error_m',.001),('maximum_final_root_speed_m_s',.01),('maximum_root_translation_m',.02),('maximum_energy_ledger_error_J',.03)]:checks.check(f'standing_{i}_'+key,r[key],lim)
         checks.check(f'standing_{i}_vertical_force_balance_N',abs(r['mean_final_ground_force_N'][2]-r['weight_N']),2)
         checks.flag(f'standing_{i}_limits_no_saturation_warnings_external_force',r['minimum_joint_margin_mixed_SI']>=0 and r['saturation_samples']==0 and r['warning_count']==0 and r['maximum_generalized_applied_force']==0)
     checks.flag('coast_energy_refines',coasts[-1]['maximum_energy_drift_J']<coasts[0]['maximum_energy_drift_J']);checks.flag('standing_energy_refines',stands[-1]['maximum_energy_ledger_error_J']<stands[0]['maximum_energy_ledger_error_J'])

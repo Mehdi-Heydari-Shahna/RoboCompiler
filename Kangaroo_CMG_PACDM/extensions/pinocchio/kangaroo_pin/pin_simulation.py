@@ -53,7 +53,7 @@ from .pin_backend import FloatingPinBackend
 
 ROOT = Path(__file__).resolve().parents[1]
 FOOT_NAMES = ['left_ankle_roll', 'right_ankle_roll']
-ACT_RANGE_N = 5000.  # accepted command clip and MuJoCo actrange, all ports
+ACT_RANGE_N = 5000.  # MuJoCo actrange, all ports (the command clip uses each port's force bound)
 SAMPLE_PERIOD_S = .005
 PIN_SETTINGS = dict(
     integrator='semi-implicit Euler on (pelvis twist, motor speeds); implicit source viscous damping; '
@@ -251,9 +251,16 @@ def load_reference(path=None):
 
 
 class Controller:
-    """Accepted v22 drive command: feedforward + motor PD, 1 kHz, clip, slew."""
+    """Accepted v22 drive command: feedforward + motor PD, 1 kHz, clip, slew.
 
-    def __init__(self, reference, cfg, na):
+    The command is clipped to, and saturation is counted against, each port's own
+    source force bound: +-2000 N, or +-5000 N for the two leg-length ports.
+    """
+
+    def __init__(self, reference, cfg, na, bounds):
+        self.bounds = np.asarray(bounds, dtype=float)
+        if self.bounds.shape != (na, 2):
+            raise ValueError('Controller needs one (lower, upper) force bound per port')
         self.us = CubicSpline(reference['t'], reference['u'], axis=0)
         self.ff = CubicSpline(reference['t'], reference['force'], axis=0)
         self.cfg = cfg
@@ -266,8 +273,8 @@ class Controller:
                + cfg['kp_N_m'] * (self.us(t) - l) + cfg['kd_N_s_m'] * (self.us(t, 1) - ld))
         if passive:
             raw = np.zeros_like(raw)
-        saturated = bool(np.any(np.abs(raw) > ACT_RANGE_N))
-        bounded = np.clip(raw, -ACT_RANGE_N, ACT_RANGE_N)
+        saturated = bool(np.any((raw < self.bounds[:, 0]) | (raw > self.bounds[:, 1])))
+        bounded = np.clip(raw, self.bounds[:, 0], self.bounds[:, 1])
         self.command = self.command + np.clip(bounded - self.command, -self.slew, self.slew)
         return self.command.copy(), saturated
 
@@ -292,7 +299,7 @@ def run_case(name='landing_nominal', dt=.001, config=None, duration=None, no_con
             or abs(sample_stride * dt - SAMPLE_PERIOD_S) > 1e-12):
         raise ValueError('control and sample periods must be integer numbers of steps')
     reference = load_reference(reference_path)
-    controller = Controller(reference, cfg, plant.na)
+    controller = Controller(reference, cfg, plant.na, plant.force_bounds)
     backend, graph, solver = plant.backend, plant.graph, plant.solver
     contact = ContactSolver(3 * len(plant.corner_names), cfg['friction'])
     evaluations0, hits0 = graph.evaluations, graph.cache_hits
@@ -587,7 +594,7 @@ def run_open_tree(name='negative_no_loops_contact', dt=.001, config=None, durati
     steps = round(duration / dt)
     control_stride = round(cfg['control_period_s'] / dt)
     reference = load_reference(reference_path)
-    controller = Controller(reference, cfg, plant.na)
+    controller = Controller(reference, cfg, plant.na, plant.force_bounds)
     backend = plant.backend
     oracle = NativeLoopOracle(backend, plant.cmg, plant.armature)
     contact = ContactSolver(3 * len(plant.corner_names), cfg['friction'])

@@ -10,7 +10,11 @@ def assemble():
     gates=[dict(g,suite=n+'/'+g.get('suite','')) for n,r in zip(names,reports) for g in r['gates']]
     exported=json.loads((ROOT/'results/contact_urdf_export.json').read_text())
     gates.append(dict(name='contact_urdf_visuals_collisions_and_roboir_roundtrip',suite='export',passed=exported['status']=='PASS'))
-    result=dict(status='PASS_RECONSTRUCTED_MODEL' if all(g['passed'] for g in gates) else 'FAIL',gates=gates,gates_passed=sum(g['passed'] for g in gates),gates_total=len(gates),
+    # A suite that stops early keeps only the gates it reached, all of which may pass;
+    # its own recorded status must therefore pass as well.
+    suites_passed=all(r.get('status')=='PASS_RECONSTRUCTED_MODEL' and not r.get('error') for r in reports)
+    result=dict(status='PASS_RECONSTRUCTED_MODEL' if suites_passed and all(g['passed'] for g in gates) else 'FAIL',
+        suite_status={n:r.get('status') for n,r in zip(names,reports)},gates=gates,gates_passed=sum(g['passed'] for g in gates),gates_total=len(gates),
         scope='Kangaroo published-cut full prototype reconstruction with native contact, finite mechanical force response, and explicit numerical limitations.',
         environment=dict(python=platform.python_version(),platform=platform.platform()),
         code_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(ROOT.glob('*.py'))})

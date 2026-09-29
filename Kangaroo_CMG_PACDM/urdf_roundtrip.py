@@ -22,17 +22,19 @@ def rpy(R):
 
 def write(c,path):
     root=ET.Element('robot',name='Kangaroo_published_cut_reconstruction')
+    # Actuated (prismatic) joints carry their source motor force bound as URDF effort.
+    efforts={a['joint']:max(abs(float(x)) for x in a['force_bounds_N']) for a in c['actuators']}
     for b in c['bodies']:
         el=ET.SubElement(root,'link',name=b['id']);ie=ET.SubElement(el,'inertial');ET.SubElement(ie,'origin',xyz=fmt(b['com_m']),rpy='0 0 0');ET.SubElement(ie,'mass',value=str(b['mass_kg']));I=np.asarray(b['inertia_com_kg_m2']);ET.SubElement(ie,'inertia',**{k:str(I[i,j]) for k,i,j in [('ixx',0,0),('iyy',1,1),('izz',2,2),('ixy',0,1),('ixz',0,2),('iyz',1,2)]})
     for j in c['joints']:
         e=ET.SubElement(root,'joint',name=j['id'],type=j['type']);ET.SubElement(e,'parent',link=j['base_body']);ET.SubElement(e,'child',link=j['follower_body']);T=np.array(j['T_BJ']);ET.SubElement(e,'origin',xyz=fmt(T[:3,3]),rpy=fmt(rpy(T[:3,:3])))
         if not np.allclose(j['T_FJ'],np.eye(4),atol=1e-15):raise ValueError('Nonidentity follower attachment unsupported by tree URDF')
         if j['type']!='fixed':
-            ET.SubElement(e,'axis',xyz=fmt(j['axis']));ET.SubElement(e,'limit',lower=str(j['limits']['lower']),upper=str(j['limits']['upper']),effort='5000' if j['type']=='prismatic' else '0',velocity='1000');ET.SubElement(e,'dynamics',damping=str(c['joint_dissipation'][j['id']]['damping']),friction=str(c['joint_dissipation'][j['id']]['frictionloss']))
+            ET.SubElement(e,'axis',xyz=fmt(j['axis']));ET.SubElement(e,'limit',lower=str(j['limits']['lower']),upper=str(j['limits']['upper']),effort=f"{efforts[j['id']]:g}" if j['id'] in efforts else '0',velocity='1000');ET.SubElement(e,'dynamics',damping=str(c['joint_dissipation'][j['id']]['damping']),friction=str(c['joint_dissipation'][j['id']]['frictionloss']))
     for a in c['actuators']:
         e=ET.SubElement(root,'transmission',name=a['id']);ET.SubElement(e,'type').text='transmission_interface/SimpleTransmission';jj=ET.SubElement(e,'joint',name=a['joint']);ET.SubElement(jj,'hardwareInterface').text='EffortJointInterface';aa=ET.SubElement(e,'actuator',name=a['id']);ET.SubElement(aa,'mechanicalReduction').text='1'
     metadata={k:v for k,v in c.items() if k not in ['bodies','joints']};metadata['fixed_axes']={j['id']:j['axis'] for j in c['joints'] if j['type']=='fixed'}
-    metadata['urdf_limits_note']='The velocity=1000 and passive effort=0 attributes are serialization placeholders, not validated hardware ratings. Source position and motor force limits are authoritative for this benchmark.'
+    metadata['urdf_limits_note']='Actuated joint effort limits are the source motor force bounds. The velocity=1000 and passive effort=0 attributes are serialization placeholders, not validated hardware ratings. Source position and motor force limits are authoritative for this benchmark.'
     ET.SubElement(root,f'{{{NS}}}mechanism',encoding='json').text=json.dumps(metadata,separators=(',',':'))
     ET.indent(root);ET.ElementTree(root).write(path,encoding='utf-8',xml_declaration=True)
 
