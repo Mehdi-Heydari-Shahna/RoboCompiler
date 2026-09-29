@@ -49,8 +49,19 @@ def main():
             res['elapsed_s']=time.perf_counter()-t;summary[stage]=res
             print(stage,':',json.dumps(clean({k:v for k,v in res.items() if k not in ('summary','moving_summary','repeat_summary')})),flush=True)
             save_json(out/'summary.json',summary)
-        verification_ok=all(summary[k].get('passed',0)==summary[k].get('attempts',summary[k].get('tests',0)) for k in stages if k in ('pipeline','dynamics','native','verification'))
-        summary['status']='completed' if verification_ok else 'completed_with_verification_failures'
+        verified=[k for k in stages if k in ('pipeline','dynamics','native','verification')]
+        summary['verification_stages']=verified
+        if verified:
+            # A stage passes only if it attempted at least one case and every attempt passed.
+            def stage_ok(k):
+                attempts=summary[k].get('attempts',summary[k].get('tests',0))
+                return attempts>0 and summary[k].get('passed',0)==attempts
+            verification_ok=all(stage_ok(k) for k in verified)
+            summary['status']='completed' if verification_ok else 'completed_with_verification_failures'
+        else:
+            # No verification stage was selected, so no verification result is claimed.
+            verification_ok=None
+            summary['status']='completed_without_verification'
         summary['all_verification_passed']=verification_ok
     except Exception as exc:
         summary['status']='error';failure=traceback.format_exc();summary['error']=failure
@@ -67,6 +78,7 @@ def main():
     hashes={str(p.relative_to(out)):hashlib.sha256(p.read_bytes()).hexdigest() for p in out.rglob('*') if p.is_file() and p.name!='RUN_MANIFEST.json'}
     save_json(out/'RUN_MANIFEST.json',dict(files=hashes,source_sha256=files,protocol_sha256=canonical_hash(protocol)))
     print('RESULTS:',out,flush=True)
-    return 1 if failure or not summary.get('all_verification_passed',False) else 0
+    # Exit 1 on an error or a failed verification; a run without verification stages exits 0 but claims no pass.
+    return 1 if failure or (summary.get('verification_stages') and not summary.get('all_verification_passed')) else 0
 
 if __name__=='__main__':raise SystemExit(main())
