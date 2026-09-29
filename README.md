@@ -25,7 +25,7 @@ This repository provides research implementations and simulation examples for fi
 | Kangaroo | Closed-chain legs; landing, crouching, and push response | [CMG](figures/kangaroo_cmg.png) | [Diagram](figures/kangaroo_workflow.png) |
 | Six-UPS Stewart platform | Parallel mechanism; six-axis tracking and inspection | [CMG](figures/stewart_cmg.png) | [Diagram](figures/stewart_workflow.png) |
 
-Note that the excavator model used in this work was taken from S. Päkkilä’s M.Sc. thesis, “Modeling and simulation of a six degrees of freedom excavator” (Tampere University of Technology, Tampere, Finland, 2017). So the model is based on thr student’s mathematical modeling plus synthetic actuator parameters not real machine parameters.
+Note that the excavator model used in this work was taken from S. Päkkilä’s M.Sc. thesis, “Modeling and simulation of a six degrees of freedom excavator” (Tampere University of Technology, Tampere, Finland, 2017). So the model is based on the student’s mathematical modeling plus synthetic actuator parameters not real machine parameters.
 
 Go2 and Panda demonstrate task and actuation constraints on tree mechanisms; the excavator, Kangaroo, and Stewart platform contain physical closed chains.
 
