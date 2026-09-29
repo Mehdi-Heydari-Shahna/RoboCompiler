@@ -27,7 +27,8 @@ def aggregate(root=ROOT):
  for name,c in cases.items():
   gate(name+'.numerical_warnings',sum(c['warnings'].values()),0,'count','==')
   gate(name+'.arm_joint_margin',c['min_arm_joint_margin_rad'],.05,'rad','>=')
-  gate(name+'.source_torque_bounds',max(np.asarray(c['maximum_arm_torque_Nm'])/np.array([87,87,87,87,12,12,12])),1.000001,'ratio')
+  # Servo torque demanded before MuJoCo's forcerange clamp; the applied (clamped) torque is within bounds by construction.
+  gate(name+'.source_torque_bounds',max(np.asarray(c['peak_arm_torque_demand_Nm'])/np.array([87,87,87,87,12,12,12])),1.000001,'ratio')
   gate(name+'.finger_coupling',c['max_finger_coupling_error_m'],.0005,'m')
   if name in POSITIVE:
    gate(name+'.no_unexpected_contact',c['unexpected_contact_steps'],0,'steps','==')

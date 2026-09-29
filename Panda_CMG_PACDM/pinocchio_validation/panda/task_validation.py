@@ -17,6 +17,29 @@ from .pin_backend import PinBackend
 from .task import TaskGraph
 
 
+def _nan_max(*values):
+    """max() that propagates NaN; the built-in max() silently skips a NaN argument."""
+    values = [float(value) for value in values]
+    return float('nan') if any(np.isnan(values)) else max(values)
+
+
+def _nan_min(*values):
+    """min() that propagates NaN; the built-in min() silently skips a NaN argument."""
+    values = [float(value) for value in values]
+    return float('nan') if any(np.isnan(values)) else min(values)
+
+
+def _json_safe(value):
+    """Replace NaN/inf by None so that a failing record can still be written as strict JSON."""
+    if isinstance(value, dict):
+        return {key: _json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, float) and not np.isfinite(value):
+        return None
+    return value
+
+
 def validate_task(cmg, reference, output=None):
     """Validate reference arrays and the same BPoly interpolation as simulation."""
     report = {"passed": False, "checks": {}, "details": {
@@ -58,7 +81,7 @@ def validate_task(cmg, reference, output=None):
         check("independent_reference_matches_augmented", np.max(abs(active-state[:, graph.active])), 1e-13, "mixed rad/m")
         check("velocity_active_coordinates", np.max(abs(velocity[:, graph.active]-av)), 1e-12, "mixed SI/s")
         check("acceleration_active_coordinates", np.max(abs(acceleration[:, graph.active]-aa)), 1e-12, "mixed SI/s2")
-        check("physical_joint_limit_violation", max(0., float(np.max(graph.lower[:9]-q)),
+        check("physical_joint_limit_violation", _nan_max(0., float(np.max(graph.lower[:9]-q)),
                                                   float(np.max(q-graph.upper[:9]))), 1e-10, "mixed rad/m")
         check("source_finger_coupling_over_route", np.max(abs(q[:, 7]-q[:, 8])), 1e-9, "m")
 
@@ -68,23 +91,23 @@ def validate_task(cmg, reference, output=None):
         # Recompute every sample rather than trusting maxima saved at generation.
         for i, (x, v, a, mapping) in enumerate(zip(state, velocity, acceleration, maps)):
             r, jacobian, delta = graph.residual(x)
-            maxima["closure"] = max(maxima["closure"], float(np.max(abs(r))))
-            maxima["tangent"] = max(maxima["tangent"], float(np.max(abs(jacobian @ mapping))))
-            maxima["velocity"] = max(maxima["velocity"], float(np.max(abs(jacobian @ v))))
-            maxima["active_identity"] = max(maxima["active_identity"], float(np.max(abs(mapping[graph.active]-np.eye(8)))))
+            maxima["closure"] = _nan_max(maxima["closure"], float(np.max(abs(r))))
+            maxima["tangent"] = _nan_max(maxima["tangent"], float(np.max(abs(jacobian @ mapping))))
+            maxima["velocity"] = _nan_max(maxima["velocity"], float(np.max(abs(jacobian @ v))))
+            maxima["active_identity"] = _nan_max(maxima["active_identity"], float(np.max(abs(mapping[graph.active]-np.eye(8)))))
             _, info = solver.mapping(x)
-            min_rcond = min(min_rcond, info["rcond"])
+            min_rcond = _nan_min(min_rcond, info["rcond"])
             bad_rank += int(info["rank_full"] != 7 or info["rank_passive"] != 7)
             if not info["success"]:
                 failures.append({"index": i, "time_s": float(t[i]), "info": info})
             endpoint = pin.poses(x[:9])[graph.tool_body] @ graph.tool_transform
             target = graph.target_pose(x)
-            maxima["Pinocchio_target_position"] = max(maxima["Pinocchio_target_position"], float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])))
-            maxima["Pinocchio_target_rotation"] = max(maxima["Pinocchio_target_rotation"], float(Rotation.from_matrix(endpoint[:3, :3] @ target[:3, :3].T).magnitude()))
+            maxima["Pinocchio_target_position"] = _nan_max(maxima["Pinocchio_target_position"], float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])))
+            maxima["Pinocchio_target_rotation"] = _nan_max(maxima["Pinocchio_target_rotation"], float(Rotation.from_matrix(endpoint[:3, :3] @ target[:3, :3].T).magnitude()))
             # A different probe size from generation tests sensitivity of Jdot.
             epsilon = 2e-5 / max(1., np.linalg.norm(v))
             jdot = (graph.residual(x+epsilon*v)[1]-graph.residual(x-epsilon*v)[1])/(2*epsilon)
-            maxima["acceleration"] = max(maxima["acceleration"], float(np.max(abs(jacobian @ a + jdot @ v))))
+            maxima["acceleration"] = _nan_max(maxima["acceleration"], float(np.max(abs(jacobian @ a + jdot @ v))))
         for name, limit, unit in [
                 ("closure", 1e-8, "mixed rad/m"), ("tangent", 1e-9, "mixed SI"),
                 ("velocity", 1e-9, "mixed SI/s"), ("acceleration", 2e-7, "mixed SI/s2"),
@@ -119,11 +142,11 @@ def validate_task(cmg, reference, output=None):
             augv = np.r_[interpolation(time, nu=1), target_interpolation(time, nu=1)[:6]]
             endpoint = pin.poses(physical)[graph.tool_body] @ graph.tool_transform
             target = graph.target_pose(augmented)
-            errors["position"] = max(errors["position"], float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])))
-            errors["rotation"] = max(errors["rotation"], float(Rotation.from_matrix(endpoint[:3, :3] @ target[:3, :3].T).magnitude()))
+            errors["position"] = _nan_max(errors["position"], float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])))
+            errors["rotation"] = _nan_max(errors["rotation"], float(Rotation.from_matrix(endpoint[:3, :3] @ target[:3, :3].T).magnitude()))
             residual, jacobian, _ = graph.residual(augmented)
-            errors["constraint"] = max(errors["constraint"], float(np.max(abs(residual))))
-            errors["velocity_constraint"] = max(errors["velocity_constraint"], float(np.max(abs(jacobian @ augv))))
+            errors["constraint"] = _nan_max(errors["constraint"], float(np.max(abs(residual))))
+            errors["velocity_constraint"] = _nan_max(errors["velocity_constraint"], float(np.max(abs(jacobian @ augv))))
         for name, limit, unit in [("position", 1e-6, "m"), ("rotation", 1e-6, "rad"),
                                   ("constraint", 1e-6, "mixed rad/m"), ("velocity_constraint", 2e-6, "mixed SI/s")]:
             check("BPoly_midpoint_"+name, errors[name], limit, unit)
@@ -154,10 +177,10 @@ def validate_task(cmg, reference, output=None):
                 redundancy_success += 1
                 target = graph.target_pose(solved)
                 endpoint = pin.poses(solved[:9])[graph.tool_body] @ graph.tool_transform
-                redundant_errors.append(max(float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])),
+                redundant_errors.append(_nan_max(float(np.linalg.norm(endpoint[:3, 3]-target[:3, 3])),
                                             float(Rotation.from_matrix(endpoint[:3, :3] @ target[:3, :3].T).magnitude())))
         check("local_redundancy_alternatives_solved", redundancy_success, 2, "count", "==")
-        check("local_redundancy_target_pose_error", max(redundant_errors, default=np.inf), 1e-8, "mixed rad/m")
+        check("local_redundancy_target_pose_error", (_nan_max(*redundant_errors) if redundant_errors else np.inf), 1e-8, "mixed rad/m")
         details["redundancy_test_offsets_rad"] = [-.06, .06]
     except Exception as error:
         details["error"] = f"{type(error).__name__}: {error}"
@@ -169,7 +192,7 @@ def validate_task(cmg, reference, output=None):
     if output is not None:
         path = Path(output)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(report, indent=2, allow_nan=False)+"\n", encoding="utf-8")
+        path.write_text(json.dumps(_json_safe(report), indent=2, allow_nan=False)+"\n", encoding="utf-8")
     return report
 
 

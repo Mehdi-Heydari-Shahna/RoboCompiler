@@ -129,7 +129,8 @@ def aggregate(task, mechanics):
         gate(name+'.dynamics_residual', c['max_dynamics_residual'], 1e-8, 'mixed N/Nm')
         gate(name+'.arm_limits', c['minimum_arm_limit_margin_rad'], .05, 'rad', '>=')
         gate(name+'.finger_limits', c['minimum_finger_limit_margin_m'], -1e-6, 'm', '>=')
-        gate(name+'.effort_limits', max(np.asarray(c['peak_actuator_effort'])/np.array([87]*4+[12]*3+[100])), 1.00000001, 'ratio')
+        # Effort demanded before the force-range clip; the applied effort is within the limits by construction.
+        gate(name+'.effort_limits', max(np.asarray(c['peak_actuator_effort_demand'])/np.array([87]*4+[12]*3+[100])), 1.00000001, 'ratio')
         gate(name+'.energy_work_balance', c['max_energy_work_balance_error_J'], .01 if name=='no_feedforward' else .001, 'J')
         if name != 'no_feedforward':
             gate(name+'.tool_position', c['max_tool_position_error_m'], .002, 'm')
