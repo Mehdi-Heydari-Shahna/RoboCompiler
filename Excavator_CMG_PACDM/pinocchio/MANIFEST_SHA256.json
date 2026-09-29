@@ -121,7 +121,7 @@
     "requirements-linux.txt": "acc09cba02a4e8c1b9c5e57b6caf7df45849a380ca72049e4f33a8e4b7a3809b",
     "requirements-lock-linux.txt": "d51485b3f23c33c6d29b0a1eeaf21d0200b62ca060a400442c57b5914ebc3935",
     "run_pinocchio.bat": "94db3c66aa55ffe5e7454a1d68080536f595d6c2069fcbadd7cdd1f4c32ef521",
-    "run_validation.py": "51770b195409a392760a7d2f0bab1b6cbbcc3c6a7106ca98f93eefff0c5a4745",
+    "run_validation.py": "0bce3dd947f7bf871aa86b46062eeec4c94679404e1f811ba743a03d0b31e2dd",
     "tools/compare_reproduction.py": "c061b5fd2cf47bf8a34f5092f8b81648f7045787c7b01c81952d5b283fd9520a",
     "tools/extract_mujoco_traces.py": "05aeaca67f54174f07920c0fb9f0abd3706a2a3a58b0a5fa071e7f65fe71f028"
   }

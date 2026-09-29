@@ -25,6 +25,7 @@ import datetime
 import hashlib
 import importlib.metadata
 import json
+import math
 import platform
 import subprocess
 import sys
@@ -64,6 +65,18 @@ class Tee:
 
 def sha256(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def json_safe(value):
+    """Replace NaN/inf by None: a missing or non-finite value is a failed gate and must
+    still be written to validation.json (strict JSON cannot hold NaN)."""
+    if isinstance(value, dict):
+        return {key: json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_safe(item) for item in value]
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    return value
 
 
 def check(value, limit, relation, unit, description=''):
@@ -293,7 +306,7 @@ def main(argv=None):
     env['total_wall_s'] = time.time() - started
     env['audit_mode'] = bool(args.audit)
     validation['environment'] = env
-    (results / 'validation.json').write_text(json.dumps(validation, indent=2, allow_nan=False) + '\n',
+    (results / 'validation.json').write_text(json.dumps(json_safe(validation), indent=2, allow_nan=False) + '\n',
                                              encoding='utf-8')
     (results / 'execution_environment.json').write_text(json.dumps(env, indent=2) + '\n', encoding='utf-8')
     try:
@@ -305,7 +318,7 @@ def main(argv=None):
             check(0, 1, '==', 'boolean', text[-2000:]), category='stages', kind='evidence')
         validation['passed'] = False
         validation['total_checks'] += 1
-        (results / 'validation.json').write_text(json.dumps(validation, indent=2, allow_nan=False) + '\n',
+        (results / 'validation.json').write_text(json.dumps(json_safe(validation), indent=2, allow_nan=False) + '\n',
                                                  encoding='utf-8')
     failed = [k for k, c in validation['checks'].items() if not c['passed']]
     print(f"VALIDATION {'PASSED' if validation['passed'] else 'FAILED'}: "
