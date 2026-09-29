@@ -95,15 +95,35 @@ def aggregate(root):
     return result
 
 
+RUN_MANIFEST = Path('results')/'SHA256SUMS.json'
+_EXCLUDED_PARTS = {'__pycache__', '.git', '.venv', 'venv', 'env', '.pytest_cache', '.mypy_cache'}
+
+
 def hash_manifest(root):
+    """Record this run's evidence in results/SHA256SUMS.json.
+
+    The shipped release manifest (SHA256SUMS.json in this folder) is never
+    rewritten by a run. Git metadata and local Python environments are skipped.
+    """
     root = Path(root)
     hashes = {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*'))
-              if p.is_file() and '__pycache__' not in p.parts and p.name!='SHA256SUMS.json' and p.suffix!='.pyc'}
-    write_json(root/'SHA256SUMS.json',hashes)
+              if p.is_file() and not (_EXCLUDED_PARTS & set(p.relative_to(root).parts))
+              and p.name!='SHA256SUMS.json' and p.suffix!='.pyc'}
+    write_json(root/RUN_MANIFEST,hashes)
+
+
+def _check(root, manifest_path, label):
+    hashes = json.loads((root/manifest_path).read_text())
+    bad = [k for k,v in hashes.items() if not (root/k).is_file() or hashlib.sha256((root/k).read_bytes()).hexdigest()!=v]
+    if bad: raise RuntimeError(f'Missing/modified {label} files: '+', '.join(bad))
+    print(f'Integrity PASS ({label}): {len(hashes)} files.')
 
 
 def verify_manifest(root):
-    root = Path(root); hashes = json.loads((root/'SHA256SUMS.json').read_text())
-    bad = [k for k,v in hashes.items() if not (root/k).is_file() or hashlib.sha256((root/k).read_bytes()).hexdigest()!=v]
-    if bad: raise RuntimeError('Missing/modified files: '+', '.join(bad))
-    print(f'Integrity PASS: {len(hashes)} files.')
+    """Check the shipped release manifest and, if a run exists, its evidence manifest."""
+    root = Path(root)
+    _check(root, 'SHA256SUMS.json', 'release')
+    if (root/RUN_MANIFEST).is_file():
+        _check(root, RUN_MANIFEST, 'run evidence')
+    else:
+        print(f'No run evidence manifest ({RUN_MANIFEST.as_posix()}); run python run_pinocchio.py to create it.')

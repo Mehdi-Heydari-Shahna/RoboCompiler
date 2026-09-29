@@ -92,7 +92,15 @@ def aggregate(root=ROOT):
     return report
 
 
+RUN_MANIFEST=Path('results')/'SHA256SUMS.json'
+
+
 def hash_manifest(root=ROOT):
+    """Record the hashes of this run's evidence in results/SHA256SUMS.json.
+
+    The shipped release manifest (SHA256SUMS.json in the package root) is
+    never rewritten by a run.
+    """
     # Cover the benchmark and generated evidence without walking a Git checkout
     # or a local Python environment.
     root_files=('run_stewart.py','run_stewart.bat','reproduce.py','verify_files.py',
@@ -103,20 +111,49 @@ def hash_manifest(root=ROOT):
     for name in ('data','stewart','vendor','Supplement','results'):
         paths.extend(p for p in (root/name).rglob('*')
                      if p.is_file() and not (set(p.relative_to(root).parts)&excluded)
-                     and p.suffix not in ('.pyc','.log')
+                     and p.suffix not in ('.pyc','.log') and p.name!='SHA256SUMS.json'
                      and (name!='Supplement' or p.suffix in ('.py','.txt')))
     hashes={p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
             for p in sorted(paths)}
-    write_json(root/'SHA256SUMS.json',hashes)
+    write_json(root/RUN_MANIFEST,hashes)
 
 
-def verify_manifest(root=ROOT):
-    manifest=json.loads((root/'SHA256SUMS.json').read_text());bad=[]
+def _check_manifest(root,manifest_path,label):
+    manifest=json.loads((root/manifest_path).read_text());bad=[]
     for name,expected in manifest.items():
         p=root/name
         if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=expected:bad.append(name)
-    if bad:raise RuntimeError('Missing/modified release files: '+', '.join(bad))
-    print(f'Integrity verified: {len(manifest)} files.')
+    if bad:raise RuntimeError(f'Missing/modified {label} files: '+', '.join(bad))
+    print(f'Integrity verified ({label}): {len(manifest)} files.')
+
+
+def verify_manifest(root=ROOT):
+    _check_manifest(root,'SHA256SUMS.json','release')
+    if (root/RUN_MANIFEST).is_file():
+        _check_manifest(root,RUN_MANIFEST,'run evidence')
+    else:
+        print(f'No run evidence manifest ({RUN_MANIFEST.as_posix()}); run python run_stewart.py to create it.')
+
+
+def _equivalent(left,right,atol=1e-12):
+    """Structural equality that ignores floating-point round-off."""
+    if isinstance(left,dict):
+        return isinstance(right,dict) and left.keys()==right.keys() and all(_equivalent(left[k],right[k],atol) for k in left)
+    if isinstance(left,list):
+        return isinstance(right,list) and len(left)==len(right) and all(_equivalent(a,b,atol) for a,b in zip(left,right))
+    if isinstance(left,(float,int)) and not isinstance(left,bool):
+        return isinstance(right,(float,int)) and not isinstance(right,bool) and bool(np.isclose(left,right,rtol=0,atol=atol))
+    return left==right
+
+
+def check_shipped_cmg(root=ROOT):
+    """The run uses make_cmg(); the shipped data/stewart.cmg.json must describe the same model."""
+    generated=json.loads((root/'results/stewart.cmg.json').read_text())
+    shipped=json.loads((root/'data/stewart.cmg.json').read_text())
+    if not _equivalent(generated,shipped):
+        raise RuntimeError('The model built by stewart/model.py (results/stewart.cmg.json) differs from the shipped '
+                           'data/stewart.cmg.json, which the Supplement scripts and renderer read. If the model change '
+                           'is intended, copy results/stewart.cmg.json to data/stewart.cmg.json and rerun.')
 
 
 def replay(root=ROOT):
@@ -136,7 +173,7 @@ def replay(root=ROOT):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--render',action='store_true',help='Also render the full MP4.')
-    parser.add_argument('--audit-existing',action='store_true',help='Verify the current checksum manifest without rerunning simulation.')
+    parser.add_argument('--audit-existing',action='store_true',help='Verify the release checksum manifest and, after a run, the run evidence manifest (results/SHA256SUMS.json) without rerunning simulation.')
     parser.add_argument('--replay',action='store_true',help='Interactively replay saved nominal states; no simulation.')
     args=parser.parse_args()
     if args.audit_existing:verify_manifest();return
@@ -145,7 +182,8 @@ def main():
         raise RuntimeError('This release is verified with MuJoCo 3.3.7 and Pinocchio 3.8.0; install the dependencies specified for this environment.')
     r=ROOT/'results';r.mkdir(exist_ok=True)
     write_json(r/'validation.json',dict(passed=False,status='Run in progress; acceptance has not completed.'))
-    c=make_cmg();save_cmg(c,ROOT/'data/stewart.cmg.json')
+    # Run outputs go to results/ only; tracked files are never rewritten.
+    c=make_cmg();save_cmg(c,r/'stewart.cmg.json');check_shipped_cmg()
     xml=compile_mujoco(c,r/'nominal.xml')
     print('Checking independent dynamics and perturbed-seed PACDM acquisition...',flush=True)
     mechanics=validate_mechanics(c,xml);write_json(r/'mechanics.json',mechanics)

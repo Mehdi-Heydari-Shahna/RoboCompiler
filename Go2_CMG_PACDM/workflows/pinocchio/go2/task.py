@@ -57,7 +57,8 @@ def target_trajectory(time):
     aa=np.c_[body(time,nu=2),fa.reshape(len(time),12)]
     return active,av,aa,stance
 
-def make_reference(root,dt=.01):
+def make_reference(root,dt=.01,path=None):
+    """Assemble the PACDM reference and save it to path (default: root/data/reference.npz)."""
     root=Path(root);cmg=load_model();seed=np.asarray(cmg['q_reference'])
     graph=ContactGraph(cmg,seed);time=np.linspace(0,DURATION,round(DURATION/dt)+1)
     active,av,aa,stance=target_trajectory(time)
@@ -70,7 +71,7 @@ def make_reference(root,dt=.01):
         Jm=graph.kinematics.points_and_jacobians(q-eps*v)[1].reshape(12,18)
         a=np.r_[aa[k,:6],np.linalg.solve(J[:,6:],aa[k,6:]-J[:,:6]@aa[k,:6]-(Jp-Jm)@v/(2*eps))]
         qs.append(q);vs.append(v);acc.append(a);maps.append(N);infos.append(info)
-    path=root/'data/reference.npz'
+    path=root/'data/reference.npz' if path is None else Path(path)
     np.savez_compressed(path,time=time,q=qs,v=vs,a=acc,N=maps,active=active,active_v=av,active_a=aa,feet=active[:,6:].reshape(-1,4,3),stance=stance)
     summary=dict(samples=len(time),duration_s=DURATION,dt_s=dt,constraint_rank=12,physical_coordinates=18,virtual_coordinates=12,
                  max_residual_inf=max(x['residual_inf'] for x in infos),max_tangent_residual=max(x['tangent_residual'] for x in infos),

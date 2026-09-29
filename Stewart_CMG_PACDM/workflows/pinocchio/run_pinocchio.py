@@ -40,12 +40,17 @@ def main():
     parser.add_argument('--no-video',action='store_true',help='Skip video rendering after simulation; final status excludes video.')
     args = parser.parse_args()
     if args.verify_existing:
-        # The checksum command needs only Python's standard library.
+        # The checksum command needs only Python's standard library: the
+        # shipped release manifest, then this run's evidence manifest if present.
         import hashlib
-        manifest = json.loads((ROOT/'SHA256SUMS.json').read_text())
-        bad = [k for k,v in manifest.items() if not (ROOT/k).is_file() or hashlib.sha256((ROOT/k).read_bytes()).hexdigest()!=v]
-        if bad: raise RuntimeError('Missing/modified files: '+', '.join(bad))
-        print(f'Integrity PASS: {len(manifest)} files.'); return
+        for manifest_path,label in (('SHA256SUMS.json','release'),('results/SHA256SUMS.json','run evidence')):
+            if label=='run evidence' and not (ROOT/manifest_path).is_file():
+                print(f'No run evidence manifest ({manifest_path}); run python run_pinocchio.py to create it.'); continue
+            manifest = json.loads((ROOT/manifest_path).read_text())
+            bad = [k for k,v in manifest.items() if not (ROOT/k).is_file() or hashlib.sha256((ROOT/k).read_bytes()).hexdigest()!=v]
+            if bad: raise RuntimeError(f'Missing/modified {label} files: '+', '.join(bad))
+            print(f'Integrity PASS ({label}): {len(manifest)} files.')
+        return
     import pinocchio as pin
     if pin.__version__ != '3.8.0':
         raise RuntimeError(f'Verified release requires Pinocchio 3.8.0; found {pin.__version__}. Use environment.yml.')

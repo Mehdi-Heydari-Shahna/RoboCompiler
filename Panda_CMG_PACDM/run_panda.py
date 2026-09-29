@@ -12,6 +12,7 @@ from panda.task_validation import validate_task
 from panda.validation import validate_mechanics
 from panda.simulation import run_case
 ROOT=Path(__file__).resolve().parent
+RUN_MANIFEST=Path('results')/'SHA256SUMS.json'
 CASES={'nominal':{},'fine':dict(dt=.0005),'heavy_low_friction':dict(mass=.30,friction=.5),'offset_pick':dict(offset=.004),'tight_socket':dict(width=.048,offset=-.003),'no_grasp':dict(grasp=False),'no_feedforward':dict(feedforward=False)}
 POSITIVE=['nominal','fine','heavy_low_friction','offset_pick','tight_socket']
 
@@ -80,12 +81,39 @@ def manifest(root=ROOT):
              or (len(p.relative_to(root).parts)==1 and p.name in project_files))
         and not excluded.intersection(p.relative_to(root).parts)
         and p.suffix!='.pyc' and p.name!='SHA256SUMS.json')
- write_json(root/'SHA256SUMS.json',{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest()
-                                   for p in sorted(files)})
+ # Run evidence manifest: written to results/, never to a tracked file.
+ write_json(root/RUN_MANIFEST,{p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
+                              for p in sorted(files)})
 def verify(root=ROOT):
- hashes=read_json(root/'SHA256SUMS.json');bad=[n for n,h in hashes.items() if not (root/n).is_file() or hashlib.sha256((root/n).read_bytes()).hexdigest()!=h]
+ if not (root/RUN_MANIFEST).is_file():raise SystemExit(f'No run evidence manifest ({RUN_MANIFEST.as_posix()}); run python run_panda.py first.')
+ hashes=read_json(root/RUN_MANIFEST);bad=[n for n,h in hashes.items() if not (root/n).is_file() or hashlib.sha256((root/n).read_bytes()).hexdigest()!=h]
  if bad:raise RuntimeError('Missing/modified files: '+', '.join(bad))
  print(f'Integrity verified: {len(hashes)} files.')
+def _same_values(a,b,atol=1e-12):
+ """Structural equality that ignores floating-point round-off."""
+ if isinstance(a,dict):return isinstance(b,dict) and a.keys()==b.keys() and all(_same_values(a[k],b[k],atol) for k in a)
+ if isinstance(a,list):return isinstance(b,list) and len(a)==len(b) and all(_same_values(x,y,atol) for x,y in zip(a,b))
+ if isinstance(a,(int,float)) and not isinstance(a,bool):return isinstance(b,(int,float)) and not isinstance(b,bool) and bool(np.isclose(a,b,rtol=0,atol=atol))
+ return a==b
+def _same_arrays(generated,shipped,rtol=1e-6,atol=1e-7):
+ with np.load(generated,allow_pickle=False) as a,np.load(shipped,allow_pickle=False) as b:
+  if sorted(a.files)!=sorted(b.files):return 'array names differ'
+  for k in a.files:
+   x,y=a[k],b[k]
+   if x.shape!=y.shape:return f'{k}: shape {x.shape} != {y.shape}'
+   if x.dtype.kind in 'fc' or y.dtype.kind in 'fc':
+    if not np.allclose(x,y,rtol=rtol,atol=atol):return f'{k}: max |difference| {float(np.max(np.abs(x-y))):.3g}'
+   elif not np.array_equal(x,y):return f'{k}: values differ'
+ return ''
+def check_shipped_data(root=ROOT):
+ """The cases read data/panda_cmg.json and data/reference.npz, which this run does not rewrite.
+ They must match the model and PACDM reference that the run has just rebuilt into results/."""
+ r=root/'results';problems=[]
+ if not _same_values(read_json(r/'panda_cmg.json'),read_json(root/'data/panda_cmg.json')):problems.append('panda_cmg.json')
+ why=_same_arrays(r/'reference.npz',root/'data/reference.npz')
+ if why:problems.append('reference.npz ('+why+')')
+ if problems:raise RuntimeError('The rebuilt '+', '.join(problems)+' in results/ differ from the shipped copies in data/. '
+  'If the model or task change is intended, copy results/panda_cmg.json, results/reference.npz and results/reference.json into data/ and rerun.')
 def replay(root=ROOT):
  import time,mujoco.viewer
  z=np.load(root/'results/nominal.npz');m=mujoco.MjModel.from_xml_path(str(root/'results/nominal.xml'));d=mujoco.MjData(m)
@@ -101,11 +129,13 @@ def main():
  if args.replay:replay();return
  if mujoco.__version__!='3.3.7' or pin.__version__!='3.8.0':raise RuntimeError('MuJoCo 3.3.7 and Pinocchio 3.8.0 are required.')
  r=ROOT/'results';r.mkdir(exist_ok=True);write_json(r/'validation.json',dict(passed=False,status='Run in progress; acceptance incomplete.'))
- cmg=build_model();save_model(cmg)
+ # Run outputs go to results/ only; tracked files in data/ are checked, never rewritten.
+ cmg=build_model();save_model(cmg,r/'panda_cmg.json')
  print('Checking independent source mechanics...',flush=True);mechanics=validate_mechanics(cmg,output=r/'mechanics.json')
  if not mechanics['passed']:raise RuntimeError('Mechanics failed; see results/mechanics.json')
  print('Assembling 22 s redundant tool task with PACDM...',flush=True);reference=build_reference(cmg)
- np.savez_compressed(ROOT/'data/reference.npz',**{k:v for k,v in reference.items() if k!='info'});write_json(ROOT/'data/reference.json',reference['info'])
+ np.savez_compressed(r/'reference.npz',**{k:v for k,v in reference.items() if k!='info'});write_json(r/'reference.json',reference['info'])
+ check_shipped_data()
  task=validate_task(cmg,reference,output=r/'task_validation.json')
  if not task['passed']:raise RuntimeError('Task reference failed; see results/task_validation.json')
  print('Running seven actual-contact cases...',flush=True)

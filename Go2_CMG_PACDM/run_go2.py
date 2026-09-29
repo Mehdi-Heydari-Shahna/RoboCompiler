@@ -27,6 +27,7 @@ from go2.task_validation import validate_reference
 from go2.validation import validate_mechanics, validate_contacts
 
 ROOT = Path(__file__).resolve().parent
+RUN_MANIFEST = Path('results')/'SHA256SUMS.json'
 CASES = {
     'nominal': {},
     'fine': {'dt': .0005},
@@ -183,12 +184,15 @@ def manifest(root=ROOT):
                 or path.suffix in {'.pyc', '.log', '.zip'}):
             continue
         hashes[relative.as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
-    write_json(root/'SHA256SUMS.json', hashes)
+    # Run evidence manifest: written to results/, never to a tracked file.
+    write_json(root/RUN_MANIFEST, hashes)
 
 
 def verify(root=ROOT):
     root = Path(root)
-    hashes = read_json(root/'SHA256SUMS.json')
+    if not (root/RUN_MANIFEST).is_file():
+        raise SystemExit(f'No run evidence manifest ({RUN_MANIFEST.as_posix()}); run python run_go2.py first.')
+    hashes = read_json(root/RUN_MANIFEST)
     bad = [name for name, digest in hashes.items()
            if not (root/name).is_file() or hashlib.sha256((root/name).read_bytes()).hexdigest() != digest]
     if bad:
