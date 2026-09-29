@@ -42,7 +42,7 @@ LIMITATIONS = [
     "Joint damping and dry friction are applied explicitly by the runner; "
     "no joint drives, PhysX joint friction, or rigid-body damping are enabled.",
     "A payload is a point mass at the original base COM, with unchanged "
-    "base inertia, matching the supplied MuJoCo benchmark definition.",
+    "base inertia, matching the original MuJoCo benchmark definition.",
     "Authored USD mass properties and geometry are checked offline; PhysX "
     "runtime behavior requires an actual Isaac Sim execution.",
 ]
@@ -298,7 +298,7 @@ def build_scene(stage, root: Path, friction=0.8, payload=0.0, terrain=True):
             else:
                 prim = _primitive(stage, geom_path, kind, _vec(resolved.get("size"), []), position, quaternion)
                 _collision(prim, foot_material if geom.get("class") == "foot" else body_material)
-                # Collision shapes are not rendered over the supplied robot mesh.
+                # Collision shapes are not rendered over the robot mesh.
                 UsdGeom.Imageable(prim).CreateVisibilityAttr(UsdGeom.Tokens.invisible)
                 if geom.get("class") == "foot":
                     foot_paths[geom_name] = geom_path

@@ -1,0 +1,69 @@
+{
+  "source_case": "face_empty",
+  "source_trajectory_sha256": "4e4423087534341049923f25e49a747a5a3d3544a900c5ed4439526ed95eaa61",
+  "source_scene_sha256": "da369e9fa08f8c861157e90c5b833ddb581f08d2991a2d3df93887e102e5e9c5",
+  "source_report_sha256": "da37b9ac1f055e4f9f8e0977320cf8891df3d28ba487000a15c67e86284ebab0",
+  "extractor_sha256": "05aeaca67f54174f07920c0fb9f0abd3706a2a3a58b0a5fa071e7f65fe71f028",
+  "samples": 451,
+  "qpos_width": 160,
+  "status": "INCOMPLETE",
+  "events": [
+    {
+      "time_s": 2.0399999999998863,
+      "phase": "settle soil",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 6.040000000000352,
+      "phase": "lower below surface",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 10.079999999999853,
+      "phase": "draw through soil",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 13.119999999998168,
+      "phase": "curl bucket",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 16.159999999996767,
+      "phase": "lift clear",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 17.15999999999799,
+      "phase": "hold load",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    }
+  ],
+  "failures": [
+    "Lift completed with less than 1 kg in bucket"
+  ],
+  "args": {
+    "name": "face_empty",
+    "duration": 18.0,
+    "dt": 0.001,
+    "radius": 0.1,
+    "empty": true,
+    "no_bucket_contact": false,
+    "cone": "pyramidal",
+    "entry_slot": 0.9,
+    "cut_depth": 0.18,
+    "settle_only": false
+  },
+  "validation": {
+    "initial_arm_max_abs_difference": 0.0,
+    "lip_reconstruction_max_m": 1.8441507087861704e-14,
+    "lip_reconstruction_median_m": 4.742326616713896e-15
+  },
+  "output_sha256": "1f700e97016aa0804b4a011bb0682b1c3bb3bf127dfa4a93473ba699a7facada"
+}

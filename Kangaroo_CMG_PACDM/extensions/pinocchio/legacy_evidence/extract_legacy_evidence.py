@@ -1,12 +1,12 @@
 """Extract labelled legacy evidence from a rerun of the unchanged v22 MuJoCo package.
 
-This script belongs to the *legacy* MuJoCo environment (the supplied v22
+This script belongs to the *legacy* MuJoCo environment (the original v22
 ``requirements_validated.txt``: numpy 2.3.5, scipy 1.15.3, mujoco 3.3.7,
 pin 3.8.0).  It is never imported by the Pinocchio pipeline.
 
-Procedure used for this release (see PROVENANCE.json)::
+Procedure used to produce the files in this directory::
 
-    # fresh copy of the supplied v22 package, unchanged
+    # fresh copy of the original v22 package, unchanged
     cd Kangaroo_RoboIR_full_body_v22
     python run_kangaroo_v22.py            # baseline + reference + 8 contact runs + gates
     python extract_legacy_evidence.py --v22-root Kangaroo_RoboIR_full_body_v22 --log mj_legacy.log

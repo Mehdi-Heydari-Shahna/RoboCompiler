@@ -39,7 +39,7 @@ def make_model(name,dt,config,visual=False,no_contact=False,no_loops=False):
             geom.set('solimp','.95 .99 .001')
         if geom.get('type')=='box' and geom.get('contype')=='1':
             geom.set('name',geom.get('name','') or 'foot_'+str(len(list(root.iter('geom')))))
-    # Assign stable unique names without changing the supplied collision boxes.
+    # Assign stable unique names without changing the source collision boxes.
     for body in root.iter('body'):
         for geom in body.findall('geom'):
             if geom.get('type')=='box' and geom.get('contype')=='1':geom.set('name',body.get('name')+'_sole')

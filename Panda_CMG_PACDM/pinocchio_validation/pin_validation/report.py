@@ -330,7 +330,7 @@ python run_validation.py --audit-existing</pre><p class="small">Use the pinned e
 <h3 style="margin-top:22px">Original PACDM core</h3><p>{'SHA-256 matches the unchanged original core.' if core_unchanged else 'WARNING: the current core SHA-256 does not match the validated original.'}</p>
 <p class="hash">{_escape(actual_core_sha)}</p><p class="small">Expected original SHA-256: <span class="hash">{_escape(expected_core_sha)}</span></p>
 <p class="small">Reference and every case trajectory were checked against the completed aggregate's hashes before this report was built. Data tables come from saved JSON; figure lines come from the corresponding NPZ arrays.</p></section>
-<footer>Finite numerical evidence · no hardware or contact claim · report generated from completed local evidence</footer>
+<footer>Finite numerical evidence · report generated from completed local evidence</footer>
 </main></body></html>"""
     (results/"report.html").write_text(document, encoding="utf-8")
     md = ["# Panda PACDM / Pinocchio numerical validation", "",

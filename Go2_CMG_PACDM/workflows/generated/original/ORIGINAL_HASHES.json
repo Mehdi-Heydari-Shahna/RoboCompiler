@@ -2,12 +2,12 @@
   "data/reference.npz": "7ad75360dd525e6de10bf78859733c4cfba717a91a4127be97a021e9e26c1ff1",
   "data/go2_cmg.json": "eaa9e90eaff6c5a8e3af5d660611ab1e679ab2782c2fd695ec7182731d34f549",
   "vendor/__init__.py": "36870d0be39c1a9f8ebeec6476e2e5e4b07d80f3de8a50ce756f677b85b8abb5",
-  "vendor/pacdm_original.py": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+  "vendor/pacdm_original.py": "bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de",
   "go2/task.py": "0e48df983343bf32c515859c76a87f151bcc86d8b024bb6e9142f66d4ea5b1b3",
   "go2/model.py": "97d51e8c3e1931d536487593c0455377fc5a0ae002c781122a948bfb69f7792d",
   "go2/pin_backend.py": "b14e23821b886276c895e1e500c245599a8003890e1bd04541f09b47f0c685eb",
   "go2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "go2/contact.py": "e70ca87163b42324c57246f4e58d721bb665fd640cc20a09886d94cfdcaa2de2",
+  "go2/contact.py": "44e0be298997ec9aed3e07f363d6a2ed43d95c717f99e16b0f2d3f898ef61757",
   "upstream/unitree_go2/go2.xml": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a",
   "upstream/unitree_go2/LICENSE": "7e2dfda59b98e38d123f539b59ecb637ffd8908d19e09f7765884a309f010d40"
 }

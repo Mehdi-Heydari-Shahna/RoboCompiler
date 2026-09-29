@@ -1,4 +1,4 @@
-"""Independent USD read-back tests. These do not claim to run PhysX."""
+"""Independent USD read-back tests; PhysX is not run."""
 import copy
 import json
 import unittest

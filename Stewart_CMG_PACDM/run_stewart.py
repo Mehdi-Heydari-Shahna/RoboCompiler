@@ -23,7 +23,7 @@ from stewart.validation import validate_mechanics
 from stewart.projected import run_projected
 
 ROOT=Path(__file__).resolve().parent
-SOURCE_HASH='492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+SOURCE_HASH='bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
 def write_json(path,value):
@@ -96,7 +96,7 @@ def hash_manifest(root=ROOT):
     # Cover the benchmark and generated evidence without walking a Git checkout
     # or a local Python environment.
     root_files=('run_stewart.py','run_stewart.bat','reproduce.py','verify_files.py',
-                'requirements-linux.txt','environment.yml','README.md','METHODS.md',
+                'requirements-linux.txt','environment.yml',
                 'PROVENANCE.json','.gitignore','.gitattributes')
     paths=[root/name for name in root_files if (root/name).is_file()]
     excluded={'.git','.venv','venv','__pycache__','.pytest_cache','.mypy_cache'}

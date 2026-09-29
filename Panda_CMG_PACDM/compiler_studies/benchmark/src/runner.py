@@ -24,7 +24,7 @@ def log(msg):print(datetime.datetime.now().strftime('%H:%M:%S'),msg,flush=True)
 def load_ref():
     r=dict(np.load(ROOT/'original/data/reference.npz'));t,k=mission_knots();active,av,aa=sample_knots(t,k,r['time'])
     for x in [active,av,aa]:x[:,-1]/=2
-    if mx(active-r['active'])>1e-12:raise ValueError('Regenerated route differs from supplied route')
+    if mx(active-r['active'])>1e-12:raise ValueError('Regenerated route differs from the original route')
     r['active'],r['active_v'],r['active_a']=active,av,aa;return r
 
 def aggregate(rows,groups=('method',)):
@@ -205,7 +205,7 @@ def main(argv=None):
             save_json(out/'native_status.json',status)
             if args.native=='required' or args.stages=='native':
                 save_json(out/'FAILURE.json',dict(error='Native Pinocchio required but import failed',details=str(e)))
-                raise SystemExit('Pinocchio import failed. Activate the working conda environment; see README.md. No native result was produced.')
+                raise SystemExit('Pinocchio import failed. Activate the working conda environment. No native result was produced.')
     stages=args.stages.split(',')
     summary=dict(profile=args.profile,seed=SEED,created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),status='running',new_results_only=True,
         original_core_sha256=sha(ROOT/'original/vendor/pacdm_original.py'),native_availability=status,config=cfg,stages=stages)

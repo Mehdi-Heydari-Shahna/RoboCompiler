@@ -81,7 +81,7 @@ class FrameworkRegression(unittest.TestCase):
 
     def test_core_matches_production_launch_record(self):
         path=ROOT/'execution_evidence/production_launch.json'
-        if not path.exists():self.skipTest('No supplied production launch record')
+        if not path.exists():self.skipTest('No recorded production launch record')
         for name,expected in json.loads(path.read_text())['source_file_hashes'].items():
             with self.subTest(name=name):self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),expected)
 

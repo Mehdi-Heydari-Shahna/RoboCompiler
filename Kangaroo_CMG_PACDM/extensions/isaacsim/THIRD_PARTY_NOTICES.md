@@ -1,19 +1,17 @@
 # Source and third-party notices
 
-This derivative research package was constructed from the source Kangaroo
-v22 archive. The original application files are retained under `vendor_v22/` for
-provenance. Their SHA-256 hashes are recorded in `data/port_provenance.json`.
+This package is derived from the Kangaroo v22 model package. The v22 application
+files are kept under `vendor_v22/`; their SHA-256 hashes are recorded in
+`data/port_provenance.json`.
 
-The public HuCeBot robot model in that archive includes a BSD 2-Clause license,
+The public HuCeBot robot model includes a BSD 2-Clause license,
 Copyright (c) 2025, HuCeBot Inria/Loria team. Its complete license is retained at
 `vendor_v22/upstream/hucebot/LICENSE`. Cached meshes in `assets/` were generated
-from the corresponding supplied geometry. The cache conversion does not confer
+from the corresponding source geometry. The cache conversion does not confer
 new ownership or remove the original conditions.
 
 No NVIDIA binary, Isaac Sim extension, font, or package environment is distributed
-in this ZIP. Isaac Sim, NumPy, SciPy, and pytest remain separately installed
-software under their respective licenses. Installation commands do not accept
-NVIDIA's license on behalf of the user.
+here. Isaac Sim, NumPy, SciPy, and pytest remain separately installed software
+under their respective licenses; installing them requires accepting their terms.
 
-No new license is asserted over the pre-existing research code.
-Consult the retained source licenses before redistributing that source or assets.
+Consult the retained source licenses before redistributing the upstream assets.

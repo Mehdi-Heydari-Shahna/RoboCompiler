@@ -246,7 +246,7 @@ def from_original_cmg(cmg):
     """
     pose_ids=set(cmg['coordinate_ids'][:6])
     pose_joints=[j for j in cmg['joints'] if j['id'] in pose_ids]
-    if len(pose_joints)!=6:raise ModelError('Expected the supplied six-coordinate platform chart')
+    if len(pose_joints)!=6:raise ModelError('Expected the six-coordinate platform chart of the source model')
     chart_bodies={j['follower_body'] for j in pose_joints}-{'platform'}
     if len(chart_bodies)!=5:raise ModelError('Unexpected source platform chart')
     outb=[deepcopy(b) for b in cmg['bodies'] if b['id'] not in chart_bodies]
@@ -264,4 +264,4 @@ def from_original_cmg(cmg):
                 root_body=cmg['root_body'],task_body='platform',bodies=outb,joints=outj,
                 actuators=[dict(joint_id=k,effort_type='force',unit='N') for k in cmg['independent_ids']],
                 gravity_m_s2=deepcopy(cmg['gravity_m_s2']),
-                provenance='Physical data copied from supplied Stewart CMG; artificial free-platform chain removed by a documented Stewart-specific adapter')
+                provenance='Physical data copied from the source Stewart CMG; artificial free-platform chain removed by a documented Stewart-specific adapter')

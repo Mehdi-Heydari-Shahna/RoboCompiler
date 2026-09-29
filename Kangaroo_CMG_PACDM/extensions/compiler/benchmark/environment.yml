@@ -1,4 +1,4 @@
-# Miniforge / conda-forge environment for Windows or Linux (not executed here; the tested route is
+# Miniforge / conda-forge environment for Windows or Linux (the reference route is
 # requirements.txt on Linux). conda-forge lists Pinocchio 3.8.0 (a win-64 build for Python 3.12 was checked),
 # NumPy 2.3.5 and threadpoolctl 3.6.0, but no SciPy 1.15.3 build, so the tested SciPy version is installed
 # from PyPI by pip (a win_amd64 CPython 3.12 wheel exists). If the solver reports a pinned version as

@@ -15,14 +15,14 @@ from kangaroo_isaac.report import convergence_check,suite_report
 from kangaroo_isaac.solver_settings import author_solver_settings,read_solver_settings,app_configuration,expected_settings
 from kangaroo_isaac.timing import StepTiming
 
-FIXTURE=ROOT/'tests/fixtures/uploaded_v23_0_2'
+FIXTURE=ROOT/'tests/fixtures/recorded_v23_0_2'
 
 
-def uploaded():return json.loads((FIXTURE/'result.json').read_text())
+def recorded():return json.loads((FIXTURE/'result.json').read_text())
 
 
 def test_real_uploaded_failed_task_cannot_exit_successfully():
-    r=uploaded()
+    r=recorded()
     assert r['completed'] is True
     assert r['validation']['functional_status']=='FUNCTIONAL_GATES_FAILED'
     assert authoritative_exit_code(r,0)==3
@@ -31,7 +31,7 @@ def test_real_uploaded_failed_task_cannot_exit_successfully():
 
 
 def test_uploaded_metrics_still_fail_identical_acceptance_after_repair():
-    r=uploaded();c=case_config('nominal',solver_profile='legacy_128_32')
+    r=recorded();c=case_config('nominal',solver_profile='legacy_128_32')
     v=assess('nominal',c,r['metrics'],{'status':'PASS'},True)
     assert v['gates']==r['validation']['gates']
     assert v['functional_status']=='FUNCTIONAL_GATES_FAILED'
@@ -45,13 +45,13 @@ def test_recorded_vertical_oscillation_is_visible_in_positions():
         assert np.corrcoef(dzdt[m][1:-1],a['base_velocity_origin'][m,2][1:-1])[0,1]>.99
         speed=np.linalg.norm(a['base_velocity_origin'][m],axis=1)
         assert speed.max()>.08
-        assert speed.max()<=uploaded()['metrics']['maximum_final_base_speed_m_s']
+        assert speed.max()<=recorded()['metrics']['maximum_final_base_speed_m_s']
         assert np.ptp(a['base'][m,2])>.004
 
 
 @pytest.mark.parametrize('profile',list(SOLVER_PROFILES))
 def test_profiles_change_only_declared_numerical_settings(profile):
-    source=uploaded()['configuration'];c=asdict(case_config('nominal',solver_profile=profile))
+    source=recorded()['configuration'];c=asdict(case_config('nominal',solver_profile=profile))
     numerical={'solver_position_iterations','solver_velocity_iterations','solver_type',
                'external_forces_every_iteration','solver_profile','physx_threads'}
     assert all(c[k]==v for k,v in source.items() if k not in numerical)
@@ -149,7 +149,7 @@ def test_inconsistent_success_status_rejected(defect):
 
 
 def test_convergence_requires_both_native_case_passes():
-    assert convergence_check(uploaded(),passing_result('refined'))['status']=='BLOCKED_CASE_NOT_PASSED'
+    assert convergence_check(recorded(),passing_result('refined'))['status']=='BLOCKED_CASE_NOT_PASSED'
     assert convergence_check(None,passing_result())['status']=='NOT_RUN'
 
 
@@ -180,7 +180,7 @@ def test_invalid_convergence_input_cannot_pass(defect):
 
 
 def test_actual_failure_is_not_obscured_by_skipped_refinement(tmp_path):
-    p=tmp_path/'nominal';p.mkdir();(p/'result.json').write_text(json.dumps(uploaded()))
+    p=tmp_path/'nominal';p.mkdir();(p/'result.json').write_text(json.dumps(recorded()))
     r=suite_report(tmp_path,['nominal','refined','solver_check'])
     assert r['overall_status']=='NATIVE_FUNCTIONAL_GATES_FAILED_OR_DIAGNOSTIC_ONLY'
     assert r['refinement']['status']==r['solver_convergence']['status']=='NOT_RUN'
@@ -220,7 +220,7 @@ def supervisor_fixture(monkeypatch,tmp_path,failed_case=None,work_offset=0.):
     def child(cmd,**kwargs):
         commands.append(cmd)
         case=cmd[cmd.index('--case')+1];out=cmd[cmd.index('--output')+1]
-        r=uploaded() if case==failed_case else passing_result(case)
+        r=recorded() if case==failed_case else passing_result(case)
         r['case']=case
         if case=='refined' and case!=failed_case:r['metrics']['final_motor_work_J'][0]=work_offset
         script="import pathlib,json; p=pathlib.Path(%r); (p/'result.json').write_text(%r); print('SOFTWARE SUBPROCESS FIXTURE -- NO ISAAC/PHYSX EXECUTION',flush=True)" % (out,json.dumps(r))

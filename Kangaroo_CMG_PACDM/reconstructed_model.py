@@ -2,7 +2,7 @@
 
 The reconstruction specifies four-constraint cut joints and restores the
 source ankle-ball bodies. Geometry and topology assumptions are recorded
-in MODEL_CHANGELOG.md and the CMG metadata."""
+in the CMG metadata."""
 import sys,copy,json
 from pathlib import Path
 import xml.etree.ElementTree as ET

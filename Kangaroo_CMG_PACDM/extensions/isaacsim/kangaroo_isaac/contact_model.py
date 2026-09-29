@@ -1,6 +1,6 @@
 """Source contact compliance, mapped to the PhysX compliant-contact model.
 
-The supplied v22 MuJoCo task (``vendor_v22/contact_task.py``) does not use rigid
+The original v22 MuJoCo task (``vendor_v22/contact_task.py``) does not use rigid
 contacts. It declares soft sole/floor contacts with
 
     solref = (contact_time_constant_s = 0.003 s, dampratio = 1)
@@ -8,7 +8,7 @@ contacts. It declares soft sole/floor contacts with
 
 Earlier Isaac ports authored rigid PhysX contacts instead. With this robot
 (links of 2-4 g inside closed chains next to the feet) the rigid TGS contact
-solve produced step-to-step normal-impulse noise at the soles: in the uploaded
+solve produced step-to-step normal-impulse noise at the soles: in the recorded
 23.0.4 runs each resting sole reported zero normal force at roughly 40 % of the
 1-kHz controller ticks (25 us step) and at roughly 65 % of the 5-ms telemetry
 samples (12.5 us step), and the feet crept (13.8 mm and 22.6 mm maximum drift).
@@ -34,7 +34,7 @@ and the damping is chosen for the source damping ratio around that stiffness:
 A linear PhysX spring cannot also reproduce MuJoCo's 3 ms dynamic time
 constant (that would need an acceleration stiffness 20x lower and gives
 millimetre-scale resting penetration). This is therefore a documented
-approximation, not an equivalence claim. The values are derived only from the
+approximation, not an exact equivalence. The values are derived only from the
 source solref/solimp; they are not tuned against a task gate.
 """
 from __future__ import annotations

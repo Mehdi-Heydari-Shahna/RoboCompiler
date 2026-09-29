@@ -22,7 +22,7 @@ def build(src, cfg, out_path, isaac_scene_defaults=True):
     P0 = package_build(stage, model, ref, cfg, visuals=False)
     if isaac_scene_defaults:
         # Isaac's World/PhysicsContext pre-authors this on /physicsScene (seen in
-        # the user's exported scene). It has no effect without per-body CCD flags.
+        # an exported Isaac scene). It has no effect without per-body CCD flags.
         stage.GetPrimAtPath(SCENE).CreateAttribute('physxScene:enableCCD', Sdf.ValueTypeNames.Bool).Set(True)
     audit = audit_stage(stage, model, cfg)
     stage.GetRootLayer().Export(str(out_path))

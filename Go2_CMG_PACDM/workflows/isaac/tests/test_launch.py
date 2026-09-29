@@ -124,7 +124,7 @@ def test_launcher_blocks_remaining_cases_after_first_failure(tmp_path, monkeypat
             if mode == 'nonzero_exit':
                 write_preflight(output, run_id=run_id)
                 return 1
-            return 0  # Reproduces the OS code found in the supplied manifest.
+            return 0  # Reproduces the OS code found in the recorded manifest.
         return 1  # Report remains a failure; no fabricated validation pass.
 
     monkeypatch.setattr(launch, 'run_logged', run_logged)

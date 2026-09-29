@@ -1,6 +1,6 @@
 """Native Pinocchio CONTACT_3D support oracle, independent of PACDM Jacobians.
 
-Uses the unchanged supplied CMG-to-Pinocchio backend. Supports are ideal
+Uses the unchanged original CMG-to-Pinocchio backend. Supports are ideal
 stationary point centers, zero stabilization and zero regularization. Not the
 unilateral compliant contact model of the original locomotion rollout.
 """

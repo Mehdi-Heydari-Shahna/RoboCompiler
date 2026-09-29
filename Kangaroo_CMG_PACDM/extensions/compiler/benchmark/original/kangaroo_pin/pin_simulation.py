@@ -31,11 +31,11 @@ Every step (semi-implicit Euler with PACDM projection):
    at the 1e-9 PACDM corrector tolerance the tangent map deviates from the
    exact tangent space by ~1e-8, which lets the large internal loop forces
    of stance leak into the reduced equations (~1e-5 m/s^2).  The polish is
-   the supplied package's own remedy for this redundancy.
+   the original package's own remedy for this redundancy.
 
 The drive model, 1 kHz command schedule, feedforward gating, disturbance and
 initial release reuse the accepted v22 definitions (``contact_task.DEFAULTS``
-and ``external_push``) so the task matches the supplied MuJoCo benchmark.
+and ``external_push``) so the task matches the original MuJoCo benchmark.
 """
 from __future__ import annotations
 

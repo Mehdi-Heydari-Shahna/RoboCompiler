@@ -84,7 +84,7 @@ def aggregate(root):
         gate('refinement.rms_difference_contracts',ratio,.8)
     result=dict(passed=all(c['passed'] for c in checks.values()),passed_count=sum(c['passed'] for c in checks.values()),check_count=len(checks),
         checks=checks,cases=cases,refinement=refinement,
-        scope='Finite CMG/PACDM and motor-driven Pinocchio simulation validation with custom compliant spherical-foot contact. No hardware or identical-MuJoCo-contact claim.',
+        scope='Finite CMG/PACDM and motor-driven Pinocchio simulation validation with custom compliant spherical-foot contact. Hardware behavior and MuJoCo-identical contact are outside this scope.',
         nested_audit_counts={k:len(v.get('checks',[])) for k,v in details.items() if isinstance(v,dict) and 'checks' in v})
     (out/'validation.json').write_text(json.dumps(result,indent=2)+'\n')
     return result

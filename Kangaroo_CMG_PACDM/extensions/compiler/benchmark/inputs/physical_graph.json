@@ -8690,10 +8690,10 @@
     "Each original hip pair of point connects (hinge cut) becomes one universal cut at their midpoint.",
     "Restore both commented ankle-ball bodies per leg, with source inertia, joint axis and bounds.",
     "Each terminal ankle point cut moves from ankle_roll to restored ankle_ball and becomes universal.",
-    "Universal frame axes are explicit reconstruction assumptions; not supplied author CAD frames."
+    "Universal frame axes are explicit reconstruction assumptions, not author CAD frames."
    ]
   },
   "extracted_from": "original/original_v22/data/whole_body_cmg.json"
  },
- "note": "Loop cuts are declared physical closures (as authored in the supplied CMG). Sole sites are support-mode data, not permanent mechanical closures."
+ "note": "Loop cuts are declared physical closures (as authored in the source CMG). Sole sites are support-mode data, not permanent mechanical closures."
 }

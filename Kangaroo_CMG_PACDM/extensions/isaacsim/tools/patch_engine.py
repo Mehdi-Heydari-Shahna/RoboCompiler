@@ -52,7 +52,7 @@ def inspect_patch(root: Path, payload: dict) -> tuple[dict[str, bytes], list[str
         if current not in allowed:
             errors.append(name)
     if errors:
-        raise ValueError('Project files differ from the supplied 23.0.2/23.0.3 release. '
+        raise ValueError('Project files differ from the 23.0.2/23.0.3 release. '
                          'No files were changed. Preserve custom edits and use the full ZIP instead.\n' + '\n'.join(sorted(errors)))
     changed = [n for n,d in replacements.items() if not safe_path(root,n).is_file()
                or safe_path(root,n).read_bytes()!=d]
@@ -121,7 +121,7 @@ def patch_main(payload: dict, argv: list[str] | None = None) -> int:
     if result['backup']:print('Previous files backed up to:',result['backup'],flush=True)
     print('No packages were installed or replaced. Existing results were preserved.',flush=True)
     if args.dry_run:return 0
-    # Verify the complete delivered project, not just the patched files.
+    # Verify the complete project, not just the patched files.
     code=subprocess.call([sys.executable,str(root/'tools/verify_package.py')],cwd=root)
     if code:return code
     if not args.run:

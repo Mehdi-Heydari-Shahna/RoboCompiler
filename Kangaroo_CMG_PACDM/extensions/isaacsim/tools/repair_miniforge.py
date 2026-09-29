@@ -96,7 +96,7 @@ def main(argv: list[str] | None = None) -> int:
         folder.mkdir(parents=True, exist_ok=False)
     except OSError as exc:
         print('BLOCKED: cannot write project results:', exc)
-        print('Extract the package to a writable local folder outside the protected directory.')
+        print('Place the repository in a writable local folder outside the protected directory.')
         return 2
     code = 2
     status = {'status': 'STARTED', 'certified_ready': False, 'isaac_sim_execution': 'NOT_RUN'}

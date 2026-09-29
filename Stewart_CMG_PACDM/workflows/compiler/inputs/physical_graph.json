@@ -2203,5 +2203,5 @@
     0,
     -9.81
   ],
-  "provenance": "Physical data copied from supplied Stewart CMG; artificial free-platform chain removed by a documented Stewart-specific adapter"
+  "provenance": "Physical data copied from the source Stewart CMG; artificial free-platform chain removed by a documented Stewart-specific adapter"
 }

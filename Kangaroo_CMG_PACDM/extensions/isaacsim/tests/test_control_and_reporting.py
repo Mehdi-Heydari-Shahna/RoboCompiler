@@ -146,7 +146,7 @@ def test_atomic_json_and_nonfinite_rejection(tmp_path):
 
 
 def test_cross_engine_coordinate_reordering_is_exact(model):
-    # Construct a TEST FIXTURE from the supplied baseline, NOT an Isaac result.
+    # Construct a TEST FIXTURE from the recorded baseline, NOT an Isaac result.
     with np.load(ROOT/'reference_mujoco/landing_nominal.npz',allow_pickle=False) as r:a={k:r[k] for k in r.files}
     tree=ET.parse(ROOT/'reference_mujoco/landing_nominal.xml').getroot()
     names=[x.attrib['name'] for x in tree.find('worldbody').iter('joint')]

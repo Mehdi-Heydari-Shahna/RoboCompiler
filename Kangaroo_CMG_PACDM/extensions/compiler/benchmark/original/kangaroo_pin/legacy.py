@@ -1,13 +1,13 @@
 """MuJoCo-free access to the accepted Kangaroo v22 definitions.
 
-The supplied v22 modules import MuJoCo at module level because they also
+The original v22 modules import MuJoCo at module level because they also
 contain native MuJoCo adapters.  The Pinocchio backend needs only their
 NumPy/PACDM definitions (graph adapter, reconstructed CMG builder, source
 dynamics and the contact reference).  This loader parses the unchanged files
 in ``original_v22/`` and executes exactly the named top-level definitions, in
 their original text, inside a namespace that supplies the same imports minus
 MuJoCo.  Nothing is copied or edited: every executed segment is a verbatim
-slice of a byte-identical supplied file, and its SHA-256 is recorded.
+slice of an original v22 file, and its SHA-256 is recorded.
 
 Pure modules without a MuJoCo import (``pacdm``, ``source_dynamics``,
 ``source_bias``, ``constraint_solvers``, ``import_full_model``) are imported
@@ -65,7 +65,7 @@ def load(reference_root: Path | None = None):
     """Return a namespace object holding the accepted definitions.
 
     ``reference_root`` replaces ``contact_reference.ROOT`` so a regenerated
-    reference is written to a caller-chosen folder rather than the supplied
+    reference is written to a caller-chosen folder rather than the original
     package.  All other module-level values keep their original meaning.
     """
     key = str(reference_root) if reference_root is not None else None

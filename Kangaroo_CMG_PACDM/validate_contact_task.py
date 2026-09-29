@@ -66,7 +66,7 @@ def validate(reuse=False):
     flag('accepted_core_bytes_preserved',all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==sha for p,sha in provenance['core_sha256'].items()))
     flag('all_upstream_source_assets_preserved',all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==sha for p,sha in provenance['source_files'].items()))
     result=dict(status='PASS_RECONSTRUCTED_MODEL' if all(g['passed'] for g in gates) else 'FAIL',gates=gates,gates_passed=sum(g['passed'] for g in gates),gates_total=len(gates),runs=runs,negative_controls=[neg,negloop,passive],reference=ref,
-        scope='Full reconstructed prototype, mechanical drives and compliant native contact; no hardware calibration, full-body self-collision, walking, or jump takeoff claim.')
+        scope='Full reconstructed prototype, mechanical drives and compliant native contact; hardware calibration, full-body self-collision, walking and jump takeoff are outside this scope.')
     (ROOT/'results/contact_validation.json').write_text(json.dumps(result,indent=2)+'\n')
     print(result['status'],result['gates_passed'],'/',result['gates_total'],'contact gates',flush=True)
     for g in gates:

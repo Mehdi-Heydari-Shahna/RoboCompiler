@@ -3,7 +3,7 @@
 
 Usage: python audit_results.py --results results_here --replay full --out audit_local
 No native results are asserted by a NumPy replay. Native execution is a separate
-run_go2.py stage; this audit preserves the supplied result directory unchanged.
+run_go2.py stage; this audit leaves the given result directory unchanged.
 """
 from pathlib import Path
 import argparse,csv,json,hashlib,math

@@ -4,8 +4,8 @@ The accepted ``contact_reference.build_reference`` (foot-pose IK through the
 unchanged PACDM mapping, whole-body feedforward from the accepted NumPy
 source dynamics) is executed verbatim through ``legacy.load`` with its output
 root redirected to ``results/reference_rebuild``.  The simulations use the
-supplied ``original_v22/data/contact_reference.npz``; this module proves that
-the supplied reference is reproduced by the accepted code without MuJoCo.
+stored ``original_v22/data/contact_reference.npz``; this module shows that
+the stored reference is reproduced by the accepted code without MuJoCo.
 """
 from __future__ import annotations
 
@@ -37,10 +37,10 @@ def rebuild(output=None):
     accepted = load(reference_root=out)
     accepted.build_reference()
     elapsed = time.perf_counter() - started
-    supplied = SOURCE / 'data/contact_reference.npz'
+    stored = SOURCE / 'data/contact_reference.npz'
     rebuilt = out / 'data/contact_reference.npz'
     comparison = {}
-    with np.load(supplied, allow_pickle=False) as a, np.load(rebuilt, allow_pickle=False) as b:
+    with np.load(stored, allow_pickle=False) as a, np.load(rebuilt, allow_pickle=False) as b:
         if set(a.files) != set(b.files):
             raise ValueError('Rebuilt reference has different arrays')
         for key in sorted(a.files):
@@ -51,13 +51,13 @@ def rebuild(output=None):
                 max_absolute_difference=float(np.max(np.abs(x - y))) if same_shape and x.size else 0.)
     summary = json.loads((out / 'results/contact_reference.json').read_text())
     summary.pop('elapsed_seconds', None)
-    result = dict(supplied_sha256=_sha(supplied), rebuilt_sha256=_sha(rebuilt),
-                  file_bit_identical=_sha(supplied) == _sha(rebuilt),
+    result = dict(stored_sha256=_sha(stored), rebuilt_sha256=_sha(rebuilt),
+                  file_bit_identical=_sha(stored) == _sha(rebuilt),
                   all_arrays_bit_identical=all(v['bit_identical'] for v in comparison.values()),
                   maximum_array_difference=max(v['max_absolute_difference'] for v in comparison.values()),
                   arrays=comparison, rebuilt_summary=summary, elapsed_s=elapsed,
                   method='accepted contact_reference.build_reference executed verbatim via legacy.load; MuJoCo not imported')
-    # Keep only the comparison record; the rebuilt arrays duplicate the supplied file.
+    # Keep only the comparison record; the rebuilt arrays duplicate the stored file.
     (out / 'data/contact_reference.npz').unlink()
     (out / 'data/configurations.npz').unlink()
     shutil.rmtree(out)

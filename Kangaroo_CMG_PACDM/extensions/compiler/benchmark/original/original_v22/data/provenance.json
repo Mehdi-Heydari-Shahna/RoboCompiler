@@ -1,9 +1,9 @@
 {
   "source_repository": "https://github.com/hucebot/mujoco_kangaroo_sim2sim",
   "source_commit": "c020b68f3690930f5228d9f301b59ad9ab405e9a",
-  "core_origin": "Accepted Kangaroo_RoboIR_PACDM_knee_v19 implementation, reused byte-for-byte",
+  "core_origin": "Kangaroo_RoboIR_PACDM_knee_v19 implementation, reused without code changes",
   "core_sha256": {
-    "pacdm.py": "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca",
+    "pacdm.py": "bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de",
     "source_dynamics.py": "6e6531065b7f15987a404995ee38f0aa0b1247368ad697e28603480d4b71e2a6",
     "source_bias.py": "bfa6db64a0304d41604bd02436153bf8e81a1dd4a3c91604b32a995805bbeeae",
     "constraint_solvers.py": "398d960da7495924a368741a994eab600f4faf3e884fc8fb39cb20a87e4be5b3",

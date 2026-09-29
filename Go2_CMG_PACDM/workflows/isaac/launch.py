@@ -97,7 +97,7 @@ def runtime_command(runtime, arguments):
         values = [str(runtime), *map(str, arguments)]
         if any(any(char in arg for char in '&|<>^%!"\r\n') for arg in values):
             raise ValueError("Windows batch paths must not contain shell metacharacters (& | < > ^ % ! or quotes). "
-                             "Extract the package and choose an output path without those characters.")
+                             "Place the repository at a path without those characters.")
         command = '"' + " ".join('"' + arg + '"' for arg in values) + '"'
         comspec = os.environ.get("COMSPEC", "cmd.exe")
         # Pass the cmd command line directly: list2cmdline's C-runtime quote

@@ -116,7 +116,7 @@ class Model:
 
     def validate(self):
         if self.nb != 78 or self.n != 76 or len(self.active) != 12:
-            raise ValueError('Not the supplied v22 full-body robot')
+            raise ValueError('Not the original v22 full-body robot')
         if len(set(self.names)) != self.nb or len(set(self.ids)) != self.n:
             raise ValueError('Duplicate IDs')
         if len(self.ca) != 24 or len(self.universal)!=8:

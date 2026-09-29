@@ -196,7 +196,7 @@ def validate_contacts(cmg=None, output=None):
     """Verify full PACDM residuals, tangent map and ideal-support KKT.
 
     Algebraic test multipliers need not satisfy unilateral/friction bounds;
-    only the separate simulated mission makes physical contact claims.
+    physical contact is evaluated in the separate simulated mission.
     """
     from .contact import ContactGraph, FootKinematics, StanceGraph
     cmg = source.build_model() if cmg is None else cmg

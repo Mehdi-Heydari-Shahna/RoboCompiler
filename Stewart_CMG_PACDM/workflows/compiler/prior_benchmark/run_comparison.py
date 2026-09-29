@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """One entry point: python run_comparison.py --profile full --out results.
 
-Uses the supplied, byte-identical PACDM source. See README for the differences
-between freshly executed NumPy/SciPy tests, optional native Pinocchio tests,
-and the URDF+ framework comparison that is not implemented in this package.
+Uses the unchanged PACDM source. Freshly executed NumPy/SciPy tests and
+optional native Pinocchio tests are reported separately; the URDF+ framework
+is discussed but not run as a baseline.
 """
 from __future__ import annotations
 import os
@@ -463,7 +463,7 @@ def report(out,summary):
     lines=['# Stewart CMG/PACDM comparison — freshly executed benchmark','',
       f"Profile: **{summary['profile']}**. Seed: **{summary['seed']}**. Status: **{summary['status']}**.",'',
       '## Scope',
-      'The unchanged supplied PACDM implementation is compared with bounded SciPy TRF. '
+      'The unchanged PACDM implementation is compared with bounded SciPy TRF. '
       'A separate NumPy classical rigid-body evaluator supports a full KKT dynamics reference. '
       'The NumPy reference is NOT Pinocchio, URDF+, or generalized_rbda. This run is an assembly '
       'and dynamics benchmark; it does not rerun the closed-loop control simulations.','',
@@ -489,7 +489,7 @@ def report(out,summary):
                     ('median_total_ms','Median ms'),('p95_total_ms','P95 ms'),
                     ('max_success_point_gap_m','Max accepted gap (m)')]),'',
       '## Dynamics',json.dumps(clean(ds),indent=2),'',
-      'PACDM uses its supplied SE(3) mapping and directional finite-difference curvature. '
+      'PACDM uses its original SE(3) mapping and directional finite-difference curvature. '
       'The KKT route uses independent physical point Jacobians and exact classical acceleration bias. '
       'The two NumPy routes share mass/bias evaluation, inertias, q, velocity, actuator forces and external wrench. '
       'Comparisons use feasible states, zero stabilization and zero regularization. '
@@ -517,14 +517,14 @@ def report(out,summary):
       'The original full augmented closure gate is also applied. Root matching is separately checked '
       'against the known target pose with 1e-5 m and 1e-5 rad thresholds; it is not a global branch enumeration.','',
       'A solver failure is a benchmark observation, not automatically a harness failure. '
-      'No significance test or global convergence claim is made. Timing should be rerun on the same '
+      'Significance tests and global convergence are outside this scope. Timing should be rerun on the same '
       'local hardware for a publication. Fully successful ablations do not demonstrate that recovery is necessary.','',
       '## Integrity and reproducibility',
       f"Self-tests: {summary['self_tests_passed']}/{summary['self_tests_total']}. "
       'Source hashes, dependency versions, platform, seeds, configuration, failures and all raw states are saved. '
-      'No saved simulation metrics from the uploaded archive are substituted for new measurements.','',
+      'Saved simulation metrics from earlier runs are not substituted for new measurements.','',
       '## Sources',
-      '- Supplied Pinocchio.zip: original/stewart/*.py, original/vendor/pacdm_original.py and original/data/stewart.cmg.json.',
+      '- Source package (Pinocchio.zip): original/stewart/*.py, original/vendor/pacdm_original.py and original/data/stewart.cmg.json.',
       '- SciPy 1.17.0 API (the tested version): https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.optimize.least_squares.html',
       '- Native Pinocchio example: https://github.com/stack-of-tasks/pinocchio/blob/v3.8.0/examples/simulation-closed-kinematic-chains.py',
       '- URDF+ associated library, not benchmarked here: https://github.com/ROAM-Lab-ND/generalized_rbda','']
@@ -566,7 +566,7 @@ def main():
              machine=platform.machine(),processor=platform.processor(),cpu_count=os.cpu_count(),
              seed=args.seed,profile=args.profile,configuration=config,
              command=sys.argv,threads={k:os.environ[k] for k in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS')},
-             measurement_origin='Fresh execution of this harness, not uploaded saved metrics')
+             measurement_origin='Fresh execution of this harness, not previously saved metrics')
     try:env['cpu_model']=next(line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name'))
     except Exception:pass
     save_json(out/'environment.json',env)

@@ -2,7 +2,7 @@
 
 The tool-to-target edge is an imposed task constraint, not a physical arm loop.
 Six massless virtual target coordinates make its differential map explicit.
-The supplied PACDM implementation is imported without modification.
+The PACDM implementation is imported without modification.
 """
 from __future__ import annotations
 

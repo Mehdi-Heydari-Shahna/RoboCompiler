@@ -1,9 +1,9 @@
 """Fresh CMG/PACDM checks against measured simulator states, not reference replay.
 
-Only NumPy/SciPy and the unchanged supplied PointGraph/PACDM are used here.
+Only NumPy/SciPy and the unchanged original PointGraph/PACDM are used here.
 Newton-Euler body summation is a second dynamics implementation, independent of
 PhysX and of the archived Pinocchio mass/bias calculation. It shares CMG data
-and the supplied graph, so it is not independent identification of real inertia.
+and the source graph, so it is not an independent identification of real inertia.
 The gates below are declared engineering tolerances, not universal error bounds.
 """
 from __future__ import annotations

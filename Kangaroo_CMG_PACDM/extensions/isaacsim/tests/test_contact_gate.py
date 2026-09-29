@@ -91,7 +91,7 @@ def test_new_configuration_keeps_all_previous_native_physics_and_gains():
     # declared SOLVER_PROFILES); 23.0.4 changed only the feedforward gate. Every
     # physical setting, gain, gate and clock equals 23.0.3.
     from kangaroo_isaac.control import SOLVER_PROFILES
-    old=json.loads((FIX/'uploaded_result.json').read_text())['configuration']
+    old=json.loads((FIX/'recorded_result.json').read_text())['configuration']
     new=asdict(Config());new.pop('feedforward_contact_mode')
     added={k:new.pop(k) for k in ('contact_model','contact_stiffness_per_s2','contact_damping_per_s')}
     solver={k:new.pop(k) for k in ('solver_profile','solver_type','solver_position_iterations',
@@ -118,8 +118,8 @@ def test_actual_5ms_trace_replay_does_not_claim_new_native_motion():
         assert g[tail].all() and not g[0]
         assert np.linalg.norm(a['base_velocity_origin'][tail],axis=1).max()>.06
         assert np.ptp(a['base'][tail,2])>.0023
-    # Same actual uploaded trajectory remains a failed task. Replay never changes it.
-    r=json.loads((FIX/'uploaded_result.json').read_text())
+    # The same recorded trajectory remains a failed task. Replay never changes it.
+    r=json.loads((FIX/'recorded_result.json').read_text())
     assert authoritative_exit_code(r,0)==3
     failed=[g['name'] for g in r['validation']['gates'] if g['status']=='FAIL']
     assert failed==['maximum_final_base_speed_m_s']

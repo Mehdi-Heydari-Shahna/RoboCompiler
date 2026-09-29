@@ -1,7 +1,7 @@
 """Execute production run_case against deterministic in-process API doubles.
 
 This checks control flow, API argument shapes, logging, clock/failure handling
-and the uploaded inertia regression. It is NOT PhysX or Isaac execution; the
+and the earlier inertia regression. It is NOT PhysX or Isaac execution; the
 stationary body fixture is deliberately not a physics integrator. Artifacts
 remain in pytest temporary directories and are never release mission results.
 """

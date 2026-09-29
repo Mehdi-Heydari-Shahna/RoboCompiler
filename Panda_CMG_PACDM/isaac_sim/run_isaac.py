@@ -97,7 +97,7 @@ def child(args):
             reference_path=str(ref.path),reference_sha256=hashlib.sha256(ref.path.read_bytes()).hexdigest(),
             cmg_sha256=hashlib.sha256((ROOT/'data/panda_cmg.json').read_bytes()).hexdigest(),
             pacdm_sha256=hashlib.sha256((ROOT/'vendor/pacdm_original.py').read_bytes()).hexdigest(),
-            reference_source='User PACDM-generated route, not measured robot state'))
+            reference_source='PACDM-generated route, not measured robot state'))
         native=NativePanda(app,ROOT,cmg,ref,args.mode,case,out,args.gui,checkpoint)
         checkpoint('Checking native mechanics')
         mechanics=native.mechanics();write_json(out/'mechanics.json',mechanics)

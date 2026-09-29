@@ -1,4 +1,4 @@
-# Native optional route. Mirrors ABI pins in the supplied Stewart package.
+# Native optional route. Mirrors ABI pins in the Stewart package.
 # This installation was network-blocked in the present runtime.
 -r requirements.txt
 pin==3.8.0

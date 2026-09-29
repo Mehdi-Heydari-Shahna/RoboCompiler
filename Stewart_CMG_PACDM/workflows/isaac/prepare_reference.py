@@ -1,6 +1,6 @@
 """Optional regeneration in the separate Miniforge Pinocchio environment.
 
-The Isaac mission deliberately uses the hash-verified supplied baseline.
+The Isaac mission deliberately uses the hash-verified recorded baseline.
 This command regenerates independent reference evidence in prepared_reference/
 and compares its values to that baseline. It never changes mission inputs.
 """
@@ -23,7 +23,7 @@ def main():
     root = Path(__file__).resolve().parent
     out = args.output_dir.resolve()
     if out == root / "baseline" or (root / "baseline") in out.parents:
-        parser.error("The supplied baseline is immutable; choose a different output directory")
+        parser.error("The recorded baseline is immutable; choose a different output directory")
     try:
         import pinocchio as pin
         import scipy
@@ -34,7 +34,7 @@ def main():
                          "Do not install Pinocchio into Isaac Sim's Python. Missing dependency: " + str(error))
     preflight = run_preflight(root)
     if not preflight["passed"]:
-        raise SystemExit("Preflight failed; the supplied source/model/reference has changed or failed its numerical checks")
+        raise SystemExit("Preflight failed; the recorded source/model/reference has changed or failed its numerical checks")
     cmg = json.loads((root / "data/stewart.cmg.json").read_text())
     out.mkdir(parents=True, exist_ok=True)
     reference_path = out / "reference.npz"

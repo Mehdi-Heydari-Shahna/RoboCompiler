@@ -382,13 +382,13 @@ class GeneratedSupportGraph(_GraphBase):
         return [T[probe.nc + k] @ self.site_B[k] for k in range(len(self.welds))]
 
 
-class SuppliedLayoutGraph:
-    """The generated global evaluator presented in the supplied v22 CutGraph layout.
+class SourceLayoutGraph:
+    """The generated global evaluator presented in the original v22 CutGraph layout.
 
-    Columns follow the supplied coordinate order and chart columns, rows follow
-    the supplied cut order, so the unchanged delivered rollout code
+    Columns follow the original coordinate order and chart columns, rows follow
+    the original cut order, so the unchanged original rollout code
     (``kangaroo_pin.pin_simulation``) can use it in place of the accepted
-    ``CutGraph``.  Like the delivered ``make_graph`` wrapper it keeps an exact
+    ``CutGraph``.  Like the original ``make_graph`` wrapper it keeps an exact
     single-entry cache for a byte-identical configuration without defects.
     """
 
@@ -400,18 +400,18 @@ class SuppliedLayoutGraph:
         self.active, self.passive = layout.active.copy(), layout.passive.copy()
         self.lower, self.upper = layout.lower.copy(), layout.upper.copy()
         self.ids, self.cuts, self.chart_columns = layout.ids, layout.cuts, layout.chart_columns
-        src = np.empty(self.n, int)  # compiled column i <- supplied column src[i]
+        src = np.empty(self.n, int)  # compiled column i <- original column src[i]
         src[:self.nt] = [layout.ids.index(k) for k in comp.cmg['coordinate_ids']]
         supplied_cut = {c['id']: k for k, c in enumerate(cmg0['closures'])}
         for c, cols in zip(comp.cmg['closures'], compiled.chart_columns):
             src[cols] = layout.chart_columns[supplied_cut[c['id']]]
         self.src = src
-        self.column_of = np.argsort(src)  # supplied column j -> compiled column
+        self.column_of = np.argsort(src)  # original column j -> compiled column
         compiled_cut = {c['id']: k for k, c in enumerate(comp.cmg['closures'])}
-        self.cut_order = np.array([compiled_cut[c['id']] for c in cmg0['closures']], int)  # supplied k -> compiled
+        self.cut_order = np.array([compiled_cut[c['id']] for c in cmg0['closures']], int)  # original k -> compiled
         self.cut_inverse = np.argsort(self.cut_order)
         if not np.array_equal(np.sort(self.active), np.sort(src[compiled.active])):
-            raise ValueError('Motor columns differ between the supplied and compiled layouts')
+            raise ValueError('Motor columns differ between the original and compiled layouts')
         self._key = self._value = None
         self.evaluations = self.cache_hits = 0
 

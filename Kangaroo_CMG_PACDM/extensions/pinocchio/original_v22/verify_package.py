@@ -17,7 +17,7 @@ def main():
     if report['status']!='PASS_RECONSTRUCTED_MODEL' or not all(x['passed'] for x in report['gates']):failed.append(('validation','required gate failure'))
     for name,why in failed:print('FAIL',name,why)
     print(f"{'PASS' if not failed else 'FAIL'}: {len(manifest['files'])} file checks; {report['gates_passed']}/{report['gates_total']} recorded numerical gates")
-    if not failed:print('The archive is intact. This verifies delivered evidence; it does not rerun the simulations.')
+    if not failed:print('All files are intact. This verifies recorded evidence; it does not rerun the simulations.')
     return not failed
 
 if __name__=='__main__':sys.exit(0 if main() else 1)

@@ -1,4 +1,4 @@
-# Exact NumPy/SciPy versions used for the supplied executed measurements.
+# Exact NumPy/SciPy versions used for the recorded measurements.
 # Python 3.11 or newer. Native Pinocchio is optional and NOT required here.
 numpy==2.3.5
 scipy==1.17.0

@@ -1,13 +1,13 @@
-"""End-to-end check: the delivered rigid-contact rollout with the accepted vs the generated evaluator.
+"""End-to-end check: the original rigid-contact rollout with the accepted vs the generated evaluator.
 
-New extension code.  It runs the unchanged delivered simulation
+New extension code.  It runs the unchanged original simulation
 (``original/kangaroo_pin/pin_simulation.run_case``, landing_nominal, 1 ms)
 in the counterbalanced order accepted, generated, generated, accepted: twice
-with the delivered cached accepted ``CutGraph`` and twice with
-``SuppliedLayoutGraph`` (the generated evaluator in the supplied layout, with
+with the cached accepted ``CutGraph`` and twice with
+``SourceLayoutGraph`` (the generated evaluator in the original layout, with
 the same exact single-entry cache).  Everything else (Pinocchio dynamics,
 native contact solver, drive law, polish) is identical.  The full per-step
-arrays are written to a temporary folder by the delivered code; compact
+arrays are written to a temporary folder by the original code; compact
 arrays of the first run of each evaluator and all summaries are retained, and
 the second run of each evaluator is checked to be bitwise identical.
 """
@@ -20,7 +20,7 @@ from pathlib import Path
 import numpy as np
 
 from . import bootstrap  # noqa: F401
-from .evaluator import SuppliedLayoutGraph
+from .evaluator import SourceLayoutGraph
 from .io_utils import save_json
 
 KEEP = ['time', 'base', 'motor', 'xi', 'act', 'lam', 'pacdm_closure', 'polish_shift', 'tangent', 'rcond']
@@ -48,7 +48,7 @@ def run_rollouts(comp, accepted, cmg0, duration, out, order=ORDER):
         for index, label in enumerate(order):
             plant = ps.KangarooPlant()
             if label == 'generated_evaluator':
-                plant.graph = SuppliedLayoutGraph(comp, accepted, cmg0)
+                plant.graph = SourceLayoutGraph(comp, accepted, cmg0)
                 plant.solver = accepted.PACDM(plant.graph)
             summary, a = ps.run_case('landing_nominal', dt=.001, duration=duration, plant=plant,
                                      output=scratch / f'{index}_{label}', progress=False)
@@ -108,7 +108,7 @@ def run_rollouts(comp, accepted, cmg0, duration, out, order=ORDER):
                             'per-foot impulses and post-contact velocities are.',
         max_stored_state_difference=float(np.max(np.abs(za - zg))) if len(stored) else None,
         task_metrics={m: dict(accepted=sa.get(m), generated=sg.get(m)) for m in metrics},
-        note='Same delivered simulation code and settings; only the PACDM graph object differs. Two runs per '
+        note='Same simulation code and settings; only the PACDM graph object differs. Two runs per '
              'evaluator in the counterbalanced order A, G, G, A on the benchmark host; wall times are descriptive.')
     save_json(out / 'rollout_comparison.json', comparison)
     return comparison

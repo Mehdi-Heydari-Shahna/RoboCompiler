@@ -74,7 +74,7 @@ def _motion(kind, axis, q):
 
 
 # ---------------------------------------------------------------------------
-# One-time transparent extraction from the supplied v22 CMG
+# One-time transparent extraction from the original v22 CMG
 # ---------------------------------------------------------------------------
 def export_physical(cmg, sole_corners):
     """Provenance-preserving physical records; no paths, partitions or modules.
@@ -111,7 +111,7 @@ def export_physical(cmg, sole_corners):
                 drive=drive, sole_sites=sites, gravity_m_s2=[0., 0., -9.81],
                 seed=dict(joints={k: float(v) for k, v in seed.items()}),
                 provenance=dict(source=deepcopy(cmg['source']), extracted_from='original/original_v22/data/whole_body_cmg.json'),
-                note='Loop cuts are declared physical closures (as authored in the supplied CMG). Sole sites are '
+                note='Loop cuts are declared physical closures (as authored in the source CMG). Sole sites are '
                      'support-mode data, not permanent mechanical closures.')
 
 
@@ -387,7 +387,7 @@ def compile_graph(physical):
         path = paths[s['body']]
         root_paths[s['body']] = dict(joint_path=path,
                                      moving_indices=[ids.index(j) for j in path if jrec[j]['type'] != 'fixed'])
-    # ---- generated CMG (supplied-CMG schema so accepted and native backends consume it)
+    # ---- generated CMG (source-CMG schema so accepted and native backends consume it)
     out_bodies = []
     for b in bodies:
         e = deepcopy(b)

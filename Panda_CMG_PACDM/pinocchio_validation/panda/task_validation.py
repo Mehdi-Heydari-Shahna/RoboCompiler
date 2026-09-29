@@ -20,7 +20,7 @@ from .task import TaskGraph
 def validate_task(cmg, reference, output=None):
     """Validate reference arrays and the same BPoly interpolation as simulation."""
     report = {"passed": False, "checks": {}, "details": {
-        "scope": "Finite numerical checks of the prescribed task route; no physical closed-chain arm or global workspace claim.",
+        "scope": "Finite numerical checks of the prescribed task route; physical closed-chain arms and global workspace are outside this scope.",
         "coordinate_interpretation": "9 physical coordinates + 6 massless target coordinates; 6 imposed pose equations + 1 physical finger equation; 8 independent coordinates.",
         "redundancy_policy": "Joint3 is prescribed independently of the tool pose. The default mission sweeps +0.25/-0.20 rad during inspection and returns to zero.",
         "interpolation": "BPoly.from_derivatives(time, stack([q,v,a], axis=1)), exactly as used by the contact controller.",

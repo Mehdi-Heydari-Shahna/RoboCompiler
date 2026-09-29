@@ -72,7 +72,7 @@ def aggregate(root=ROOT):
 
 def manifest(root=ROOT):
  project_dirs={'panda','vendor','upstream','tools','data','results'}
- project_files={'run_panda.py','run_panda.bat','README.md','METHODS.md',
+ project_files={'run_panda.py','run_panda.bat',
                 'requirements-linux.txt','environment.yml','.gitignore'}
  excluded={'__pycache__','.pytest_cache','.mypy_cache','.ruff_cache'}
  files=(p for p in root.rglob('*') if p.is_file()

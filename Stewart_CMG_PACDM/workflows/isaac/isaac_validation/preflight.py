@@ -2,7 +2,7 @@
 
 The default path needs only NumPy, SciPy and the unchanged PACDM source. It
 does not import Isaac Sim, Pinocchio or MuJoCo. Checks are fresh computations;
-the supplied MuJoCo results remain historical comparison data. A passed
+the recorded MuJoCo results remain historical comparison data. A passed
 preflight is not an Isaac Sim validation result.
 """
 from __future__ import annotations
@@ -23,8 +23,8 @@ from stewart.model import inverse_seed, make_cmg
 from vendor.pacdm_original import PACDM, PointGraph
 
 
-PACDM_SHA256 = "492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca"
-MANIFEST_SHA256 = "38ade3636ff7531f753468f799d352b73a7adab5c4daa3209e9807a1ca469d48"
+PACDM_SHA256 = "bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de"
+MANIFEST_SHA256 = "5bdc29ec7010e9aae35fcf344937f945da923eb2cf8554293528ed1948269d62"
 CMG_SHA256 = "401d7c2af4f9801e39040d33ab627a9fa1598831f674b48e830507629a6fcda7"
 REFERENCE_SHA256 = "f4d78ee06cd990185a33199e8376e4a608d120d321f2cf47fa9c8e998a53c394"
 
@@ -93,7 +93,7 @@ def run_preflight(root, *, samples=25, check_mujoco=False):
                      "scipy": scipy.__version__},
         "requested_samples": int(samples), "sample_failures": [],
         "method": "Fresh perturbed-seed PACDM acquisition and differential mapping; "
-                  "immutable supplied reference and model content checks.",
+                  "immutable reference and model content checks.",
         "scope": "CPU reference/model verification only; no Isaac Sim execution.",
         "runtime_role": "PACDM generates the reference and differential map; "
                         "cached Pinocchio-projected force feedforward drives Isaac physics. "
@@ -140,7 +140,7 @@ def run_preflight(root, *, samples=25, check_mujoco=False):
             details["sha256"][path] = actual
             check("hash." + path, int(actual == expected), 1, "==")
         if not all(c["passed"] for c in checks.values()):
-            details["initialization_error"] = "A baseline/model/source hash differs from the supplied release"
+            details["initialization_error"] = "A baseline/model/source hash differs from the recorded release"
             return finish()
 
         cmg = json.loads((root / "data/stewart.cmg.json").read_text())

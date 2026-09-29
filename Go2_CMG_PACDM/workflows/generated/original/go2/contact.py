@@ -4,7 +4,7 @@ The physical robot is a floating-base tree. Foot-to-world edges here are
 imposed stance/task constraints, not permanent structural closed chains.
 Each edge is a pure-translation SE(3) subgroup: its three rotational rows
 are identically zero and all three Cartesian rows remain in the acceptance
-test. This adapter leaves the supplied PACDM implementation unchanged.
+test. This adapter leaves the PACDM implementation unchanged.
 
 The six base coordinates are x, y, z, yaw, pitch, roll. The base chart is
 local (pitch must stay away from +/-pi/2); it is not a quaternion chart.

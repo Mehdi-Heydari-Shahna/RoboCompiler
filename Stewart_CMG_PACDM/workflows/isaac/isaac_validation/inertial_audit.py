@@ -23,7 +23,7 @@ def principal_properties(inertia):
 
     Keep diagonal tensors in their original axes instead of sorting/permuting
     them with eigh. This avoids gratuitous principal-frame changes on the
-    supplied benchmark. Off-diagonal tensors still use exact eigendecomposition.
+    original benchmark. Off-diagonal tensors still use exact eigendecomposition.
     """
     matrix = np.asarray(inertia, dtype=float)
     if matrix.shape != (3, 3) or not np.all(np.isfinite(matrix)):

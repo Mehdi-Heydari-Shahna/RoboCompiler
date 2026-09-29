@@ -63,7 +63,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--render',action='store_true',help='Also render the validated 26-second MP4.')
     parser.add_argument('--render-only',action='store_true',help='Render previously validated saved states.')
-    parser.add_argument('--audit-existing',action='store_true',help='Verify delivered hashes and saved verdict.')
+    parser.add_argument('--audit-existing',action='store_true',help='Verify recorded hashes and saved verdict.')
     parser.add_argument('--workers',type=int,default=3,choices=range(1,8))
     args=parser.parse_args()
     if args.audit_existing:audit_existing();return
@@ -77,7 +77,7 @@ def main():
     write_json(OUT/'validation.json',dict(passed=False,status='Running; evidence incomplete'))
     try:
         import numpy, scipy, pinocchio, osqp
-        if pinocchio.__version__!='3.8.0':raise RuntimeError('Use Pinocchio 3.8.0 from the supplied environment')
+        if pinocchio.__version__!='3.8.0':raise RuntimeError('Use Pinocchio 3.8.0 from the pinned environment')
         write_json(OUT/'environment.json',dict(python=sys.version,platform=platform.platform(),pinocchio=pinocchio.__version__,numpy=numpy.__version__,scipy=scipy.__version__,osqp=osqp.__version__,utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())))
         from go2.model import build_model,save_model
         save_model(build_model())

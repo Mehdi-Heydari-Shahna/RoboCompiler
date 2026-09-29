@@ -33,7 +33,7 @@ def rigid(value, name):
 
 
 def export_physical(cmg):
-    """One-time provenance-preserving extraction from supplied CMG records."""
+    """One-time provenance-preserving extraction from the source CMG records."""
     base_ids=cmg['free_base_chart']['coordinates']
     joints={j['id']:j for j in cmg['joints']}
     root=joints[base_ids[-1]]['follower_body']

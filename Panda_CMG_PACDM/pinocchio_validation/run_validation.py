@@ -31,7 +31,7 @@ from panda.task_validation import validate_task
 from pin_validation.simulation import CASES, run_case
 
 ROOT = Path(__file__).resolve().parent
-CORE_SHA = '492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+CORE_SHA = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
 def write_json(path, obj):
@@ -154,7 +154,7 @@ def main():
         build_report(ROOT)
         manifest(); return
     if pin.__version__ != '3.8.0':
-        raise RuntimeError('Use the supplied Pinocchio 3.8.0 environment for this release')
+        raise RuntimeError('Use the pinned Pinocchio 3.8.0 environment')
     if sha(ROOT/'vendor/pacdm_original.py') != CORE_SHA:
         raise RuntimeError('Original PACDM implementation has changed')
     results = ROOT/'results'

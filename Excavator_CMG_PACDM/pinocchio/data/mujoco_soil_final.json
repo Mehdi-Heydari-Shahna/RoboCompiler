@@ -1,0 +1,141 @@
+{
+  "source_case": "soil_final_rerun",
+  "source_trajectory_sha256": "0b8e7d2f3330e54038eabe2d3fc95f4e3fad155a066b75260692af8c0072e8c1",
+  "source_scene_sha256": "acba3de394c70fe7ea4e82e40b2f3535fc194e92f5a95118ba9a3779bcfc2db3",
+  "source_report_sha256": "214cc681e212d3b402dc298b3f3adab5b9b6cbd7f3af050a3f44b59b539b61b5",
+  "extractor_sha256": "05aeaca67f54174f07920c0fb9f0abd3706a2a3a58b0a5fa071e7f65fe71f028",
+  "samples": 1057,
+  "qpos_width": 895,
+  "status": "COMPLETED",
+  "events": [
+    {
+      "time_s": 2.0399999999998863,
+      "phase": "settle soil",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 6.040000000000352,
+      "phase": "lower below surface",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 10.079999999999853,
+      "phase": "draw through soil",
+      "bucket_mass_kg": 67.02064327658226,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 13.119999999998168,
+      "phase": "curl bucket",
+      "bucket_mass_kg": 75.39822368615505,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 16.159999999996767,
+      "phase": "lift clear",
+      "bucket_mass_kg": 83.77580409572784,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 17.15999999999799,
+      "phase": "hold load",
+      "bucket_mass_kg": 83.77580409572784,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 23.160000000005322,
+      "phase": "slew to receiver",
+      "bucket_mass_kg": 83.77580409572784,
+      "deposited_mass_kg": 0.0
+    },
+    {
+      "time_s": 28.160000000011433,
+      "phase": "dump material",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 75.39822368615505
+    },
+    {
+      "time_s": 31.1600000000151,
+      "phase": "wait for deposition",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 83.77580409572784
+    },
+    {
+      "time_s": 36.200000000006334,
+      "phase": "close bucket",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 83.77580409572784
+    },
+    {
+      "time_s": 42.23999999999226,
+      "phase": "return",
+      "bucket_mass_kg": 0.0,
+      "deposited_mass_kg": 83.77580409572784
+    }
+  ],
+  "failures": [],
+  "args": {
+    "name": "soil_final_rerun",
+    "duration": 65.0,
+    "dt": 0.001,
+    "radius": 0.1,
+    "empty": false,
+    "no_bucket_contact": false,
+    "cone": "pyramidal",
+    "entry_slot": 0.9,
+    "cut_depth": 0.18,
+    "cut_policy": "load-aware",
+    "settle_only": false
+  },
+  "validation": {
+    "initial_arm_max_abs_difference": 0.0,
+    "lip_reconstruction_max_m": 1.6035283879500125e-14,
+    "lip_reconstruction_median_m": 4.468561475845092e-15
+  },
+  "output_sha256": "e205452b3eefa65e759d609f51663315781d32b04b1e78bd69f7abd42b574543",
+  "shipped_case": "soil_final",
+  "shipped_file_comparison": {
+    "scene.xml": {
+      "shipped_sha256": "acba3de394c70fe7ea4e82e40b2f3535fc194e92f5a95118ba9a3779bcfc2db3",
+      "regenerated_sha256": "acba3de394c70fe7ea4e82e40b2f3535fc194e92f5a95118ba9a3779bcfc2db3",
+      "identical": true
+    },
+    "settled_state.npz": {
+      "shipped_sha256": "1bc6d44ee119a923f8b01f37bc1373dc42da45b74ec4270eb49b55973b16fc15",
+      "regenerated_sha256": "1bc6d44ee119a923f8b01f37bc1373dc42da45b74ec4270eb49b55973b16fc15",
+      "identical": true
+    },
+    "last_state.npz": {
+      "shipped_sha256": "e81d7e56541bb233df169dd101a3de23d29c9983ad757658b3fdc11498ebca1c",
+      "regenerated_sha256": "e81d7e56541bb233df169dd101a3de23d29c9983ad757658b3fdc11498ebca1c",
+      "identical": true
+    }
+  },
+  "release_manifest_trajectory": {
+    "manifest_sha256": "0b3c5411459e19b4190aef4e79c8e49911f42723a538011c1625f978ff3ce449",
+    "listed_sha256": "0b8e7d2f3330e54038eabe2d3fc95f4e3fad155a066b75260692af8c0072e8c1",
+    "regenerated_sha256": "0b8e7d2f3330e54038eabe2d3fc95f4e3fad155a066b75260692af8c0072e8c1",
+    "identical": true
+  },
+  "shipped_report_sha256": "32f2f67ff3b0421d7c0205e64475bd6bcde2dcc32143467111de3d1e4575152a",
+  "shipped_report_comparison": {
+    "compared_fields": 188,
+    "differing_fields": [
+      "args.name",
+      "arm_controller.measured_control_max_wall_s",
+      "arm_controller.measured_control_mean_wall_s",
+      "elapsed_wall_s",
+      "scene.terrain_case"
+    ],
+    "unexpected_differences": [
+      "scene.terrain_case"
+    ],
+    "fields_only_in_regenerated": [
+      "scene.bucket_ground_contact",
+      "scene.bucket_soil_contact"
+    ],
+    "fields_only_in_shipped": []
+  }
+}

@@ -50,7 +50,7 @@ def generate_report(out):
             ['Permanent physical closure constraints',0,0],['Task residual rows / numerical rank','24 / 12','24 / 12'],
             ['Total dependent joint coordinates',12,12],['Largest dependent solve block',12,3],
             ['Executed task subproblems',1,4],['Physical actuators / unactuated base coordinates','12 / 6','12 / 6']],
-        'No reduction in physical mobility or total coordinates is claimed. Four kinematic blocks are independent only conditional on prescribed base6. The rigid-body dynamics remain coupled. Twenty-four SE(3)-subgroup rows include twelve identically zero rotational rows.',
+        'Physical mobility and the total coordinate count are unchanged. Four kinematic blocks are independent only conditional on prescribed base6. The rigid-body dynamics remain coupled. Twenty-four SE(3)-subgroup rows include twelve identically zero rotational rows.',
         'compiled_plan.json; src/compiler.py; original/go2/contact.py')
     if 'pipeline'in st:
         r=st['pipeline'];v=r['variants'];w=cfg['witnesses']
@@ -73,10 +73,10 @@ def generate_report(out):
         table('continuation','Go2 continuation: assembly plus physical output mapping',
               ['Method','Accepted / attempts','Median ms','P95 ms','Max foot gap (m)'],[
                 [NAMES[m],f"{data[m]['accepted']}/{data[m]['attempts']}",f(data[m]['median_ms']),f(data[m]['p95_ms']),sci(data[m]['max_gap_m'])]for m in METHOD_ORDER if m in data],
-              f"Original 26-second route, {cfg['route_samples']} samples and {cfg['repeats']} timing repetitions. Each method uses its own previous solution; common initialization and independent auditing are outside timing. Hold samples are retained; moving-only and per-repeat summaries are also supplied. P95 is not a confidence interval.",
+              f"Original 26-second route, {cfg['route_samples']} samples and {cfg['repeats']} timing repetitions. Each method uses its own previous solution; common initialization and independent auditing are outside timing. Hold samples are retained; moving-only and per-repeat summaries are also provided. P95 is not a confidence interval.",
               'warm_raw.csv; warm_summary.csv; warm_per_repeat.csv; warm_states.npz; warm_inputs.json')
         for label,ref,proposed in [
-            ('Generated evaluator versus supplied evaluator','original_monolithic','compiled_monolithic'),
+            ('Generated evaluator versus original evaluator','original_monolithic','compiled_monolithic'),
             ('Full compiled module workflow versus original','original_monolithic','compiled_modular'),
             ('Predictor within compiled modular PACDM','modular_no_predictor','compiled_modular'),
             ('Exact reuse within compiled modular PACDM','modular_no_reuse','compiled_modular')]:
@@ -107,14 +107,14 @@ def generate_report(out):
         for ref,pr in [('fd3_dense','analytic_dense'),('fd3_colored','analytic_sparse')]:
             a,b=data[ref]['median_ms'],data[pr]['median_ms']
             benefits.append(dict(condition='Matched corrector-only derivative test',comparison='Generated derivative interface',reference=ref,proposed=pr,reference_median_ms=a,proposed_median_ms=b,reduction_percent=100*(1-b/a),reference_over_proposed=a/b))
-        paragraphs.append('The derivative experiment measures the practical value of the automatically available derivative/sparsity interface. It is not a claim that analytical differentiation is new or superior to all automatic-differentiation implementations, and not a PACDM-versus-TRF corrector comparison.')
+        paragraphs.append('The derivative experiment measures the practical value of the automatically available derivative/sparsity interface. It does not compare analytical differentiation with automatic-differentiation implementations, and it is not a PACDM-versus-TRF corrector comparison.')
     dyn=st.get('native',st.get('dynamics'))
     if dyn:
         native=dyn['native']['status']=='completed';maxima=dyn['maxima']
         table('support_dynamics','Ideal-support dynamics: PACDM reduction versus physical-point KKT',
             ['Supporting feet','Accepted / states','Rank / mobility','Max normalized acceleration error','Max point residual (m/s2)'],[
                 [r['support_count'],f"{r['passed']}/{r['attempts']}",f"{r['expected_rank']} / {r['expected_mobility']}",sci(r['acceleration_relative']),sci(r['constraint_residual_m_s2'])]for r in dyn['support_modes']],
-            'Matched rigid-body states and inputs, twelve leg motors with zero base motor effort. Ideal fixed-anchor toe centers; no friction cones, detachment, impacts, support-transition integration or stable-gait claim. Geometry, mass and bias reference uses an independent classical NumPy recursion.',
+            'Matched rigid-body states and inputs, twelve leg motors with zero base motor effort. Ideal fixed-anchor toe centers; friction cones, detachment, impacts, support-transition integration and gait stability are outside this test. Geometry, mass and bias reference uses an independent classical NumPy recursion.',
             'dynamics_raw.csv; dynamics_states.json; support_dynamics_summary.csv')
         checks=[('PACDM versus NumPy KKT acceleration (normalized)','relative_acceleration_difference',1e-8),
                 ('Physical point acceleration residual (m/s2)','point_acceleration_residual_m_s2',2e-6),
@@ -136,13 +136,13 @@ def generate_report(out):
                   [r['speed_scale'],r['configurations'],sci(r['full_max_m_s2']),f(r['omitted_max_m_s2'],6)]for r in c],
               f"{cfg['curvature_states']} configurations across two/three/four-foot support charts, reused at four speed scales. Both columns are physical acceleration-constraint residuals. The omitted-curvature route is an intentional component ablation, not a correctly formulated competing dynamics method. Full-term gate: 2e-6 m/s2.",
               'curvature_ablation.csv; curvature_inputs.json; curvature_summary.csv')
-        paragraphs.append(f"The new sampled support-dynamics run accepted {dyn['passed']}/{dyn['attempts']} witnesses; the maximum normalized PACDM/KKT acceleration discrepancy is {sci(maxima.get('relative_acceleration_difference'))}. Native status is {dyn['native']['status']}. This is a new numerical dynamics computation at supplied reference configurations, not a rerun of the archived locomotion simulations.")
+        paragraphs.append(f"The new sampled support-dynamics run accepted {dyn['passed']}/{dyn['attempts']} witnesses; the maximum normalized PACDM/KKT acceleration discrepancy is {sci(maxima.get('relative_acceleration_difference'))}. Native status is {dyn['native']['status']}. This is a new numerical dynamics computation at the reference configurations, separate from the recorded locomotion simulations.")
     save_csv(out/'benefit_summary.csv',benefits)
     # All generated tables have a structured source for workbook regeneration.
     (out/'tables.json').write_text(json.dumps(tables,indent=2)+'\n',encoding='utf-8')
     md=['# Go2 CMG/PACDM framework-benefit study',f"\nExecution status: **{summary['status']}**. Profile: **{summary['profile']}**.",
         '\n## Scope and provenance',
-        'New compiler/evaluator/module-scheduler extension with the supplied PACDM core unchanged. The existing source package already has a Go2 importer and point-task/support adapters; the claim is not that they were absent. The new input removes authored foot joint memberships and support partitions and generates pruned task kernels and dependency-based scheduling. No Go2 physical coordinate reduction is claimed.',
+        'Compiler/evaluator/module-scheduler extension with the PACDM core unchanged. The existing Go2 importer and point-task/support adapters are retained. The new input removes authored foot joint memberships and support partitions and generates pruned task kernels and dependency-based scheduling. The Go2 physical coordinates are not reduced.',
         'The physical Go2 model is a floating tree. Foot tasks are virtual constraints. Support charts are ideal mode-dependent constraints and are not permanent structural loops. Conditional per-leg kinematics do not make coupled rigid-body dynamics or real contact independent.',
         '\n## Executed evidence']+paragraphs
     for t in tables:
@@ -150,7 +150,7 @@ def generate_report(out):
         md+=['| '+' | '.join(map(str,row))+' |'for row in t['rows']]
         md+=['\n'+t['note'],'\nSource: `'+t['source']+'`.']
     md+=['\n## Timing and numerical protocol',
-        f"Route: 26 s / {cfg['route_samples']} samples / {cfg['repeats']} repeats. Method order randomized with saved seeds; one BLAS thread. PACDM keeps its original 1e-9 correction threshold and 1e-8 physical acceptance, TRF cost/step/gradient tolerances are 1e-11. Independent toe-gap gate is 1e-8 m, with bound, rank and tangent checks. Different solver stopping rules are not treated as identical work. No significance or real-time claim.",
+        f"Route: 26 s / {cfg['route_samples']} samples / {cfg['repeats']} repeats. Method order randomized with saved seeds; one BLAS thread. PACDM keeps its original 1e-9 correction threshold and 1e-8 physical acceptance, TRF cost/step/gradient tolerances are 1e-11. Independent toe-gap gate is 1e-8 m, with bound, rank and tangent checks. Different solver stopping rules are not treated as identical work. No significance tests or real-time measurements are included.",
         f"Recorded platform: {env['platform']}. Python {env['python'].split()[0]}, NumPy {env['versions']['numpy']}, SciPy {env['versions']['scipy']}, threadpoolctl {env['versions']['threadpoolctl']}. Reported processor: {env['processor_model']}; source: {env['processor_source']}; visible logical CPUs: {env['visible_logical_cpus']}. Host-exposed virtual CPU identification does not establish dedicated core allocation. Timing records remain associated with this recorded environment.",
         'Normalized error is max(abs(X-Xref))/max(1,max(abs(Xref))). This is coordinate-dependent numerical normalization, not an invariant physical percentage. Each analytical model call returns a combined residual/Jacobian; FD calls include every perturbed residual. Computation reuse at an identical argument is counted once. This differs from SciPy nfev.',
         '\n## Benefits and boundaries',
@@ -163,7 +163,7 @@ def generate_report(out):
         '- SciPy 1.17.0: https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.optimize.least_squares.html',
         '- Pinocchio: https://github.com/stack-of-tasks/pinocchio (the shipped original backend is retained; native Go2 support adapter is new).',
         '- Go2 source provenance and pinned commit: `original/data/go2_cmg.json`; upstream XML and license retained.',
-        '- URDF+ arXiv v1: https://arxiv.org/html/2411.19753v1 (context only; no executable comparison claimed).']
+        '- URDF+ arXiv v1: https://arxiv.org/html/2411.19753v1 (context only; not executed as a baseline).']
     (out/'REPORT.md').write_text('\n'.join(md)+'\n',encoding='utf-8')
     # Direct HTML construction avoids dependence on markdown rendering packages.
     htmls=['<!doctype html><html lang="en"><meta charset="utf-8"><title>Go2 framework benefit study</title><style>body{font:15px/1.6 system-ui,sans-serif;max-width:1180px;margin:40px auto;padding:0 26px;color:#193344}h1{font-size:30px}h2{margin-top:34px;border-bottom:1px solid #ccd7df;padding-bottom:7px}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:13px}th,td{padding:10px 12px;border-bottom:1px solid #d9e1e7;text-align:left;vertical-align:top}th{background:#e7f0f3}tbody tr:nth-child(even){background:#f7fafb}.note{font-size:13px;color:#48616d}.source{font-family:monospace;font-size:11px;overflow-wrap:anywhere}pre{background:#eef3f6;padding:18px;white-space:pre-wrap}@media print{body{margin:15px}h2{break-after:avoid}tr{break-inside:avoid}}</style><body><h1>Go2 CMG/PACDM framework benefits</h1>',
@@ -191,15 +191,15 @@ def paper_text(summary,env,protocol,benefits):
     st=summary['stages'];cfg=protocol['configuration']
     text=[r'We evaluate a Go2 physical-graph compiler and conditional task-scheduling extension with the original PACDM core unchanged. The physical model is a floating tree: the twelve foot-target coordinates define virtual tasks, whereas selected stationary toe centers define temporary ideal-support charts. Unlike the Stewart representation, both Go2 formulations retain 18 physical and 30 augmented coordinates. Conditioning on the prescribed base pose permits the twelve dependent leg coordinates to be organized into four three-coordinate blocks; this does not decouple the rigid-body dynamics.']
     if 'pipeline'in st:
-        r=st['pipeline'];text.append(f"Model-generation tests cover {r['variants']} predefined data/representation variants, each with one four-foot task plan and all eleven two-, three-, and four-foot ideal-support modes. The compiler generated {r['mode_plans']} mode plans, and {r['passed']}/{r['checks']} known-feasible configuration checks passed. Physical attachment data, inertias, actuator declarations and named seeds are supplied; leg memberships, point Jacobians and mode-specific independent/dependent partitions are generated.")
+        r=st['pipeline'];text.append(f"Model-generation tests cover {r['variants']} predefined data/representation variants, each with one four-foot task plan and all eleven two-, three-, and four-foot ideal-support modes. The compiler generated {r['mode_plans']} mode plans, and {r['passed']}/{r['checks']} known-feasible configuration checks passed. Physical attachment data, inertias, actuator declarations and named seeds are given as input; leg memberships, point Jacobians and mode-specific independent/dependent partitions are generated.")
     if 'warm'in st:
         text.append(f"The continuation test uses the original 26-second reference route with {cfg['route_samples']:,} samples and {cfg['repeats']} timing repetitions. Every method continues from its own previous accepted solution. Times include assembly and the output mapping; initialization and independent physical checks are excluded equally. Method order is randomized and the BLAS thread limit is one. Medians and 95th percentiles are descriptive statistics, not independent robot success estimates or confidence intervals.")
     if 'derivatives'in st:
         text.append(f"The matched derivative-availability experiment uses {cfg['derivative_cases']} cases and {cfg['repeats']} repetitions and measures only the corrector. Each analytical/finite-difference pair uses the same TRF formulation, predictor, bounds, tolerances and linear solver. The sparse finite-difference route receives generated structural sparsity. PACDM retains its original stopping rules, while TRF cost, step and gradient tolerances are $10^{{-11}}$. Physical acceptance includes a $10^{{-8}}\\,\\mathrm{{m}}$ toe-gap gate and additional bounds, rank and tangent checks.")
-    chosen=[b for b in benefits if (b['comparison']=='Generated evaluator versus supplied evaluator' or b['comparison']=='Predictor within compiled modular PACDM' or b['comparison']=='Generated derivative interface' or (b['condition'].startswith(('1 changed','2 changed')) and b['reference']=='modular_no_reuse'))]
+    chosen=[b for b in benefits if (b['comparison']=='Generated evaluator versus original evaluator' or b['comparison']=='Predictor within compiled modular PACDM' or b['comparison']=='Generated derivative interface' or (b['condition'].startswith(('1 changed','2 changed')) and b['reference']=='modular_no_reuse'))]
     for b in chosen:
         direction='reduced' if b['reduction_percent']>=0 else 'increased'
-        context={'Generated evaluator versus supplied evaluator':'Using the generated pruned point evaluator in the global PACDM route',
+        context={'Generated evaluator versus original evaluator':'Using the generated pruned point evaluator in the global PACDM route',
                  'Predictor within compiled modular PACDM':'Enabling the tangent predictor within the compiled modular route',
                  'Generated derivative interface':'Supplying the generated analytical derivative interface',
                  'Conditional task update':'Reusing unaffected task modules for '+b['condition'].split(',')[0]+' updates'}[b['comparison']]
@@ -209,7 +209,7 @@ def paper_text(summary,env,protocol,benefits):
     if dyn:
         mx=dyn['maxima'];text.append(f"Across {dyn['attempts']} state/support witnesses, the reduced dynamics passed {dyn['passed']} consistency checks against the independent physical-point KKT formulation, with maximum normalized acceleration discrepancy "+value_tex(sci(mx['relative_acceleration_difference']))+'. The ideal support charts have ranks 6, 9 and 12 and mobilities 12, 9 and 6 for two, three and four supporting feet, respectively. These are local fixed-anchor dynamics probes, not a contact-switching or locomotion-stability experiment.')
         if dyn['native']['status']=='completed':text.append('Native Pinocchio '+escape(dyn['native']['version'])+' was also executed; the maximum normalized native acceleration discrepancy was '+value_tex(sci(mx['native_acceleration_relative']))+'.')
-        else:text.append('Native Pinocchio evaluation for this new Go2 benchmark was not executed in this run; the separately provided native stage must be run before adding a native-agreement claim.')
+        else:text.append('Native Pinocchio evaluation for this new Go2 benchmark was not executed in this run; run the separate native stage to evaluate native agreement.')
         text.append(f"A separate {cfg['curvature_states']}-configuration, four-speed-scale ablation evaluates $\\ddot q=N\\ddot q_a+c$ with and without the velocity-dependent curvature contribution. All {dyn['curvature_passed']}/{dyn['curvature_attempts']} complete-mapping cases satisfied the physical acceleration-constraint gate. The omitted contribution is an intentional component ablation, not a correctly formulated external dynamics baseline.")
     text.append(r'''For normalized discrepancies,
 \[
@@ -218,5 +218,5 @@ def paper_text(summary,env,protocol,benefits):
 \|X\|_{\max}=\max_{i,j}|X_{ij}|.
 \]
 For vectors the maximum-component definition is used. This is a numerical, coordinate-dependent normalization, not a unit-invariant physical percentage. Evaluation counts include fresh combined residual/Jacobian calls for analytical derivatives and every fresh residual call, including finite-difference perturbations, for numerical derivatives; they are not iteration counts.''')
-    text.append(r'The results identify implementation and interface benefits within the tested Go2 class. Global and modular analytical TRF alternatives are retained with the same generated predictor information; no universal corrector-speed advantage is claimed. Shared physical parameters limit the dynamics conclusions to formulation consistency. The experiments do not establish arbitrary-robot generality, global convergence, stable unilateral contact, hardware accuracy, or superiority over URDF+/generalized\_rbda, which was not benchmarked.')
+    text.append(r'The results identify implementation and interface benefits within the tested Go2 class. Global and modular analytical TRF alternatives are retained with the same generated predictor information; the corrector-speed comparison depends on the condition. Shared physical parameters limit the dynamics conclusions to formulation consistency. Arbitrary-robot generality, global convergence, stable unilateral contact, hardware accuracy and comparisons with URDF+/generalized\_rbda are outside the scope of these experiments.')
     return '\n\n'.join(text)+'\n'

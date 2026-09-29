@@ -127,7 +127,7 @@ def aggregate(root, output, modes, returncodes):
                 comparisons['wrench_refinement']=dict(pairs=pairs,position_ratio=ratio,
                     original_10um_position_limit_met=bool(max(d0,d1)<=1e-5),
                     rule=f'Next pair difference <= 0.8 * previous difference, or <= {WRENCH_REFINEMENT_FLOAT32_FLOOR_M*1e6:.0f} micrometres '
-                         '(float32 joint-integration floor of PhysX; see validation.py); not a fourth-order claim')
+                         '(float32 joint-integration floor of PhysX; see validation.py); not fourth-order convergence')
         except (KeyError,TypeError,ValueError) as exc:
             errors.append(mode+' refinement: '+str(exc));gate(mode+'.refinement.complete',0,1,'==')
         # Diagnostic only; original data is explicitly identified as archived.
@@ -140,7 +140,7 @@ def aggregate(root, output, modes, returncodes):
                 diag=compare(observed,archived,object_pose=False)
                 if mode=='contact':diag['payload']=compare(observed,archived,object_pose=True)
                 diag.update(reference_engine=engine,source='Archived source-engine nominal trajectory; source engine not rerun',
-                            acceptance_gate=False,scope='Different solvers and contact laws; diagnostic, not an equality claim')
+                            acceptance_gate=False,scope='Different solvers and contact laws; diagnostic comparison, not an equality gate')
                 comparisons[mode+'_versus_archived_source']=diag
             except (OSError,KeyError,ValueError) as exc:
                 comparisons[mode+'_versus_archived_source']=dict(available=False,reason=str(exc),acceptance_gate=False)

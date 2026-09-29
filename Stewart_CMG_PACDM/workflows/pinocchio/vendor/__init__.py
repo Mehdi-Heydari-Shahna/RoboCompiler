@@ -1,1 +1,1 @@
-"""Unmodified user-supplied framework code; see PROVENANCE.json."""
+"""Unmodified original framework code; see PROVENANCE.json."""

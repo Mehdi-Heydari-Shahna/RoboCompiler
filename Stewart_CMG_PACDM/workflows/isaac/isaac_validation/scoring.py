@@ -242,7 +242,7 @@ def aggregate(output_dir, baseline_dir, preflight, video_metadata=None):
     required case JSON and NPZ must carry that run_id. JSON must also declare
     completion, the native-body mass/COM audit, and no later state assignment.
     ``video_requested`` controls only
-    combined delivery status, never the independent physics acceptance status.
+    combined run status, never the independent physics acceptance status.
     """
     output = Path(output_dir)
     baseline = Path(baseline_dir)
@@ -357,10 +357,10 @@ def aggregate(output_dir, baseline_dir, preflight, video_metadata=None):
         "checks": checks, "cases": cases, "comparisons": comparisons,
         "preflight": preflight, "video": video, "video_checks": video_checks, "thresholds": LIMITS,
         "required_duration_s": MISSION_DURATION,
-        "scope": "Scoped simulation verification of the supplied idealized rigid Stewart CMG/PACDM implementation: full-mission physics gates plus sampled fresh assembly, tangent velocity and Newton-Euler force balance. No hardware validation, general CMG compiler validation, or global workspace certification.",
+        "scope": "Scoped simulation verification of the idealized rigid Stewart CMG/PACDM implementation: full-mission physics gates plus sampled fresh assembly, tangent velocity and Newton-Euler force balance. Hardware validation, general CMG compiler validation and global workspace certification are outside this scope.",
         "source": {"status": "ARCHIVED_MUJOCO_AND_PACDM_BASELINES", "new_isaac_evidence": bool(new_isaac_evidence),
                    "note": "Local preflight is a prerequisite only; it cannot prove Isaac Sim physics acceptance."},
-        "interpretation": "Graphics do not establish physics acceptance. The provided MuJoCo and PACDM runs are archived comparison evidence; they are not new Isaac Sim results.",
+        "interpretation": "Graphics do not establish physics acceptance. The recorded MuJoCo and PACDM runs are archived comparison evidence; they are not new Isaac Sim results.",
     }
     return report
 
@@ -397,13 +397,13 @@ def build_report(output_dir, report):
     output.mkdir(parents=True, exist_ok=True)
     title = "Stewart CMG/PACDM · Isaac Sim validation"
     pieces = [f"<h1>{title}</h1>",
-        f"<p class=lead>Physics: <strong>{html.escape(report.get('physics_status', 'UNVERIFIED'))}</strong> · Delivery: <strong>{html.escape(report.get('status', 'UNVERIFIED'))}</strong></p>",
+        f"<p class=lead>Physics: <strong>{html.escape(report.get('physics_status', 'UNVERIFIED'))}</strong> · Run status: <strong>{html.escape(report.get('status', 'UNVERIFIED'))}</strong></p>",
         f"<p>Run: <code>{html.escape(str(report.get('run_id') or 'not executed'))}</code>. Required mission: 22 seconds for each of four cases.</p>",
         f"<p>{html.escape(report.get('scope', ''))}</p>",
         "<p>PASS requires complete engine trajectories, timestep refinement, both archived reference comparisons, force-feedforward benefit, and all physical tolerances. Missing data, short smoke tests and nonfinite values cannot pass. A video demonstrates appearance and motion; it does not validate dynamics.</p>",
         "<h2>Acceptance</h2>", _check_table(report.get("checks", {})),
         f"<h2>CMG/PACDM simulation decision: {'PASS' if report.get('simulation_validation_passed') else 'NOT ESTABLISHED'}</h2>",
-        "<p>The physics score alone is insufficient for the model claim. Model checks are recomputed from raw body states and held actuator forces; both groups must pass.</p>"]
+        "<p>The physics score alone is insufficient for model acceptance. Model checks are recomputed from raw body states and held actuator forces; both groups must pass.</p>"]
     for failure in report.get("process_failures",[]):
         pieces.append("<p class=bad>Worker failure: "+html.escape(str(failure))+"</p>")
     for name,audit in report.get("model_audits",{}).items():

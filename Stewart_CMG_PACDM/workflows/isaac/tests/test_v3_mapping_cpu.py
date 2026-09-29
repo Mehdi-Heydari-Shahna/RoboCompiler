@@ -1,7 +1,7 @@
 """CPU finite-difference checks of state recovery and virtual work.
 
-Uses the supplied graph, not an independent physics engine. Complements rather
-than replaces the optional MuJoCo tests. No simulation claim follows.
+Uses the source graph, not an independent physics engine. Complements rather
+than replaces the optional MuJoCo tests.
 """
 from pathlib import Path
 import numpy as np

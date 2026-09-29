@@ -54,7 +54,7 @@ def canvas(rgb,force,t,stage,metrics):
         dr.text((x,665),f"Loop point gap: {metrics['gap']*1e6:.3f} micrometres",font=FONTS[18],fill='#a2dfce')
     dr.text((x,710),'Source force bounds and joint limits enabled',font=FONTS[17],fill='#bfcee0')
     dr.text((x,747),f'Simulation time {t:.2f} s  |  playback 0.5x',font=FONTS[18],fill='#92a9c5')
-    dr.rectangle((0,826,W,H),fill='#223146');dr.text((28,837),'Published-constraint reconstruction; joint assumptions are documented in MODEL_CHANGELOG.md.',font=FONTS[18],fill='#f7d4a1');dr.text((28,870),'Native MuJoCo trajectory replay. Amber / blue highlight left / right actuator components.',font=FONTS[16],fill='#b7c9df')
+    dr.rectangle((0,826,W,H),fill='#223146');dr.text((28,837),'Published-constraint reconstruction; joint assumptions are documented in the CMG metadata.',font=FONTS[18],fill='#f7d4a1');dr.text((28,870),'Native MuJoCo trajectory replay. Amber / blue highlight left / right actuator components.',font=FONTS[16],fill='#b7c9df')
     return im
 
 def render(preview=False):

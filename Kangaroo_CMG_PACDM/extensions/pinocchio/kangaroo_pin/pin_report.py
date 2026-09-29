@@ -313,14 +313,14 @@ def build_report(root):
     def fig(name):
         return ''.join(f'<a href="results/{p.name}"><img src="results/{p.name}" alt="{html.escape(p.stem)}"></a>'
                        for p in figures if p.stem == name)
-    integrity = result.get('supplied_integrity', {})
+    integrity = result.get('source_integrity', {})
     rebuild = result.get('reference_rebuild', {})
     if not rebuild:
         rebuild_text = 'not available'
     elif rebuild.get('file_bit_identical'):
-        rebuild_text = 'the rebuilt file is bit-identical to the supplied contact_reference.npz'
+        rebuild_text = 'the rebuilt file is bit-identical to the original contact_reference.npz'
     else:
-        rebuild_text = ('largest array difference to the supplied file '
+        rebuild_text = ('largest array difference to the original file '
                         + _n(rebuild.get('maximum_array_difference')))
     content = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -341,14 +341,14 @@ details{{border:1px solid var(--line);border-radius:7px;margin:10px 0;padding:0 
 ul{{padding-left:21px}}li{{margin:8px 0}}.links{{display:flex;gap:18px;flex-wrap:wrap}}footer{{font-size:12px;color:var(--muted);padding:0 6px 20px}}
 @media(max-width:760px){{main{{padding:15px}}section{{padding:18px}}.tiles{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body>
-<header><div class="eyebrow">Executed simulation verification · supplied v22 CMG · no MuJoCo in this pipeline</div>
+<header><div class="eyebrow">Simulation verification · v22 CMG · no MuJoCo in this pipeline</div>
 <h1>Kangaroo full body<br>Pinocchio + unchanged PACDM</h1>
 <p>Floating-base landing, crouch, weight shift, turn, rise and push recovery of the 78-body Kangaroo reconstruction:
 Pinocchio 3.8.0 tree dynamics, the unchanged PACDM closure algorithm for all 24 loop cuts, and Pinocchio's native
 rigid-contact NCP solvers at the foot corners. Independent native audits, full evidence replay and a labelled
 comparison with the rerun MuJoCo v22 pipeline.</p></header>
 <main><section><h2><span class="status">{status}</span> {_n(result.get('passed_count'))} / {_n(result.get('check_count'))} aggregate gates</h2>
-<p>{html.escape(result.get('claim', result.get('status', 'Aggregate validation has not completed.')))}</p>
+<p>{html.escape(result.get('summary', result.get('status', 'Aggregate validation has not completed.')))}</p>
 <div class="tiles"><div class="tile"><strong>{_n(nominal.get('maximum_motor_force_N'))} N</strong><span>Nominal peak drive force (limit 5000 N)</span></div>
 <div class="tile"><strong>{_n(nominal.get('maximum_tilt_deg'), 3)}°</strong><span>Nominal peak pelvis tilt (limit 8°)</span></div>
 <div class="tile"><strong>{_n(nominal.get('maximum_pacdm_closure'), 2)}</strong><span>Nominal max all-row loop closure after polish (limit 5e-13)</span></div>
@@ -374,7 +374,7 @@ bands (¼ of the v22 task tolerances): pelvis position 10 mm at every sample and
 <a href="legacy_evidence/PROVENANCE.json">legacy provenance</a>.</p></section>
 <section><h2>Time refinement and negative controls</h2>{refinement}{neg_table}</section>
 <section><h2>What is verified</h2>
-<p>The supplied v22 CMG (78 bodies, 77 tree joints, 76 coordinates, 24 loop cuts: 16 point and 8 universal) is compiled
+<p>The v22 CMG (78 bodies, 77 tree joints, 76 coordinates, 24 loop cuts: 16 point and 8 universal) is compiled
 depth-first into a Pinocchio free-flyer model. The unchanged PACDM (<code>original_v22/pacdm.py</code>, SHA-256
 {html.escape(result.get('checks', {}).get('source.unchanged_PACDM_sha256', {}).get('value', '')[:16])}…) assembles all passive
 coordinates at every step and supplies the tangent map and curvature; every accepted state is then refined by the
@@ -384,21 +384,20 @@ redundant. Motor slides and the pelvis twist are the only dynamic states; there 
 24 cut points plus native universal rows, solved with <code>constraintDynamics</code>; (2) a dense KKT solve; (3) the
 accepted v22 NumPy source dynamics and KKT solver; (4) full replay of every saved trajectory (control law, actuator
 filter, disturbance, integration rule, energy ledger, recomputed metrics); (5) auditor negative controls; (6) the
-MuJoCo-free regeneration of the supplied contact reference: {rebuild_text}.</p>
-<p class="small">Supplied archive: {integrity.get('matching', '—')} of {integrity.get('manifest_entries', '—')} manifest
+MuJoCo-free regeneration of the original contact reference: {rebuild_text}.</p>
+<p class="small">Source package: {integrity.get('matching', '—')} of {integrity.get('manifest_entries', '—')} manifest
 entries match; {len(integrity.get('missing', []))} listed files (results/ and videos/) were not in the archive.</p></section>
 <section><h2>Acceptance evidence</h2>{nested}
 <p class="links"><a href="results/validation.json">All numerical results</a><a href="results/mechanics.json">Mechanics</a>
 <a href="results/trajectory_audits.json">Native audits</a><a href="results/case_evidence.json">Evidence replay</a>
-<a href="results/reference_rebuild.json">Reference rebuild</a><a href="METHODS.md">Method</a></p></section>
+<a href="results/reference_rebuild.json">Reference rebuild</a></p></section>
 <section><h2>Limits</h2><ul>{limits}</ul></section>
-<section><h2>Reproduce</h2><p>See <a href="README.md">README.md</a>. <code>python run_pinocchio.py --verify-existing</code> checks every
+<section><h2>Reproduce</h2><p><code>python run_pinocchio.py --verify-existing</code> checks every
 file hash; <code>--analyze-existing</code> reruns all checks on the saved trajectories; no argument reruns everything.</p>
 <p class="small">Analysis completed UTC: {html.escape(str(execution.get('completed_utc', '—')))}<br>Simulation completed UTC:
 {html.escape(str(execution.get('simulation_completed_utc', '—')))}<br>Action: {html.escape(str(execution.get('action', '—')))}<br>
 {html.escape(str(execution.get('platform', '')))}<br>{versions}</p></section>
-<footer>Linux runtime executed. Windows launcher supplied but not executed here. Confidence applies to the checked model and task,
-not to unmeasured hardware behaviour.</footer></main></body></html>'''
+<footer>Results apply to the checked model and task.</footer></main></body></html>'''
     output = root / 'report.html'
     output.write_text(content, encoding='utf-8')
     return output

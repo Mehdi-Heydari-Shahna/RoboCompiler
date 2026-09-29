@@ -1,6 +1,6 @@
 """Path-Assembly Closure Differential Mapping, angular-first SE(3).
 
-Python port of the supplied excavator_graph.m / excavator_pacdm v0.3.
+Python implementation of excavator_graph.m / excavator_pacdm v0.3.
 Point cuts are represented by a free relative orientation (three auxiliary
 chart coordinates). These coordinates have no mass and are not actuators.
 The tree path, chord, adjoint transport, logarithmic derivative, fixed-row

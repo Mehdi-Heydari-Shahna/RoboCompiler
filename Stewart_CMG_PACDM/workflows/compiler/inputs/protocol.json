@@ -17,7 +17,7 @@
   "physical_acceptance": {"all_spherical_gap_m": 1e-8, "commanded_length_error_m": 1e-12, "body_pose_transform_error": 1e-7, "passive_reciprocal_condition_min": 1e-10, "dynamic_body_acceleration_mixed_SI": 2e-6, "reduced_mass_relative": 1e-9},
   "derivative_comparison": {"shared_previous_reference_offset_s": 0.05, "trf_tolerances": 1e-11, "max_nfev": 120, "common_oracle_budget": 10000, "methods": ["TRF_analytic_dense", "TRF_FD3_dense", "TRF_analytic_sparse", "TRF_FD3_colored"], "same_equations_bounds_seed_prediction": true, "FD_residual_evaluator_does_not_compute_analytical_J": true},
   "timing": "Single BLAS thread, randomized method order per case, initialization and independent validation excluded equally, all trials retained; compilation cost separate; warm result includes mapping",
-  "interpretation": "Implementation-level observations, not a significance claim, general convergence theorem, hardware validation, real-time proof, or URDF+/generalized_rbda speed comparison",
+  "interpretation": "Implementation-level observations; significance tests, general convergence theorems, hardware validation, real-time proofs and URDF+/generalized_rbda speed comparisons are outside this scope",
   "negative_controls": "Explicit model/schema faults and omitted acceleration curvature are ablations, not competent external solver baselines",
   "development": "Protocol stored before production measurements; smoke debugging may fix software errors without selecting favorable targets or dropping failed methods"
 }

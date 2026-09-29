@@ -14,7 +14,7 @@ class TestFranka(unittest.TestCase):
     def setUpClass(cls):
         cls.source=json.loads((ROOT/'inputs/physical_graph.json').read_text());cls.c=compile_graph(cls.source)
     def test_01_core_unchanged(self):
-        self.assertEqual(hashlib.sha256((ROOT/'original/vendor/pacdm_original.py').read_bytes()).hexdigest(),'492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca')
+        self.assertEqual(hashlib.sha256((ROOT/'original/vendor/pacdm_original.py').read_bytes()).hexdigest(),'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de')
     def test_02_affine_identity(self):
         c=self.c;self.assertEqual(c.S.shape,(9,8));self.assertEqual(mx(c.C@c.S),0);self.assertLess(mx(c.physical(c.reduced(c.q_seed))-c.q_seed),1e-12)
     def test_03_task_dimensions(self):

@@ -66,7 +66,7 @@ def main():
     import mujoco
     out = ROOT / 'results/mujoco_source_rerun'; out.mkdir(parents=True, exist_ok=True)
     summary = dict(tool='tools/mujoco_source_rerun.py', mujoco_version=mujoco.__version__,
-                   archived_source_mujoco_version='3.3.7 (source_evidence/mujoco/ORIGINAL_README.md)',
+                   archived_source_mujoco_version='3.3.7',
                    feedforward='cmg_isaac.rigid.RigidTree.rnea in place of the unbundled Pinocchio backend',
                    scope='Diagnostic rerun of the source contact model; not Isaac evidence and not a validation gate.',
                    cases={})

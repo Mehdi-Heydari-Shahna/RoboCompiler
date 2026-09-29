@@ -32,7 +32,7 @@ def execute_case(name):
 
 
 def verify_manifest():
-    """Standard-library-only integrity check of every delivered file."""
+    """Standard-library-only integrity check of every file."""
     import hashlib
     manifest = json.loads((ROOT / 'SHA256SUMS.json').read_text())
     bad = [k for k, v in manifest.items()
@@ -46,7 +46,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     action = parser.add_mutually_exclusive_group()
     action.add_argument('--verify-existing', action='store_true',
-                        help='Check delivered SHA-256 hashes and the recorded verdict; does not simulate.')
+                        help='Check recorded SHA-256 hashes and the recorded verdict; does not simulate.')
     action.add_argument('--render-only', action='store_true',
                         help='Render the saved nominal states to video; does not simulate.')
     action.add_argument('--case', help='Run one declared case only (invalidates the aggregate verdict '

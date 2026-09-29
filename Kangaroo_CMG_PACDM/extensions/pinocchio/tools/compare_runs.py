@@ -1,9 +1,9 @@
-"""Compare a rerun case with a delivered case: every NPZ array and every summary field.
+"""Compare a rerun case with a recorded case: every NPZ array and every summary field.
 
 Standard library + NumPy only.  Timing fields (``elapsed_s``) are reported,
 not compared.  Example::
 
-    python tools/compare_runs.py delivered/results rerun/results landing_nominal
+    python tools/compare_runs.py recorded/results rerun/results landing_nominal
 """
 from __future__ import annotations
 

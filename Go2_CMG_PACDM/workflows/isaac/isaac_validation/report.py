@@ -471,7 +471,7 @@ def _baseline_comparison(root, summaries):
     baseline_root = Path(__file__).resolve().parents[1] / "baseline_mujoco"
     native = _json(baseline_root / "nominal.json")
     result = dict(available=bool(native), required_for_acceptance=False,
-                  scope="The supplied MuJoCo result is historical baseline evidence, never an Isaac run. Different contact solvers need not produce identical trajectories.")
+                  scope="The recorded MuJoCo result is historical baseline evidence, not an Isaac run. Different contact solvers need not produce identical trajectories.")
     if native:
         keys = ("final_position_error_m", "rms_body_error_m", "min_base_height_m", "max_tilt_rad", "peak_torque_limit_fraction")
         result["metrics"] = {key: {"mujoco": native.get(key), "isaac": summaries.get("nominal", {}).get("metrics", {}).get(key)} for key in keys}
@@ -617,7 +617,7 @@ def report_suite(results_root, requested_cases):
         "Predicted contact forces are controller outputs and are not measurements. Numerical contact-force equality between MuJoCo and PhysX is not an acceptance requirement.",
         "The full campaign includes nominal, finer timestep, lower friction, payload, stronger push, zero actuation and PD ablation. The negative control must have valid zero-torque physical failure evidence; the ablation is descriptive and need not fail.",
         "Refinement uses the original 0.025 m maximum path, 0.010 m final path and 0.10 rad maximum orientation differences. One timestep pair is not a proof of asymptotic convergence.",
-        "The delivered Go2 is a tree mechanism with changing robot–environment contact constraints, not a permanent mechanically closed-loop leg robot. Passing this benchmark does not validate every closed-chain robot or physical hardware.",
+        "The Go2 is a tree mechanism with changing robot–environment contact constraints, not a permanent mechanically closed-loop leg robot. Passing this benchmark does not validate every closed-chain robot or physical hardware.",
         "A saved case is written before native shutdown. Acceptance also requires a matching parent manifest with an observed zero process exit, successful cleanup, and a native log without errors. Warnings are retained separately.",
         "The all-samples body RMS is reported separately. For a 2 s smoke check, the original t >= 2 s mission RMS contains only one sample and is not a full-run RMS.",
         "Source hashes, run IDs, timestamps and artifact hashes associate evidence with a run; they are reproducibility records, not cryptographic attestations of an untampered simulator.",
@@ -686,7 +686,7 @@ def main(argv=None):
                        smoke_passed=smoke_passed, passed=smoke_passed,
                        expected_outcome_passed=smoke_passed,
                        status="SMOKE_PASS" if smoke_passed else "SMOKE_FAIL" if nominal["executed"] else "UNEXECUTED",
-                       interpretation="Two-second standing/push diagnostic only. Physical checks, native process exit, and requested video are evaluated separately; no 26-second mission outcome is claimed.")
+                       interpretation="Two-second standing/push diagnostic only. Physical checks, native process exit, and requested video are evaluated separately; the 26-second mission is evaluated in the full run.")
         if (args.output/"nominal").is_dir():
             _write(args.output/"nominal"/"summary.json", nominal)
         report["smoke_checks"] = smoke_checks

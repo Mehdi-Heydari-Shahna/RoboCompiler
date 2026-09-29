@@ -12,5 +12,6 @@ The upstream README and source files retain their original attribution.
 Core research-module and upstream-file hashes are recorded in
 `data/provenance.json`.
 
-The BSD 2-Clause license applies to the upstream files. A separate license has
-not been specified for the CMG/PACDM research code in this repository.
+The BSD 2-Clause license applies to the upstream files. The PACDM
+implementation used here is described in M. Dastranj and J. Mattila,
+arXiv:2609.11338.

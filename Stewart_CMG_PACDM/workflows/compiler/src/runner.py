@@ -38,7 +38,7 @@ def environment():
         except importlib.metadata.PackageNotFoundError:versions[k]=None
     return dict(python=platform.python_version(),platform=platform.platform(),machine=platform.machine(),
                 packages=versions,processor=platform.processor(),blas_threads=1,
-                timing_note='Wall-clock implementation timings; no claim of hardware independence or real-time execution')
+                timing_note='Wall-clock implementation timings; hardware-dependent, not real-time measurements')
 
 
 def pipeline_stage(nominal,config,protocol,out):

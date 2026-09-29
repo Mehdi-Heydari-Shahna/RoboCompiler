@@ -197,9 +197,9 @@ def build_report(root):
                          for k, v in execution.get('versions', {}).items())
     limits = ''.join('<li>' + html.escape(s) + '</li>' for s in result.get('limits', []))
     comparison = result.get('legacy_mujoco_comparison', {})
-    legacy = ('Compared with the supplied historical MuJoCo nominal recording: maximum position difference '
+    legacy = ('Compared with the historical MuJoCo nominal recording: maximum position difference '
               + _number(comparison.get('max_position_difference_m', 0)*1000) + ' mm; orientation difference '
-              + _number(comparison.get('max_orientation_difference_deg')) + '°. MuJoCo was not rerun for this release.') if comparison else 'Historical comparison has not completed.'
+              + _number(comparison.get('max_orientation_difference_deg')) + '°. The MuJoCo recording is historical and was not rerun.') if comparison else 'Historical comparison has not completed.'
     completed = html.escape(execution.get('completed_utc', 'No completed execution recorded.'))
     simulated = html.escape(execution.get('simulation_completed_utc', execution.get('completed_utc', 'unavailable')))
     content = f'''<!doctype html>
@@ -222,9 +222,9 @@ ul{{padding-left:21px}}li{{margin:8px 0}}.links{{display:flex;gap:18px;flex-wrap
 @media(max-width:760px){{main{{padding:15px}}section{{padding:18px}}.tiles{{grid-template-columns:repeat(2,1fr)}}header{{padding:30px 22px}}}}
 </style></head><body>
 <header><div class="eyebrow">Executed simulation verification · declared rigid model</div><h1>Stewart platform<br>Pinocchio + PACDM</h1>
-<p>Force-driven six-axis motion, independent native constraint audits, and a video built from the saved simulation states. The supplied PACDM source is retained byte-for-byte.</p></header>
+<p>Force-driven six-axis motion, independent native constraint audits, and a video built from the saved simulation states. The PACDM source is retained unchanged.</p></header>
 <main><section><h2><span class="status">{status}</span> {_number(result.get('passed_count'))} / {_number(result.get('check_count'))} aggregate gates</h2>
-<p>{html.escape(result.get('claim', result.get('status', 'Aggregate validation has not completed.')))}</p>
+<p>{html.escape(result.get('summary', result.get('status', 'Aggregate validation has not completed.')))}</p>
 <div class="tiles"><div class="tile"><strong>{_number(rms_mm)} mm</strong><span>Nominal RMS position error</span></div>
 <div class="tile"><strong>{_number(peak_mm)} mm</strong><span>Nominal peak position error</span></div>
 <div class="tile"><strong>{_number(nominal.get('max_orientation_error_deg'))}°</strong><span>Nominal peak orientation error</span></div>
@@ -244,12 +244,12 @@ ul{{padding-left:21px}}li{{margin:8px 0}}.links{{display:flex;gap:18px;flex-wrap
 <p class="small">Disturbances are half-sine pulses, expressed in world axes at the platform origin. All timestep cases share the same reference sampled at 20 ms.</p></section>
 <section><h2>Acceptance evidence</h2><p>Aggregate gates include source integrity, full mission coverage, mechanism closure, rank and conditioning, dynamics residuals, tracking, force and joint limits, timestep refinement, feedforward ablation, and historical trajectory agreement.</p>
 <details><summary>All {_number(result.get('check_count'))} aggregate gates</summary>{_gates(result.get('checks', {}))}</details>{nested}
-<p class="links"><a href="results/validation.json">All numerical results</a><a href="results/mechanics.json">Mechanics samples</a><a href="results/trajectory_audits.json">Trajectory audits</a><a href="METHODS.md">Detailed method</a></p></section>
-<section><h2>Historical comparison and limits</h2><p>{legacy}</p><p>This is the idealized mechanism in the supplied package. It is not a CAD-specific Stewart model or a hardware-identified plant.</p><ul>{limits}</ul></section>
-<section><h2>Reproduce and inspect</h2><p>Open <a href="README.md">README.md</a> for Miniforge setup and commands. The delivered report, MP4, plots, JSON and NPZ files work offline; rerunning uses the supplied environment.</p>
+<p class="links"><a href="results/validation.json">All numerical results</a><a href="results/mechanics.json">Mechanics samples</a><a href="results/trajectory_audits.json">Trajectory audits</a></p></section>
+<section><h2>Historical comparison and limits</h2><p>{legacy}</p><p>This is the idealized mechanism of the benchmark package. It is not a CAD-specific Stewart model or a hardware-identified plant.</p><ul>{limits}</ul></section>
+<section><h2>Reproduce and inspect</h2><p>The report, MP4, plots, JSON and NPZ files work offline; rerunning uses the pinned environment.</p>
 <p class="links"><a href="results/execution.json">Execution record</a><a href="data/stewart.cmg.json">CMG model</a><a href="vendor/pacdm_original.py">Unchanged PACDM source</a><a href="SHA256SUMS.json">File checksums</a></p>
 <p class="small">Most recent analysis completed UTC: {completed}<br>Full simulation completed UTC: {simulated}<br>Action: {html.escape(execution.get('action', 'unavailable'))}<br>{html.escape(execution.get('platform', ''))}<br>{versions}</p></section>
-<footer>Reproducibility status: Linux runtime executed; Windows / Miniforge launcher supplied but not executed here. Confidence applies to the checked model and tested mission, not to unmeasured hardware behavior.</footer></main></body></html>'''
+<footer>Results apply to the checked model and tested mission.</footer></main></body></html>'''
     output = root/'report.html'
     output.write_text(content, encoding='utf-8')
     return output

@@ -1,4 +1,4 @@
-"""Six-axis mission assembled and differentiated by the user's PACDM core."""
+"""Six-axis mission assembled and differentiated by the PACDM core."""
 import time
 from pathlib import Path
 import numpy as np

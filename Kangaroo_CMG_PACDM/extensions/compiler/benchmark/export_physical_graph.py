@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Re-export inputs/physical_graph.json from the supplied v22 CMG and check it against the saved file.
+"""Re-export inputs/physical_graph.json from the original v22 CMG and check it against the saved file.
 
 The export is a one-time, provenance-preserving extraction (src/compiler.py:export_physical): bodies,
 unordered joint edges, loop cuts, actuators, drive data, the named seed and the two sole sites (centre

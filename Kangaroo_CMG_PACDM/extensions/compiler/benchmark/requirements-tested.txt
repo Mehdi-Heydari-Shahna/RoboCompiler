@@ -1,5 +1,5 @@
 # Complete package set of the environment that produced results_here/ (Python 3.12.3, Linux x86-64).
-# matplotlib, pillow, imageio and vtk were present for the delivered rendering code; the benchmark does not import them.
+# matplotlib, pillow, imageio and vtk are used only by the rendering code; the benchmark does not import them.
 cmeel==0.61.0
 cmeel-assimp==6.0.5
 cmeel-boost==1.89.0

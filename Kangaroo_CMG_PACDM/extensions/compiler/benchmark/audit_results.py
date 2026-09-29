@@ -54,10 +54,10 @@ def audit(results, replay, out, native=False):
     for path in sorted((ROOT / 'original/original_v22').rglob('*')):
         if path.is_file() and path.name != 'MANIFEST_SHA256.json':
             rel = path.relative_to(ROOT / 'original/original_v22').as_posix()
-            check('unchanged supplied v22 file: ' + rel, v22.get(rel) == sha(path))
+            check('unchanged original v22 file: ' + rel, v22.get(rel) == sha(path))
     origin = json.loads((ROOT / 'original/ORIGIN_VERIFICATION.json').read_text())
     for name, value in origin['kangaroo_pin_files'].items():
-        check('unchanged delivered file: ' + name, sha(ROOT / 'original' / name) == value)
+        check('unchanged original file: ' + name, sha(ROOT / 'original' / name) == value)
     summary = json.loads((results / 'summary.json').read_text())
     check('protocol hash', sha(results / 'protocol.json') == summary['protocol_sha256'])
     check('completed status', summary['status'] == 'completed')

@@ -2,8 +2,8 @@
 
 Gate groups (every gate is recorded with value, limit, relation and unit):
 
-* ``source.*``      supplied v22 bytes, unchanged PACDM, MuJoCo not imported;
-* ``reference.*``   MuJoCo-free regeneration of the supplied contact reference;
+* ``source.*``      original v22 files, unchanged PACDM, MuJoCo not imported;
+* ``reference.*``   MuJoCo-free regeneration of the original contact reference;
 * ``mechanics.*``   instantaneous three-route mechanics checks (``pin_checks``);
 * ``evidence.*``    full replay of every saved case (``pin_evidence``);
 * ``native_audit.*`` native Pinocchio dynamics/closure/contact audits;
@@ -29,7 +29,7 @@ from scipy.spatial.transform import Rotation
 
 from .cases import ALL, BY_NAME, NEGATIVE, POSITIVE
 
-PACDM_SHA256 = '492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+PACDM_SHA256 = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 LEGACY_BANDS = dict(base_position_m=.010, base_orientation_deg=2., final_base_position_m=.010)
 PIN_LIMITS = dict(maximum_pacdm_closure=5e-13, maximum_tangent_residual=1e-9,
                   maximum_acceleration_closure=1e-8, maximum_reduced_equation_residual=1e-9,
@@ -140,8 +140,8 @@ def _gate(checks, name, value, limit, unit='', relation='<=', group=None):
                         group=group or name.split('.')[0])
 
 
-def supplied_integrity(root):
-    """The supplied v22 archive's own manifest and provenance hashes."""
+def source_integrity(root):
+    """The original v22 package's own manifest and provenance hashes."""
     base = Path(root) / 'original_v22'
     manifest = json.loads((base / 'MANIFEST_SHA256.json').read_text())
     entries = manifest.get('files', manifest)
@@ -182,7 +182,7 @@ def aggregate(root):
     checks = {}
     g = lambda *a, **k: _gate(checks, *a, **k)
     # ------------------------------------------------------------ source
-    integrity = supplied_integrity(root)
+    integrity = source_integrity(root)
     g('source.unchanged_PACDM_sha256', _sha(root / 'original_v22/pacdm.py'), PACDM_SHA256, relation='==')
     g('source.supplied_manifest_no_mismatch', len(integrity['mismatched']), 0, 'files', '==')
     g('source.supplied_manifest_missing_only_results_videos', len(integrity['missing_outside_results_or_videos']),
@@ -191,7 +191,7 @@ def aggregate(root):
     g('source.upstream_assets_preserved', integrity['upstream_assets_preserved'], True, relation='==')
     g('source.mujoco_not_imported', 'mujoco' in sys.modules, False, relation='==')
     # ------------------------------------------------------------ reference
-    g('reference.rebuilt_without_mujoco_matches_supplied', rebuild['maximum_array_difference'], 1e-9, 'mixed SI')
+    g('reference.rebuilt_without_mujoco_matches_original', rebuild['maximum_array_difference'], 1e-9, 'mixed SI')
     g('reference.rebuild_mujoco_not_imported', 'MuJoCo not imported' in rebuild['method'], True, relation='==')
     built = rebuild['rebuilt_summary']
     for key, limit in acceptance['reference'].items():
@@ -324,8 +324,8 @@ def aggregate(root):
         groups={k: dict(passed=v[0], total=v[1]) for k, v in groups.items()},
         failed=[k for k, c in checks.items() if not c['passed']],
         checks=checks, cases=cases, refinement=refinement, legacy_mujoco_comparison=legacy,
-        legacy_bands=LEGACY_BANDS, supplied_integrity=integrity, reference_rebuild=rebuild,
-        claim='Executed simulation verification of the supplied v22 Kangaroo CMG (78 bodies, floating pelvis, '
+        legacy_bands=LEGACY_BANDS, source_integrity=integrity, reference_rebuild=rebuild,
+        summary='Simulation verification of the v22 Kangaroo CMG (78 bodies, floating pelvis, '
               '24 loop cuts, 12 motor slides) with Pinocchio 3.8.0 dynamics, the unchanged PACDM closure '
               'algorithm and native Pinocchio rigid unilateral Coulomb contact, on the v22 landing/crouch/'
               'shift/push task.',
@@ -339,8 +339,8 @@ def aggregate(root):
             'Joint limits are enforced as PACDM branch bounds; no joint-limit impact is modelled. Every accepted '
             'state is inside all 76 coordinate ranges.',
             'Timestep refinement covers 1 ms and 0.5 ms only; no global convergence theorem is implied.',
-            'The reconstructed model is not hardware-identified; no walking, running, jump take-off or '
-            'self-collision claim is made.',
+            'The reconstructed model is not hardware-identified; walking, running, jump take-off and '
+            'self-collision are outside this scope.',
             'The MuJoCo comparison uses the unchanged v22 pipeline rerun as labelled legacy evidence in a separate '
             'environment; the Pinocchio pipeline never imports MuJoCo.',
             'The video is CPU-rendered playback of saved Pinocchio/PACDM states; acceptance comes from the gates.'])

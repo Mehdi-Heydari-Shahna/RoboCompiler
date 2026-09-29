@@ -1,5 +1,5 @@
 # Linux pip route, tested with Python 3.12.3. Install the robotics package "pin" (not "pinocchio").
-# The cmeel pins match the Pinocchio 3.8.0 wheel's URDF parser ABI (as in the delivered validation package).
+# The cmeel pins match the Pinocchio 3.8.0 wheel's URDF parser ABI (as in the Pinocchio validation package).
 pin==3.8.0
 cmeel-urdfdom==4.0.1
 cmeel-tinyxml2==10.0.0

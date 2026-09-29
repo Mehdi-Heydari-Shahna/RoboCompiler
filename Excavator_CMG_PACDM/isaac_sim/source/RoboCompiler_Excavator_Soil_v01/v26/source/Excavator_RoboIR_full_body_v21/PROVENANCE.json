@@ -1,0 +1,46 @@
+{
+  "release": "Excavator_RoboIR_full_body_v21",
+  "parent_mechanics_package": "Excavator_RoboIR_robustness_v14",
+  "parent_visual_package": "Excavator_RoboIR_visual_v15",
+  "pacdm_parent_package": "Kangaroo_RoboIR_full_body_v20",
+  "pacdm_unchanged": true,
+  "pacdm_sha256": "bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de",
+  "accepted_cmg_unchanged": true,
+  "accepted_cmg_sha256": "217dfb926b0862bcef0335548a52e9b2a922d5caf9b0b889b78da59f34cd5be2",
+  "unchanged_mechanics_modules": [
+    "actuation_maps.py",
+    "cmg_io.py",
+    "constrained_dynamics.py",
+    "extended_reference.py",
+    "inverse_dynamics.py",
+    "motion_experiments.py",
+    "native_bias.py",
+    "native_dynamics.py",
+    "pinocchio_backend.py",
+    "source_bias.py",
+    "source_dynamics.py",
+    "source_reference.py"
+  ],
+  "source_files": [
+    {
+      "filename": "Excavator_URDF_step01.slx",
+      "sha256": "20bc4ece1a1bd0c62f68e4a89e2db0c83e9741da966a54110709921e97875037"
+    },
+    {
+      "filename": "Model_DataFile.m",
+      "sha256": "27e647d9c00d133a38b2d0032ae50ece24a1c6d5cd8d50815d71b4eaf0d69c9e"
+    },
+    {
+      "filename": "Komatsu_parameters.m",
+      "sha256": "020af726707c1cdbaab845ed47600a2d95b2b4ffc4fdb067d2cafcc7fe4d10c6"
+    }
+  ],
+  "new_scope": [
+    "floating full source body graph",
+    "synthetic hydraulic actuation",
+    "native granular contact",
+    "per-body forces and energy",
+    "independent source, Pinocchio and MuJoCo verification"
+  ],
+  "source_reinterpreted_as_field_calibrated": false
+}

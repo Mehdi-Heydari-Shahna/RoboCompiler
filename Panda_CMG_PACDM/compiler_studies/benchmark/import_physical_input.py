@@ -1,4 +1,4 @@
-"""Reproduce the one-time migration of supplied physical records into the frontend."""
+"""Reproduce the one-time migration of the source physical records into the frontend."""
 import json,numpy as np
 from src.compiler import from_original
 from src.bootstrap import ROOT

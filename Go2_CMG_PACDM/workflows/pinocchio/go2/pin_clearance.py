@@ -98,7 +98,7 @@ def source_collision_primitives(root):
 
 
 def course_primitives(terrain=True):
-    """The exact physical course dimensions in the supplied simulation.py."""
+    """The exact physical course dimensions in the original simulation.py."""
     environment = [_primitive('floor', 'world', {'type': 'plane'})]
     if terrain:
         for k, (x, height) in enumerate(HURDLES):

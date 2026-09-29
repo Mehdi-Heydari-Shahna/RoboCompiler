@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Verify every delivered file against PACKAGE_MANIFEST.json (standard library only).
+"""Verify every file against PACKAGE_MANIFEST.json (standard library only).
 
 Usage:  python verify_package.py
 """

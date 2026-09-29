@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial.transform import Rotation
 
-SOURCE_HASH = '492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+SOURCE_HASH = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 CASES = [('coarse',.004,8.,True),('nominal',.002,8.,True),('fine',.001,8.,True),
          ('heavy_payload',.002,14.,True),('no_feedforward',.002,8.,False)]
 
@@ -85,9 +85,9 @@ def aggregate(root):
     result = dict(passed=all(c['passed'] for c in checks.values()),passed_count=sum(c['passed'] for c in checks.values()),check_count=len(checks),
         checks=checks,cases=cases,refinement=refinement,legacy_mujoco_comparison=legacy,reference=reference,
         mechanics=mechanics,trajectory_audits=audits,auditor_negative_controls=negative,case_evidence=evidence,
-        claim='Executed simulation verification of the declared Stewart rigid model and unchanged PACDM algorithm with Pinocchio 3.8.0.',
+        summary='Simulation verification of the declared Stewart rigid model and unchanged PACDM algorithm with Pinocchio 3.8.0.',
         limits=['Independent native constraint checks share the same Pinocchio tree dynamics; they verify PACDM reduction, not independent inertial truth.',
-                'The supplied historical MuJoCo trajectory is used only for a separately labeled comparison; it is not freshly simulated here.',
+                'The historical MuJoCo trajectory is used only for a separately labeled comparison; it is not freshly simulated here.',
                 'Timestep refinement covers 4, 2, 1 ms on this complete mission; no universal error bound or global convergence theorem is implied.',
                 'No measured hardware, collision avoidance, structural compliance, actuator electrical/hydraulic fidelity, or global workspace guarantee.',
                 'Video is CPU-rendered playback of saved Pinocchio/PACDM states; quantitative acceptance comes from numerical gates.'])

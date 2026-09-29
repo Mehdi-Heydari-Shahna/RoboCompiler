@@ -66,7 +66,7 @@ def _load_encoding():
     except (ImportError, RuntimeError) as exc:
         raise VideoCaptureError(
             "Video requires Pillow, imageio and imageio-ffmpeg in the Isaac Python "
-            "environment, including a local FFmpeg executable. Run the supplied setup."
+            "environment, including a local FFmpeg executable. Run the setup script."
         ) from exc
     return imageio, imageio_ffmpeg, Image, ImageDraw, ImageFont
 

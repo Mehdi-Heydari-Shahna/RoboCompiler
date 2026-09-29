@@ -135,7 +135,7 @@ def _compose(main,t,index,log,width=1280,height=800):
     return np.asarray(canvas)
 
 def render(root,case='nominal',*,fps=30,width=1280,height=800,duration=None):
-    """Write demo.mp4 and poster.png from the delivered recorded trajectory.
+    """Write demo.mp4 and poster.png from the recorded trajectory.
 
     A duration-limited or non-nominal preview uses separate output filenames.
     """

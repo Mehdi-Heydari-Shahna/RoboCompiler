@@ -46,7 +46,7 @@ def from_original(cmg,seed):
         z.update(body_a=j['base_body'],body_b=j['follower_body'],T_AJ=j['T_BJ'],T_BJ=j['T_FJ']);joints.append(z)
     # The source equality is q1=q2, so either declared dependent choice is valid.
     c=cmg['coordinate_couplings'][0]
-    if c['polycoef'] != [0.,1.,0.,0.,0.]:raise ModelError('Migration expects the supplied symmetric coupling')
+    if c['polycoef'] != [0.,1.,0.,0.,0.]:raise ModelError('Migration expects the symmetric finger coupling of the source model')
     return dict(schema='physical-franka-input/1.0',name=cmg['name'],root=cmg['root_body'],gravity_m_s2=cmg['gravity_m_s2'],
         bodies=[{k:deepcopy(b[k])for k in ['id','mass_kg','com_m','inertia_kg_m2']}for b in cmg['bodies']],joints=joints,
         affine_couplings=[dict(id=c['id'],master=c['joint1'],slave=c['joint2'],multiplier=1.,offset=0.)],

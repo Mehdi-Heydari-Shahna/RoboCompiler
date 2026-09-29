@@ -51,7 +51,7 @@ class RigidStewart:
                          np.asarray(source[name]['inertia_kg_m2'],float)) for name in self.names}
         joint = next(j for j in cmg['joints'] if j['id'] == 'payload_mount')
         if joint['type'] != 'fixed' or joint['base_body'] != 'platform':
-            raise ValueError('CPU verification requires the supplied fixed payload mount')
+            raise ValueError('CPU verification requires the fixed payload mount of the source model')
         T = np.asarray(joint['T_BJ']) @ np.linalg.inv(joint['T_FJ'])
         payload = source['payload']
         m0, c0, I0 = props['platform']

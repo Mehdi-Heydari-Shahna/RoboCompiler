@@ -1,4 +1,4 @@
-"""Native reports and explicitly labelled comparisons to supplied MuJoCo data."""
+"""Native reports and explicitly labelled comparisons to recorded MuJoCo data."""
 from pathlib import Path
 import csv,json,xml.etree.ElementTree as ET
 import numpy as np
@@ -67,7 +67,7 @@ def make_case_report(folder):
     lines+=['','## Accounting limitation','','`unresolved_energy` is energy change minus the motor, reconstructed passive, and prescribed disturbance work. '
              'It includes unmeasured contact/loop/limit work and integration effects. It is **not** a validated energy-ledger error.','',
              'The submitted motor force is recorded exactly after float32 conversion. It is not an independent native motor wrench sensor.','',
-             'Cross-engine values are in `cross_engine_comparison.json`; the baseline came from the original upload, not a new MuJoCo execution.']
+             'Cross-engine values are in `cross_engine_comparison.json`; the baseline comes from the original MuJoCo recording, not a new MuJoCo execution.']
     notices=result.get('physics_log',{}).get('compatibility_notices',[])
     if notices:
         lines+=['','## Solver compatibility notice','',

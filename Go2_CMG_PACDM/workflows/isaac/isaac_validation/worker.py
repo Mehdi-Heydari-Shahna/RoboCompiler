@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class WorkerEngine:
-    """Simulator-independent interface to the unchanged supplied controller."""
+    """Simulator-independent interface to the unchanged original controller."""
 
     def __init__(self, root=ROOT):
         import numpy as np

@@ -1,4 +1,4 @@
-"""Kangaroo CMG/PACDM framework-benefit benchmark (see README.md and METHODS.md).
+"""Kangaroo CMG/PACDM framework-benefit benchmark (see the repository README).
 
 Example:  python run_kangaroo.py --profile full --native required --out results_local
 """

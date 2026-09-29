@@ -1,7 +1,7 @@
 """Shared case schedule and fail-closed runtime guards (SI units).
 
 The gravity diagnostic is intentionally shorter than a tracking mission. At
-0.2 s the uploaded v3 recording fell beyond pose_z >= 0.4 m; deleting its
+0.2 s the earlier v3 recording fell beyond pose_z >= 0.4 m; deleting its
 tracking guard would therefore NOT fix its joint-limit failure. The 0.1 s
 horizon retains the original >= 0.01 m gravity-motion requirement.
 """

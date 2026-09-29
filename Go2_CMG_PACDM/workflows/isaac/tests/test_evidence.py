@@ -1,4 +1,4 @@
-"""Synthetic regressions for the supplied shutdown and false-SMOKE_PASS failure."""
+"""Synthetic regressions for the recorded shutdown and false-SMOKE_PASS failure."""
 import json
 from types import SimpleNamespace
 

@@ -1,4 +1,4 @@
-"""Compile the supplied six-UPS CMG into an independent USD/PhysX plant.
+"""Compile the six-UPS CMG into an independent USD/PhysX plant.
 
 The platform pose chart is mathematical bookkeeping, not six physical joints.
 It becomes one free rigid body; its fixed payload is combined by the parallel
@@ -61,7 +61,7 @@ def _mass_properties(cmg, poses):
     """Return physical body properties; preserve the fixed payload exactly."""
     source = {body["id"]: body for body in cmg["bodies"]}
     if cmg.get("schema") != "cmg.stewart.point-closures/1.0":
-        raise ValueError("This compiler accepts the supplied Stewart CMG schema only")
+        raise ValueError("This compiler accepts the Stewart CMG schema only")
     mounts = [j for j in cmg["joints"] if j["id"] == "payload_mount"]
     if len(mounts) != 1 or mounts[0]["type"] != "fixed":
         raise ValueError("The payload must be fixed to the platform")

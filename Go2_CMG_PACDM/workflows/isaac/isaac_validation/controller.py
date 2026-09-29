@@ -1,4 +1,4 @@
-"""Unmodified supplied whole-body controller, isolated from simulator imports.
+"""Unmodified original whole-body controller, isolated from simulator imports.
 
 The class body below is an exact source-text copy of go2/simulation.py.
 Only this module's imports differ: the Isaac/PhysX runner reaches this class

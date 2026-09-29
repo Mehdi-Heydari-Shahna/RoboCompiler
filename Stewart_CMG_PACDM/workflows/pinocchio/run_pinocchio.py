@@ -32,7 +32,7 @@ def execute_case(item):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     action = parser.add_mutually_exclusive_group()
-    action.add_argument('--verify-existing',action='store_true',help='Check delivered SHA-256 hashes; does not simulate.')
+    action.add_argument('--verify-existing',action='store_true',help='Check recorded SHA-256 hashes; does not simulate.')
     action.add_argument('--render-only',action='store_true',help='Render saved nominal states; does not simulate.')
     action.add_argument('--case',choices=['coarse','nominal','fine','heavy_payload','no_feedforward'],help='Run one case using existing reference (invalidates aggregate status).')
     action.add_argument('--analyze-existing',action='store_true',help='Rerun independent numerical audits and acceptance on existing trajectories.')

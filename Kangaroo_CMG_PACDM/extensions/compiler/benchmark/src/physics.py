@@ -17,7 +17,7 @@ The 80 loop rows carry 16 redundant physical rows (rank 64). The KKT route
 selects a maximal independent row subset by column-pivoted QR of J^T and
 solves the resulting nonsingular saddle point; all rows are checked afterwards.
 
-Dynamics terms are rigid-body inertia plus the supplied diagonal armature (no
+Dynamics terms are rigid-body inertia plus the model's diagonal armature (no
 damping, friction, contact compliance or unilateral inequalities) on every
 compared route.
 """

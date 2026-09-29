@@ -417,7 +417,7 @@ def render_video(root, case='nominal', fps=30):
         'disturbance_vector':'Recorded world force, direction to scale with fixed 0.23 m annotation length.',
         'poster_state_time_s':poster_time,
         'ffmpeg_executable_name':Path(imageio_ffmpeg.get_ffmpeg_exe()).name,
-        'claim_scope':'Rendered motion is evidence of the recorded simulation only; numerical validation is in validation.json.'}
+        'render_scope':'Rendered motion shows the recorded simulation; numerical validation is in validation.json.'}
     path=results/('render_metadata.json' if case=='nominal' else f'render_metadata_{case}.json')
     path.write_text(json.dumps(metadata,indent=2)+'\n')
     return output

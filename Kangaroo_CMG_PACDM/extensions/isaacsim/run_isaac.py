@@ -7,7 +7,7 @@ from datetime import datetime,timezone
 
 ROOT=Path(__file__).resolve().parent
 # Avoid 76x76/140x140 linear algebra spawning dozens of BLAS threads. Set before
-# any NumPy/SciPy import. The user can explicitly set a different value.
+# any NumPy/SciPy import. A different value can be set explicitly.
 for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):
     os.environ.setdefault(name,'1')
 
@@ -157,7 +157,7 @@ def main():
             # A shorter diagnostic must not pass as the declared 10-second task.
             if args.duration is not None:
                 result['validation']['functional_status']='DIAGNOSTIC_ONLY_NOT_FULL_TASK'
-                result['validation']['scope']='user-requested shortened diagnostic'
+                result['validation']['scope']='shortened diagnostic (requested on the command line)'
             log=(out/'console.log').read_text(encoding='utf-8',errors='replace')
             classified=classify_physics_log(log,
                 high_tgs_iterations=result['configuration'].get('solver_type','TGS')=='TGS' and result['configuration']['solver_velocity_iterations']>4)
@@ -195,7 +195,7 @@ def main():
     write_json(folder/'suite_summary.json',summary)
     print('\nResults bundle:',bundle(folder))
     print('Report:',folder/'REPORT.md')
-    print('Native outcomes and incomplete reaction/energy checks are reported separately; no full certification is claimed.')
+    print('Native outcomes and incomplete reaction/energy checks are reported separately; full certification is outside this run.')
     return max([abs(x) for x in codes] or [2])
 
 if __name__=='__main__':

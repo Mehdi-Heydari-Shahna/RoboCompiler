@@ -5,7 +5,7 @@ Default: Python standard-library checks of hashes, complete row coverage,
 finite values, numerical gates, aggregates and the curvature-ablation table.
 --code: also compare the 23 recorded source hashes with the original package.
 --source-updates: explicitly recognize the documented presentation-exporter update.
---replay: also recompute every saved state using the supplied NumPy backend.
+--replay: also recompute every saved state using the NumPy backend.
 --replay-native: additionally rerun native Pinocchio; requires its installation.
 """
 from __future__ import annotations
@@ -120,7 +120,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--results', type=Path, default=Path(__file__).resolve().parent / 'results_native')
     parser.add_argument('--out', type=Path, default=Path('native_audit_local'))
-    parser.add_argument('--code', type=Path, help='Root of the supplied Stewart_Framework_Benefits code package')
+    parser.add_argument('--code', type=Path, help='Root of the Stewart_Framework_Benefits code package')
     parser.add_argument('--source-updates', type=Path, help='Explicit presentation_source_update.json; requires --code')
     parser.add_argument('--replay', action='store_true', help='Recompute all saved states using NumPy; requires --code')
     parser.add_argument('--replay-native', action='store_true', help='Also execute Pinocchio on all saved states; requires --code')

@@ -1,4 +1,4 @@
-# Windows/Miniforge recipe; supplied for reproducibility but tested here on Linux only.
+# Windows/Miniforge recipe for reproducibility; the reference runs used Linux.
 name: go2_pinocchio
 channels:
   - conda-forge

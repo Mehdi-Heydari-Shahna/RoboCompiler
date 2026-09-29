@@ -1,6 +1,6 @@
 """Host-side capture contract tests with mock Isaac/encoder dependencies.
 
-These do not claim that Isaac or an RTX renderer ran on the test machine.
+They do not require Isaac or an RTX renderer on the test machine.
 The installed Isaac run remains the required end-to-end video verification.
 """
 

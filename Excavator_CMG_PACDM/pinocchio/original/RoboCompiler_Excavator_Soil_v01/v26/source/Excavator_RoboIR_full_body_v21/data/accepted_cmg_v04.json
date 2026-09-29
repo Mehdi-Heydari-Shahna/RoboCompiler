@@ -1,0 +1,6377 @@
+{
+  "schema": "excavator.roboir.prototype/0.2",
+  "id": "komatsu_excavator_source_snapshot",
+  "root_body": "world",
+  "units": {
+    "length": "m",
+    "angle": "rad",
+    "mass": "kg",
+    "inertia": "kg*m^2"
+  },
+  "scope": "Full source physical graph; compiled boom/stick kinematics; dynamics not validated",
+  "conventions": {
+    "transform": "T_AB maps B coordinates into A; T_BJ/T_FJ are attachment-to-body transforms",
+    "inertia": "CoM tensor resolved parallel to each original CAD body frame; source PoI signs retained",
+    "coordinates": "Block suffix convention: q7 is Revolute7, q0 is Revolute, p0 is Prismatic",
+    "full_graph": "Fixed mount and world anchoring are explicit zero-coordinate edges",
+    "source_adapter": "Snapshot from audited SLX wire/PMIO/rigid-transform traversal, not arbitrary CAD import"
+  },
+  "provenance": {
+    "source_files": [
+      {
+        "filename": "Excavator_URDF_step01.slx",
+        "sha256": "20bc4ece1a1bd0c62f68e4a89e2db0c83e9741da966a54110709921e97875037"
+      },
+      {
+        "filename": "Model_DataFile.m",
+        "sha256": "27e647d9c00d133a38b2d0032ae50ece24a1c6d5cd8d50815d71b4eaf0d69c9e"
+      },
+      {
+        "filename": "Komatsu_parameters.m",
+        "sha256": "020af726707c1cdbaab845ed47600a2d95b2b4ffc4fdb067d2cafcc7fe4d10c6"
+      }
+    ],
+    "audit_file": "source_topology_audit.json",
+    "source_units": "Translations/CoM:mm; rotations:rad; mass:kg; inertia:kg*mm^2",
+    "inertia_convention": "https://www.mathworks.com/help/sm/ug/specify-custom-inertia.html",
+    "numerical_status": "Prepared with independent Python checks; MATLAB batch execution pending"
+  },
+  "bodies": [
+    {
+      "id": "body_1",
+      "name": "BoomCyl_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 60.95193087991505,
+      "com_m": [
+        -0.7064395848925906,
+        0.0010809256138337667,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.026508356262656147,
+          0.00019726063674004992,
+          0
+        ],
+        [
+          0.00019726063674004992,
+          2.2419122311442794,
+          0
+        ],
+        [
+          0,
+          0,
+          2.2422344619825845
+        ]
+      ],
+      "source_block": "Manipulator/Boom cylinders/BoomCyl_1_RIGID",
+      "source_body_sid": "1",
+      "source_solid_sid": "63",
+      "source_solid_record": 10,
+      "source_solid_id": "BoomCyl*:*Default",
+      "mesh_filename": "BoomCyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_10",
+      "name": "EF_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 8.154489404677875,
+      "com_m": [
+        -8.493407268517031e-12,
+        0.044791458428113995,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.12298017174262442,
+          -1.4940900773684188e-11,
+          0
+        ],
+        [
+          -1.4940900773684188e-11,
+          0.005852388715484447,
+          0
+        ],
+        [
+          0,
+          0,
+          0.1276093870474072
+        ]
+      ],
+      "source_block": "Manipulator/Fourbar linkage/EF_2_RIGID",
+      "source_body_sid": "10",
+      "source_solid_sid": "121",
+      "source_solid_record": 16,
+      "source_solid_id": "EF*:*Default",
+      "mesh_filename": "EF_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_2",
+      "name": "BoomCyl_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 60.95193087991505,
+      "com_m": [
+        -0.7064395848925906,
+        0.0010809256138337667,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.026508356262656147,
+          0.00019726063674004992,
+          0
+        ],
+        [
+          0.00019726063674004992,
+          2.2419122311442794,
+          0
+        ],
+        [
+          0,
+          0,
+          2.2422344619825845
+        ]
+      ],
+      "source_block": "Manipulator/Boom cylinders/BoomCyl_2_RIGID",
+      "source_body_sid": "2",
+      "source_solid_sid": "69",
+      "source_solid_record": 10,
+      "source_solid_id": "BoomCyl*:*Default",
+      "mesh_filename": "BoomCyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_3",
+      "name": "BoomPiston_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 30.100532285979984,
+      "com_m": [
+        -0.5421660769616296,
+        0.0010246677329458756,
+        5.349872789353074e-10
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.0040028382342542045,
+          0.0002146785609596605,
+          1.5429859436209563e-10
+        ],
+        [
+          0.0002146785609596605,
+          0.7198275042719267,
+          1.752169814604323e-09
+        ],
+        [
+          1.5429859436209563e-10,
+          1.752169814604323e-09,
+          0.7200035393267967
+        ]
+      ],
+      "source_block": "Manipulator/Boom cylinders/BoomPiston_1_RIGID",
+      "source_body_sid": "3",
+      "source_solid_sid": "75",
+      "source_solid_record": 11,
+      "source_solid_id": "BoomPiston*:*Default",
+      "mesh_filename": "BoomPiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_4",
+      "name": "BoomPiston_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 30.100532285979984,
+      "com_m": [
+        -0.5421660769616296,
+        0.0010246677329458756,
+        5.349872789353074e-10
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.0040028382342542045,
+          0.0002146785609596605,
+          1.5429859436209563e-10
+        ],
+        [
+          0.0002146785609596605,
+          0.7198275042719267,
+          1.752169814604323e-09
+        ],
+        [
+          1.5429859436209563e-10,
+          1.752169814604323e-09,
+          0.7200035393267967
+        ]
+      ],
+      "source_block": "Manipulator/Boom cylinders/BoomPiston_2_RIGID",
+      "source_body_sid": "4",
+      "source_solid_sid": "81",
+      "source_solid_record": 11,
+      "source_solid_id": "BoomPiston*:*Default",
+      "mesh_filename": "BoomPiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_44",
+      "name": "StickCyl_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 133.7124745746327,
+      "com_m": [
+        -0.7540091257761399,
+        0.0010648180152123153,
+        7.880634621030947e-10
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.24901827046341318,
+          0.0035702905652216497,
+          -4.502613987334522e-08
+        ],
+        [
+          0.0035702905652216497,
+          26.339010224409336,
+          1.9672289124408995e-08
+        ],
+        [
+          -4.502613987334522e-08,
+          1.9672289124408995e-08,
+          26.33186422708668
+        ]
+      ],
+      "source_block": "Manipulator/Stick cylinder/StickCyl_1_RIGID",
+      "source_body_sid": "44",
+      "source_solid_sid": "127",
+      "source_solid_record": 13,
+      "source_solid_id": "StickCyl*:*Default",
+      "mesh_filename": "StickCyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_45",
+      "name": "StickPiston_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 42.51599247880374,
+      "com_m": [
+        -0.5818617890539651,
+        0.0010269114084375485,
+        4.803680457569213e-10
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.0334612875488151,
+          0.0018579938296397847,
+          1.6356238305187406e-09
+        ],
+        [
+          0.0018579938296397847,
+          6.856632250054098,
+          1.4701878425997278e-08
+        ],
+        [
+          1.6356238305187406e-09,
+          1.4701878425997278e-08,
+          6.8577436292881435
+        ]
+      ],
+      "source_block": "Manipulator/Stick cylinder/StickPiston_1_RIGID",
+      "source_body_sid": "45",
+      "source_solid_sid": "133",
+      "source_solid_record": 14,
+      "source_solid_id": "StickPiston*:*Default",
+      "mesh_filename": "StickPiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_46",
+      "name": "Tiltcyl_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 30.749166698137497,
+      "com_m": [
+        2.1021574400713994e-08,
+        0.1955859950725623,
+        3.3690153788325436e-13
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.19147047942797277,
+          3.376275269531241e-08,
+          -5.4229698717359196e-09
+        ],
+        [
+          3.376275269531241e-08,
+          0.00975626795577914,
+          6.246284473761469e-13
+        ],
+        [
+          -5.4229698717359196e-09,
+          6.246284473761469e-13,
+          0.19110579221707552
+        ]
+      ],
+      "source_block": "Manipulator/Tilt cylinders/Tiltcyl_1_RIGID",
+      "source_body_sid": "46",
+      "source_solid_sid": "139",
+      "source_solid_record": 9,
+      "source_solid_id": "Tiltcyl*:*Default",
+      "mesh_filename": "Tiltcyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_47",
+      "name": "Tiltcyl_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 30.749166698137497,
+      "com_m": [
+        2.1021574400713994e-08,
+        0.1955859950725623,
+        3.3690153788325436e-13
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.19147047942797277,
+          3.376275269531241e-08,
+          -5.4229698717359196e-09
+        ],
+        [
+          3.376275269531241e-08,
+          0.00975626795577914,
+          6.246284473761469e-13
+        ],
+        [
+          -5.4229698717359196e-09,
+          6.246284473761469e-13,
+          0.19110579221707552
+        ]
+      ],
+      "source_block": "Manipulator/Tilt cylinders/Tiltcyl_2_RIGID",
+      "source_body_sid": "47",
+      "source_solid_sid": "145",
+      "source_solid_record": 9,
+      "source_solid_id": "Tiltcyl*:*Default",
+      "mesh_filename": "Tiltcyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_48",
+      "name": "Tiltpiston_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 10.237596828547654,
+      "com_m": [
+        -0.16357157716962112,
+        0.6356834072266002,
+        -0.3417896409668373
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.05604607262230948,
+          -0.00036722031442567953,
+          0.0019056005126356723
+        ],
+        [
+          -0.00036722031442567953,
+          0.053916745515641955,
+          0.010196437302780165
+        ],
+        [
+          0.0019056005126356723,
+          0.010196437302780165,
+          0.0031959393197224855
+        ]
+      ],
+      "source_block": "Manipulator/Tilt cylinders/Tiltpiston_1_RIGID",
+      "source_body_sid": "48",
+      "source_solid_sid": "151",
+      "source_solid_record": 19,
+      "source_solid_id": "Tiltpiston*:*Default",
+      "mesh_filename": "Tiltpiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_49",
+      "name": "Tiltpiston_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 10.237596828547654,
+      "com_m": [
+        -0.16357157716962112,
+        0.6356834072266002,
+        -0.3417896409668373
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.05604607262230948,
+          -0.00036722031442567953,
+          0.0019056005126356723
+        ],
+        [
+          -0.00036722031442567953,
+          0.053916745515641955,
+          0.010196437302780165
+        ],
+        [
+          0.0019056005126356723,
+          0.010196437302780165,
+          0.0031959393197224855
+        ]
+      ],
+      "source_block": "Manipulator/Tilt cylinders/Tiltpiston_2_RIGID",
+      "source_body_sid": "49",
+      "source_solid_sid": "157",
+      "source_solid_record": 19,
+      "source_solid_id": "Tiltpiston*:*Default",
+      "mesh_filename": "Tiltpiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_5",
+      "name": "BucketCyl_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 40.95788592164392,
+      "com_m": [
+        -0.6674391953255956,
+        0.00107535960943833,
+        -2.0963088740655773e-10
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.19917500277172862,
+          0.001829779949616813,
+          2.2608618195634142e-08
+        ],
+        [
+          0.001829779949616813,
+          15.553332967277605,
+          1.8528780192777042e-09
+        ],
+        [
+          2.2608618195634142e-08,
+          1.8528780192777042e-09,
+          15.555274168089726
+        ]
+      ],
+      "source_block": "Manipulator/Bucket cylinder/BucketCyl_1_RIGID",
+      "source_body_sid": "5",
+      "source_solid_sid": "87",
+      "source_solid_record": 4,
+      "source_solid_id": "BucketCyl*:*Default",
+      "mesh_filename": "BucketCyl_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_53",
+      "name": "base2_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 3532.187034894272,
+      "com_m": [
+        -0.45307654604025593,
+        2.1068676260088073,
+        0.44012497089198827
+      ],
+      "inertia_com_kg_m2": [
+        [
+          10161.272547220096,
+          -0.07428184120712521,
+          3.830464576063468
+        ],
+        [
+          -0.07428184120712521,
+          9926.756239678614,
+          -6.947452636002315
+        ],
+        [
+          3.830464576063468,
+          -6.947452636002315,
+          18558.375020380932
+        ]
+      ],
+      "source_block": "Manipulator/Base/base2_1_RIGID",
+      "source_body_sid": "53",
+      "source_solid_sid": "163",
+      "source_solid_record": 1,
+      "source_solid_id": "base2*:*Default",
+      "mesh_filename": "base2_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_54",
+      "name": "boom_mod_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 1900.352350252887,
+      "com_m": [
+        2.169222502639994,
+        0.5782514602194413,
+        7.676954449543687e-08
+      ],
+      "inertia_com_kg_m2": [
+        [
+          511.9876316469138,
+          444.5527894795003,
+          -0.0010084880770702077
+        ],
+        [
+          444.5527894795003,
+          7342.005134262723,
+          0.00023541750215496965
+        ],
+        [
+          -0.0010084880770702077,
+          0.00023541750215496965,
+          7761.07053977142
+        ]
+      ],
+      "source_block": "Manipulator/boom_mod_1_RIGID",
+      "source_body_sid": "54",
+      "source_solid_sid": "169",
+      "source_solid_record": 3,
+      "source_solid_id": "boom_mod*:*Default",
+      "mesh_filename": "boom_mod_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_55",
+      "name": "bottom_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 48.30186434629118,
+      "com_m": [
+        -0.36300229439738707,
+        0.33162662527735404,
+        0.5038526422933292
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.6610574945651745,
+          -0.0003728739753253145,
+          -0.016536855074663747
+        ],
+        [
+          -0.0003728739753253145,
+          1.0698795648775785,
+          -1.3021046528420029e-05
+        ],
+        [
+          -0.016536855074663747,
+          -1.3021046528420029e-05,
+          1.479475870911647
+        ]
+      ],
+      "source_block": "Manipulator/Tiltrotator/bottom_1_RIGID",
+      "source_body_sid": "55",
+      "source_solid_sid": "181",
+      "source_solid_record": 8,
+      "source_solid_id": "bottom*:*Default",
+      "mesh_filename": "bottom_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_56",
+      "name": "bucket_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 400.0964996070096,
+      "com_m": [
+        -0.11782204299559358,
+        -1.807825290669232,
+        0.7625697486674596
+      ],
+      "inertia_com_kg_m2": [
+        [
+          240.46804975902333,
+          -10.297334342198777,
+          -1.0172795951122717
+        ],
+        [
+          -10.297334342198777,
+          178.29484649658855,
+          -33.050300666397476
+        ],
+        [
+          -1.0172795951122717,
+          -33.050300666397476,
+          240.08912153477894
+        ]
+      ],
+      "source_block": "Manipulator/bucket_1_RIGID",
+      "source_body_sid": "56",
+      "source_solid_sid": "187",
+      "source_solid_record": 18,
+      "source_solid_id": "bucket*:*Default",
+      "mesh_filename": "bucket_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_57",
+      "name": "cabin2_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 5230.001362245028,
+      "com_m": [
+        3.994168167204939,
+        1.5820059403962965,
+        0.4085596993589963
+      ],
+      "inertia_com_kg_m2": [
+        [
+          48810.5535442829,
+          -3802.1476375080083,
+          -7761.515595184369
+        ],
+        [
+          -3802.1476375080083,
+          61969.658523386635,
+          -4174.059383736312
+        ],
+        [
+          -7761.515595184369,
+          -4174.059383736312,
+          31004.671027307235
+        ]
+      ],
+      "source_block": "Manipulator/cabin2_1_RIGID",
+      "source_body_sid": "57",
+      "source_solid_sid": "191",
+      "source_solid_record": 2,
+      "source_solid_id": "cabin2*:*Default",
+      "mesh_filename": "cabin2_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_58",
+      "name": "middle_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 140.29614001342856,
+      "com_m": [
+        -0.3433172287760701,
+        0.35998725296241346,
+        0.11623130162140567
+      ],
+      "inertia_com_kg_m2": [
+        [
+          2.231530287015025,
+          0.39485631319191816,
+          -0.08069960909276298
+        ],
+        [
+          0.39485631319191816,
+          3.432605622041886,
+          0.0002908040582641631
+        ],
+        [
+          -0.08069960909276298,
+          0.0002908040582641631,
+          5.169170441657366
+        ]
+      ],
+      "source_block": "Manipulator/Tiltrotator/middle_1_RIGID",
+      "source_body_sid": "58",
+      "source_solid_sid": "201",
+      "source_solid_record": 7,
+      "source_solid_id": "middle*:*Default",
+      "mesh_filename": "middle_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_59",
+      "name": "pivot_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 9.028884272041038,
+      "com_m": [
+        0,
+        0,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.08091622290306015,
+          0,
+          0
+        ],
+        [
+          0,
+          0.08091622290306015,
+          0
+        ],
+        [
+          0,
+          0,
+          0.005033475242787526
+        ]
+      ],
+      "source_block": "Manipulator/Fourbar linkage/pivot_1_RIGID",
+      "source_body_sid": "59",
+      "source_solid_sid": "211",
+      "source_solid_record": 17,
+      "source_solid_id": "pivot*:*Default",
+      "mesh_filename": "pivot_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_6",
+      "name": "BucketPiston_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 25.380614798072777,
+      "com_m": [
+        -0.4438047564958232,
+        0.001021336930564174,
+        -6.479398076627231e-08
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.027495788216826297,
+          0.0012249192551493564,
+          6.259934136171587e-07
+        ],
+        [
+          0.0012249192551493564,
+          3.298654835032875,
+          7.696501242787662e-09
+        ],
+        [
+          6.259934136171587e-07,
+          7.696501242787662e-09,
+          3.2999081856520283
+        ]
+      ],
+      "source_block": "Manipulator/Bucket cylinder/BucketPiston_1_RIGID",
+      "source_body_sid": "6",
+      "source_solid_sid": "93",
+      "source_solid_record": 5,
+      "source_solid_id": "BucketPiston*:*Default",
+      "mesh_filename": "BucketPiston_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_60",
+      "name": "stick_mod_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 1050.8289000323198,
+      "com_m": [
+        0.7311700189628748,
+        0,
+        -0.1855319890828062
+      ],
+      "inertia_com_kg_m2": [
+        [
+          88.5446271856893,
+          1.4390125477740698e-14,
+          -214.91106221212226
+        ],
+        [
+          1.4390125477740698e-14,
+          1835.077090678147,
+          -6.8356369625758554e-15
+        ],
+        [
+          -214.91106221212226,
+          -6.8356369625758554e-15,
+          1774.6233431189355
+        ]
+      ],
+      "source_block": "Manipulator/stick_mod_1_RIGID",
+      "source_body_sid": "60",
+      "source_solid_sid": "219",
+      "source_solid_record": 12,
+      "source_solid_id": "stick_mod*:*Default",
+      "mesh_filename": "stick_mod_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_61",
+      "name": "top_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 104.22805452982625,
+      "com_m": [
+        -0.21972090812718234,
+        0.3347738023464121,
+        -0.15673837543458147
+      ],
+      "inertia_com_kg_m2": [
+        [
+          4.591390804593692,
+          0.0431785776068414,
+          0.29936886994325457
+        ],
+        [
+          0.0431785776068414,
+          5.076388058756972,
+          0.005266852864422914
+        ],
+        [
+          0.29936886994325457,
+          0.005266852864422914,
+          6.49483989192038
+        ]
+      ],
+      "source_block": "Manipulator/Tiltrotator/top_1_RIGID",
+      "source_body_sid": "61",
+      "source_solid_sid": "233",
+      "source_solid_record": 6,
+      "source_solid_id": "top*:*Default",
+      "mesh_filename": "top_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_7",
+      "name": "DF_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 9.68208494733688,
+      "com_m": [
+        0,
+        0.07664719081386275,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.20129178275839435,
+          0,
+          0
+        ],
+        [
+          0,
+          0.006882730999964612,
+          0
+        ],
+        [
+          0,
+          0,
+          0.20672220101625843
+        ]
+      ],
+      "source_block": "Manipulator/Fourbar linkage/DF_1_RIGID",
+      "source_body_sid": "7",
+      "source_solid_sid": "99",
+      "source_solid_record": 15,
+      "source_solid_id": "DF*:*Default",
+      "mesh_filename": "DF_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_8",
+      "name": "DF_2_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 9.68208494733688,
+      "com_m": [
+        0,
+        0.07664719081386275,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.20129178275839435,
+          0,
+          0
+        ],
+        [
+          0,
+          0.006882730999964612,
+          0
+        ],
+        [
+          0,
+          0,
+          0.20672220101625843
+        ]
+      ],
+      "source_block": "Manipulator/Fourbar linkage/DF_2_RIGID",
+      "source_body_sid": "8",
+      "source_solid_sid": "107",
+      "source_solid_record": 15,
+      "source_solid_id": "DF*:*Default",
+      "mesh_filename": "DF_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "body_9",
+      "name": "EF_1_RIGID",
+      "kind": "rigid_body",
+      "mass_kg": 8.154489404677875,
+      "com_m": [
+        -8.493407268517031e-12,
+        0.044791458428113995,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0.12298017174262442,
+          -1.4940900773684188e-11,
+          0
+        ],
+        [
+          -1.4940900773684188e-11,
+          0.005852388715484447,
+          0
+        ],
+        [
+          0,
+          0,
+          0.1276093870474072
+        ]
+      ],
+      "source_block": "Manipulator/Fourbar linkage/EF_1_RIGID",
+      "source_body_sid": "9",
+      "source_solid_sid": "115",
+      "source_solid_record": 16,
+      "source_solid_id": "EF*:*Default",
+      "mesh_filename": "EF_Default_sldprt.STL",
+      "mesh_scale_to_m": 0.001,
+      "mesh_packaged": false
+    },
+    {
+      "id": "world",
+      "name": "World",
+      "kind": "reference_frame",
+      "mass_kg": 0,
+      "com_m": [
+        0,
+        0,
+        0
+      ],
+      "inertia_com_kg_m2": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "source_block": "Manipulator/World",
+      "source_body_sid": "52",
+      "source_solid_sid": "",
+      "source_solid_record": 0,
+      "source_solid_id": "",
+      "mesh_filename": "",
+      "mesh_scale_to_m": 1,
+      "mesh_packaged": false
+    }
+  ],
+  "joints": [
+    {
+      "id": "fixed_bucket_mount",
+      "type": "fixed",
+      "base_body": "body_55",
+      "follower_body": "body_56",
+      "T_BJ": [
+        [
+          -5.260094654567019e-17,
+          -0.9863097885360631,
+          0.16490300493910584,
+          -2.3473505457080757
+        ],
+        [
+          1.0000000000000002,
+          -4.1633363423443346e-17,
+          7.502679033599691e-17,
+          0.4397998193679854
+        ],
+        [
+          -1.1133449344702868e-16,
+          0.16490300493910584,
+          0.9863097885360632,
+          0.593426759605149
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        0
+      ],
+      "coordinate_unit": "none",
+      "source_block": "source rigid path; see audit fixed_connections",
+      "source_sid": "",
+      "source_base_rt_records": [
+        52,
+        51
+      ],
+      "source_follower_rt_records": [],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "No coordinate",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "fixed_world_base",
+      "type": "fixed",
+      "base_body": "world",
+      "follower_body": "body_53",
+      "T_BJ": [
+        [
+          -3.164135620181696e-15,
+          -1.0000000000000002,
+          2.0906028553828482e-16,
+          2.1126661182113513
+        ],
+        [
+          1.0000000000000002,
+          -3.164135620181696e-15,
+          -8.659560562354882e-17,
+          0.45390271998685244
+        ],
+        [
+          8.659560562354948e-17,
+          2.0906028553828455e-16,
+          1.0000000000000002,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        0
+      ],
+      "coordinate_unit": "none",
+      "source_block": "source rigid path; see audit fixed_connections",
+      "source_sid": "",
+      "source_base_rt_records": [
+        58,
+        57
+      ],
+      "source_follower_rt_records": [],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "No coordinate",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p0",
+      "type": "prismatic",
+      "base_body": "body_46",
+      "follower_body": "body_48",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          1.1102230246251565e-16,
+          0
+        ],
+        [
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          0.39500000000000024
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -8.881784197001252e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          0.9993908270190955,
+          -0.006626012881475218,
+          -0.03426471688753492,
+          -0.16663982870015348
+        ],
+        [
+          -7.2121128513735755e-16,
+          0.981811204316651,
+          -0.1898598406148269,
+          0.6193642280344375
+        ],
+        [
+          0.03489949670250843,
+          0.18974418312976554,
+          0.981213111458632,
+          -0.25745492019702704
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Tilt cylinders/Prismatic",
+      "source_sid": "12",
+      "source_base_rt_records": [
+        25
+      ],
+      "source_follower_rt_records": [
+        26
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p1",
+      "type": "prismatic",
+      "base_body": "body_47",
+      "follower_body": "body_49",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          1.1102230246251565e-16,
+          0
+        ],
+        [
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          0.3949999999999999
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          0.9993908270190955,
+          -0.006626012881475195,
+          -0.03426471688753398,
+          -0.166639828700168
+        ],
+        [
+          -5.542441505745899e-16,
+          0.981811204316651,
+          -0.18985984061482655,
+          0.6193642280343522
+        ],
+        [
+          0.0348994967025075,
+          0.18974418312976518,
+          0.981213111458632,
+          -0.2574549201965773
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Tilt cylinders/Prismatic1",
+      "source_sid": "13",
+      "source_base_rt_records": [
+        29
+      ],
+      "source_follower_rt_records": [
+        30
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p2",
+      "type": "prismatic",
+      "base_body": "body_5",
+      "follower_body": "body_6",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.3050000000000002
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0010990275442370745
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          4.440892098500626e-16,
+          0,
+          -1,
+          -0.3247486779716125
+        ],
+        [
+          1,
+          0,
+          4.440892098500626e-16,
+          0.0010990275442385809
+        ],
+        [
+          0,
+          -1,
+          0,
+          -1.1368683772161603e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Bucket cylinder/Prismatic2",
+      "source_sid": "14",
+      "source_base_rt_records": [
+        31
+      ],
+      "source_follower_rt_records": [
+        32
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p3",
+      "type": "prismatic",
+      "base_body": "body_1",
+      "follower_body": "body_3",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.37
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0010990275442380182
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -1.6653345369377348e-16,
+          -1.1102230246251565e-16,
+          -1.0000000000000002,
+          -0.4802298796567292
+        ],
+        [
+          1,
+          -8.049116928532385e-15,
+          -1.1102230246251565e-16,
+          0.0010990275442401014
+        ],
+        [
+          -8.049116928532385e-15,
+          -1,
+          1.1102230246251565e-16,
+          -2.5011104298755525e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Boom cylinders/Prismatic3",
+      "source_sid": "15",
+      "source_base_rt_records": [
+        53
+      ],
+      "source_follower_rt_records": [
+        54
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p4",
+      "type": "prismatic",
+      "base_body": "body_2",
+      "follower_body": "body_4",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.37
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0010990275442379627
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -1.6653345369377348e-16,
+          -1.1102230246251565e-16,
+          -1.0000000000000002,
+          -0.48022987965672964
+        ],
+        [
+          1,
+          -8.049116928532385e-15,
+          -1.1102230246251565e-16,
+          0.0010990275442391067
+        ],
+        [
+          -8.049116928532385e-15,
+          -1,
+          1.1102230246251565e-16,
+          2.3874235921539368e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Boom cylinders/Prismatic4",
+      "source_sid": "16",
+      "source_base_rt_records": [
+        55
+      ],
+      "source_follower_rt_records": [
+        56
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "p5",
+      "type": "prismatic",
+      "base_body": "body_44",
+      "follower_body": "body_45",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.5150000000000006
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.0010990275442379627
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          6.661338147750939e-16,
+          5.551115123125783e-17,
+          -1,
+          -0.7427568824736732
+        ],
+        [
+          1,
+          -1.1102230246251565e-16,
+          6.661338147750939e-16,
+          0.0010990275442383393
+        ],
+        [
+          -5.551115123125783e-17,
+          -1,
+          -5.551115123125783e-17,
+          1.4210854715202004e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "m",
+      "source_block": "Manipulator/Stick cylinder/Prismatic5",
+      "source_sid": "17",
+      "source_base_rt_records": [
+        67
+      ],
+      "source_follower_rt_records": [
+        68
+      ],
+      "source_cad_coordinate": 0,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q0",
+      "type": "revolute",
+      "base_body": "body_60",
+      "follower_body": "body_61",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          2.5000000000000018
+        ],
+        [
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          -0.14000000000000007
+        ],
+        [
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          2.220446049250313e-16,
+          -1,
+          -2.220446049250313e-16,
+          0.03549833622644499
+        ],
+        [
+          -8.881784197001252e-16,
+          2.220446049250313e-16,
+          -1,
+          0.479637370292271
+        ],
+        [
+          1,
+          2.220446049250313e-16,
+          -8.881784197001252e-16,
+          -0.12894383536418583
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Revolute",
+      "source_sid": "18",
+      "source_base_rt_records": [
+        1
+      ],
+      "source_follower_rt_records": [
+        2
+      ],
+      "source_cad_coordinate": 1.5359077146078737,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q1",
+      "type": "revolute",
+      "base_body": "body_61",
+      "follower_body": "body_58",
+      "T_BJ": [
+        [
+          1.1102230246251565e-16,
+          -0.034899496702508526,
+          0.9993908270190954,
+          -0.04975301486873995
+        ],
+        [
+          1,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0.33963737029228325
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9993908270190954,
+          0.034899496702508526,
+          0.04869248784312119
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          4.8960835385969403e-14,
+          -0.03489949670186643,
+          0.9993908270191177,
+          -0.04925331945457603
+        ],
+        [
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -4.8960835385969403e-14,
+          0.3396373702925378
+        ],
+        [
+          1.6653345369377348e-15,
+          0.9993908270191177,
+          0.03489949670186643,
+          0.04870993759467355
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tiltrotator/Revolute1",
+      "source_sid": "19",
+      "source_base_rt_records": [
+        3
+      ],
+      "source_follower_rt_records": [
+        4
+      ],
+      "source_cad_coordinate": 1.1228240683044903e-12,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q10",
+      "type": "revolute",
+      "base_body": "body_60",
+      "follower_body": "body_5",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          1.1102230246251565e-16,
+          0.4440808048572589
+        ],
+        [
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          0.04434000000000002
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.5407788484851254
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -5.509704003925443e-16,
+          -2.860858216990891e-13
+        ],
+        [
+          -3.72889708556464e-32,
+          1,
+          -6.767871890954488e-17,
+          6.664180318693979e-14
+        ],
+        [
+          5.509704003925443e-16,
+          6.767871890954488e-17,
+          1,
+          -0.044340000000000046
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Bucket cylinder/Revolute10",
+      "source_sid": "20",
+      "source_base_rt_records": [
+        21
+      ],
+      "source_follower_rt_records": [
+        22
+      ],
+      "source_cad_coordinate": 1.610143996668574,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q11",
+      "type": "revolute",
+      "base_body": "body_58",
+      "follower_body": "body_46",
+      "T_BJ": [
+        [
+          0,
+          -0.034899496702509414,
+          0.9993908270190954,
+          -0.13816738771396597
+        ],
+        [
+          1,
+          0,
+          0,
+          0.13963737029232703
+        ],
+        [
+          0,
+          0.9993908270190954,
+          0.034899496702509414,
+          0.13065679874841565
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          -5.350886123168587e-30,
+          -7.906549800510151e-14,
+          2.936317855528614e-13
+        ],
+        [
+          -5.0646731617201246e-26,
+          -1,
+          -6.404991052837051e-13,
+          3.2695979257368892e-12
+        ],
+        [
+          -7.906549800510151e-14,
+          6.404991052837051e-13,
+          -1,
+          -0.041999999999187826
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tilt cylinders/Revolute11",
+      "source_sid": "21",
+      "source_base_rt_records": [
+        23
+      ],
+      "source_follower_rt_records": [
+        24
+      ],
+      "source_cad_coordinate": -0.19863394992860442,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q12",
+      "type": "revolute",
+      "base_body": "body_58",
+      "follower_body": "body_47",
+      "T_BJ": [
+        [
+          -5.551115123125783e-17,
+          0.03489949670250925,
+          -0.9993908270190957,
+          -0.22211621718357044
+        ],
+        [
+          1,
+          -5.551115123125783e-17,
+          -5.551115123125783e-17,
+          0.5396373702922674
+        ],
+        [
+          -5.551115123125783e-17,
+          -0.9993908270190957,
+          -0.034899496702509275,
+          0.12772524102540495
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          1.0947644252537633e-47,
+          2.7599180131041915e-16,
+          -2.1316282072803006e-17
+        ],
+        [
+          1.4637485398476018e-31,
+          1,
+          -5.30359428395217e-16,
+          7.105427357601002e-18
+        ],
+        [
+          -2.7599180131041915e-16,
+          5.30359428395217e-16,
+          1,
+          0.042
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tilt cylinders/Revolute12",
+      "source_sid": "22",
+      "source_base_rt_records": [
+        27
+      ],
+      "source_follower_rt_records": [
+        28
+      ],
+      "source_cad_coordinate": -0.19863394992636463,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q13",
+      "type": "revolute",
+      "base_body": "body_60",
+      "follower_body": "body_7",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          2.250434236329461
+        ],
+        [
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          0.165
+        ],
+        [
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.014728530257288597
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -5.600779257118199e-16,
+          -1.921478087751893e-12
+        ],
+        [
+          2.3719203141421165e-31,
+          1,
+          4.2349826787541604e-16,
+          -0.1708528091850257
+        ],
+        [
+          5.600779257118199e-16,
+          -4.2349826787541604e-16,
+          1,
+          0.015000000000000043
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute13",
+      "source_sid": "23",
+      "source_base_rt_records": [
+        33
+      ],
+      "source_follower_rt_records": [
+        34
+      ],
+      "source_cad_coordinate": 1.9383415389933671,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q14",
+      "type": "revolute",
+      "base_body": "body_7",
+      "follower_body": "body_9",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0.3241471908138642
+        ],
+        [
+          0,
+          0,
+          1,
+          -0.014999999999999986
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          1.7105694144590052e-49,
+          6.383830045661962e-18,
+          3.365414613654139e-13
+        ],
+        [
+          1.5842835401975256e-33,
+          1,
+          -2.481713217403246e-16,
+          0.25399211155971063
+        ],
+        [
+          -6.383830045661962e-18,
+          2.481713217403246e-16,
+          1,
+          0.014999999999972431
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute14",
+      "source_sid": "24",
+      "source_base_rt_records": [
+        35
+      ],
+      "source_follower_rt_records": [
+        36
+      ],
+      "source_cad_coordinate": 0.8758596008237108,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q15",
+      "type": "revolute",
+      "base_body": "body_7",
+      "follower_body": "body_59",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0.3241471908138642
+        ],
+        [
+          0,
+          0,
+          1,
+          0.014999999999999958
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -5.826219507689082e-18,
+          -3.223228910441454e-13
+        ],
+        [
+          -1.192289449522792e-33,
+          1,
+          -2.0464204068337668e-16,
+          -2.9143905067030572e-12
+        ],
+        [
+          5.826219507689082e-18,
+          2.0464204068337668e-16,
+          1,
+          0.16500000000000103
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute15",
+      "source_sid": "25",
+      "source_base_rt_records": [
+        37
+      ],
+      "source_follower_rt_records": [
+        38
+      ],
+      "source_cad_coordinate": 1.2032690874492975,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q16",
+      "type": "revolute",
+      "base_body": "body_60",
+      "follower_body": "body_8",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          2.250434236329461
+        ],
+        [
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          -0.16500000000000004
+        ],
+        [
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.014728530257288597
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -6.283677546300216e-17,
+          -1.9201991108275253e-12
+        ],
+        [
+          5.7513643781055606e-33,
+          1,
+          9.15286364669034e-17,
+          -0.17085280918502585
+        ],
+        [
+          6.283677546300216e-17,
+          -9.15286364669034e-17,
+          1,
+          -0.015000000000000043
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute16",
+      "source_sid": "26",
+      "source_base_rt_records": [
+        39
+      ],
+      "source_follower_rt_records": [
+        40
+      ],
+      "source_cad_coordinate": 1.9383415389933674,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q17",
+      "type": "revolute",
+      "base_body": "body_8",
+      "follower_body": "body_10",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0.32414719081386334
+        ],
+        [
+          0,
+          0,
+          1,
+          0.015000000000000005
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          -2.7369110631344083e-48,
+          8.189254307271322e-17,
+          3.3409719435439913e-13
+        ],
+        [
+          -3.57619616751742e-32,
+          1,
+          4.366937493126913e-16,
+          0.25399211155971607
+        ],
+        [
+          -8.189254307271322e-17,
+          -4.366937493126913e-16,
+          1,
+          -0.01499999999997263
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute17",
+      "source_sid": "27",
+      "source_base_rt_records": [
+        41
+      ],
+      "source_follower_rt_records": [
+        42
+      ],
+      "source_cad_coordinate": 0.8758596008237106,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q18",
+      "type": "revolute",
+      "base_body": "body_8",
+      "follower_body": "body_59",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0.32414719081386334
+        ],
+        [
+          0,
+          0,
+          1,
+          -0.015
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          -2.1895288505075267e-47,
+          2.509808227527933e-16,
+          -3.2250885251286206e-13
+        ],
+        [
+          -1.409833716703349e-31,
+          1,
+          5.617296577643234e-16,
+          -2.913509433710715e-12
+        ],
+        [
+          -2.509808227527933e-16,
+          -5.617296577643234e-16,
+          1,
+          -0.16499999999999915
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute18",
+      "source_sid": "28",
+      "source_base_rt_records": [
+        43
+      ],
+      "source_follower_rt_records": [
+        44
+      ],
+      "source_cad_coordinate": 1.2032690874492975,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q19",
+      "type": "revolute",
+      "base_body": "body_9",
+      "follower_body": "body_61",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          -0.17100788843877301
+        ],
+        [
+          0,
+          0,
+          1,
+          -0.015000000000000015
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -5.551115123125783e-17,
+          -1,
+          0,
+          -0.30342205754230817
+        ],
+        [
+          -3.885780586188048e-16,
+          -5.551115123125783e-17,
+          -1,
+          0.2346373702922434
+        ],
+        [
+          1,
+          0,
+          -3.885780586188048e-16,
+          -0.16579443491783827
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute19",
+      "source_sid": "29",
+      "source_base_rt_records": [
+        45
+      ],
+      "source_follower_rt_records": [
+        46
+      ],
+      "source_cad_coordinate": -1.2782934252092044,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q2",
+      "type": "revolute",
+      "base_body": "body_61",
+      "follower_body": "body_48",
+      "T_BJ": [
+        [
+          3.3306690738754696e-16,
+          -0.034899496702508304,
+          0.9993908270190954,
+          -0.21193662431119442
+        ],
+        [
+          1,
+          -1.1102230246251565e-16,
+          -3.3306690738754696e-16,
+          0.01463737029203993
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9993908270190954,
+          0.034899496702508304,
+          -0.49329780478496577
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          4.996003610813204e-16,
+          0.03489949670250836,
+          -0.9993908270190957,
+          -0.10550150123396318
+        ],
+        [
+          1,
+          5.551115123125783e-17,
+          4.996003610813204e-16,
+          0.6646373702992089
+        ],
+        [
+          5.551115123125783e-17,
+          -0.9993908270190957,
+          -0.03489949670250833,
+          -0.48958100837684493
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tilt cylinders/Revolute2",
+      "source_sid": "30",
+      "source_base_rt_records": [
+        5
+      ],
+      "source_follower_rt_records": [
+        6
+      ],
+      "source_cad_coordinate": 3.1339780922785216,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q20",
+      "type": "revolute",
+      "base_body": "body_10",
+      "follower_body": "body_61",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          -0.1710078884387728
+        ],
+        [
+          0,
+          0,
+          1,
+          0.015
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -5.551115123125783e-17,
+          -1,
+          0,
+          -0.3034220575423083
+        ],
+        [
+          -3.885780586188048e-16,
+          -5.551115123125783e-17,
+          -1,
+          0.44463737029229855
+        ],
+        [
+          1,
+          0,
+          -3.885780586188048e-16,
+          -0.16579443491783333
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Fourbar linkage/Revolute20",
+      "source_sid": "31",
+      "source_base_rt_records": [
+        47
+      ],
+      "source_follower_rt_records": [
+        48
+      ],
+      "source_cad_coordinate": -1.2782934252092044,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q21",
+      "type": "revolute",
+      "base_body": "body_58",
+      "follower_body": "body_55",
+      "T_BJ": [
+        [
+          0.9993908270190954,
+          0,
+          -0.034899496702507436,
+          -0.3071596256739584
+        ],
+        [
+          -5.088541804628526e-18,
+          1,
+          -1.457167719580199e-16,
+          0.3396373702922802
+        ],
+        [
+          0.034899496702507436,
+          1.4580559278560966e-16,
+          0.9993908270190954,
+          0.1847920337285177
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          0.9993908270190954,
+          -1.1555579666323415e-33,
+          -0.03489949670250746,
+          -0.35001396448803396
+        ],
+        [
+          -4.858905807403673e-18,
+          1,
+          -1.3914085737861523e-16,
+          0.3316266252774754
+        ],
+        [
+          0.03489949670250746,
+          1.3922566989496355e-16,
+          0.9993908270190954,
+          0.4460368555425781
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tiltrotator/Revolute21",
+      "source_sid": "32",
+      "source_base_rt_records": [
+        49
+      ],
+      "source_follower_rt_records": [
+        50
+      ],
+      "source_cad_coordinate": 6.083362870162151e-13,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q22",
+      "type": "revolute",
+      "base_body": "body_59",
+      "follower_body": "body_6",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          8.881784197001252e-16
+        ],
+        [
+          0,
+          1,
+          0,
+          1.1102230246251565e-16
+        ],
+        [
+          0,
+          0,
+          1,
+          0.05200000000000001
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -4.186849492583728e-17,
+          -2.293276679665723e-13
+        ],
+        [
+          1.6747851489725808e-33,
+          1,
+          4.0001083199650954e-17,
+          1.836752971939859e-14
+        ],
+        [
+          4.186849492583728e-17,
+          -4.0001083199650954e-17,
+          1,
+          0.051999999999999984
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Bucket cylinder/Revolute22",
+      "source_sid": "33",
+      "source_base_rt_records": [
+        59
+      ],
+      "source_follower_rt_records": [
+        60
+      ],
+      "source_cad_coordinate": -1.6101619695214457,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q23",
+      "type": "revolute",
+      "base_body": "body_53",
+      "follower_body": "body_57",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          -0.44707793770542764
+        ],
+        [
+          0,
+          1,
+          0,
+          2.1126656062104994
+        ],
+        [
+          0,
+          0,
+          1,
+          0.9021303404295535
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -1.6653345369377348e-16,
+          1.0000000000000002,
+          2.220446049250313e-16,
+          3.8335885145585493
+        ],
+        [
+          1.942890293094024e-15,
+          -1.6653345369377348e-16,
+          1.0000000000000002,
+          0.9696015691280836
+        ],
+        [
+          1.0000000000000002,
+          2.220446049250313e-16,
+          -1.942890293094024e-15,
+          0.9913825974224031
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Base/Revolute23",
+      "source_sid": "34",
+      "source_base_rt_records": [
+        61
+      ],
+      "source_follower_rt_records": [
+        62
+      ],
+      "source_cad_coordinate": -1.5707963267942195,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q24",
+      "type": "revolute",
+      "base_body": "body_57",
+      "follower_body": "body_1",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          3.465038775197703
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          1.1674481523732407
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.7069832520164276
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          1.8102932767720225e-16,
+          -3.9612757518625585e-15
+        ],
+        [
+          2.535294697407624e-32,
+          1,
+          -1.40048837939031e-16,
+          -1.6605383734713543e-14
+        ],
+        [
+          -1.8102932767720225e-16,
+          1.40048837939031e-16,
+          1,
+          -0.034999999999999955
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Boom cylinders/Revolute24",
+      "source_sid": "35",
+      "source_base_rt_records": [
+        63
+      ],
+      "source_follower_rt_records": [
+        64
+      ],
+      "source_cad_coordinate": -2.3146488981619933,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q25",
+      "type": "revolute",
+      "base_body": "body_57",
+      "follower_body": "body_2",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          3.465038775197703
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          1.1674481523732407
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.7069832520164276
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          -5.2624822508429426e-33,
+          3.433820493855816e-16,
+          -4.519051799434237e-15
+        ],
+        [
+          3.678969051562814e-32,
+          -1,
+          -1.2246467991473532e-16,
+          1.830358087318018e-14
+        ],
+        [
+          3.433820493855816e-16,
+          1.2246467991473532e-16,
+          -1,
+          0.46499999999999975
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Boom cylinders/Revolute25",
+      "source_sid": "36",
+      "source_base_rt_records": [
+        65
+      ],
+      "source_follower_rt_records": [
+        66
+      ],
+      "source_cad_coordinate": -2.3146488981619946,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q3",
+      "type": "revolute",
+      "base_body": "body_61",
+      "follower_body": "body_49",
+      "T_BJ": [
+        [
+          1.6653345369377348e-16,
+          0.03489949670250858,
+          -0.9993908270190957,
+          -0.20194271604100233
+        ],
+        [
+          1,
+          -5.551115123125783e-17,
+          1.6653345369377348e-16,
+          0.6646373702924967
+        ],
+        [
+          -5.551115123125783e-17,
+          -0.9993908270190957,
+          -0.03489949670250861,
+          -0.4929488098179333
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          2.897126982759346e-13,
+          -0.03489949670308379,
+          0.9993908270190754,
+          -0.11549540950469762
+        ],
+        [
+          1,
+          -3.885780586188048e-16,
+          -2.8993474288085963e-13,
+          0.664637370297673
+        ],
+        [
+          1.049160758270773e-14,
+          0.9993908270190754,
+          0.03489949670308379,
+          -0.48993000334090564
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Tilt cylinders/Revolute3",
+      "source_sid": "37",
+      "source_base_rt_records": [
+        7
+      ],
+      "source_follower_rt_records": [
+        8
+      ],
+      "source_cad_coordinate": 2.751939315046096,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q4",
+      "type": "revolute",
+      "base_body": "body_54",
+      "follower_body": "body_60",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          4.599999999999999
+        ],
+        [
+          0,
+          -1,
+          -1.2246467991473532e-16,
+          2.220446049250313e-16
+        ],
+        [
+          0,
+          1.2246467991473532e-16,
+          -1,
+          0.13749999999999998
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          1.1102230246251565e-16,
+          -5.244567826746794e-13
+        ],
+        [
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          0.13750000000000068
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          1.59942775477028e-13
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Revolute4",
+      "source_sid": "38",
+      "source_base_rt_records": [
+        9
+      ],
+      "source_follower_rt_records": [
+        10
+      ],
+      "source_cad_coordinate": -3.1415746807207747,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q5",
+      "type": "revolute",
+      "base_body": "body_54",
+      "follower_body": "body_3",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          1.8152200442459703
+        ],
+        [
+          0,
+          1,
+          0,
+          0.8728422792418702
+        ],
+        [
+          0,
+          0,
+          1,
+          0.265
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -7.184076042658227e-15,
+          -2.3590018827235327e-15
+        ],
+        [
+          -2.5223567636707456e-31,
+          1,
+          -3.5110385089095353e-17,
+          -2.9913849175500217e-15
+        ],
+        [
+          7.184076042658227e-15,
+          3.5110385089095353e-17,
+          1,
+          0.05000000000002274
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Boom cylinders/Revolute5",
+      "source_sid": "39",
+      "source_base_rt_records": [
+        11
+      ],
+      "source_follower_rt_records": [
+        12
+      ],
+      "source_cad_coordinate": 0.7438525713509478,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q6",
+      "type": "revolute",
+      "base_body": "body_54",
+      "follower_body": "body_4",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          1.8152200442459703
+        ],
+        [
+          0,
+          1,
+          0,
+          0.8728422792418697
+        ],
+        [
+          0,
+          0,
+          1,
+          -0.265
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          -3.7142690890265064e-31,
+          -7.001460793765095e-15,
+          1.808331262509455e-15
+        ],
+        [
+          -1.2288585639466616e-30,
+          -1,
+          -1.2246467991473532e-16,
+          7.013056801952189e-15
+        ],
+        [
+          -7.001460793765095e-15,
+          1.2246467991473532e-16,
+          -1,
+          0.04999999999997749
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Boom cylinders/Revolute6",
+      "source_sid": "40",
+      "source_base_rt_records": [
+        13
+      ],
+      "source_follower_rt_records": [
+        14
+      ],
+      "source_cad_coordinate": 0.7438525713509493,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q7",
+      "type": "revolute",
+      "base_body": "body_57",
+      "follower_body": "body_54",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          -0.9999999999999999,
+          3.5319065573122215
+        ],
+        [
+          0.9999999999999999,
+          -1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          1.5474481523732408
+        ],
+        [
+          -1.1102230246251565e-16,
+          -0.9999999999999999,
+          -1.1102230246251565e-16,
+          1.2532832520164274
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          -1.4279165557080614e-16,
+          1.780926662102698e-14
+        ],
+        [
+          1.5449229476212084e-30,
+          1,
+          1.081942037470899e-14,
+          -3.1263880373444406e-16
+        ],
+        [
+          1.4279165557080614e-16,
+          -1.081942037470899e-14,
+          1,
+          0.18313221788546563
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Revolute7",
+      "source_sid": "41",
+      "source_base_rt_records": [
+        15
+      ],
+      "source_follower_rt_records": [
+        16
+      ],
+      "source_cad_coordinate": -1.5707963267787477,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q8",
+      "type": "revolute",
+      "base_body": "body_54",
+      "follower_body": "body_44",
+      "T_BJ": [
+        [
+          1,
+          0,
+          0,
+          2.627642688414472
+        ],
+        [
+          0,
+          -1,
+          -1.2246467991473532e-16,
+          1.0376909877488327
+        ],
+        [
+          0,
+          1.2246467991473532e-16,
+          -1,
+          0.07999999999999999
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          5.473822126268817e-48,
+          1.1427699398109385e-16,
+          2.163158541179655e-14
+        ],
+        [
+          4.023549317817891e-32,
+          1,
+          -3.5208743051847803e-16,
+          1.9241497284383514e-14
+        ],
+        [
+          -1.1427699398109385e-16,
+          3.5208743051847803e-16,
+          1,
+          -0.07999999999999997
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Stick cylinder/Revolute8",
+      "source_sid": "42",
+      "source_base_rt_records": [
+        17
+      ],
+      "source_follower_rt_records": [
+        18
+      ],
+      "source_cad_coordinate": -2.990336168918929,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    },
+    {
+      "id": "q9",
+      "type": "revolute",
+      "base_body": "body_60",
+      "follower_body": "body_45",
+      "T_BJ": [
+        [
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -0.6974959664637703
+        ],
+        [
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          0.9999999999999999,
+          0.05199999999999999
+        ],
+        [
+          0.9999999999999999,
+          1.1102230246251565e-16,
+          -1.1102230246251565e-16,
+          -0.2596091651465331
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "T_FJ": [
+        [
+          1,
+          0,
+          9.099345419685538e-17,
+          2.940603316403667e-13
+        ],
+        [
+          -4.115233165885127e-32,
+          1,
+          4.522559564539912e-16,
+          -4.739248993246292e-13
+        ],
+        [
+          -9.099345419685538e-17,
+          -4.522559564539912e-16,
+          1,
+          0.051999999999999165
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "coordinate_unit": "rad",
+      "source_block": "Manipulator/Stick cylinder/Revolute9",
+      "source_sid": "43",
+      "source_base_rt_records": [
+        19
+      ],
+      "source_follower_rt_records": [
+        20
+      ],
+      "source_cad_coordinate": 2.990354141787948,
+      "hardware_limits_status": "Not hardware verified; source model limits metadata retained in audit",
+      "source_limits_enabled": false
+    }
+  ],
+  "source_counts": {
+    "physical_body_instances": 25,
+    "unique_solid_records": 19,
+    "active_revolute": 26,
+    "active_prismatic": 6,
+    "fixed_edges": 2,
+    "vertices_including_world": 26,
+    "edges_including_fixed": 34,
+    "connected_components": 1,
+    "cycle_rank": 9
+  },
+  "primary_coordinate_ids": [
+    "q23",
+    "q7",
+    "q4",
+    "q0",
+    "q1",
+    "q21"
+  ],
+  "internal_mode": {
+    "body_id": "body_59",
+    "body_name": "pivot_1_RIGID",
+    "joint_ids": [
+      "q15",
+      "q18",
+      "q22"
+    ],
+    "coefficients": [
+      1,
+      1,
+      -1
+    ],
+    "description": "Unactuated internal spin about three coaxial pivot attachment axes",
+    "local_full_constraint_rank": 25,
+    "local_configuration_dof": 7,
+    "primary_coordinates": 6,
+    "passive_internal_modes": 1,
+    "status": "Source mode preserved. No six-coordinate full dynamic reduction has been performed."
+  },
+  "modules": [
+    {
+      "id": "boom_pair",
+      "joint_ids": [
+        "q7",
+        "q24",
+        "p3",
+        "q5",
+        "q25",
+        "p4",
+        "q6"
+      ],
+      "independent_ids": [
+        "q7"
+      ],
+      "root_body": "body_57"
+    },
+    {
+      "id": "stick",
+      "joint_ids": [
+        "q4",
+        "q8",
+        "p5",
+        "q9"
+      ],
+      "independent_ids": [
+        "q4"
+      ],
+      "root_body": "body_54"
+    },
+    {
+      "id": "boom_stick",
+      "joint_ids": [
+        "q7",
+        "q24",
+        "p3",
+        "q5",
+        "q25",
+        "p4",
+        "q6",
+        "q4",
+        "q8",
+        "p5",
+        "q9"
+      ],
+      "independent_ids": [
+        "q7",
+        "q4"
+      ],
+      "root_body": "body_57"
+    }
+  ],
+  "reference_poses": [
+    {
+      "id": "cad_source",
+      "coordinate_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q0",
+        "q1",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q2",
+        "q20",
+        "q21",
+        "q22",
+        "q23",
+        "q24",
+        "q25",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "q_SI": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1.5359077146078737,
+        1.1228240683044903e-12,
+        1.610143996668574,
+        -0.19863394992860442,
+        -0.19863394992636463,
+        1.9383415389933671,
+        0.8758596008237108,
+        1.2032690874492975,
+        1.9383415389933674,
+        0.8758596008237106,
+        1.2032690874492975,
+        -1.2782934252092044,
+        3.1339780922785216,
+        -1.2782934252092044,
+        6.083362870162151e-13,
+        -1.6101619695214457,
+        -1.5707963267942195,
+        -2.3146488981619933,
+        -2.3146488981619946,
+        2.751939315046096,
+        -3.1415746807207747,
+        0.7438525713509478,
+        0.7438525713509493,
+        -1.5707963267787477,
+        -2.990336168918929,
+        2.990354141787948
+      ],
+      "provenance": "Original CAD coordinate records, not current Simscape start targets"
+    },
+    {
+      "id": "working_reconstruction",
+      "coordinate_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q0",
+        "q1",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q2",
+        "q20",
+        "q21",
+        "q22",
+        "q23",
+        "q24",
+        "q25",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "q_SI": [
+        -2.381542169350297e-13,
+        2.392752468648805e-13,
+        -0.10825304306503437,
+        -0.1442441340720937,
+        -0.1442441340720936,
+        0.4796889420940203,
+        1.2538550938747008,
+        0,
+        1.5914213920983555,
+        -0.19863394992755873,
+        -0.1986339499274092,
+        1.7100772521125582,
+        1.0163752337660794,
+        1.2032690874492975,
+        1.7100772521125576,
+        1.0163752337660774,
+        1.2032690874492982,
+        -1.4725973920039366,
+        3.1339780922784444,
+        -1.472597392003934,
+        0,
+        -1.3631750780704177,
+        -1.5707963267948966,
+        -2.55954063114521,
+        -2.559540631145211,
+        2.7519393150461746,
+        -3.8048177693476384,
+        0.7443982090711068,
+        0.7443982090711081,
+        -1.3264502315156905,
+        -2.9559312566554605,
+        2.292706140897616
+      ],
+      "provenance": "Python closure solve near the Simscape reference configuration; q0=71.840605deg and pin q15 held at the source CAD value."
+    }
+  ],
+  "boom_reference": {
+    "coordinate_ids": [
+      "p3",
+      "p4",
+      "q24",
+      "q25",
+      "q5",
+      "q6",
+      "q7"
+    ],
+    "q_SI": [
+      [
+        -0.12368656268480295,
+        -0.12368656268480223,
+        -2.5256550749993156,
+        -2.525655074999317,
+        0.7454192379650988,
+        0.7454192379651007,
+        -1.361356816555577
+      ],
+      [
+        -0.12883221353280047,
+        -0.12883221353279997,
+        -2.5341584781097763,
+        -2.5341584781097772,
+        0.7451959948155878,
+        0.7451959948155894,
+        -1.3526301702956054
+      ],
+      [
+        -0.1339739315808221,
+        -0.13397393158082185,
+        -2.542640416302557,
+        -2.542640416302558,
+        0.7449512867483968,
+        0.7449512867483987,
+        -1.3439035240356338
+      ],
+      [
+        -0.13911135727892518,
+        -0.1391113572789248,
+        -2.5511010730414525,
+        -2.5511010730414534,
+        0.7446852972273208,
+        0.7446852972273221,
+        -1.335176877775662
+      ],
+      [
+        -0.14424413407209338,
+        -0.14424413407209272,
+        -2.55954063114521,
+        -2.559540631145211,
+        0.7443982090711069,
+        0.7443982090711084,
+        -1.3264502315156905
+      ],
+      [
+        -0.14937190838339706,
+        -0.1493719083833963,
+        -2.5679592727608043,
+        -2.567959272760805,
+        0.7440902044267294,
+        0.7440902044267309,
+        -1.3177235852557188
+      ],
+      [
+        -0.15449432959693812,
+        -0.15449432959693749,
+        -2.576357179337969,
+        -2.57635717933797,
+        0.7437614647439226,
+        0.7437614647439241,
+        -1.3089969389957472
+      ],
+      [
+        -0.15961105004059611,
+        -0.15961105004059523,
+        -2.5847345316049526,
+        -2.5847345316049535,
+        0.7434121707509344,
+        0.743412170750936,
+        -1.3002702927357754
+      ],
+      [
+        -0.16472172496859175,
+        -0.16472172496859105,
+        -2.593091509545457,
+        -2.593091509545458,
+        0.7430425024314672,
+        0.743042502431469,
+        -1.2915436464758039
+      ]
+    ],
+    "provenance": "Independent closed-form cylinder geometry cross-checked with SciPy least_squares; nominal also matches the Simscape display precision",
+    "nominal_q7_deg": -76,
+    "local_interval_q7_deg": [
+      -78,
+      -74
+    ],
+    "hardware_limits": false,
+    "simscape_display_values": {
+      "q24_deg": -146.650875,
+      "p3_m": -0.144244,
+      "q5_deg": 42.650875,
+      "q25_deg": -146.650875,
+      "p4_m": -0.144244,
+      "q6_deg": 42.650875
+    }
+  },
+  "actuators": [
+    {
+      "id": "drive_p0",
+      "drive_joint_id": "p0",
+      "type": "linear_force",
+      "source_command_channel": 0,
+      "source_signal_gain": 0,
+      "effort_unit": "N",
+      "source_converter_sid": "2882",
+      "input_status": "unconnected",
+      "unknown_runtime_effort": true,
+      "note": "Gain0 denotes no dependency on the six known channels, NOT an assumed zero force. Converter input has no wire; runtime value is unresolved."
+    },
+    {
+      "id": "drive_p1",
+      "drive_joint_id": "p1",
+      "type": "linear_force",
+      "source_command_channel": 5,
+      "source_signal_gain": -1,
+      "effort_unit": "N",
+      "source_converter_sid": "332",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_p2",
+      "drive_joint_id": "p2",
+      "type": "linear_force",
+      "source_command_channel": 4,
+      "source_signal_gain": -1,
+      "effort_unit": "N",
+      "source_converter_sid": "322",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_p3",
+      "drive_joint_id": "p3",
+      "type": "linear_force",
+      "source_command_channel": 2,
+      "source_signal_gain": -0.5,
+      "effort_unit": "N",
+      "source_converter_sid": "304",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_p4",
+      "drive_joint_id": "p4",
+      "type": "linear_force",
+      "source_command_channel": 2,
+      "source_signal_gain": -0.5,
+      "effort_unit": "N",
+      "source_converter_sid": "303",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_p5",
+      "drive_joint_id": "p5",
+      "type": "linear_force",
+      "source_command_channel": 3,
+      "source_signal_gain": -1,
+      "effort_unit": "N",
+      "source_converter_sid": "313",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_q21",
+      "drive_joint_id": "q21",
+      "type": "rotary_torque",
+      "source_command_channel": 6,
+      "source_signal_gain": 10,
+      "effort_unit": "N*m",
+      "source_converter_sid": "340",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    },
+    {
+      "id": "drive_q23",
+      "drive_joint_id": "q23",
+      "type": "rotary_torque",
+      "source_command_channel": 1,
+      "source_signal_gain": 25,
+      "effort_unit": "N*m",
+      "source_converter_sid": "280",
+      "input_status": "connected",
+      "unknown_runtime_effort": false,
+      "note": "Source scalar gain; no hydraulic calibration or gear efficiency inferred"
+    }
+  ],
+  "command_map": {
+    "coordinate_ids": [
+      "p0",
+      "p1",
+      "p2",
+      "p3",
+      "p4",
+      "p5",
+      "q0",
+      "q1",
+      "q10",
+      "q11",
+      "q12",
+      "q13",
+      "q14",
+      "q15",
+      "q16",
+      "q17",
+      "q18",
+      "q19",
+      "q2",
+      "q20",
+      "q21",
+      "q22",
+      "q23",
+      "q24",
+      "q25",
+      "q3",
+      "q4",
+      "q5",
+      "q6",
+      "q7",
+      "q8",
+      "q9"
+    ],
+    "channel_ids": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6"
+    ],
+    "B_SI": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        -0.5,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        -0.5,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        10
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "channels": [
+      {
+        "id": "F1",
+        "index": 1,
+        "label": "base yaw",
+        "branches": [
+          {
+            "joint_id": "q23",
+            "gain": 25,
+            "unit": "N*m",
+            "converter_sid": "280"
+          }
+        ]
+      },
+      {
+        "id": "F2",
+        "index": 2,
+        "label": "boom",
+        "branches": [
+          {
+            "joint_id": "p3",
+            "gain": -0.5,
+            "unit": "N",
+            "converter_sid": "304"
+          },
+          {
+            "joint_id": "p4",
+            "gain": -0.5,
+            "unit": "N",
+            "converter_sid": "303"
+          }
+        ]
+      },
+      {
+        "id": "F3",
+        "index": 3,
+        "label": "stick",
+        "branches": [
+          {
+            "joint_id": "p5",
+            "gain": -1,
+            "unit": "N",
+            "converter_sid": "313"
+          }
+        ]
+      },
+      {
+        "id": "F4",
+        "index": 4,
+        "label": "bucket linkage",
+        "branches": [
+          {
+            "joint_id": "p2",
+            "gain": -1,
+            "unit": "N",
+            "converter_sid": "322"
+          }
+        ]
+      },
+      {
+        "id": "F5",
+        "index": 5,
+        "label": "tilt",
+        "branches": [
+          {
+            "joint_id": "p1",
+            "gain": -1,
+            "unit": "N",
+            "converter_sid": "332"
+          }
+        ]
+      },
+      {
+        "id": "F6",
+        "index": 6,
+        "label": "tiltrotator rotation",
+        "branches": [
+          {
+            "joint_id": "q21",
+            "gain": 10,
+            "unit": "N*m",
+            "converter_sid": "340"
+          }
+        ]
+      }
+    ],
+    "unconnected_effort_joint_ids": [
+      "p0"
+    ],
+    "meaning": "Known six-channel contributions to generalized joint efforts only. Unbound inputs are explicitly unresolved.",
+    "dynamics_validated": false
+  },
+  "source_findings": [
+    {
+      "id": "extra_pin_spin",
+      "severity": "scope",
+      "description": "Full graph has seven local configuration DOF including one passive internal spin; do not silently fix it."
+    },
+    {
+      "id": "unconnected_tilt_effort",
+      "severity": "needs_runtime_review",
+      "description": "Prismatic p0 force converter SID2882 has an unconnected Simulink input. Runtime force not inferred; other tilt cylinder p1 is commanded."
+    }
+  ],
+  "pending": [
+    "Runtime interpretation of the unconnected tilt force input",
+    "Explicit treatment of internal pin spin for any six-coordinate reduction",
+    "Remaining module motion validation beyond reference assembly",
+    "Dynamics and hydraulic calibration",
+    "Hardware limits",
+    "MuJoCo/Pinocchio export",
+    "General CAD/STEP/URDF import"
+  ],
+  "interpretation": {
+    "schema": "excavator.cmg.interpretation/0.3",
+    "status": "Local kinematic interpretation at the closed reference configuration",
+    "physical_graph_counts": {
+      "body": 26,
+      "joint": 34,
+      "moving_joint": 32,
+      "cycles": 9
+    },
+    "reference": {
+      "id": "working_reconstruction",
+      "coordinate_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q0",
+        "q1",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q2",
+        "q20",
+        "q21",
+        "q22",
+        "q23",
+        "q24",
+        "q25",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "q_SI": [
+        -2.381542169350297e-13,
+        2.392752468648805e-13,
+        -0.10825304306503437,
+        -0.1442441340720937,
+        -0.1442441340720936,
+        0.4796889420940203,
+        1.2538550938747008,
+        0,
+        1.5914213920983555,
+        -0.19863394992755873,
+        -0.1986339499274092,
+        1.7100772521125582,
+        1.0163752337660794,
+        1.2032690874492975,
+        1.7100772521125576,
+        1.0163752337660774,
+        1.2032690874492982,
+        -1.4725973920039366,
+        3.1339780922784444,
+        -1.472597392003934,
+        0,
+        -1.3631750780704177,
+        -1.5707963267948966,
+        -2.55954063114521,
+        -2.559540631145211,
+        2.7519393150461746,
+        -3.8048177693476384,
+        0.7443982090711068,
+        0.7443982090711081,
+        -1.3264502315156905,
+        -2.9559312566554605,
+        2.292706140897616
+      ],
+      "origin": "Closed working reference from the source model",
+      "source_provenance": "Python closure solve near the Simscape reference configuration; q0=71.840605deg and pin q15 held at the source CAD value."
+    },
+    "modules": [
+      {
+        "id": "module_p0",
+        "joint_ids": [
+          "p0",
+          "p1",
+          "q1",
+          "q11",
+          "q12",
+          "q2",
+          "q3"
+        ],
+        "body_ids": [
+          "body_46",
+          "body_47",
+          "body_48",
+          "body_49",
+          "body_58",
+          "body_61"
+        ],
+        "counts": {
+          "body": 6,
+          "joint": 7,
+          "moving_joint": 7,
+          "cycles": 2
+        },
+        "coordinate_ids": [
+          "p0",
+          "p1",
+          "q1",
+          "q11",
+          "q12",
+          "q2",
+          "q3"
+        ],
+        "reference_q_SI": [
+          -2.381542169350297e-13,
+          2.392752468648805e-13,
+          0,
+          -0.19863394992755873,
+          -0.1986339499274092,
+          3.1339780922784444,
+          2.7519393150461746
+        ],
+        "closure_cycle_ids": [
+          "cycle_q2",
+          "cycle_q3"
+        ],
+        "constraint_rank": 6,
+        "local_dof": 1,
+        "independent_ids": [
+          "q1"
+        ],
+        "preferred_ids": [
+          "q1"
+        ],
+        "derived_ids": [],
+        "passive_ids": [
+          "p0",
+          "p1",
+          "q11",
+          "q12",
+          "q2",
+          "q3"
+        ],
+        "selected_constraint_rows": [
+          1,
+          7,
+          6,
+          12,
+          11,
+          5
+        ],
+        "differential_map": [
+          [
+            0.2128404883287774
+          ],
+          [
+            -0.2128404883283045
+          ],
+          [
+            -0.9307566589390137
+          ],
+          [
+            0.9307566589388169
+          ],
+          [
+            0.06924334106096543
+          ],
+          [
+            -0.06924334106116424
+          ]
+        ],
+        "tangent_map": [
+          [
+            0.2128404883287774
+          ],
+          [
+            -0.2128404883283045
+          ],
+          [
+            1.0
+          ],
+          [
+            -0.9307566589390137
+          ],
+          [
+            0.9307566589388169
+          ],
+          [
+            0.06924334106096543
+          ],
+          [
+            -0.06924334106116424
+          ]
+        ],
+        "map_residual_scaled": 1.856423106587579e-13,
+        "passive_block_rcond": 0.1414358942860498,
+        "max_position_closure_m": 9.836601059614785e-16,
+        "max_rotation_closure_rad": 8.05419985795132e-16
+      },
+      {
+        "id": "module_p2",
+        "joint_ids": [
+          "p2",
+          "q0",
+          "q10",
+          "q13",
+          "q14",
+          "q15",
+          "q16",
+          "q17",
+          "q18",
+          "q19",
+          "q20",
+          "q22"
+        ],
+        "body_ids": [
+          "body_10",
+          "body_5",
+          "body_59",
+          "body_6",
+          "body_60",
+          "body_61",
+          "body_7",
+          "body_8",
+          "body_9"
+        ],
+        "counts": {
+          "body": 9,
+          "joint": 12,
+          "moving_joint": 12,
+          "cycles": 4
+        },
+        "coordinate_ids": [
+          "p2",
+          "q0",
+          "q10",
+          "q13",
+          "q14",
+          "q15",
+          "q16",
+          "q17",
+          "q18",
+          "q19",
+          "q20",
+          "q22"
+        ],
+        "reference_q_SI": [
+          -0.10825304306503437,
+          1.2538550938747008,
+          1.5914213920983555,
+          1.7100772521125582,
+          1.0163752337660794,
+          1.2032690874492975,
+          1.7100772521125576,
+          1.0163752337660774,
+          1.2032690874492982,
+          -1.4725973920039366,
+          -1.472597392003934,
+          -1.3631750780704177
+        ],
+        "closure_cycle_ids": [
+          "cycle_q18",
+          "cycle_q19",
+          "cycle_q20",
+          "cycle_q22"
+        ],
+        "constraint_rank": 10,
+        "local_dof": 2,
+        "independent_ids": [
+          "q0",
+          "q22"
+        ],
+        "preferred_ids": [
+          "q0"
+        ],
+        "derived_ids": [
+          "q22"
+        ],
+        "passive_ids": [
+          "p2",
+          "q10",
+          "q13",
+          "q14",
+          "q15",
+          "q16",
+          "q17",
+          "q18",
+          "q19",
+          "q20"
+        ],
+        "selected_constraint_rows": [
+          3,
+          23,
+          14,
+          8,
+          22,
+          21,
+          5,
+          16,
+          10,
+          18
+        ],
+        "differential_map": [
+          [
+            0.3874567290142302,
+            -9.182819436651816e-13
+          ],
+          [
+            0.03595519188040637,
+            -1.602675860494667e-12
+          ],
+          [
+            0.7928559192108687,
+            -2.5489433284009598e-15
+          ],
+          [
+            -0.47118121317827166,
+            1.1102230246251567e-15
+          ],
+          [
+            -0.828811111091275,
+            -0.9999999999983947
+          ],
+          [
+            0.7928559192108704,
+            -1.0620597201685948e-16
+          ],
+          [
+            -0.47118121317826445,
+            -1.1102230246251568e-16
+          ],
+          [
+            -0.8288111110912768,
+            -0.999999999998397
+          ],
+          [
+            0.6783252939674027,
+            1.5849628820241746e-15
+          ],
+          [
+            0.6783252939673937,
+            2.0687176056327913e-16
+          ]
+        ],
+        "tangent_map": [
+          [
+            0.3874567290142302,
+            -9.182819436651816e-13
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0.03595519188040637,
+            -1.602675860494667e-12
+          ],
+          [
+            0.7928559192108687,
+            -2.5489433284009598e-15
+          ],
+          [
+            -0.47118121317827166,
+            1.1102230246251567e-15
+          ],
+          [
+            -0.828811111091275,
+            -0.9999999999983947
+          ],
+          [
+            0.7928559192108704,
+            -1.0620597201685948e-16
+          ],
+          [
+            -0.47118121317826445,
+            -1.1102230246251568e-16
+          ],
+          [
+            -0.8288111110912768,
+            -0.999999999998397
+          ],
+          [
+            0.6783252939674027,
+            1.5849628820241746e-15
+          ],
+          [
+            0.6783252939673937,
+            2.0687176056327913e-16
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "map_residual_scaled": 1.6424229261283772e-16,
+        "passive_block_rcond": 0.014507550063314454,
+        "max_position_closure_m": 1.0035281600035375e-15,
+        "max_rotation_closure_rad": 2.8589406060361473e-16
+      },
+      {
+        "id": "module_p3",
+        "joint_ids": [
+          "p3",
+          "p4",
+          "q24",
+          "q25",
+          "q5",
+          "q6",
+          "q7"
+        ],
+        "body_ids": [
+          "body_1",
+          "body_2",
+          "body_3",
+          "body_4",
+          "body_54",
+          "body_57"
+        ],
+        "counts": {
+          "body": 6,
+          "joint": 7,
+          "moving_joint": 7,
+          "cycles": 2
+        },
+        "coordinate_ids": [
+          "p3",
+          "p4",
+          "q24",
+          "q25",
+          "q5",
+          "q6",
+          "q7"
+        ],
+        "reference_q_SI": [
+          -0.1442441340720937,
+          -0.1442441340720936,
+          -2.55954063114521,
+          -2.559540631145211,
+          0.7443982090711068,
+          0.7443982090711081,
+          -1.3264502315156905
+        ],
+        "closure_cycle_ids": [
+          "cycle_q6",
+          "cycle_q7"
+        ],
+        "constraint_rank": 6,
+        "local_dof": 1,
+        "independent_ids": [
+          "q7"
+        ],
+        "preferred_ids": [
+          "q7"
+        ],
+        "derived_ids": [],
+        "passive_ids": [
+          "p3",
+          "p4",
+          "q24",
+          "q25",
+          "q5",
+          "q6"
+        ],
+        "selected_constraint_rows": [
+          5,
+          11,
+          4,
+          3,
+          10,
+          9
+        ],
+        "differential_map": [
+          [
+            -0.5878929982451269
+          ],
+          [
+            -0.5878929982451273
+          ],
+          [
+            -0.9659002219197655
+          ],
+          [
+            -0.9659002219197654
+          ],
+          [
+            -0.03409977808023444
+          ],
+          [
+            -0.03409977808023475
+          ]
+        ],
+        "tangent_map": [
+          [
+            -0.5878929982451269
+          ],
+          [
+            -0.5878929982451273
+          ],
+          [
+            -0.9659002219197655
+          ],
+          [
+            -0.9659002219197654
+          ],
+          [
+            -0.03409977808023444
+          ],
+          [
+            -0.03409977808023475
+          ],
+          [
+            1.0
+          ]
+        ],
+        "map_residual_scaled": 9.666704200194266e-17,
+        "passive_block_rcond": 0.06531156510999528,
+        "max_position_closure_m": 1.0536156889230545e-15,
+        "max_rotation_closure_rad": 4.214918260571159e-16
+      },
+      {
+        "id": "module_p5",
+        "joint_ids": [
+          "p5",
+          "q4",
+          "q8",
+          "q9"
+        ],
+        "body_ids": [
+          "body_44",
+          "body_45",
+          "body_54",
+          "body_60"
+        ],
+        "counts": {
+          "body": 4,
+          "joint": 4,
+          "moving_joint": 4,
+          "cycles": 1
+        },
+        "coordinate_ids": [
+          "p5",
+          "q4",
+          "q8",
+          "q9"
+        ],
+        "reference_q_SI": [
+          0.4796889420940203,
+          -3.8048177693476384,
+          -2.9559312566554605,
+          2.292706140897616
+        ],
+        "closure_cycle_ids": [
+          "cycle_q9"
+        ],
+        "constraint_rank": 3,
+        "local_dof": 1,
+        "independent_ids": [
+          "q4"
+        ],
+        "preferred_ids": [
+          "q4"
+        ],
+        "derived_ids": [],
+        "passive_ids": [
+          "p5",
+          "q8",
+          "q9"
+        ],
+        "selected_constraint_rows": [
+          5,
+          3,
+          4
+        ],
+        "differential_map": [
+          [
+            -0.6557671563772677
+          ],
+          [
+            -0.1979381106247154
+          ],
+          [
+            1.1979381106247156
+          ]
+        ],
+        "tangent_map": [
+          [
+            -0.6557671563772677
+          ],
+          [
+            1.0
+          ],
+          [
+            -0.1979381106247154
+          ],
+          [
+            1.1979381106247156
+          ]
+        ],
+        "map_residual_scaled": 9.231688131347013e-17,
+        "passive_block_rcond": 0.34558420539810997,
+        "max_position_closure_m": 2.798877213216932e-16,
+        "max_rotation_closure_rad": 3.42998018486265e-16
+      }
+    ],
+    "bridge_joint_ids": [
+      "fixed_bucket_mount",
+      "fixed_world_base",
+      "q21",
+      "q23"
+    ],
+    "articulation_body_ids": [
+      "body_53",
+      "body_54",
+      "body_55",
+      "body_57",
+      "body_58",
+      "body_60",
+      "body_61"
+    ],
+    "full_partition": {
+      "coordinate_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q0",
+        "q1",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q2",
+        "q20",
+        "q21",
+        "q22",
+        "q23",
+        "q24",
+        "q25",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "reference_q_SI": [
+        -2.381542169350297e-13,
+        2.392752468648805e-13,
+        -0.10825304306503437,
+        -0.1442441340720937,
+        -0.1442441340720936,
+        0.4796889420940203,
+        1.2538550938747008,
+        0,
+        1.5914213920983555,
+        -0.19863394992755873,
+        -0.1986339499274092,
+        1.7100772521125582,
+        1.0163752337660794,
+        1.2032690874492975,
+        1.7100772521125576,
+        1.0163752337660774,
+        1.2032690874492982,
+        -1.4725973920039366,
+        3.1339780922784444,
+        -1.472597392003934,
+        0,
+        -1.3631750780704177,
+        -1.5707963267948966,
+        -2.55954063114521,
+        -2.559540631145211,
+        2.7519393150461746,
+        -3.8048177693476384,
+        0.7443982090711068,
+        0.7443982090711081,
+        -1.3264502315156905,
+        -2.9559312566554605,
+        2.292706140897616
+      ],
+      "closure_cycle_ids": [
+        "cycle_q18",
+        "cycle_q19",
+        "cycle_q2",
+        "cycle_q20",
+        "cycle_q22",
+        "cycle_q3",
+        "cycle_q6",
+        "cycle_q7",
+        "cycle_q9"
+      ],
+      "closure_row_convention": "Six angular-first SE(3) log rows per listed cycle",
+      "constraint_rank": 25,
+      "local_dof": 7,
+      "preferred_ids": [
+        "q23",
+        "q7",
+        "q4",
+        "q0",
+        "q1",
+        "q21"
+      ],
+      "derived_ids": [
+        "q22"
+      ],
+      "independent_ids": [
+        "q23",
+        "q7",
+        "q4",
+        "q0",
+        "q1",
+        "q21",
+        "q22"
+      ],
+      "passive_ids": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "q10",
+        "q11",
+        "q12",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "q18",
+        "q19",
+        "q2",
+        "q20",
+        "q24",
+        "q25",
+        "q3",
+        "q5",
+        "q6",
+        "q8",
+        "q9"
+      ],
+      "selected_constraint_rows": [
+        41,
+        3,
+        47,
+        53,
+        29,
+        20,
+        8,
+        13,
+        31,
+        40,
+        28,
+        39,
+        51,
+        52,
+        18,
+        36,
+        27,
+        46,
+        45,
+        35,
+        17,
+        5,
+        22,
+        10,
+        12
+      ],
+      "differential_map": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0.21284048832877744,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.21284048832830424,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.38745672901422984,
+          0,
+          0,
+          -9.170363135075932e-13
+        ],
+        [
+          0,
+          -0.5878929982451268,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.5878929982451272,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -0.6557671563772677,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.035955191880406336,
+          0,
+          0,
+          -1.6025602685640737e-12
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.9307566589390137,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.9307566589388169,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.7928559192108681,
+          0,
+          0,
+          -2.2542139245322903e-24
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.47118121317827133,
+          0,
+          0,
+          -1.3479094392675222e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.8288111110912744,
+          0,
+          0,
+          -0.9999999999983974
+        ],
+        [
+          0,
+          0,
+          0,
+          0.7928559192108697,
+          0,
+          0,
+          2.442737356339497e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.47118121317826406,
+          0,
+          0,
+          -1.1486873596383187e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.8288111110912759,
+          0,
+          0,
+          -0.9999999999983996
+        ],
+        [
+          0,
+          0,
+          0,
+          0.678325293967403,
+          0,
+          0,
+          2.0167310512316043e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.06924334106096543,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.678325293967394,
+          0,
+          0,
+          -1.2885035563012364e-15
+        ],
+        [
+          0,
+          -0.9659002219197657,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.9659002219197657,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.06924334106116424,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.03409977808023443,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.03409977808023456,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -0.1979381106247154,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1.1979381106247153,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "tangent_map": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0.21284048832877744,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.21284048832830424,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.38745672901422984,
+          0,
+          0,
+          -9.170363135075932e-13
+        ],
+        [
+          0,
+          -0.5878929982451268,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.5878929982451272,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -0.6557671563772677,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.035955191880406336,
+          0,
+          0,
+          -1.6025602685640737e-12
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.9307566589390137,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.9307566589388169,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.7928559192108681,
+          0,
+          0,
+          -2.2542139245322903e-24
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.47118121317827133,
+          0,
+          0,
+          -1.3479094392675222e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.8288111110912744,
+          0,
+          0,
+          -0.9999999999983974
+        ],
+        [
+          0,
+          0,
+          0,
+          0.7928559192108697,
+          0,
+          0,
+          2.442737356339497e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.47118121317826406,
+          0,
+          0,
+          -1.1486873596383187e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          -0.8288111110912759,
+          0,
+          0,
+          -0.9999999999983996
+        ],
+        [
+          0,
+          0,
+          0,
+          0.678325293967403,
+          0,
+          0,
+          2.0167310512316043e-16
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.06924334106096543,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.678325293967394,
+          0,
+          0,
+          -1.2885035563012364e-15
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.9659002219197657,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.9659002219197657,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -0.06924334106116424,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.03409977808023443,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -0.03409977808023456,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -0.1979381106247154,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1.1979381106247153,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "map_residual_scaled": 2.9199184081107276e-14,
+      "passive_block_rcond": 0.01324034749599437,
+      "constraint_singular_values": [
+        3.473038155530048,
+        2.731190687911957,
+        2.3847811761476985,
+        2.3372921788718597,
+        2.3159097483775644,
+        2.144718484678662,
+        2.0279591166502646,
+        1.7612326261347877,
+        1.6090048379987663,
+        1.5606457935703524,
+        1.4879537607451645,
+        1.1535746465263639,
+        1.082108104936757,
+        0.9963031661736345,
+        0.9495258658032926,
+        0.8728771795948533,
+        0.8412864935687101,
+        0.7671072467087633,
+        0.6553302771738931,
+        0.5121804829873366,
+        0.49038010595815856,
+        0.47540788498140035,
+        0.427519118946098,
+        0.27934136229794443,
+        0.27904176966937455,
+        6.070236916878404e-13,
+        8.650982362876138e-16,
+        4.529751803441855e-16,
+        4.26930641382763e-16,
+        2.5790691272029503e-16,
+        5.280098129127902e-17,
+        1.2232320795683375e-17
+      ],
+      "max_position_closure_m": 1.0536156889230545e-15,
+      "max_rotation_closure_rad": 8.05419985795132e-16
+    },
+    "local_dof_from_blocks": 7,
+    "provenance": {
+      "physical_records": "Copied without mutation from the source RoboIR model",
+      "module_boundaries": "Computed from fundamental-cycle edge equivalence",
+      "preferred_coordinates": "Explicit input/source choices; not actuator inference",
+      "additional_independent_coordinates": "Computed by rank-revealing column QR",
+      "independent_constraint_rows": "Computed by rank-revealing row QR in PACDM",
+      "coordinate_maps": "Computed and checked against every closure row",
+      "reference_configuration": "Input data, not automatically discovered",
+      "legacy_module_metadata_used": false,
+      "hint_module_lists_used": false,
+      "hardware_limits_inferred": false,
+      "dynamics_generated": false,
+      "rank_relative_tolerance": 1e-10,
+      "rank_scaling": "Numerical SI components with characteristic 1 rad and 1 m"
+    },
+    "unresolved_findings": [
+      {
+        "id": "extra_pin_spin",
+        "severity": "scope",
+        "description": "Full graph has seven local configuration DOF including one passive internal spin; do not silently fix it."
+      },
+      {
+        "id": "unconnected_tilt_effort",
+        "severity": "needs_runtime_review",
+        "description": "Prismatic p0 force converter SID2882 has an unconnected Simulink input. Runtime force not inferred; other tilt cylinder p1 is commanded."
+      }
+    ],
+    "scope": "Numerical rank and coordinate maps are local to the supplied configuration and tested neighborhood. A derived extra coordinate is preserved as a state coordinate; it is not an added actuator or a weld. Input connection findings remain unresolved.",
+    "validation": {
+      "local_batch_pass": true,
+      "full_tracking_samples": 242,
+      "full_reference_acquisitions": 9,
+      "new_simscape_measurements": false,
+      "dynamics_validated": false,
+      "hardware_limits_validated": false,
+      "external_backend_validation": false
+    }
+  },
+  "exchange": {
+    "schema": "excavator.cmg.exchange/0.4",
+    "profile": "komatsu-source-snapshot",
+    "migration": {
+      "source_physical_schema": "excavator.roboir.prototype/0.2",
+      "source_interpretation_schema": "excavator.cmg.interpretation/0.3",
+      "method": "known-shape normalization only",
+      "changes": [
+        {
+          "path": "/joints/2/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/2/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/3/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/3/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/4/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/4/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/5/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/5/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/6/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/6/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/7/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/7/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/8/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/8/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/9/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/9/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/10/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/10/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/11/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/11/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/12/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/12/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/13/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/13/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/14/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/14/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/15/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/15/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/16/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/16/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/17/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/17/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/18/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/18/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/19/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/19/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/20/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/20/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/21/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/21/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/22/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/22/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/23/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/23/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/24/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/24/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/25/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/25/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/26/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/26/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/27/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/27/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/28/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/28/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/29/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/29/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/30/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/30/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/31/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/31/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/32/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/32/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/33/source_base_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/joints/33/source_follower_rt_records",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "int",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/command_map/channels/0/branches",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "dict",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/command_map/channels/2/branches",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "dict",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/command_map/channels/3/branches",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "dict",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/command_map/channels/4/branches",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "dict",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/command_map/channels/5/branches",
+          "operation": "wrap_singleton_collection",
+          "original_kind": "dict",
+          "canonical_shape": [
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/0/differential_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            6,
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/0/tangent_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            7,
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/2/differential_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            6,
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/2/tangent_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            7,
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/3/differential_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            3,
+            1
+          ]
+        },
+        {
+          "path": "/interpretation/modules/3/tangent_map",
+          "operation": "restore_matrix_shape",
+          "original_kind": "vector",
+          "canonical_shape": [
+            4,
+            1
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -158,13 +158,13 @@ def aggregate(root=ROOT):
         scope=[
             'Go2 is a floating branched tree with 18 physical velocities and 12 leg motors. Six base scalar stages represent a local ZYX chart and are unactuated.',
             'Temporary ideal no-slip foot constraints define contact-mode charts; the robot has no permanent structural loops. Actual sphere contacts may roll, slip or detach.',
-            'MuJoCo alone integrates unilateral contact. Pinocchio validates authored rigid-body mechanics and provides the controller dynamics; contact-trajectory equivalence between engines is not claimed.',
+            'MuJoCo alone integrates unilateral contact. Pinocchio validates authored rigid-body mechanics and provides the controller dynamics; contact trajectories are not expected to be identical between engines.',
             'Only twelve source torque motors command motion. There are no base support actuators, mocap bodies or equality constraints. The only applied external body forces are explicitly logged disturbances.',
             'The route, foot placements and support schedule are prescribed. This is not autonomous navigation, perception, online foothold planning or arbitrary-terrain locomotion.',
             'The payload case adds a 1.5 kg point mass at the source base COM while the controller retains the nominal model; it is not a separate carried articulated object.',
             'QP contact forces are predictions. Support-mode observations use actual upward MuJoCo ground reactions; unexpected contacts count every non-foot world contact and robot self-contact above 1 N.',
             'Positive cases must meet all declared tracking, contact, motor, duration, stability and QP gates. No-actuation is an expected-failure control, and PD_ablation has no imposed performance comparison.',
-            'Finite simulation evidence in the pinned environment. No hardware validation, global workspace proof, contact stability theorem or generic locomotion guarantee is claimed.',
+            'Finite simulation evidence in the pinned environment; hardware validation, global workspace proofs, contact stability theorems and generic locomotion guarantees are outside its scope.',
         ])
     write_json(results/'validation.json', result)
     return result

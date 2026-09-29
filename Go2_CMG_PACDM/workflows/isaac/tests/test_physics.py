@@ -1,6 +1,6 @@
 """Tensor-boundary tests with scrambled native names (not a PhysX rollout).
 
-The fake supplies independently computed rigid poses; it makes no claim to
+The fake supplies independently computed rigid poses; it does not
 simulate contact, articulation dynamics, native API existence, or stability.
 """
 import sys

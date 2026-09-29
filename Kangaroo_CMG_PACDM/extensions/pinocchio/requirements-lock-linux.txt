@@ -1,4 +1,4 @@
-# Exact package set of the Linux environment that produced the delivered results (Python 3.12.3).
+# Exact package set of the Linux environment that produced the recorded results (Python 3.12.3).
 cmeel-assimp==6.0.5
 cmeel-boost==1.89.0
 cmeel-console-bridge==1.0.2.3

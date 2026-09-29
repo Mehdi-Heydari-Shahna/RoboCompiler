@@ -50,7 +50,7 @@ DERIVATIVE_BUDGET = 5000
 # Independent tangent gate: the 24 cuts carry 16 redundant physical rows, and the unchanged PACDM corrector
 # accepts at 1e-9 (selected rows) / 1e-8 (all rows). The exact tangent of such a state differs from the
 # selected-row tangent by O(1e-8); 1e-6 is 100x the all-row tolerance and far below the O(1) residual of a
-# wrong or incomplete map. Declared before the timing runs (see METHODS.md).
+# wrong or incomplete map. Declared before the timing runs.
 TANGENT_GATE = 1e-6
 MODES = [[], ['left_sole'], ['right_sole'], ['left_sole', 'right_sole']]
 
@@ -60,7 +60,7 @@ def mode_name(sites):
 
 
 # ---------------------------------------------------------------------------
-# Supplied data
+# Source data
 # ---------------------------------------------------------------------------
 def supplied_cmg():
     return json.loads((ROOT / 'original/original_v22/data/whole_body_cmg.json').read_text())
@@ -77,7 +77,7 @@ def accepted():
 
 
 class Layout:
-    """Maps supplied v22 augmented states (supplied CMG order) into a compiled layout, by record id."""
+    """Maps original v22 augmented states (source CMG order) into a compiled layout, by record id."""
 
     def __init__(self, comp, acc, cmg0=None):
         cmg0 = cmg0 or supplied_cmg()
@@ -361,7 +361,7 @@ def fault_stage(source, out, acc):
 # Stage 3: full-route continuation
 # ---------------------------------------------------------------------------
 def route(cfg, comp):
-    """Supplied v22 motor inputs u(t) (reordered by joint id into the compiled motor order), PCHIP."""
+    """Original v22 motor inputs u(t) (reordered by joint id into the compiled motor order), PCHIP."""
     ref = supplied_reference()
     cmg0 = supplied_cmg()
     ids = [comp.cmg['coordinate_ids'][i] for i in comp.plan['motor_indices']]
@@ -399,7 +399,7 @@ def warm_stage(comp, cfg, out, acc):
     raw, records = [], []
     save_json(out / 'warm_inputs.json', dict(time=time, active=active, x_initial=x0, methods=METHODS,
                                              known_branch_samples=sorted(known),
-                                             interpolation='scipy PchipInterpolator of supplied contact_reference u'))
+                                             interpolation='scipy PchipInterpolator of the original contact_reference u'))
     for repeat in range(cfg['repeats']):
         solvers = {name: create_solver(name, comp, x0, acc) for name in METHODS}
         for i, t in enumerate(time):
@@ -582,7 +582,7 @@ def incremental_stage(comp, cfg, out, acc):
     s = timing_summary(raw, ('changed_modules', 'method'))
     save_csv(out / 'incremental_summary.csv', s)
     return dict(attempts=len(raw), passed=sum(bool(r['success']) for r in raw), methods=s,
-                note='Motor-input edits taken from the supplied reference per module; the supplied passive '
+                note='Motor-input edits taken from the original reference per module; the original passive '
                      'solution of each module is the known branch. Unchanged module inputs are reused exactly.')
 
 
@@ -651,7 +651,7 @@ def acquisition_stage(comp, cfg, out, acc):
     save_csv(out / 'acquisition_summary.csv', s)
     return dict(attempts=len(raw), passed=sum(bool(r['success']) for r in raw), methods=s,
                 note='Initialization from the named v22 seed with the unchanged PACDM defect homotopy; known '
-                     'branch = supplied reference state. The mapping at the result is included in the time.')
+                     'branch = original reference state. The mapping at the result is included in the time.')
 
 
 # ---------------------------------------------------------------------------
@@ -708,7 +708,7 @@ def evaluator_stage(comp, cfg, out, acc):
 
 
 # ---------------------------------------------------------------------------
-# Stage 8: end-to-end delivered rollout with accepted vs generated evaluator
+# Stage 8: end-to-end original rollout with accepted vs generated evaluator
 # ---------------------------------------------------------------------------
 def rollout_stage(comp, cfg, out, acc):
     from .rollout import run_rollouts
@@ -826,7 +826,7 @@ def main(argv=None):
     stages = ['pipeline', 'checks', 'evaluator', 'warm', 'derivatives', 'incremental', 'acquisition', 'dynamics',
               'rollout'] if 'all' in a.stages else a.stages
     if 'rollout' in stages and not native:
-        p.error('--stages rollout runs the delivered Pinocchio simulation and requires Pinocchio')
+        p.error('--stages rollout runs the original Pinocchio simulation and requires Pinocchio')
     if 'native' in stages and not native:
         p.error('--stages native requires Pinocchio (--native required or auto)')
     try:
@@ -846,7 +846,7 @@ def main(argv=None):
                     '1e-9, all rows 1e-8, corrector maxiter 8 in continuation', trf_tolerances=1e-11,
                     trf_max_nfev=1500, derivative_fresh_evaluation_budget=DERIVATIVE_BUDGET,
                     continuation_fresh_evaluation_budget=1500, blas_threads=1, derivative_lookahead_s=.05,
-                    route='supplied v22 contact_reference motor inputs u(t), PCHIP at the route samples',
+                    route='original v22 contact_reference motor inputs u(t), PCHIP at the route samples',
                     curvature_fd_step='1e-5 / max(1, max(abs(v)))',
                     timing_scope='warm/incremental: correction + output map; derivative: corrector only; '
                                  'acquisition: homotopy + mapping; setup and independent validation excluded equally',

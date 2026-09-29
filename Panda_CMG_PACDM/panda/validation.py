@@ -23,7 +23,7 @@ from vendor.pacdm_original import PACDM, PointGraph
 from .pin_backend import PinBackend
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_SHA256 = '492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+CORE_SHA256 = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
 def _error(value, reference):

@@ -18,7 +18,7 @@ class Reference:
 
     def at(self, t):
         if not -1e-10 <= t <= self.duration + 1e-10:
-            raise ValueError('Reference time is outside the supplied task')
+            raise ValueError('Reference time is outside the reference task')
         t = np.clip(t, 0., self.duration)
         return self.q(t), self.q(t, nu=1), self.q(t, nu=2)
 

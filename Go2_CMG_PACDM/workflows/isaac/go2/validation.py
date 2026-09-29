@@ -20,7 +20,7 @@ from .pin_backend import PinBackend
 from . import model as source
 
 ROOT = Path(__file__).resolve().parents[1]
-CORE_SHA256 = '492209e3a33281684751990ce97e02459e18a5529c2b7c4e8bae124eadc310ca'
+CORE_SHA256 = 'bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de'
 
 
 def _error(value, reference):
@@ -196,7 +196,7 @@ def validate_contacts(cmg=None, output=None):
     """Verify full PACDM residuals, tangent map and ideal-support KKT.
 
     Algebraic test multipliers need not satisfy unilateral/friction bounds;
-    only the separate simulated mission makes physical contact claims.
+    physical contact is evaluated in the separate simulated mission.
     """
     from .contact import ContactGraph, FootKinematics, StanceGraph
     cmg = source.build_model() if cmg is None else cmg

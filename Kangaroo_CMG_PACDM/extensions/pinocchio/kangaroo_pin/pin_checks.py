@@ -11,17 +11,16 @@ Three separately implemented descriptions of the same CMG are compared:
    angular rows;
 3. the accepted NumPy source dynamics (``FloatingSource``), the accepted
    analytic closure rows (``UniversalMechanism``) and the accepted KKT
-   solver (``constraint_solvers.solve_kkt``) from the supplied v22 package.
+   solver (``constraint_solvers.solve_kkt``) from the original v22 package.
 
 Routes 1 and 2 share the CMG-compiled Pinocchio tree and its inertias, so
 their agreement verifies the loop reduction and force mapping, not the
 authored inertias.  Route 3 shares only the CMG records.
 
 Tolerances are written in this file and are not changed by any run.  They
-were set during development, before the release runs; the development
-history (including limits that were temporarily widened and then restored
-after the accepted closure polish was added to the integrator) is
-disclosed in METHODS.md.
+were set during development, before the final runs; some limits were
+temporarily widened during development and then restored after the
+accepted closure polish was added to the integrator.
 """
 from __future__ import annotations
 

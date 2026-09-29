@@ -1,0 +1,71 @@
+{
+  "description": "Original and validated source files used by this benchmark; every file is checked against the SHA-256 recorded here.",
+  "files": {
+    "v21/pacdm.py": {
+      "sha256": "bbd1fb482e7529d70e05be3c3533d6d1076dada79f6b121e70424d138a9be8de",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/pacdm.py",
+      "matches_archive": true
+    },
+    "v21/excavator_pacdm.py": {
+      "sha256": "c2dde7d116266dfee3a787b1ffd2036acf843ca237d77097eaeb6da1f54fc007",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/excavator_pacdm.py",
+      "matches_archive": true
+    },
+    "v21/source_dynamics.py": {
+      "sha256": "6e6531065b7f15987a404995ee38f0aa0b1247368ad697e28603480d4b71e2a6",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/source_dynamics.py",
+      "matches_archive": true
+    },
+    "v21/source_bias.py": {
+      "sha256": "bfa6db64a0304d41604bd02436153bf8e81a1dd4a3c91604b32a995805bbeeae",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/source_bias.py",
+      "matches_archive": true
+    },
+    "v21/data/accepted_cmg_v04.json": {
+      "sha256": "217dfb926b0862bcef0335548a52e9b2a922d5caf9b0b889b78da59f34cd5be2",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/data/accepted_cmg_v04.json",
+      "matches_archive": true
+    },
+    "v21/data/accepted_mujoco_mapping.json": {
+      "sha256": "1c70f0284a9f90594505fa314767d49a8f3211baf571d75200461357cfa0302c",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/data/accepted_mujoco_mapping.json",
+      "matches_archive": true
+    },
+    "validated_backend/plant.py": {
+      "sha256": "1944ef612d8fff2808443dc18b02631e374a0ee7f5e872eb8481cc40807e7b95",
+      "archive": "Excavator_Pinocchio_Validation_v1_part1_code_reports.zip",
+      "archive_sha256": "adfe2239a8bf0c684420121913c11c44c199e0fdf1b639ad21c34b6f53c60e46",
+      "member": "Excavator_Pinocchio_Validation_v1/excavator_pin/plant.py",
+      "matches_archive": true
+    },
+    "v21/floating_dynamics.py": {
+      "sha256": "188314e60d7ec08c6e90cc4b0123290464a44cb2579353d44c9bbf62e87459d1",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/source/Excavator_RoboIR_full_body_v21/floating_dynamics.py",
+      "matches_archive": true,
+      "role": "test only: tests/test_excavator.py compares the benchmark polish with the original TrackedArmController._polish (MuJoCo replaced by a stub module)"
+    },
+    "v26/tracked_arm.py": {
+      "sha256": "2c9bb289cbea32e803a772b52eeff1134d28ed22b2a2ed3b38d979cb447e0c9d",
+      "archive": "RoboCompiler_Excavator_Soil_v01.zip",
+      "archive_sha256": "18049463738af22d6f6b142ff4dec45d3fe8ebff163a07d8bf93848d2822dc9d",
+      "member": "RoboCompiler_Excavator_Soil_v01/RoboCompiler_Excavator_Soil_v01/v26/tracked_arm.py",
+      "matches_archive": true,
+      "role": "test only: tests/test_excavator.py compares the benchmark polish with the original TrackedArmController._polish (MuJoCo replaced by a stub module)"
+    }
+  },
+  "all_match": true
+}

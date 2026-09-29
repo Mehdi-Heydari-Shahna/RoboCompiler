@@ -1,4 +1,4 @@
-"""Regression for the uploaded 0.009 kg m2 failure. No engine is emulated here."""
+"""Regression for the earlier 0.009 kg m2 failure. No engine is emulated here."""
 import json
 from pathlib import Path
 import numpy as np

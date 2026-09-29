@@ -1,6 +1,0 @@
-# Compatible version ranges (portable recipe). The executed versions are in
-# requirements-lock-linux.txt and in each result directory's environment.json.
-numpy>=2.0,<3
-scipy>=1.14,<2
-threadpoolctl>=3.5,<4
-pin==3.8.0            # Pinocchio 3.8.0 wheels (PyPI name "pin"); conda-forge package "pinocchio"

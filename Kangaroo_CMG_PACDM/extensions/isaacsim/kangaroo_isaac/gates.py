@@ -46,7 +46,7 @@ def assess(case,cfg,metrics,native_audit,completed):
     functional=all(g['status']=='PASS' for g in gates)
     unavailable=[{'name':k,'status':'NOT_IMPLEMENTED','reason':v,'source_threshold':SOURCE['positive_trials'][k]} for k,v in UNAVAILABLE.items()]
     return {'functional_status':('FUNCTIONAL_GATES_PASSED' if functional else 'FUNCTIONAL_GATES_FAILED'),
-            'scope':'native task/kinematic gates only; no claim of complete source validation',
+            'scope':'native task/kinematic gates only; complete source validation is separate',
             'is_ablation':case=='no_feedforward','gates':gates,
             'unavailable_source_gates':unavailable,
             'full_source_validation_status':'BLOCKED_INCOMPLETE_REACTION_AUDIT','certified_ready':False}

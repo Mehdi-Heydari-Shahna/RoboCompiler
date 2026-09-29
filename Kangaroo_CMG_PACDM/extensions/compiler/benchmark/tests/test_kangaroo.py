@@ -17,7 +17,7 @@ from src import bootstrap  # noqa: F401
 from src.bootstrap import ROOT
 from src.compiler import (compile_graph, variant_inputs, support_sets, components, ModelError, FORBIDDEN)
 from src.evaluator import (GeneratedLoopGraph, GeneratedSupportGraph, ModularSolver, CutSetEvaluator,
-                           SuppliedLayoutGraph, METHODS, create_solver)
+                           SourceLayoutGraph, METHODS, create_solver)
 from src.physics import NumpyReference, dynamics_witness, normmax
 from src.runner import Layout, Acceptance, supplied_cmg, supplied_reference, accepted, chart_base_state, MODES
 from pacdm import PACDM
@@ -181,7 +181,7 @@ class KangarooTests(unittest.TestCase):
     def test_supplied_layout_adapter_equals_accepted(self):
         cmg0 = supplied_cmg()
         g0 = self.acc.CutGraph(cmg0, np.asarray(cmg0['initial_seed']))
-        ga = SuppliedLayoutGraph(self.comp, self.acc, cmg0)
+        ga = SourceLayoutGraph(self.comp, self.acc, cmg0)
         x = self.ref['qaug'][180]
         for u, v in zip(g0.residual(x), ga.residual(x)):
             self.assertLess(normmax(u - v), 1e-12)

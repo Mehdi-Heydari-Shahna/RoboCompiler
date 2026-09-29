@@ -8,13 +8,13 @@ frames, then the physical tree) into a native Pinocchio model with one scalar
 joint per coordinate, in true depth-first preorder (required by CRBA).  Public
 vectors use the chart-CMG coordinate order through explicit index maps.
 
-``NativeSupportOracle`` reuses the delivered, unchanged
+``NativeSupportOracle`` reuses the unchanged
 ``kangaroo_pin.native_oracle.NativeLoopOracle`` (native ``CONTACT_3D`` loop
 constraints, native universal angular rows enforced by an exact Schur
 complement, proximal ``constraintDynamics``) and appends one native
 ``CONTACT_6D`` weld per supporting sole frame.  Stabilization gains are zero.
 It never uses PACDM rows, charts, logarithms or tangent maps.  These are ideal
-bilateral welds, not the unilateral frictional contact of the delivered
+bilateral welds, not the unilateral frictional contact of the original
 rollouts.
 """
 from __future__ import annotations
