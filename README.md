@@ -25,6 +25,8 @@ This repository provides research implementations and simulation examples for fi
 | Kangaroo | Closed-chain legs; landing, crouching, and push response | [CMG](figures/kangaroo_cmg.png) | [Diagram](figures/kangaroo_workflow.png) |
 | Six-UPS Stewart platform | Parallel mechanism; six-axis tracking and inspection | [CMG](figures/stewart_cmg.png) | [Diagram](figures/stewart_workflow.png) |
 
+Note that the excavator model used in this work was taken from S. Päkkilä’s M.Sc. thesis, “Modeling and simulation of a six degrees of freedom excavator” (Tampere University of Technology, Tampere, Finland, 2017). It is based on a student’s mathematical modeling rather than on parameters measured from a real machine.
+
 Go2 and Panda demonstrate task and actuation constraints on tree mechanisms; the excavator, Kangaroo, and Stewart platform contain physical closed chains.
 
 ## Getting started
@@ -65,6 +67,8 @@ The compiler studies and the Pinocchio and Isaac Sim/PhysX workflows of each rob
 | Kangaroo | `Kangaroo_CMG_PACDM/extensions/compiler/benchmark/` (`run_kangaroo.py`) | `Kangaroo_CMG_PACDM/extensions/pinocchio/` (`run_pinocchio.py`) | `Kangaroo_CMG_PACDM/extensions/isaacsim/` (`run_isaac.py`) |
 | Stewart platform | `Stewart_CMG_PACDM/workflows/compiler/` (`run_stewart.py`) | `Stewart_CMG_PACDM/workflows/pinocchio/` (`run_pinocchio.py`) | `Stewart_CMG_PACDM/workflows/isaac/` (`run_checked.py`) |
 
+
+
 ## Demonstration videos
 
 | Robot | MuJoCo | Pinocchio | Isaac Sim |
@@ -82,11 +86,10 @@ Videos illustrate the associated studies; backend models and contact treatments 
 The compilers operate on physical mechanism records, with locally valid assembly branches and rank conditions. MuJoCo and PhysX provide native contact simulation; Pinocchio workflows use their own stated contact or external-load assumptions. The excavator soil example uses an uncalibrated granular model.
 
 ## Paper and citation
-
 Please cite the accompanying manuscript when using this work:
 
 Mehdi Heydari Shahna, Joongheon Kim, and Jouni Mattila. **RoboCompiler: Graph-Native Compilation of Closed-Chain Robots for Consistent Modeling, Control, and Simulation.** 2026. [Manuscript](docs/robocompiler.pdf).
 
-The arXiv link and identifier will be added after publication.
+The arXiv link and identifier can be found as: https://doi.org/10.48550/arXiv.2609.35717.
 
 Third-party model licenses and attribution notices are retained within the corresponding packages.
