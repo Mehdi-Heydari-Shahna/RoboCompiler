@@ -92,6 +92,11 @@ jobs:
     name: Stewart
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -121,6 +126,11 @@ jobs:
     name: Panda
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -183,6 +193,11 @@ jobs:
     name: Go2 main MuJoCo run
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
