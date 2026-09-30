@@ -1,0 +1,286 @@
+# Continuous integration for the five robot packages.
+#
+# integrity  - the standard-library checks of the shipped SHA-256 manifests,
+#              on Linux, Windows and macOS (a line-ending conversion on
+#              checkout would show up here as a hash mismatch).
+# <robot>    - on Linux, with the package's own pinned requirement files: the
+#              unit tests, smoke runs, and the main runs that take minutes
+#              (Stewart; Panda with its Pinocchio validation; Go2; the
+#              Kangaroo mechanics suite).
+#
+# Not run here: Isaac Sim (needs an NVIDIA GPU and a licence), rendering, and
+# the multi-hour runs (Kangaroo contact suite, Excavator soil and Pinocchio
+# missions, full compiler profiles, Go2/Kangaroo/Stewart Pinocchio suites).
+
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+
+jobs:
+  integrity:
+    name: Hash manifests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Stewart release manifest
+        working-directory: Stewart_CMG_PACDM
+        run: python verify_files.py
+      - name: Stewart Isaac package
+        working-directory: Stewart_CMG_PACDM/workflows/isaac
+        run: python verify_package.py
+      - name: Kangaroo release, core and upstream provenance
+        working-directory: Kangaroo_CMG_PACDM
+        run: |
+          python verify_package.py
+          python verify_release.py
+      - name: Kangaroo Isaac package
+        working-directory: Kangaroo_CMG_PACDM/extensions/isaacsim
+        run: python tools/verify_package.py
+      - name: Kangaroo compiler package
+        working-directory: Kangaroo_CMG_PACDM/extensions/compiler
+        run: python verify_package.py
+      - name: Excavator compiler package
+        working-directory: Excavator_CMG_PACDM/compiler
+        run: python verify_package.py
+      - name: Excavator v26 source manifest
+        working-directory: Excavator_CMG_PACDM/v26
+        run: |
+          python -c "
+          from run_tracked_excavator import source_integrity
+          r = source_integrity()
+          print(r['files'], 'files, mismatches:', r['mismatches'])
+          raise SystemExit(0 if r['passed'] else 1)
+          "
+      - name: Excavator Pinocchio preserved original tree
+        working-directory: Excavator_CMG_PACDM/pinocchio
+        run: |
+          python -c "
+          import run_validation as rv
+          s = rv.original_tree_status()
+          bad = s['mismatched'] + s['extra_files'] + s['extra_directories'] + s['release_manifest_mismatched']
+          print(s['files'], 'files, problems:', bad)
+          raise SystemExit(1 if bad else 0)
+          "
+
+  stewart:
+    name: Stewart
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Stewart_CMG_PACDM/requirements-linux.txt
+      - name: Install pinned requirements
+        # usd-core (OpenUSD) is optional for the package; here it enables the USD scene tests.
+        run: python -m pip install -r Stewart_CMG_PACDM/requirements-linux.txt pytest==9.1.1 usd-core==26.8
+      - name: Compiler tests
+        working-directory: Stewart_CMG_PACDM/workflows/compiler
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Isaac adapter tests (CPU; no Isaac Sim)
+        working-directory: Stewart_CMG_PACDM/workflows/isaac
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Compiler smoke run
+        working-directory: Stewart_CMG_PACDM/workflows/compiler
+        run: python run_stewart.py --profile smoke --native off --out "$RUNNER_TEMP/stewart_compiler_smoke"
+      - name: Main run and audit
+        working-directory: Stewart_CMG_PACDM
+        run: |
+          python run_stewart.py
+          python run_stewart.py --audit-existing
+
+  panda:
+    name: Panda
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            Panda_CMG_PACDM/requirements-linux.txt
+            Panda_CMG_PACDM/compiler_studies/benchmark/requirements-tested.txt
+      - name: Install pinned requirements
+        run: >-
+          python -m pip install -r Panda_CMG_PACDM/requirements-linux.txt
+          -r Panda_CMG_PACDM/compiler_studies/benchmark/requirements-tested.txt pytest==9.1.1
+      - name: Compiler-study tests
+        working-directory: Panda_CMG_PACDM/compiler_studies/benchmark
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Compiler-study smoke run
+        working-directory: Panda_CMG_PACDM/compiler_studies/benchmark
+        run: python run_franka.py --profile smoke --native off --out "$RUNNER_TEMP/panda_compiler_smoke"
+      - name: Main MuJoCo run and audit
+        working-directory: Panda_CMG_PACDM
+        run: |
+          python run_panda.py --workers 4
+          python run_panda.py --audit-existing
+      - name: Pinocchio validation
+        working-directory: Panda_CMG_PACDM/pinocchio_validation
+        run: python run_validation.py --workers 4
+
+  go2:
+    name: Go2
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            Go2_CMG_PACDM/requirements-validation.txt
+            Go2_CMG_PACDM/requirements-linux.txt
+      - name: Install pinned requirements
+        run: python -m pip install -r Go2_CMG_PACDM/requirements-validation.txt
+      - name: Generated-compiler tests
+        working-directory: Go2_CMG_PACDM/workflows/generated
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Generated-compiler smoke run
+        working-directory: Go2_CMG_PACDM/workflows/generated
+        run: python run_go2.py --profile smoke --native off --out "$RUNNER_TEMP/go2_compiler_smoke"
+      - name: Pinocchio tests
+        working-directory: Go2_CMG_PACDM/workflows/pinocchio
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Isaac adapter tests (CPU; no Isaac Sim)
+        working-directory: Go2_CMG_PACDM/workflows/isaac
+        run: python -m pytest -q -p no:cacheprovider tests
+
+  go2-main:
+    # The full MuJoCo benchmark (271 checks): footholds, contact classification
+    # and motor-cap gates are only exercised by the complete run.
+    name: Go2 main MuJoCo run
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      # The main-run scripts set MUJOCO_GL=egl (for optional video rendering) when it
+      # is unset, and `import mujoco` then needs libEGL, which the GitHub-hosted Ubuntu
+      # image does not provide. Nothing is rendered here, so OpenGL is turned off.
+      MUJOCO_GL: disable
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Go2_CMG_PACDM/requirements-linux.txt
+      - name: Install pinned requirements
+        run: python -m pip install -r Go2_CMG_PACDM/requirements-linux.txt
+      - name: Main run and audit
+        working-directory: Go2_CMG_PACDM
+        run: |
+          python run_go2.py --workers 4
+          python run_go2.py --audit-existing
+
+  kangaroo:
+    name: Kangaroo
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Kangaroo_CMG_PACDM/requirements_validated.txt
+      - name: Install pinned requirements
+        run: python -m pip install -r Kangaroo_CMG_PACDM/requirements_validated.txt threadpoolctl==3.6.0 pytest==9.1.1
+      - name: Compiler tests
+        working-directory: Kangaroo_CMG_PACDM/extensions/compiler/benchmark
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Compiler smoke run
+        working-directory: Kangaroo_CMG_PACDM/extensions/compiler/benchmark
+        run: python run_kangaroo.py --profile smoke --native required --out "$RUNNER_TEMP/kangaroo_compiler_smoke"
+      - name: Isaac adapter tests (CPU; no Isaac Sim)
+        working-directory: Kangaroo_CMG_PACDM/extensions/isaacsim
+        run: python -m pytest -q
+      - name: Whole-body mechanics suite (v20 gates)
+        working-directory: Kangaroo_CMG_PACDM
+        run: python run_kangaroo_v20.py
+      - name: Contact smoke run (0.4 s of the landing task)
+        working-directory: Kangaroo_CMG_PACDM
+        run: |
+          python -c "from contact_reference import build_reference; build_reference()"
+          python contact_task.py --name smoke_nominal --duration 0.4
+
+  excavator-compiler:
+    name: Excavator compiler
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Excavator_CMG_PACDM/compiler/requirements.txt
+      - name: Install requirements (portable recipe)
+        run: python -m pip install -r Excavator_CMG_PACDM/compiler/requirements.txt pytest==8.4.2
+      - name: Tests
+        working-directory: Excavator_CMG_PACDM/compiler
+        run: python -m pytest -q -p no:cacheprovider tests
+      - name: Smoke run
+        working-directory: Excavator_CMG_PACDM/compiler
+        run: python run_excavator.py --profile smoke --out "$RUNNER_TEMP/excavator_compiler_smoke"
+
+  excavator-isaac:
+    name: Excavator Isaac adapter tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            Excavator_CMG_PACDM/requirements.txt
+            Excavator_CMG_PACDM/requirements-test.txt
+      - name: Install pinned requirements
+        run: python -m pip install -r Excavator_CMG_PACDM/requirements.txt -r Excavator_CMG_PACDM/requirements-test.txt
+      - name: Offline tests with the MuJoCo-backed Isaac stand-in
+        working-directory: Excavator_CMG_PACDM/isaac_sim
+        run: python -m pytest -q -p no:cacheprovider tests
