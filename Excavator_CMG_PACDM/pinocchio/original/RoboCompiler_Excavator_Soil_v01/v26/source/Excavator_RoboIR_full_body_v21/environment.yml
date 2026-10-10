@@ -1,0 +1,15 @@
+name: excavator_v21
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pinocchio=3.8
+  - numpy=2.3.5
+  - scipy=1.15.3
+  - jsonschema=4.25.1
+  - matplotlib
+  - pillow
+  - pip
+  - pip:
+      - mujoco==3.3.7
+      - imageio-ffmpeg==0.6.0

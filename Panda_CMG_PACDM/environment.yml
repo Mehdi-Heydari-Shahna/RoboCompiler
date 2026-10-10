@@ -1,0 +1,17 @@
+name: panda_cmg_pacdm
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - numpy=2.3.5
+  - scipy=1.17.0
+  - pinocchio=3.8.0
+  - matplotlib=3.10.8
+  - pillow=12.3.0
+  - pip
+  - pip:
+      - mujoco==3.3.7
+      - imageio==2.37.4
+      - imageio-ffmpeg==0.6.0
+

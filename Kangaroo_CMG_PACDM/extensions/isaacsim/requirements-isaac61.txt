@@ -1,0 +1,5 @@
+# For an EXISTING Isaac Sim 6.1 / Python 3.12 environment only.
+# This is the Pillow range required by isaacsim-kernel 6.1.0.0 in the recorded pip check.
+# Do not reinstall Isaac, Torch, CUDA, or usd-core here.
+-r requirements-extra.txt
+Pillow>=12.1.1,<13

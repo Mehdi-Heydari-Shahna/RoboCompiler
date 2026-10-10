@@ -1,0 +1,2 @@
+# Supplementary plotting; install simulation dependencies from the repository root first.
+matplotlib==3.10.8

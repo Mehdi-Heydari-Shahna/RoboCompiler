@@ -1,0 +1,30 @@
+{
+  "scope": "Declared numerical acceptance for the reconstructed model; not hardware certification",
+  "reference": {"pacdm_all_rows_maximum": 1e-8, "foot_pose_maximum_error": 1e-8, "maximum_base_equation_error": 1e-7},
+  "positive_trials": {
+    "maximum_loop_gap_m": 0.0002,
+    "maximum_universal_dot": 0.003,
+    "maximum_motor_force_N": 5000.000001,
+    "maximum_penetration_m": 0.015,
+    "maximum_tilt_deg": 8,
+    "final_tilt_deg": 2,
+    "maximum_final_base_speed_m_s": 0.03,
+    "final_position_error_m": 0.04,
+    "maximum_energy_ledger_error_J": 0.5,
+    "maximum_actuator_virtual_work_error_W": 1e-8,
+    "maximum_constraint_power_decomposition_error_W": 1e-7
+  },
+  "minimum_achieved_crouch_m": 0.10,
+  "minimum_achieved_lateral_excursion_m": 0.065,
+  "maximum_foot_drift_after_landing_m": 0.015,
+  "maximum_final_weight_error_N": 5,
+  "joint_margin_lower_bound": 0,
+  "no_warnings": true,
+  "no_base_actuation": true,
+  "no_generalized_applied_control": true,
+  "negative_no_contact_minimum_fall_m": 0.1,
+  "negative_no_loop_minimum_gap_m": 0.01,
+  "refinement_final_position_difference_m": 0.005,
+  "refinement_motor_work_difference_J": 1.0,
+  "refinement_fine_energy_error_must_improve": true
+}

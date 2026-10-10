@@ -1,0 +1,12 @@
+{
+  "origin": "USER_SUPPLIED_ISAAC_SIM_RUN_VERSION_23_0_2_NOT_NEW_EXECUTION",
+  "source_archive": "20260925T131152Z_6ffc4cde.zip",
+  "archive_sha256": "ed32fde6fb3e80f9761521c6ace69d696d6d25d4935df363392b765520db03d9",
+  "native_run_id": "20260925T131227Z_86319fa4",
+  "members": {
+    "result.json": "d67165fb76088ab0450a5f9a0312becc5a679aaf97aba97661f14605edd06c23",
+    "configuration.json": "51ba00d4f6c7be330425bf86a9ed5408632b1041502020a7593bd99e849804e4",
+    "native_trace.npz": "be6328a6b973cbe946377968166d4ad3629405b4642ad93595c579ef11b6ce2a"
+  },
+  "trace_extract": "all 2001 saved samples; only time, base, base_velocity_origin and foot_position columns"
+}

@@ -1,0 +1,48 @@
+{
+  "initial_acquisition": {
+    "success": true,
+    "lambda": 1.0,
+    "accepted_steps": 10,
+    "rejected_steps": 0,
+    "rows": [
+      1,
+      2,
+      9,
+      0,
+      5,
+      4,
+      3
+    ],
+    "message": "Physical closure and rank passed",
+    "mapping": {
+      "success": true,
+      "rank_full": 7,
+      "rank_passive": 7,
+      "expected_rank": 7,
+      "rcond": 0.056468704847003705,
+      "rows": [
+        1,
+        2,
+        9,
+        0,
+        4,
+        5,
+        3
+      ],
+      "residual_inf": 2.383038211206655e-12,
+      "message": "Physical closure and rank passed",
+      "tangent_residual": 2.850444128659753e-16
+    }
+  },
+  "fallback_count": 0,
+  "samples": 2201,
+  "min_rcond": 0.05067004985246432,
+  "physical_coordinates": 9,
+  "augmented_coordinates": 15,
+  "independent_coordinates": 8,
+  "constraint_rank": 7,
+  "acceleration_method": "N a_active + curvature solving J a + Jdot v = 0; analytic J, centered directional finite difference Jdot",
+  "max_closure_residual": 9.941759637754895e-10,
+  "max_tangent_residual": 1.0539724796648582e-15,
+  "max_acceleration_constraint_residual": 1.2195106036116954e-15
+}

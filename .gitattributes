@@ -1,0 +1,6 @@
+# Many files in this repository are checked against recorded SHA-256 hashes
+# (SHA256SUMS.json, MANIFEST_SHA256.json, PACKAGE_MANIFEST.json, ...).
+# Turn off end-of-line conversion for every file, so that each platform checks
+# out exactly the committed bytes. (Git for Windows would otherwise convert
+# LF to CRLF on checkout and CRLF to LF on commit, which changes the hashes.)
+* -text

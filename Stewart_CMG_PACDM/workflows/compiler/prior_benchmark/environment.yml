@@ -1,0 +1,8 @@
+name: stewart-comparison
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy=2.3.5
+  - scipy=1.17.0
+  - pinocchio=3.8.0

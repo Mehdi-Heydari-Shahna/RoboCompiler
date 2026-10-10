@@ -1,0 +1,2 @@
+-r requirements_validated.txt
+matplotlib==3.10.8

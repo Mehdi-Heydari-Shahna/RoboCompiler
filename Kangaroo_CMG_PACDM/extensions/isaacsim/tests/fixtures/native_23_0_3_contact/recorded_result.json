@@ -1,0 +1,276 @@
+{
+  "release": "23.0.3",
+  "engine": "Isaac Sim / PhysX",
+  "case": "nominal",
+  "configuration": {
+    "duration_s": 10.0,
+    "dt_s": 2.5e-05,
+    "control_period_s": 0.001,
+    "sample_period_s": 0.005,
+    "render_period_s": 0.03333333333333333,
+    "drop_height_m": 0.05,
+    "push_force_N": 50.0,
+    "push_start_s": 6.7,
+    "push_duration_s": 0.25,
+    "friction": 0.8,
+    "actuator_time_constant_s": 0.002,
+    "command_slew_N_s": 1500000.0,
+    "kp_N_m": 300000.0,
+    "kd_N_s_m": 4000.0,
+    "solver_position_iterations": 32,
+    "solver_velocity_iterations": 1,
+    "solver_type": "TGS",
+    "external_forces_every_iteration": true,
+    "solver_profile": "tgs_32_1",
+    "physx_threads": 0,
+    "contact_offset_m": 0.001,
+    "rest_offset_m": 0.0,
+    "no_contact": false,
+    "no_loops": false,
+    "passive": false,
+    "no_feedforward": false
+  },
+  "metrics": {
+    "maximum_loop_gap_m": 9.118075227991926e-07,
+    "maximum_universal_dot": 0.00016433009394203044,
+    "maximum_motor_force_N": 2485.211181640625,
+    "maximum_penetration_m": 1.467127253258066e-06,
+    "maximum_tilt_deg": 1.4965942546889488,
+    "maximum_motor_error_m": 0.0052267713844776145,
+    "maximum_port_power_reconstruction_error_W": 0.00025339515195810236,
+    "minimum_slide_margin_m": 0.017445844113826752,
+    "minimum_hinge_margin_rad": 0.11766848131942753,
+    "steps": 400000,
+    "observed_duration_s": 10.0,
+    "touchdown_s": 0.101,
+    "final_tilt_deg": 0.04153225465231143,
+    "final_base_position_m": [
+      0.005243077874183655,
+      0.00035426486283540726,
+      0.8268871903419495
+    ],
+    "base_fall_m": 0.05174499750137329,
+    "achieved_crouch_m": 0.12205760553479195,
+    "achieved_lateral_excursion_m": 0.09462869539856911,
+    "maximum_final_base_speed_m_s": 0.06428913076604238,
+    "final_position_error_m": 0.005537168764364445,
+    "maximum_foot_drift_after_landing_m": [
+      0.01198375775651399,
+      0.007877328744644715
+    ],
+    "final_weight_error_N": 0.16598670828716422,
+    "final_motor_work_J": [
+      0.06849794065819448,
+      0.28927881667179156,
+      0.2577747374798443,
+      8.4465177488375,
+      0.2565837015679089,
+      0.4792053495483539,
+      0.002330706027002656,
+      0.29590942231165634,
+      0.20273236999325486,
+      8.463555123980132,
+      0.5406383277506195,
+      0.34532746850027934
+    ],
+    "positive_motor_work_J": [
+      0.14251394099232803,
+      0.6898156893972649,
+      2.5301228589316396,
+      47.38472032789922,
+      0.8710213318308263,
+      1.0597917185522179,
+      0.047811968950271296,
+      1.9479201349842747,
+      1.1628891679366273,
+      46.04899189960509,
+      0.9748419564683134,
+      0.9680975224168281
+    ],
+    "negative_motor_work_J": [
+      -0.07401600033413565,
+      -0.40053687272547805,
+      -2.2723481214518175,
+      -38.938202579060246,
+      -0.6144376302629221,
+      -0.5805863690038658,
+      -0.045481262923267554,
+      -1.6520107126725845,
+      -0.9601567979433744,
+      -37.58543677562468,
+      -0.4342036287176945,
+      -0.6227700539165366
+    ],
+    "work_known_J": {
+      "motor": 19.64835171332654,
+      "passive_reconstructed": -43.42757425949885,
+      "disturbance": 0.6358028800899898
+    },
+    "energy_change_J": -21.33316163915788,
+    "final_unresolved_energy_J": 1.810258026924437,
+    "force_limit_violation": false,
+    "extrema_cadence": "physics step, except motor error/port power sampled at sample_period_s",
+    "foot_drift_window": "from max(1.0 s, touchdown+0.2 s)",
+    "complete_energy_ledger_available": false,
+    "motor_force_measurement": "causal force state submitted to native effort API; not an independent force sensor",
+    "wall_simulation_s": 2550.1824995999923,
+    "measured_real_time_factor": 0.003921287986867036,
+    "saturation_updates": 0,
+    "control_updates": 10000,
+    "runtime_base_control_wrench": false,
+    "runtime_state_projection": false,
+    "native_step_count": 400000
+  },
+  "validation": {
+    "functional_status": "FUNCTIONAL_GATES_FAILED",
+    "scope": "native task/kinematic gates only; no claim of complete source validation",
+    "is_ablation": false,
+    "gates": [
+      {
+        "name": "native_initialization_audit",
+        "status": "PASS"
+      },
+      {
+        "name": "complete_declared_duration",
+        "status": "PASS"
+      },
+      {
+        "name": "physical_per_port_force_limits",
+        "status": "PASS"
+      },
+      {
+        "name": "maximum_loop_gap_m",
+        "status": "PASS",
+        "value": 9.118075227991926e-07,
+        "threshold": 0.0002,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_universal_dot",
+        "status": "PASS",
+        "value": 0.00016433009394203044,
+        "threshold": 0.003,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_motor_force_N",
+        "status": "PASS",
+        "value": 2485.211181640625,
+        "threshold": 5000.000001,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_penetration_m",
+        "status": "PASS",
+        "value": 1.467127253258066e-06,
+        "threshold": 0.015,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_tilt_deg",
+        "status": "PASS",
+        "value": 1.4965942546889488,
+        "threshold": 8,
+        "comparison": "<="
+      },
+      {
+        "name": "final_tilt_deg",
+        "status": "PASS",
+        "value": 0.04153225465231143,
+        "threshold": 2,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_final_base_speed_m_s",
+        "status": "FAIL",
+        "value": 0.06428913076604238,
+        "threshold": 0.03,
+        "comparison": "<="
+      },
+      {
+        "name": "final_position_error_m",
+        "status": "PASS",
+        "value": 0.005537168764364445,
+        "threshold": 0.04,
+        "comparison": "<="
+      },
+      {
+        "name": "achieved_crouch_m",
+        "status": "PASS",
+        "value": 0.12205760553479195,
+        "threshold": 0.1,
+        "comparison": ">="
+      },
+      {
+        "name": "achieved_lateral_excursion_m",
+        "status": "PASS",
+        "value": 0.09462869539856911,
+        "threshold": 0.065,
+        "comparison": ">="
+      },
+      {
+        "name": "minimum_slide_margin_m",
+        "status": "PASS",
+        "value": 0.017445844113826752,
+        "threshold": 0.0,
+        "comparison": ">="
+      },
+      {
+        "name": "minimum_hinge_margin_rad",
+        "status": "PASS",
+        "value": 0.11766848131942753,
+        "threshold": 0.0,
+        "comparison": ">="
+      },
+      {
+        "name": "final_weight_error_N",
+        "status": "PASS",
+        "value": 0.16598670828716422,
+        "threshold": 5.0,
+        "comparison": "<="
+      },
+      {
+        "name": "maximum_foot_drift_after_landing_m",
+        "status": "PASS",
+        "value": 0.01198375775651399,
+        "threshold": 0.015,
+        "comparison": "<="
+      }
+    ],
+    "unavailable_source_gates": [
+      {
+        "name": "maximum_energy_ledger_error_J",
+        "status": "NOT_IMPLEMENTED",
+        "reason": "Independent native loop/contact/friction/limit reaction-work ledger is not implemented.",
+        "source_threshold": 0.5
+      },
+      {
+        "name": "maximum_constraint_power_decomposition_error_W",
+        "status": "NOT_IMPLEMENTED",
+        "reason": "External loop reactions are not independently resolved by this adapter.",
+        "source_threshold": 1e-07
+      },
+      {
+        "name": "maximum_actuator_virtual_work_error_W",
+        "status": "NOT_IMPLEMENTED",
+        "reason": "Only geometric port-power reconstruction is available, not independent native motor wrench measurement.",
+        "source_threshold": 1e-08
+      }
+    ],
+    "full_source_validation_status": "BLOCKED_INCOMPLETE_REACTION_AUDIT",
+    "certified_ready": false
+  },
+  "completed": true,
+  "certified_ready": false,
+  "physics_log": {
+    "failures": [],
+    "compatibility_notices": [],
+    "historical_crash_notices": []
+  },
+  "physics_log_warnings": [],
+  "supervisor": {
+    "raw_process_exit_code": 0,
+    "effective_exit_code": 3,
+    "policy": "Native completion, full-task gate values and status are authoritative; raw exit 0 alone is insufficient."
+  }
+}

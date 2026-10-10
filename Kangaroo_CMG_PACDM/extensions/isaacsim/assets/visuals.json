@@ -1,0 +1,2179 @@
+{
+  "visuals": [
+    {
+      "body": "base_link",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "base_link"
+    },
+    {
+      "body": "left_yaw_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Yaw_motor"
+    },
+    {
+      "body": "left_yaw_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Yaw_rod"
+    },
+    {
+      "body": "left_hip_yaw",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_yaw"
+    },
+    {
+      "body": "left_hip_differential_2_cradle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_cradle1"
+    },
+    {
+      "body": "left_hip_differential_2_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_motor"
+    },
+    {
+      "body": "left_hip_differential_2_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_rod"
+    },
+    {
+      "body": "left_hip_differential_3_cradle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_cradle"
+    },
+    {
+      "body": "left_hip_differential_3_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_motor"
+    },
+    {
+      "body": "left_hip_differential_3_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_rod1"
+    },
+    {
+      "body": "left_hip_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_pitch"
+    },
+    {
+      "body": "left_hip_roll",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_roll"
+    },
+    {
+      "body": "left_ankle_4_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_motor"
+    },
+    {
+      "body": "left_ankle_4_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_rod"
+    },
+    {
+      "body": "left_ankle_4_pendulum",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_pendulum1"
+    },
+    {
+      "body": "left_4_higher_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_higher_ankle_bar1"
+    },
+    {
+      "body": "left_ankle_5_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_motor"
+    },
+    {
+      "body": "left_ankle_5_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_rod"
+    },
+    {
+      "body": "left_ankle_5_pendulum",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_pendulum"
+    },
+    {
+      "body": "left_5_higher_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_higher_ankle_bar"
+    },
+    {
+      "body": "left_hip_differential_2_univ",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_UnivJoint1"
+    },
+    {
+      "body": "left_hip_differential_3_univ",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_UnivJoint"
+    },
+    {
+      "body": "left_rear_short_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "Rear_short_bar"
+    },
+    {
+      "body": "left_rear_triangle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Rear_triangle"
+    },
+    {
+      "body": "left_rear_long_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "Rear_long_bar"
+    },
+    {
+      "body": "left_femour_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Femour_pitch"
+    },
+    {
+      "body": "left_knee",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Knee"
+    },
+    {
+      "body": "left_4_butterfly",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "External_butterfly1"
+    },
+    {
+      "body": "left_4_knee_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_knee_ball"
+    },
+    {
+      "body": "left_4_lower_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_lower_ankle_bar"
+    },
+    {
+      "body": "left_5_butterfly",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "External_butterfly"
+    },
+    {
+      "body": "left_5_lower_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_lower_ankle_bar"
+    },
+    {
+      "body": "left_ankle_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Ankle_pitch"
+    },
+    {
+      "body": "left_ankle_roll",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Ankle_roll"
+    },
+    {
+      "body": "left_4_ankle_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_ankle_ball"
+    },
+    {
+      "body": "left_5_ankle_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_ankle_ball"
+    },
+    {
+      "body": "left_leg_length_slidinig_nut",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Leg_length_slidinig_nut"
+    },
+    {
+      "body": "left_leg_length_short_bars",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597,
+        0.597,
+        1.0
+      ],
+      "mesh": "Leg_length_short_bars"
+    },
+    {
+      "body": "right_hip_yaw",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_yaw1"
+    },
+    {
+      "body": "right_hip_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_pitch1"
+    },
+    {
+      "body": "right_hip_roll",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_roll1"
+    },
+    {
+      "body": "right_femour_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Femour_pitch1"
+    },
+    {
+      "body": "right_knee",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Knee"
+    },
+    {
+      "body": "right_ankle_pitch",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Ankle_pitch"
+    },
+    {
+      "body": "right_ankle_roll",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Ankle_roll"
+    },
+    {
+      "body": "right_4_ankle_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_ankle_ball"
+    },
+    {
+      "body": "right_5_ankle_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_ankle_ball"
+    },
+    {
+      "body": "right_4_butterfly",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "External_butterfly1"
+    },
+    {
+      "body": "right_4_knee_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_knee_ball"
+    },
+    {
+      "body": "right_4_lower_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_lower_ankle_bar"
+    },
+    {
+      "body": "right_5_butterfly",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "External_butterfly"
+    },
+    {
+      "body": "right_5_knee_ball",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "External_knee_ball"
+    },
+    {
+      "body": "right_5_lower_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_lower_ankle_bar"
+    },
+    {
+      "body": "right_leg_length_slidinig_nut",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Leg_length_slidinig_nut"
+    },
+    {
+      "body": "right_leg_length_short_bars",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597,
+        0.597,
+        1.0
+      ],
+      "mesh": "Leg_length_short_bars"
+    },
+    {
+      "body": "right_ankle_4_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_motor"
+    },
+    {
+      "body": "right_ankle_4_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_rod"
+    },
+    {
+      "body": "right_ankle_4_pendulum",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_pendulum1"
+    },
+    {
+      "body": "right_4_higher_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_higher_ankle_bar1"
+    },
+    {
+      "body": "right_ankle_5_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_motor"
+    },
+    {
+      "body": "right_ankle_5_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_rod"
+    },
+    {
+      "body": "right_ankle_5_pendulum",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Ankle_external_pendulum"
+    },
+    {
+      "body": "right_5_higher_ankle_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "External_higher_ankle_bar"
+    },
+    {
+      "body": "right_hip_differential_2_univ",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_UnivJoint1"
+    },
+    {
+      "body": "right_hip_differential_3_univ",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_UnivJoint"
+    },
+    {
+      "body": "right_rear_short_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "Rear_short_bar"
+    },
+    {
+      "body": "right_rear_triangle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Rear_triangle"
+    },
+    {
+      "body": "right_rear_long_bar",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.0,
+        0.597656,
+        0.597656,
+        1.0
+      ],
+      "mesh": "Rear_long_bar"
+    },
+    {
+      "body": "right_hip_differential_2_cradle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_cradle2"
+    },
+    {
+      "body": "right_hip_differential_2_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_motor"
+    },
+    {
+      "body": "right_hip_differential_2_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_rod"
+    },
+    {
+      "body": "right_hip_differential_3_cradle",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_cradle3"
+    },
+    {
+      "body": "right_hip_differential_3_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_motor"
+    },
+    {
+      "body": "right_hip_differential_3_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Hip_differential_internal_rod1"
+    },
+    {
+      "body": "right_yaw_motor",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Yaw_motor1"
+    },
+    {
+      "body": "right_yaw_rod",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.3125,
+        0.3125,
+        0.3125,
+        1.0
+      ],
+      "mesh": "Yaw_rod1"
+    },
+    {
+      "body": "torso",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.15625,
+        0.15625,
+        0.15625,
+        1.0
+      ],
+      "mesh": "torso"
+    }
+  ],
+  "collisions": [
+    {
+      "body": "left_ankle_roll",
+      "position": [
+        0.0,
+        -0.005,
+        0.04
+      ],
+      "quaternion_wxyz": [
+        0.984808,
+        -0.173648,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.2,
+        0.2,
+        0.2,
+        0.0
+      ],
+      "half_extents": [
+        0.045,
+        0.0125,
+        0.105
+      ]
+    },
+    {
+      "body": "right_ankle_roll",
+      "position": [
+        0.0,
+        -0.005,
+        0.04
+      ],
+      "quaternion_wxyz": [
+        0.984808,
+        -0.173648,
+        0.0,
+        0.0
+      ],
+      "rgba": [
+        0.2,
+        0.2,
+        0.2,
+        0.0
+      ],
+      "half_extents": [
+        0.045,
+        0.0125,
+        0.105
+      ]
+    }
+  ],
+  "meshes": {
+    "Ankle_external_motor": {
+      "file": "Ankle_external_motor.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "760bce10bada893982336b7fa976a37bc739a1809d0a78e765b995fc38543442",
+      "triangles": 29999,
+      "vertices": 15323,
+      "cache": "Ankle_external_motor.npz"
+    },
+    "Ankle_external_pendulum": {
+      "file": "Ankle_external_pendulum.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "3bc99a44c5e443cf742a8a9840b88070e2bca54145bbf18bfb18f7526e40ef36",
+      "triangles": 14999,
+      "vertices": 7547,
+      "cache": "Ankle_external_pendulum.npz"
+    },
+    "Ankle_external_pendulum1": {
+      "file": "Ankle_external_pendulum.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "3bc99a44c5e443cf742a8a9840b88070e2bca54145bbf18bfb18f7526e40ef36",
+      "triangles": 14999,
+      "vertices": 7547,
+      "cache": "Ankle_external_pendulum1.npz"
+    },
+    "Ankle_external_rod": {
+      "file": "Ankle_external_rod.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "f75b95ad5ff7929d92298564f6df766d5c9be8753eaf6e216557b299a813ab9a",
+      "triangles": 15000,
+      "vertices": 6997,
+      "cache": "Ankle_external_rod.npz"
+    },
+    "Ankle_pitch": {
+      "file": "Ankle_pitch.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "befcd3c4d29971e5cd34e4c37701946c61e3aee36a5128ef10e45c9b73226e00",
+      "triangles": 4000,
+      "vertices": 1992,
+      "cache": "Ankle_pitch.npz"
+    },
+    "Ankle_roll": {
+      "file": "Ankle_roll.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "e9c3b5c638d34df8c2385a981ae1855ebb05eb1b8b2a3f87adeb7202277d193c",
+      "triangles": 32288,
+      "vertices": 16106,
+      "cache": "Ankle_roll.npz"
+    },
+    "External_ankle_ball": {
+      "file": "External_ankle_ball.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "065fd2ed11877d62cd60b14819c3ce38fd224c3d44076a1a992fa850d8e4251a",
+      "triangles": 1638,
+      "vertices": 819,
+      "cache": "External_ankle_ball.npz"
+    },
+    "External_butterfly": {
+      "file": "External_butterfly.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "6d8e251f57f6ad014c60fc5b2042030982b775b68b5fad36da6997c256dcc8ed",
+      "triangles": 15000,
+      "vertices": 7658,
+      "cache": "External_butterfly.npz"
+    },
+    "External_butterfly1": {
+      "file": "External_butterfly.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "6d8e251f57f6ad014c60fc5b2042030982b775b68b5fad36da6997c256dcc8ed",
+      "triangles": 15000,
+      "vertices": 7658,
+      "cache": "External_butterfly1.npz"
+    },
+    "External_higher_ankle_bar": {
+      "file": "External_higher_ankle_bar.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "640a6271ea2d7a20ec9b6cdedc223f11da8c14c07e6da66e85166b1f6e4e0e18",
+      "triangles": 8924,
+      "vertices": 4464,
+      "cache": "External_higher_ankle_bar.npz"
+    },
+    "External_higher_ankle_bar1": {
+      "file": "External_higher_ankle_bar.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "640a6271ea2d7a20ec9b6cdedc223f11da8c14c07e6da66e85166b1f6e4e0e18",
+      "triangles": 8924,
+      "vertices": 4464,
+      "cache": "External_higher_ankle_bar1.npz"
+    },
+    "External_knee_ball": {
+      "file": "External_knee_ball.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "8dd73d501c1c96cf092d00e9b3751d8e648d151a79ef46be0a33a24b357f6d36",
+      "triangles": 1556,
+      "vertices": 778,
+      "cache": "External_knee_ball.npz"
+    },
+    "External_lower_ankle_bar": {
+      "file": "External_lower_ankle_bar.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "7388dc24f81ba0b3152eb109caa2ef62c782db6b0c87fe7569183064d3ffc996",
+      "triangles": 19278,
+      "vertices": 9642,
+      "cache": "External_lower_ankle_bar.npz"
+    },
+    "Femour_pitch": {
+      "file": "Femour_pitch.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "096178ca72f22aef4786c8b5da6aa4d50cc009d73f8b33806dc2e09479f72ced",
+      "triangles": 50000,
+      "vertices": 24749,
+      "cache": "Femour_pitch.npz"
+    },
+    "Femour_pitch1": {
+      "file": "Femour_pitch.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "096178ca72f22aef4786c8b5da6aa4d50cc009d73f8b33806dc2e09479f72ced",
+      "triangles": 50000,
+      "vertices": 24749,
+      "cache": "Femour_pitch1.npz"
+    },
+    "Hip_differential_internal_UnivJoint": {
+      "file": "Hip_differential_internal_UnivJoint.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "1155eeda3e9318f930246dca971643e0a0cb356b470858cb1c9b250a47faa7ba",
+      "triangles": 12210,
+      "vertices": 6108,
+      "cache": "Hip_differential_internal_UnivJoint.npz"
+    },
+    "Hip_differential_internal_UnivJoint1": {
+      "file": "Hip_differential_internal_UnivJoint.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "1155eeda3e9318f930246dca971643e0a0cb356b470858cb1c9b250a47faa7ba",
+      "triangles": 12210,
+      "vertices": 6108,
+      "cache": "Hip_differential_internal_UnivJoint1.npz"
+    },
+    "Hip_differential_internal_cradle": {
+      "file": "Hip_differential_internal_cradle.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "bbb4651ad31890dca91791d899168d2a162c46c2990e04fbeae279fc035133a1",
+      "triangles": 4999,
+      "vertices": 2500,
+      "cache": "Hip_differential_internal_cradle.npz"
+    },
+    "Hip_differential_internal_cradle1": {
+      "file": "Hip_differential_internal_cradle.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "bbb4651ad31890dca91791d899168d2a162c46c2990e04fbeae279fc035133a1",
+      "triangles": 4999,
+      "vertices": 2500,
+      "cache": "Hip_differential_internal_cradle1.npz"
+    },
+    "Hip_differential_internal_cradle2": {
+      "file": "Hip_differential_internal_cradle.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "bbb4651ad31890dca91791d899168d2a162c46c2990e04fbeae279fc035133a1",
+      "triangles": 4999,
+      "vertices": 2500,
+      "cache": "Hip_differential_internal_cradle2.npz"
+    },
+    "Hip_differential_internal_cradle3": {
+      "file": "Hip_differential_internal_cradle.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "bbb4651ad31890dca91791d899168d2a162c46c2990e04fbeae279fc035133a1",
+      "triangles": 4999,
+      "vertices": 2500,
+      "cache": "Hip_differential_internal_cradle3.npz"
+    },
+    "Hip_differential_internal_motor": {
+      "file": "Hip_differential_internal_motor.STL",
+      "scale": [
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "source_sha256": "174fd012f4bc91437e7a8f6e0ffa71ce6e3fa5ca7f93d3ece1d9f812e1f36d57",
+      "triangles": 25000,
+      "vertices": 12811,
+      "cache": "Hip_differential_internal_motor.npz"
+    },
+    "Hip_differential_internal_rod": {
+      "file": "Hip_differential_internal_rod.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "e6c26fc41b549d51a1d21dcff929a31a97c67f0ea747a4fcb0a8f0aa920c5743",
+      "triangles": 9999,
+      "vertices": 5005,
+      "cache": "Hip_differential_internal_rod.npz"
+    },
+    "Hip_differential_internal_rod1": {
+      "file": "Hip_differential_internal_rod.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "e6c26fc41b549d51a1d21dcff929a31a97c67f0ea747a4fcb0a8f0aa920c5743",
+      "triangles": 9999,
+      "vertices": 5005,
+      "cache": "Hip_differential_internal_rod1.npz"
+    },
+    "Hip_pitch": {
+      "file": "Hip_pitch.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "a908e583bbe3a1f751442b37966e58d8981c7d8e7b72fd6d4d234e345097ea07",
+      "triangles": 10542,
+      "vertices": 5291,
+      "cache": "Hip_pitch.npz"
+    },
+    "Hip_pitch1": {
+      "file": "Hip_pitch.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "a908e583bbe3a1f751442b37966e58d8981c7d8e7b72fd6d4d234e345097ea07",
+      "triangles": 10542,
+      "vertices": 5291,
+      "cache": "Hip_pitch1.npz"
+    },
+    "Hip_roll": {
+      "file": "Hip_roll.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "be4cf4431a1c84104b527b90bd913e49dee86165fdd6e5d92bec6c2296f3bd04",
+      "triangles": 49982,
+      "vertices": 24893,
+      "cache": "Hip_roll.npz"
+    },
+    "Hip_roll1": {
+      "file": "Hip_roll.STL",
+      "scale": [
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "be4cf4431a1c84104b527b90bd913e49dee86165fdd6e5d92bec6c2296f3bd04",
+      "triangles": 49982,
+      "vertices": 24893,
+      "cache": "Hip_roll1.npz"
+    },
+    "Hip_yaw": {
+      "file": "Hip_yaw.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "8aaaf8afbd8d43e1aad06ae1b4ec634eed57baafdfac7887870615958063773b",
+      "triangles": 50000,
+      "vertices": 25289,
+      "cache": "Hip_yaw.npz"
+    },
+    "Hip_yaw1": {
+      "file": "Hip_yaw.STL",
+      "scale": [
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "source_sha256": "8aaaf8afbd8d43e1aad06ae1b4ec634eed57baafdfac7887870615958063773b",
+      "triangles": 50000,
+      "vertices": 25289,
+      "cache": "Hip_yaw1.npz"
+    },
+    "Knee": {
+      "file": "Knee.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "b7d0e7395740cf5dad6b71475181d156a81339bf786d93efb1efb1f6136b7161",
+      "triangles": 20000,
+      "vertices": 9997,
+      "cache": "Knee.npz"
+    },
+    "Leg_length_short_bars": {
+      "file": "Leg_length_short_bars.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "df402751df1953212b1c1dd8e68617270c8475ceade580b775b7f18277ec21d7",
+      "triangles": 10000,
+      "vertices": 5000,
+      "cache": "Leg_length_short_bars.npz"
+    },
+    "Leg_length_slidinig_nut": {
+      "file": "Leg_length_slidinig_nut.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "d615d411a9e3cbdb9a562b90aabf7f6bd35973cd4c18d0f94da661821b892a7c",
+      "triangles": 5000,
+      "vertices": 2473,
+      "cache": "Leg_length_slidinig_nut.npz"
+    },
+    "Rear_long_bar": {
+      "file": "Rear_long_bar.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "8a247680d006231b5c7bf5efadfac2603ffbaf7973cb14ef2f1a0d051dec372b",
+      "triangles": 6999,
+      "vertices": 3500,
+      "cache": "Rear_long_bar.npz"
+    },
+    "Rear_short_bar": {
+      "file": "Rear_short_bar.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "d680a60e8b772498319e538ccbf14cc0c918dde8115e377d20850d676a5e736b",
+      "triangles": 7000,
+      "vertices": 3500,
+      "cache": "Rear_short_bar.npz"
+    },
+    "Rear_triangle": {
+      "file": "Rear_triangle.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "28af4c608eedc97491563960816d58d7beadf5d88ea0637782a097ab47263314",
+      "triangles": 12788,
+      "vertices": 6392,
+      "cache": "Rear_triangle.npz"
+    },
+    "Yaw_motor": {
+      "file": "Yaw_motor.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "fff443ec166e5ebbf95444cb32769d4473c5c4c7c4e9309ad6b05ee0c7e90ecc",
+      "triangles": 25000,
+      "vertices": 12838,
+      "cache": "Yaw_motor.npz"
+    },
+    "Yaw_motor1": {
+      "file": "Yaw_motor.STL",
+      "scale": [
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "source_sha256": "fff443ec166e5ebbf95444cb32769d4473c5c4c7c4e9309ad6b05ee0c7e90ecc",
+      "triangles": 25000,
+      "vertices": 12838,
+      "cache": "Yaw_motor1.npz"
+    },
+    "Yaw_rod": {
+      "file": "Yaw_rod.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "6cf294cf022352cb6fa0465ffea4bcc9e3aba6bccbe1a5aa0fdadc12383cb94e",
+      "triangles": 10000,
+      "vertices": 4837,
+      "cache": "Yaw_rod.npz"
+    },
+    "Yaw_rod1": {
+      "file": "Yaw_rod.STL",
+      "scale": [
+        1.0,
+        1.0,
+        -1.0
+      ],
+      "source_sha256": "6cf294cf022352cb6fa0465ffea4bcc9e3aba6bccbe1a5aa0fdadc12383cb94e",
+      "triangles": 10000,
+      "vertices": 4837,
+      "cache": "Yaw_rod1.npz"
+    },
+    "base_link": {
+      "file": "base_link.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "cc42c28d547aa18ecb89de9a36f7f63c89d190f4f4b56e18e01b00347ae81257",
+      "triangles": 50000,
+      "vertices": 25158,
+      "cache": "base_link.npz"
+    },
+    "torso": {
+      "file": "Torso.STL",
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "source_sha256": "97eadae51de799506abc24e815f82a88478878383a34727abb0b0352506da99f",
+      "triangles": 50000,
+      "vertices": 22499,
+      "cache": "torso.npz"
+    }
+  }
+}

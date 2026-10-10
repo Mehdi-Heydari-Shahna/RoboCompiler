@@ -1,0 +1,10 @@
+numpy==2.3.5
+scipy==1.17.0
+matplotlib==3.10.8
+pillow==12.3.0
+pin==3.8.0
+cmeel-urdfdom==4.0.1
+cmeel-tinyxml2==10.0.0
+vtk==9.4.2
+imageio==2.37.0
+imageio-ffmpeg==0.6.0

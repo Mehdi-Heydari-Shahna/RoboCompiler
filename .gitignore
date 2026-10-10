@@ -1,0 +1,82 @@
+__pycache__/
+*.py[cod]
+*.so
+
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.mypy_cache/
+
+*.egg-info/
+dist/
+build/
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# Outputs written by the benchmark and validation runs. Runs never rewrite
+# tracked files: their evidence (including run hash manifests and rebuilt
+# models/references) goes into results/-type folders listed here.
+# ---------------------------------------------------------------------------
+results/
+results_*/
+compiled_local/
+audit_local/
+native_audit_local/
+MUJOCO_LOG.TXT
+
+# Excavator
+/Excavator_CMG_PACDM/outputs/
+/Excavator_CMG_PACDM/figures/
+/Excavator_CMG_PACDM/v26/outputs/
+# Excavator model files: the model is supplied separately
+# (see Excavator_CMG_PACDM/model_access/excavator_model.py) and is never committed,
+# also when a copy of it is placed inside the repository.
+RoboCompiler_excavator_model/
+excavator_parameters.json
+MODEL_SHA256.json
+/Excavator_CMG_PACDM/compiler/inputs/
+/Excavator_CMG_PACDM/compiler/original/v21/data/
+/Excavator_CMG_PACDM/pinocchio/data/
+/Excavator_CMG_PACDM/isaac_sim/generated/
+/Excavator_CMG_PACDM/isaac_sim/reference/
+/Excavator_CMG_PACDM/**/Excavator_RoboIR_full_body_v21/data/
+/Excavator_CMG_PACDM/**/Excavator_RoboIR_full_body_v21/assets/
+/Excavator_CMG_PACDM/**/Excavator_RoboIR_full_body_v21/PROVENANCE.json
+/Excavator_CMG_PACDM/*/*/RoboCompiler_Excavator_Soil_v01/outputs/
+# Reports, videos and figures that runs with the model write beside the code
+/Excavator_CMG_PACDM/**/v26/outputs/
+/Excavator_CMG_PACDM/**/figures/
+/Excavator_CMG_PACDM/**/*.mp4
+/Excavator_CMG_PACDM/**/Excavator_v21_Report.md
+/Excavator_CMG_PACDM/**/Excavator_v21_Report.html
+/Excavator_CMG_PACDM/**/Excavator_Tracked_v26_Report.html
+
+# Go2 (the main MuJoCo run generates data/, derived/ and figures/)
+/Go2_CMG_PACDM/data/
+/Go2_CMG_PACDM/derived/
+/Go2_CMG_PACDM/figures/
+/Go2_CMG_PACDM/workflows/generated/audit_*/
+/Go2_CMG_PACDM/workflows/generated/presentation/
+/Go2_CMG_PACDM/workflows/isaac/figures/
+
+# Kangaroo (generated models, references and videos; data/ keeps two tracked files)
+/Kangaroo_CMG_PACDM/data/*
+!/Kangaroo_CMG_PACDM/data/contact_acceptance.json
+!/Kangaroo_CMG_PACDM/data/provenance.json
+/Kangaroo_CMG_PACDM/models/
+/Kangaroo_CMG_PACDM/videos/
+
+# Panda
+/Panda_CMG_PACDM/compiler_studies/benchmark/inputs/physical_graph_regenerated.json
+
+# Stewart (Supplement figures and audit records)
+/Stewart_CMG_PACDM/Supplement/figures/
+/Stewart_CMG_PACDM/Supplement/audit_metrics.json
+/Stewart_CMG_PACDM/Supplement/recomputed_metrics.json

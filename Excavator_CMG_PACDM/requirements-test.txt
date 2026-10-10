@@ -1,0 +1,2 @@
+# Supplement to a selected numerical environment for the Isaac regression suite.
+pytest==8.4.2
